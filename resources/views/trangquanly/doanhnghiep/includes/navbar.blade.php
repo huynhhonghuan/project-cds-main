@@ -1,10 +1,10 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('doanhnghiep.home') }}" class="logo"> <img src="{{ URL::to('assets/img/hotel_logo.png') }}"
+        <a href="{{ route('doanhnghiep.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/enterprise.png') }}"
                 width="50" height="70" alt="logo"> <span class="logoclass">Doanh nghiệp</span> </a>
         <a href="{{ route('doanhnghiep.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('assets/img/hotel_logo.png') }}" alt="Logo" width="30" height="30">
+                src="{{ URL::to('assets/backend/img/enterprise.png') }}" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -95,19 +95,19 @@
                     <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
-                        <h6>Soeng Souy</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>Soeng Souy</h6>{{--hiện tên của người đại diện--}}
+                        <p class="text-muted mb-0">Quản trị viên</p>{{--hiện chức vụ của người đại diện--}}
                     </div>
                 </div>
-                <a class="dropdown-item" href="{{ route('doanhnghiep.profile') }}">My Profile</a>
-                <a class="dropdown-item" href="settings.html">Account Settings</a>
-                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('doanhnghiep.profile') }}">Thông tin của tôi</a>
+                <a class="dropdown-item" href="settings.html">Cài đặt</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
             </div>
         </li>
     </ul>
     <div class="top-nav-search">
         <form>
-            <input type="text" class="form-control" placeholder="Search here">
+            <input type="text" class="form-control" placeholder="Tìm kiếm...">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>

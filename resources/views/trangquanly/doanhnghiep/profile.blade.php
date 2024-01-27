@@ -5,10 +5,10 @@
 				<div class="page-header mt-5">
 					<div class="row">
 						<div class="col">
-							<h3 class="page-title">Profile</h3>
+							<h3 class="page-title">Thông tin chi tiết doanh nghiệp</h3>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active">Profile</li>
+								<li class="breadcrumb-item"><a href="#">Bảng điều khiển</a></li>
+								<li class="breadcrumb-item active">Thông tin chi tiết doanh nghiệp</li>
 							</ul>
 						</div>
 					</div>
@@ -35,8 +35,8 @@
 						</div>
 						<div class="profile-menu">
 							<ul class="nav nav-tabs nav-tabs-solid">
-								<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a> </li>
-								<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a> </li>
+								<li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#per_details_tab">Thông tin</a> </li>
+								<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#password_tab">Mật khẩu</a> </li>
 							</ul>
 						</div>
 						<div class="tab-content profile-tab-cont">
@@ -46,7 +46,7 @@
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title d-flex justify-content-between">
-													<span>Personal Details</span>
+													<span>Thông tin doanh nghiệp</span>
 													<a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
 													</h5>
 												<div class="row mt-5">
@@ -150,7 +150,7 @@
 										<div class="card">
 											<div class="card-body">
 												<h5 class="card-title d-flex justify-content-between">
-													<span>Personal Details</span>
+													<span>Thông tin đại diện</span>
 													<a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
 													</h5>
 												<div class="row mt-5">
@@ -255,20 +255,20 @@
 							<div id="password_tab" class="tab-pane fade">
 								<div class="card">
 									<div class="card-body">
-										<h5 class="card-title">Change Password</h5>
+										<h5 class="card-title">Thay đổi mật khẩu</h5>
 										<div class="row">
 											<div class="col-md-10 col-lg-6">
 												<form>
 													<div class="form-group">
-														<label>Old Password</label>
+														<label>Mật khẩu cũ</label>
 														<input type="password" class="form-control"> </div>
 													<div class="form-group">
-														<label>New Password</label>
+														<label>Mật khẩu mới</label>
 														<input type="password" class="form-control"> </div>
 													<div class="form-group">
-														<label>Confirm Password</label>
+														<label>Xác nhận mật khẩu</label>
 														<input type="password" class="form-control"> </div>
-													<button class="btn btn-primary" type="submit">Save Changes</button>
+													<button class="btn btn-primary" type="submit">Lưu thay đổi</button>
 												</form>
 											</div>
 										</div>

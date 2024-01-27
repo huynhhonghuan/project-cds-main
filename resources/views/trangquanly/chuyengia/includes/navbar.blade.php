@@ -1,10 +1,10 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('chuyengia.home') }}" class="logo"> <img src="{{ URL::to('assets/img/hotel_logo.png') }}"
+        <a href="{{ route('chuyengia.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/expert.png') }}"
                 width="50" height="70" alt="logo"> <span class="logoclass">Chuyên gia</span> </a>
         <a href="{{ route('chuyengia.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('assets/img/hotel_logo.png') }}" alt="Logo" width="30" height="30">
+                src="{{ URL::to('assets/backend/img/expert.png') }}" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>

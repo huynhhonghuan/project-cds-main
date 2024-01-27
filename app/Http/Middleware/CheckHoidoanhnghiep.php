@@ -15,7 +15,7 @@ class CheckHoidoanhnghiep
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!$request->user()->Check_Hoidoanhnghiep())
+        if(!$request->user()->Check_Hiephoidoanhnghiep())
         {
             abort(403);
         }

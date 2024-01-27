@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Hoidoanhnghiep;
+namespace App\Http\Controllers\Hiephoidoanhnghiep;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HoidoanhnghiepController extends Controller
+class HiephoidoanhnghiepController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,12 +23,12 @@ class HoidoanhnghiepController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     //home page
-    public function index()
+    public function home()
     {
-        return view('hoidoanhnghiep.home');
+        return view('trangquanly.hiephoidoanhnghiep.home');
     }
     //profile
     public function profile(){
-        return view('hoidoanhnghiep.profile');
+        return view('trangquanly.hiephoidoanhnghiep.profile');
     }
 }

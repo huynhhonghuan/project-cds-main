@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Trangtin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tintuc;
@@ -78,7 +78,7 @@ class TintucController extends Controller
         //thêm hình ảnh vào publish theo đường dẫn và sử lý lưu tên hình thay thế bằng năm tháng ngày giờ phút giây
         if ($image = $request->file('hinhanh')) {
             $destinationPath = 'assets/frontend/img/trangtin/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $input['linhvuc_id'] . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['hinhanh'] = "$profileImage";
         }
@@ -126,12 +126,14 @@ class TintucController extends Controller
             'noidung' => 'required|string',
         ]);
 
+        $input['linhvuc_id']=$request->linhvuc_id;
+
         //kiểm tra nếu thêm mới hình ảnh thì lấy ảnh đó
         if(!empty($request->hinhanh)) {
             //set up để lưu tên hình ảnh và lưu ảnh đó vào publish theo đường dẫn
             $image = $request->file('hinhanh');
             $destinationPath = 'assets/frontend/img/trangtin/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $profileImage = $input['linhvuc_id'] . date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
 
             //xóa ảnh cũ ra khỏi danh sách ảnh

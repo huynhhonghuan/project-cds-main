@@ -1,4 +1,4 @@
-@extends('trangquanly.hoidoanhnghiep.layout'){{--kế thừa form layout--}}
+@extends('trangquanly.hiephoidoanhnghiep.layout'){{--kế thừa form layout--}}
 @section('content'){{--thêm content vào form kế thừa chỗ @yield('content')--}}
 		<div class="page-wrapper">
 			<div class="content container-fluid">
@@ -12,9 +12,9 @@
 						</div>
 					</div>
 				</div>
-				
 
-				
+
+
 			</div>
 		</div>
 @endsection

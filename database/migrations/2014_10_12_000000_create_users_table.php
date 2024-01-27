@@ -14,9 +14,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('name',255)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
             $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -25,11 +27,11 @@ return new class extends Migration
         $pass=Hash::make('1');
 
         DB::table('users')->insert([
-            ['email'=>'admin@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['email'=>'congtacvien@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['email'=>'doanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['email'=>'chuyengia@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['email'=>'hoidoanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
+            ['name'=>'Admin', 'email'=>'admin@gmail.com', 'password'=>$pass, 'status'=>'Active'],
+            ['name'=>'Cộng tác viên','email'=>'congtacvien@gmail.com', 'password'=>$pass, 'status'=>'Active'],
+            ['name'=>'Doanh nghiệp','email'=>'doanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
+            ['name'=>'Chuyên gia','email'=>'chuyengia@gmail.com', 'password'=>$pass, 'status'=>'Active'],
+            ['name'=>'Hiệp hội doanh nghiệp','email'=>'hiephoidoanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
 
         ]);
     }

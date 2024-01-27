@@ -1,10 +1,10 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('admin/home') }}" class="logo"> <img src="{{ URL::to('assets/img/hotel_logo.png') }}"
-                width="50" height="70" alt="logo"> <span class="logoclass">Hội DN</span> </a>
-        <a href="{{ route('admin/home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('assets/img/hotel_logo.png') }}" alt="Logo" width="30" height="30">
+        <a href="{{ route('hiephoidoanhnghiep.home') }}" class="logo"> <img src="{{ URL::to('assets/backend//img/teamwork.png') }}"
+                width="50" height="70" alt="logo"> <span class="logoclass">Hiệp Hội</span> </a>
+        <a href="{{ route('hiephoidoanhnghiep.home') }}" class="logo logo-small"> <img
+                src="{{ URL::to('assets/backend//img/teamwork.png') }}" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -99,15 +99,15 @@
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
                 </div>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
-                <a class="dropdown-item" href="settings.html">Account Settings</a>
-                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('admin.profile') }}">Thông tin chi tiết</a>
+                <a class="dropdown-item" href="settings.html">Cài đặt</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
             </div>
         </li>
     </ul>
     <div class="top-nav-search">
         <form>
-            <input type="text" class="form-control" placeholder="Search here">
+            <input type="text" class="form-control" placeholder="Tìm kiếm...">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>

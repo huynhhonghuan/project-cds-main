@@ -5,11 +5,10 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Chuyengia\ChuyengiaController;
 use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
-use App\Http\Controllers\Hoidoanhnghiep\HoidoanhnghiepController;
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Congtacvien\CongtacvienController;
-use App\Http\Controllers\Trangtin\TintucController;
-use App\Models\Role;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\TintucController;
+use App\Http\Controllers\Hiephoidoanhnghiep\HiephoidoanhnghiepController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,11 +63,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('hoidoanhnghiep/home', function () {
         return view('trangquanly.hoidoanhnghiep.home');
     });
-
-    //nhà đầu tư - có thể đăng kí - xem thông tin của doanh nghiệp
-    // Route::get('nhadautu/home', function () {
-    //     return view('nhadautu.home');
-    // });
 });
 
 //Đăng kí Auth
@@ -93,56 +87,56 @@ Route::post('/registerdoanhnghiep', [RegisterController::class, 'storeUserdoanhn
 //Route::group(['prefix'=>'trangquanly', 'middleware' => ['auth','check_admin']],function () {
 
 //-------------------------------------Admin--------------------------------------------//
-Route::group(['prefix' => 'admin' , 'middleware' => ['auth','check_admin']], function () {
+Route::group(['prefix' => 'admin' , 'middleware' => ['auth','check_admin'], 'as'=>'admin.'], function () {
     //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [AdminController::class, 'home'])->name('admin.home');
+    Route::get('home', [AdminController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('profile', [AdminController::class, 'profile'])->name('profile');
     //-------------------------------------Tin tức--------------------------------------------//
-    Route::group(['prefix'=>'tintuc'], function(){
-        Route::get('danhsach',[TintucController::class,'getdanhsach'])->name('admin.tintuc.danhsach');
-        Route::get('danhsachnongnghiep',[TintucController::class,'getdanhsachnongnghiep'])->name('admin.tintuc.danhsachnongnghiep');
-        Route::get('danhsachcongnghiep',[TintucController::class,'getdanhsachcongnghiep'])->name('admin.tintuc.danhsachcongnghiep');
-        Route::get('danhsachthuongmaidichvu',[TintucController::class,'getdanhsachthuongmaidichvu'])->name('admin.tintuc.danhsachthuongmaidichvu');
+    Route::group(['prefix'=>'tintuc', 'as' => 'tintuc.'], function(){
+        Route::get('danhsach',[TintucController::class,'getdanhsach'])->name('danhsach');
+        Route::get('danhsachnongnghiep',[TintucController::class,'getdanhsachnongnghiep'])->name('danhsachnongnghiep');
+        Route::get('danhsachcongnghiep',[TintucController::class,'getdanhsachcongnghiep'])->name('danhsachcongnghiep');
+        Route::get('danhsachthuongmaidichvu',[TintucController::class,'getdanhsachthuongmaidichvu'])->name('danhsachthuongmaidichvu');
 
-        Route::get('them',[TintucController::class,'getthem'])->name('admin.tintuc.them');
-        Route::post('them',[TintucController::class,'postthem'])->name('admin.tintuc.them');
-        Route::get('sua/{id}',[TintucController::class,'getsua'])->name('admin.tintuc.sua');
-        Route::post('sua/{id}',[TintucController::class,'postsua'])->name('admin.tintuc.sua');
-        Route::post('xoa',[TintucController::class,'getxoa'])->name('admin.tintuc.xoa');
-        Route::get('duyet/{id}',[TintucController::class,'getduyet'])->name('admin.tintuc.duyet');
+        Route::get('them',[TintucController::class,'getthem'])->name('them');
+        Route::post('them',[TintucController::class,'postthem'])->name('them');
+        Route::get('sua/{id}',[TintucController::class,'getsua'])->name('sua');
+        Route::post('sua/{id}',[TintucController::class,'postsua'])->name('sua');
+        Route::post('xoa',[TintucController::class,'getxoa'])->name('xoa');
+        Route::get('duyet/{id}',[TintucController::class,'getduyet'])->name('duyet');
     });
 
 });
 
-//-------------------------------------Cộng tác viên--------------------------------------------//
-Route::group(['prefix' => 'congtacvien' , 'middleware' => ['auth','check_congtacvien']], function () {
-    //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [CongtacvienController::class, 'home'])->name('congtacvien.home');
-    //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [CongtacvienController::class, 'profile'])->name('congtacvien.profile');
-});
-
 //-------------------------------------Doanh nghiệp--------------------------------------------//
-Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth','check_doanhnghiep']], function () {
+Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth','check_doanhnghiep'],'as'=>'doanhnghiep.'], function () {
     //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [DoanhnghiepController::class, 'home'])->name('doanhnghiep.home');
+    Route::get('home', [DoanhnghiepController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [DoanhnghiepController::class, 'profile'])->name('doanhnghiep.profile');
+    Route::get('profile', [DoanhnghiepController::class, 'profile'])->name('profile');
 });
 
 //-------------------------------------Chuyên gia--------------------------------------------//
-Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth','check_chuyengia']], function () {
+Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth','check_chuyengia'],'as'=>'chuyengia.'], function () {
     //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [ChuyengiaController::class, 'home'])->name('chuyengia.home');
+    Route::get('home', [ChuyengiaController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [ChuyengiaController::class, 'profile'])->name('chuyengia.profile');
+    Route::get('profile', [ChuyengiaController::class, 'profile'])->name('profile');
 });
 
-//-------------------------------------Hội doanh nghiệp--------------------------------------------//
-Route::group(['prefix' => 'hoidoanhnghiep', 'middleware' => ['auth','check_hoidoanhnghiep']], function () {
+//-------------------------------------Hiệp hội doanh nghiệp--------------------------------------------//
+Route::group(['prefix' => 'hiephoidoanhnghiep', 'middleware' => ['auth','check_hoidoanhnghiep'], 'as' =>'hiephoidoanhnghiep.'], function () {
     //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [HoidoanhnghiepController::class, 'home'])->name('hoidoanhnghiep.home');
+    Route::get('home', [HiephoidoanhnghiepController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [HoidoanhnghiepController::class, 'profile'])->name('hoidoanhnghiep.profile');
+    Route::get('profile', [HiephoidoanhnghiepController::class, 'profile'])->name('profile');
+});
+
+//-------------------------------------Cộng tác viên--------------------------------------------//
+Route::group(['prefix' => 'congtacvien' , 'middleware' => ['auth','check_congtacvien'], 'as'=>'congtacvien.'], function () {
+    //-------------------------------------Home--------------------------------------------//
+    Route::get('home', [CongtacvienController::class, 'home'])->name('home');
+    //-------------------------------------Profile--------------------------------------------//
+    Route::get('profile', [CongtacvienController::class, 'profile'])->name('profile');
 });

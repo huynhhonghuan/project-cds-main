@@ -64,33 +64,33 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'Active'])) {
 
             //truy xuất để biết quyền của user
-            $user = User::with('getRoles')->where('id', Auth::user()->id)->get();
-            $role = $user[0]->getRoles[0]->id;
+            // $user = User::with('getRoles')->where('id', Auth::user()->id)->get();
+            // $role = $user[0]->getRoles[0]->id;
 
             //đăng nhập vơi quyền admin
-            if ($role == 'ad') {
+            if (Auth::user()->Check_Admin()) {
                 Toastr::success('Đăng nhập thành công', 'Success');
                 return redirect()->route('admin.home');
             }
             //đăng nhập với quyền cộng tác viên
-            else if ($role == 'ctv') {
+            else if (Auth::user()->Check_Congtacvien()) {
                 Toastr::success('Login successfully :)', 'Success');
                 return redirect()->route('congtacvien.home');
             }
             //đăng nhập với quyền doanh nghiệp
-            else if ($role == 'dn') {
+            else if (Auth::user()->Check_Doanhnghiep()) {
                 Toastr::success('Login successfully :)', 'Success');
                 return redirect()->route('doanhnghiep.home');
             }
             //đăng nhập với quyền chuyên gia
-            else if ($role == 'cg') {
+            else if (Auth::user()->Check_Chuyengia()) {
                 Toastr::success('Login successfully :)', 'Success');
                 return redirect()->route('chuyengia.home');
             }
             // đăng nhập với quyền hiệp hội doanh nghiệp
-            else if ($role == 'hdn') {
+            else if (Auth::user()->Check_Hiephoidoanhnghiep()) {
                 Toastr::success('Login successfully :)', 'Success');
-                return redirect()->route('hoidoanhnghiep.home');
+                return redirect()->route('hiephoidoanhnghiep.home');
             }
         }
         //tài khoản không hoạt động
@@ -103,12 +103,6 @@ class LoginController extends Controller
             Toastr::error('Tài khoản hoặc mật khẩu không chính xác!', 'Error');
             return redirect('login');
         }
-
-        // nhà đầu tư
-        // elseif (Auth::attempt(['email'=>$email,'password'=>$password,'status'=> 'Active','role_name'=>'nhadautu'])) {
-        //     Toastr::success('Login successfully :)','Success');
-        //     return redirect()->intended('nhadautu/home');
-        // }
 
     }
     public function logout()

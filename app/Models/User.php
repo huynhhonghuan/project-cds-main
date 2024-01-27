@@ -55,59 +55,104 @@ class User extends Authenticatable
     }
 
     //Kiểm tra tài khoản đăng nhập có phải là Admin
-    public function Check_Admin(): bool
-    {
-        $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-        $role = $user[0]->getRoles[0]->id;
-        if($role == "ad")
-            return true;
-        return false;
-    }
+    // public function Check_Admin(): bool
+    // {
+    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getRoles[0]->id;
+    //     if($role == "ad")
+    //         return true;
+    //     return false;
+    // }
 
-    //Kiểm tra tài khoản đăng nhập có phải là Cộng tác viên
-    public function Check_Congtacvien(): bool
-    {
-        $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-        $role = $user[0]->getRoles[0]->id;
-        if($role == "ctv")
-            return true;
-        return false;
-    }
+    // //Kiểm tra tài khoản đăng nhập có phải là Cộng tác viên
+    // public function Check_Congtacvien(): bool
+    // {
+    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getRoles[0]->id;
+    //     if($role == "ctv")
+    //         return true;
+    //     return false;
+    // }
 
-    //Kiểm tra tài khoản đăng nhập có phải là Doanh nghiệp
-    public function Check_Doanhnghiep(): bool
-    {
-        $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-        $role = $user[0]->getRoles[0]->id;
-        if($role == "dn")
-            return true;
-        return false;
-    }
+    // //Kiểm tra tài khoản đăng nhập có phải là Doanh nghiệp
+    // public function Check_Doanhnghiep(): bool
+    // {
+    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getRoles[0]->id;
+    //     if($role == "dn")
+    //         return true;
+    //     return false;
+    // }
 
-    //Kiểm tra tài khoản đăng nhập có phải là Chuyên gia
-    public function Check_Chuyengia(): bool
-    {
-        $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-        $role = $user[0]->getRoles[0]->id;
-        if($role == "cg")
-            return true;
-        return false;
-    }
+    // //Kiểm tra tài khoản đăng nhập có phải là Chuyên gia
+    // public function Check_Chuyengia(): bool
+    // {
+    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getRoles[0]->id;
+    //     if($role == "cg")
+    //         return true;
+    //     return false;
+    // }
 
-    //Kiểm tra tài khoản đăng nhập có phải là Hội doanh nghiệp
-    public function Check_Hoidoanhnghiep(): bool
-    {
-        $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-        $role = $user[0]->getRoles[0]->id;
-        if($role == "hdn")
-            return true;
-        return false;
-    }
-
+    // //Kiểm tra tài khoản đăng nhập có phải là Hội doanh nghiệp
+    // public function Check_Hoidoanhnghiep(): bool
+    // {
+    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getRoles[0]->id;
+    //     if($role == "hdn")
+    //         return true;
+    //     return false;
+    // }
 
     // public function getUser_Linhvuc()
     // {
     //     return $this->morphOne(Tintuc::class,'getUser_Linhvuc');
     // }
-    
+
+    public function Check_Admin(): bool
+    {
+        return in_array(
+            $this->getRoles[0]->id,
+            [
+                'ad',
+            ],
+        );
+    }
+    public function Check_Congtacvien(): bool
+    {
+        return in_array(
+            $this->getRoles[0]->id,
+            [
+                'ctv',
+            ],
+        );
+    }
+    public function Check_Doanhnghiep(): bool
+    {
+        return in_array(
+            $this->getRoles[0]->id,
+            [
+                'dn',
+            ],
+        );
+    }
+    public function Check_Chuyengia(): bool
+    {
+        return in_array(
+            $this->getRoles[0]->id,
+            [
+                'cg',
+            ],
+        );
+    }
+    public function Check_Hiephoidoanhnghiep(): bool
+    {
+        return in_array(
+            $this->getRoles[0]->id,
+            [
+                'hhdn',
+            ],
+        );
+    }
+
 }

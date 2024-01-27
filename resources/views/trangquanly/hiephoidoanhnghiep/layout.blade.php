@@ -11,9 +11,9 @@
 <body>
     <div class="main-wrapper">
         {{--nhúng tĩnh Navbar--}}
-        @include('trangquanly.hoidoanhnghiep.includes.navbar')
+        @include('trangquanly.hiephoidoanhnghiep.includes.navbar')
         {{--nhúng tĩnh Sidebar --}}
-        @include('trangquanly.hoidoanhnghiep.includes.sidebar')
+        @include('trangquanly.hiephoidoanhnghiep.includes.sidebar')
         {{--nhúng động Contents từ form kế thừa--}}
         @yield('content')
     </div>

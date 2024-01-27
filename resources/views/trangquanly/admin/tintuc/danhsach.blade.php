@@ -23,7 +23,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="mt-5">
-                            <h4 class="card-title float-left mt-2">{{$tendanhsach}}</h4>
+                            <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
                             <a href="{{ route('admin.tintuc.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
                                 tin tức</a>
                         </div>
@@ -35,8 +35,7 @@
                     <div class="card card-table">
                         <div class="card-body p-3">
                             <div class="table-responsive">
-                                <table id="huan"
-                                    class="table table-stripped table table-hover table-center mb-0">
+                                <table id="huan" class="table table-stripped table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
                                             <th scope="col">STT</th>
@@ -206,10 +205,10 @@
                         '<option value="-1">All</option>' +
                         '</select> số lượng',
 
-                        "zeroRecords": "Nothing found - sorry",
-                        "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
-                        "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
-                        "search" : "Tìm kiếm:",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
+                    "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
+                    "search": "Tìm kiếm:",
                 }
             })
         });

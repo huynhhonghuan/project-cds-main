@@ -22,7 +22,7 @@ return new class extends Migration
             ['id'=>'ctv','name_role'=>'Cộng tác viên'],
             ['id'=>'dn','name_role'=>'Doanh nghiệp'],
             ['id'=>'cg','name_role'=>'Chuyên gia'],
-            ['id'=>'hdn','name_role'=>'Hội doanh nghiệp'],
+            ['id'=>'hhdn','name_role'=>'Hội doanh nghiệp'],
         ]);
     }
 
