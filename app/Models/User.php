@@ -49,70 +49,25 @@ class User extends Authenticatable
     // Users - User_roles - Roles
     // Từ bảng users chúng ta lấy được name vai trò từ bảng roles mà có 1 bảng trung gian user_roles
     // Sử dụng mối quan hệ belongsToMany
-    public function getRoles(): BelongsToMany
+    public function getVaitro(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Role', 'user_roles', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Models\Vaitro', 'user_vaitro', 'user_id', 'vaitro_id');
     }
 
     //Kiểm tra tài khoản đăng nhập có phải là Admin
     // public function Check_Admin(): bool
     // {
-    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getRoles[0]->id;
+    //     $user =User::with('getVaitro')->where('id', Auth::user()->id)->get();
+    //     $role = $user[0]->getVaitro[0]->id;
     //     if($role == "ad")
     //         return true;
     //     return false;
     // }
 
-    // //Kiểm tra tài khoản đăng nhập có phải là Cộng tác viên
-    // public function Check_Congtacvien(): bool
-    // {
-    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getRoles[0]->id;
-    //     if($role == "ctv")
-    //         return true;
-    //     return false;
-    // }
-
-    // //Kiểm tra tài khoản đăng nhập có phải là Doanh nghiệp
-    // public function Check_Doanhnghiep(): bool
-    // {
-    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getRoles[0]->id;
-    //     if($role == "dn")
-    //         return true;
-    //     return false;
-    // }
-
-    // //Kiểm tra tài khoản đăng nhập có phải là Chuyên gia
-    // public function Check_Chuyengia(): bool
-    // {
-    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getRoles[0]->id;
-    //     if($role == "cg")
-    //         return true;
-    //     return false;
-    // }
-
-    // //Kiểm tra tài khoản đăng nhập có phải là Hội doanh nghiệp
-    // public function Check_Hoidoanhnghiep(): bool
-    // {
-    //     $user =User::with('getRoles')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getRoles[0]->id;
-    //     if($role == "hdn")
-    //         return true;
-    //     return false;
-    // }
-
-    // public function getUser_Linhvuc()
-    // {
-    //     return $this->morphOne(Tintuc::class,'getUser_Linhvuc');
-    // }
-
     public function Check_Admin(): bool
     {
         return in_array(
-            $this->getRoles[0]->id,
+            $this->getVaitro[0]->id,
             [
                 'ad',
             ],
@@ -121,7 +76,7 @@ class User extends Authenticatable
     public function Check_Congtacvien(): bool
     {
         return in_array(
-            $this->getRoles[0]->id,
+            $this->getVaitro[0]->id,
             [
                 'ctv',
             ],
@@ -130,7 +85,7 @@ class User extends Authenticatable
     public function Check_Doanhnghiep(): bool
     {
         return in_array(
-            $this->getRoles[0]->id,
+            $this->getVaitro[0]->id,
             [
                 'dn',
             ],
@@ -139,7 +94,7 @@ class User extends Authenticatable
     public function Check_Chuyengia(): bool
     {
         return in_array(
-            $this->getRoles[0]->id,
+            $this->getVaitro[0]->id,
             [
                 'cg',
             ],
@@ -148,7 +103,7 @@ class User extends Authenticatable
     public function Check_Hiephoidoanhnghiep(): bool
     {
         return in_array(
-            $this->getRoles[0]->id,
+            $this->getVaitro[0]->id,
             [
                 'hhdn',
             ],

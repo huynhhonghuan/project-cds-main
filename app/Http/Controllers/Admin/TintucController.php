@@ -27,21 +27,21 @@ class TintucController extends Controller
     public function getdanhsachnongnghiep()
     {
         //$danhsach = Tintuc::with('getUser_Linhvuc')->orderBy('updated_at','desc')->get();
-        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','NN')->orderBy('updated_at', 'desc')->get();
+        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','nn')->orderBy('updated_at', 'desc')->get();
         //dd( $danhsach);
         return view('trangquanly.admin.tintuc.danhsach', compact('danhsach'))->with('tendanhsach','Danh sách tin tức nông nghiệp');
     }
     public function getdanhsachcongnghiep()
     {
         //$danhsach = Tintuc::with('getUser_Linhvuc')->orderBy('updated_at','desc')->get();
-        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','CN')->orderBy('updated_at', 'desc')->get();
+        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','cn')->orderBy('updated_at', 'desc')->get();
         //dd( $danhsach);
         return view('trangquanly.admin.tintuc.danhsach', compact('danhsach'))->with('tendanhsach','Danh sách tin tức công nghiệp');
     }
     public function getdanhsachthuongmaidichvu()
     {
         //$danhsach = Tintuc::with('getUser_Linhvuc')->orderBy('updated_at','desc')->get();
-        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','TM&DV')->orderBy('updated_at', 'desc')->get();
+        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->where('linhvuc_id','tmdv')->orderBy('updated_at', 'desc')->get();
         //dd( $danhsach);
         return view('trangquanly.admin.tintuc.danhsach', compact('danhsach'))->with('tendanhsach','Danh sách tin tức thương mại và dịch vụ');
     }

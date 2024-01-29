@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tintuc extends Model
 {
     use HasFactory;
+    protected $table = 'tintuc';
     protected $fillable =[
         'linhvuc_id',
         'user_id',

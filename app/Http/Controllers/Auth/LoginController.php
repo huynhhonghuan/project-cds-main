@@ -63,7 +63,7 @@ class LoginController extends Controller
         // tài khoản đang hoạt động - Active
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'Active'])) {
 
-            //truy xuất để biết quyền của user
+            // truy xuất để biết quyền của user
             // $user = User::with('getRoles')->where('id', Auth::user()->id)->get();
             // $role = $user[0]->getRoles[0]->id;
 

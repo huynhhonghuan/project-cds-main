@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tintucs', function (Blueprint $table) {
+        Schema::create('tintuc', function (Blueprint $table) {
             $table->id();
             $table->string('linhvuc_id',5)->index();
-            $table->foreign('linhvuc_id')->references('id')->on('linhvucs')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('linhvuc_id')->references('id')->on('linhvuc')->onUpdate('cascade')->onDelete('restrict');
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
             $table->string('tieude');
@@ -26,8 +26,8 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('tintucs')->insert([
-            ['linhvuc_id'=>'NN','user_id'=>'1','tieude'=>'Tiêu đề 1','tomtat'=>'Tóm tắt 1','noidung'=>'Nội dung 1'],
+        DB::table('tintuc')->insert([
+            ['linhvuc_id'=>'nn','user_id'=>'1','tieude'=>'Tiêu đề 1','tomtat'=>'Tóm tắt 1','noidung'=>'Nội dung 1'],
         ]);
     }
 
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tintucs');
+        Schema::dropIfExists('tintuc');
     }
 };

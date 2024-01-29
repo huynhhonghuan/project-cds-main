@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('vaitro', function (Blueprint $table) {
             $table->string('id', 5)->primary();
-            $table->string('name_role',100);
+            $table->string('tenvaitro',100);
             $table->timestamps();
         });
 
-        DB::table('roles')->insert([
-            ['id'=>'ad','name_role'=>'Admin'],
-            ['id'=>'ctv','name_role'=>'Cộng tác viên'],
-            ['id'=>'dn','name_role'=>'Doanh nghiệp'],
-            ['id'=>'cg','name_role'=>'Chuyên gia'],
-            ['id'=>'hhdn','name_role'=>'Hội doanh nghiệp'],
+        DB::table('vaitro')->insert([
+            ['id'=>'ad','tenvaitro'=>'Admin'],
+            ['id'=>'ctv','tenvaitro'=>'Cộng tác viên'],
+            ['id'=>'dn','tenvaitro'=>'Doanh nghiệp'],
+            ['id'=>'cg','tenvaitro'=>'Chuyên gia'],
+            ['id'=>'hhdn','tenvaitro'=>'Hiệp hội doanh nghiệp'],
         ]);
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('vaitro');
     }
 };

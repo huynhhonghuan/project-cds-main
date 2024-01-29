@@ -9,7 +9,7 @@ class Linhvuc extends Model
 {
     use HasFactory;
 
-    //protected $tablename='linhvucs';
+    protected $table='linhvuc';
     //đặt lại tên trường khóa chính và kiểu khi tạo database tự chỉnh
     protected $primaryKey ='id';
     protected $keyType='string';
