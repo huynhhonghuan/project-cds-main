@@ -1,7 +1,7 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('admin.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/admin.png') }}"
+        <a href="{{ route('admin.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/vaitro/admin.png') }}"
                 width="50" height="70" alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
         <a href="{{ route('admin.home') }}" class="logo logo-small"> <img
                 src="{{ URL::to('assets/backend/img/admin.png') }}" alt="Logo" width="30" height="30">
@@ -88,11 +88,11 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}" width="31"
+                        class="rounded-circle" src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}" width="31"
                         alt="Soeng Souy"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
-                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}"
+                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
                         <h6>{{Auth::user()->name}}</h6>

@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('cauhoiphieu1', function (Blueprint $table) {
-            $table->id();
-            $table->longText('tencauhoi');
-            $table->integer('cap')->default(0);
+            $table->unsignedBigInteger('id');
+            $table->primary('id');
+            $table->longText('tencauhoi')->nullable();
+            $table->longText('noidung')->nullable();
+            $table->integer('tieude')->default(0);
+            $table->unsignedBigInteger('cauhoiphieu1_id')->index()->nullable();
+            $table->foreign('cauhoiphieu1_id')->references('id')->on('cauhoiphieu1')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

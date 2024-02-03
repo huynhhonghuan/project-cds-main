@@ -22,8 +22,8 @@ return new class extends Migration
 
             $table->longText('tentiengviet');
             $table->longText('tentienganh');
-            $table->string('tenviettat');
-            $table->string('email')->unique();
+            $table->string('tenviettat')->nullable();
+            // $table->string('email')->unique();
             $table->string('diachi')->nullable();
             $table->string('mathue')->nullable();
             $table->string('fax')->nullable();

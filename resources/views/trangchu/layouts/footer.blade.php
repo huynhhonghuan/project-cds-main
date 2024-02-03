@@ -11,7 +11,7 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
                     <h6 class="text-uppercase fw-bold mb-4">
-                        <img src="{{ URL::to('assets/frontend/img/logo/footer_logo.png')}}" alt="logo" class="me-2"></i>Chuyển đổi số
+                        <img src="{{ URL::to('assets/frontend/img/logo/footer_logo-1.png')}}" alt="logo" class="me-2"></i>Chuyển đổi số
                     </h6>
                     <p>
                         Cung cấp thông tin về chuyển đổi số cho doanh nghiệp và hệ thống tư vấn chuyển đổi số cho doanh nghiệp vừa và nhỏ.

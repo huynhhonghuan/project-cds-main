@@ -88,15 +88,15 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}" width="31"
-                        alt="Soeng Souy"></span> </a>
+                class="rounded-circle" src="{{ URL::to('assets/backend/img/user-profile.png') }}" width="31"
+                alt="Doanh nghiệp"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
-                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}"
+                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/backend/img/user-profile.png') }}"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
-                        <h6>Soeng Souy</h6>{{--hiện tên của người đại diện--}}
-                        <p class="text-muted mb-0">Quản trị viên</p>{{--hiện chức vụ của người đại diện--}}
+                        <h6>{{Auth::user()->name}}</h6>{{--hiện tên của người đại diện--}}
+                        <p class="text-muted mb-0">Quản lý</p>{{--hiện chức vụ của người đại diện--}}
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ route('doanhnghiep.profile') }}">Thông tin của tôi</a>

@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('khaosat', function (Blueprint $table) {
             $table->id();
             $table->date('thoigiantao');
-
-            //thêm khóa ngoại của 4 danhsachphieu1 - 2 - 3 - 4
-
             $table->integer('tongdiem')->default(0);
             $table->integer('trangthai')->default(0);
             $table->timestamps();

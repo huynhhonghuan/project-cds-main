@@ -63,33 +63,29 @@ class LoginController extends Controller
         // tài khoản đang hoạt động - Active
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'Active'])) {
 
-            // truy xuất để biết quyền của user
-            // $user = User::with('getRoles')->where('id', Auth::user()->id)->get();
-            // $role = $user[0]->getRoles[0]->id;
-
             //đăng nhập vơi quyền admin
             if (Auth::user()->Check_Admin()) {
-                Toastr::success('Đăng nhập thành công', 'Success');
+                Toastr::success('Đăng nhập thành công quyền admin', 'Success');
                 return redirect()->route('admin.home');
             }
             //đăng nhập với quyền cộng tác viên
             else if (Auth::user()->Check_Congtacvien()) {
-                Toastr::success('Login successfully :)', 'Success');
+                Toastr::success('Đăng nhập thành công quyền cộng tác viên', 'Success');
                 return redirect()->route('congtacvien.home');
             }
             //đăng nhập với quyền doanh nghiệp
             else if (Auth::user()->Check_Doanhnghiep()) {
-                Toastr::success('Login successfully :)', 'Success');
+                Toastr::success('Đăng nhập thành công quyền doanh nghiệp', 'Success');
                 return redirect()->route('doanhnghiep.home');
             }
             //đăng nhập với quyền chuyên gia
             else if (Auth::user()->Check_Chuyengia()) {
-                Toastr::success('Login successfully :)', 'Success');
+                Toastr::success('Đăng nhập thành công quyền chuyên gia', 'Success');
                 return redirect()->route('chuyengia.home');
             }
             // đăng nhập với quyền hiệp hội doanh nghiệp
             else if (Auth::user()->Check_Hiephoidoanhnghiep()) {
-                Toastr::success('Login successfully :)', 'Success');
+                Toastr::success('Đăng nhập thành công quyền hiệp hội', 'Success');
                 return redirect()->route('hiephoidoanhnghiep.home');
             }
         }

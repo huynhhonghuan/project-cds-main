@@ -5,7 +5,7 @@
  <title>Chuyển đổi số</title>
 
  <!-- Hình ảnh logo con trên tab-->
- <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/frontend/img/logo/logo.png') }}">
+ <link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/frontend/img/logo/logo-1.png') }}">
 
  <!--Bootstrap CSS file nhớ cài npm i bootstrap@5.3.1 phiên bản tùy theo lấy file json-->
  <link rel="stylesheet" href="{{ URL::to('assets/bootstrap-5.0.2/dist/css/bootstrap.min.css') }}">

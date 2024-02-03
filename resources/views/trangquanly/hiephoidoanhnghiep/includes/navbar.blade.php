@@ -95,8 +95,8 @@
                     <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
-                        <h6>Soeng Souy</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>{{Auth::user()->name}}</h6>{{--hiện tên của người đại diện--}}
+                        <p class="text-muted mb-0">Hiệp hội doanh nghiệp</p>{{--hiện chức vụ của người đại diện--}}
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ route('admin.profile') }}">Thông tin chi tiết</a>

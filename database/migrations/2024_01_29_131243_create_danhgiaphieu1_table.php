@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('danhgiaphieu1', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('mohinh_trucot_id')->index();
-            $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
+            // $table->unsignedBigInteger('mohinh_trucot_id')->index();
+            // $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedBigInteger('danhsachphieu1_id')->index();
             $table->foreign('danhsachphieu1_id')->references('id')->on('danhsachphieu1')->onUpdate('cascade')->onDelete('cascade');

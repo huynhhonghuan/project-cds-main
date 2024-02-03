@@ -2,7 +2,7 @@
 <div class="header">
     <div class="header-left">
         <a href="{{ route('congtacvien.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/collaborations.png') }}"
-                width="50" height="70" alt="logo"> <span class="logoclass">CTV</span> </a>
+                width="50" height="70" alt="logo"> <span class="logoclass">Cộng tác viên</span> </a>
         <a href="{{ route('congtacvien.home') }}" class="logo logo-small"> <img
                 src="{{ URL::to('assets/backend/img/collaborations.png') }}" alt="Logo" width="30" height="30">
         </a>
@@ -88,26 +88,26 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}" width="31"
-                        alt="Soeng Souy"></span> </a>
+                class="rounded-circle" src="{{ URL::to('assets/backend/img/user-profile.png') }}" width="31"
+                alt="Doanh nghiệp"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
-                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/img/profiles/avatar-01.jpg') }}"
+                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/backend/img/user-profile.png') }}"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
-                        <h6>Soeng Souy</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>{{Auth::user()->name}}</h6>{{--hiện tên của người đại diện--}}
+                        <p class="text-muted mb-0">Cộng tác viên tin</p>{{--hiện chức vụ của người đại diện--}}
                     </div>
                 </div>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">My Profile</a>
-                <a class="dropdown-item" href="settings.html">Account Settings</a>
-                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('admin.profile') }}">Thông tin của tôi</a>
+                <a class="dropdown-item" href="settings.html">Cài đặt</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
             </div>
         </li>
     </ul>
     <div class="top-nav-search">
         <form>
-            <input type="text" class="form-control" placeholder="Search here">
+            <input type="text" class="form-control" placeholder="Tìm kiếm...">
             <button class="btn" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>

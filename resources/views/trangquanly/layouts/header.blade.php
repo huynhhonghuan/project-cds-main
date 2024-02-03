@@ -14,6 +14,9 @@
 <link rel="stylesheet" href="{{ URL::to('assets/backend/css/style.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ URL::to('assets/backend/css/bootstrap-datetimepicker.min.css') }}">
 
+<link rel="stylesheet" href="{{ URL::to('assets/fontawesome-free-6.4.2-web/css/fontawesome.min.css') }}">
+<link rel="stylesheet" href="{{ URL::to('assets/fontawesome-free-6.4.2-web/css/all.min.css') }}">
+
 {{-- message toastr --}}
 <link rel="stylesheet" href="{{ URL::to('assets/backend/css/toastr.min.css') }}">
 <script src="{{ URL::to('assets/backend/js/toastr_jquery.min.js') }}"></script>

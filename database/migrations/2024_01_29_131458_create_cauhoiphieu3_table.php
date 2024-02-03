@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('cauhoiphieu3', function (Blueprint $table) {
             $table->id();
             $table->longText('tencauhoi');
-            $table->integer('cap')->default(0);
             $table->timestamps();
         });
     }

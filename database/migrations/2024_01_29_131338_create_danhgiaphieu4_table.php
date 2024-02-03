@@ -16,7 +16,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('danhsachphieu4_id')->index();
             $table->foreign('danhsachphieu4_id')->references('id')->on('danhsachphieu4')->onUpdate('cascade')->onDelete('cascade');
+
             $table->string('tendanhgia')->default('RÀO CẢN CHUYỂN ĐỔI SỐ TRONG DOANH NGHIỆP NHỎ VÀ VỪA');
+
             $table->string('noidungnhucau')->nullable();
             $table->string('noidungdexuat')->nullable();
             $table->integer('trangthai')->default(0);

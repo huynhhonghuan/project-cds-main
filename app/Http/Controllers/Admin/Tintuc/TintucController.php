@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Tintuc;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tintuc;
@@ -21,7 +21,6 @@ class TintucController extends Controller
     {
         //$danhsach = Tintuc::with('getUser_Linhvuc')->orderBy('updated_at','desc')->get();
         $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->orderBy('updated_at', 'desc')->get();
-        //dd( $danhsach);
         return view('trangquanly.admin.tintuc.danhsach', compact('danhsach'))->with('tendanhsach','Danh sách tin tức tổng hợp');
     }
     public function getdanhsachnongnghiep()
@@ -48,7 +47,7 @@ class TintucController extends Controller
 
     public function getthem()
     {
-        $linhvuc = DB::table('linhvucs')->get();
+        $linhvuc = DB::table('linhvuc')->get();
         return view('trangquanly.admin.tintuc.them', compact('linhvuc'));
     }
 
@@ -112,7 +111,7 @@ class TintucController extends Controller
     {
         //tìm tin tức theo id
         $tintuc = Tintuc::find($id);
-        $linhvuc = DB::table('linhvucs')->get();
+        $linhvuc = DB::table('linhvuc')->get();
         return view('trangquanly.admin.tintuc.sua',compact(['tintuc','linhvuc']));
     }
 
@@ -159,7 +158,7 @@ class TintucController extends Controller
         return redirect()->route('admin.tintuc.danhsach');
     }
 
-    public function getxoa(Request $request)
+    public function postxoa(Request $request)
     {
         //xóa dữ liệu trong csdl
         Tintuc::destroy($request->id);

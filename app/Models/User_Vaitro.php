@@ -9,13 +9,17 @@ class User_Vaitro extends Model
 {
     use HasFactory;
 
-    protected $fillable=['user_id','vaitro_id'];
+    protected $table = 'user_vaitro';
 
-    public function user(){
+    protected $fillable = ['user_id', 'vaitro_id', 'cap_vaitro_id', 'duyet_user_id'];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function vaitro(){
+    public function vaitro()
+    {
         return $this->belongsTo(Vaitro::class);
     }
 }

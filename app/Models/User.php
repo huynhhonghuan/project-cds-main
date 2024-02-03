@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use Auth;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -49,25 +51,27 @@ class User extends Authenticatable
     // Users - User_roles - Roles
     // Từ bảng users chúng ta lấy được name vai trò từ bảng roles mà có 1 bảng trung gian user_roles
     // Sử dụng mối quan hệ belongsToMany
-    public function getVaitro(): BelongsToMany
+    public function getVaiTro(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Vaitro', 'user_vaitro', 'user_id', 'vaitro_id');
+        return $this->belongsToMany('App\Models\Vaitro', 'user_vaitro', 'user_id', 'vaitro_id')->withPivot('cap_vaitro_id', 'duyet_user_id');
     }
 
-    //Kiểm tra tài khoản đăng nhập có phải là Admin
-    // public function Check_Admin(): bool
-    // {
-    //     $user =User::with('getVaitro')->where('id', Auth::user()->id)->get();
-    //     $role = $user[0]->getVaitro[0]->id;
-    //     if($role == "ad")
-    //         return true;
-    //     return false;
-    // }
+    public function getCapVaiTro(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Vaitro', 'user_vaitro', 'user_id', 'cap_vaitro_id');
+    }
+
+    public function getDuyet(): HasMany
+    {
+        return $this->hasMany(User_Vaitro::class, 'user_id');
+    }
+
+    //Kiểm tra tài khoản đăng nhập
 
     public function Check_Admin(): bool
     {
         return in_array(
-            $this->getVaitro[0]->id,
+            $this->getVaiTro[0]->id,
             [
                 'ad',
             ],
@@ -76,7 +80,7 @@ class User extends Authenticatable
     public function Check_Congtacvien(): bool
     {
         return in_array(
-            $this->getVaitro[0]->id,
+            $this->getVaiTro[0]->id,
             [
                 'ctv',
             ],
@@ -85,7 +89,7 @@ class User extends Authenticatable
     public function Check_Doanhnghiep(): bool
     {
         return in_array(
-            $this->getVaitro[0]->id,
+            $this->getVaiTro[0]->id,
             [
                 'dn',
             ],
@@ -94,7 +98,7 @@ class User extends Authenticatable
     public function Check_Chuyengia(): bool
     {
         return in_array(
-            $this->getVaitro[0]->id,
+            $this->getVaiTro[0]->id,
             [
                 'cg',
             ],
@@ -103,11 +107,10 @@ class User extends Authenticatable
     public function Check_Hiephoidoanhnghiep(): bool
     {
         return in_array(
-            $this->getVaitro[0]->id,
+            $this->getVaiTro[0]->id,
             [
                 'hhdn',
             ],
         );
     }
-
 }

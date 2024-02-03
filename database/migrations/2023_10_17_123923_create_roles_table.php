@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('vaitro', function (Blueprint $table) {
             $table->string('id', 5)->primary();
             $table->string('tenvaitro',100);
+            $table->string('hinhanh')->nullable();
             $table->timestamps();
         });
 
         DB::table('vaitro')->insert([
-            ['id'=>'ad','tenvaitro'=>'Admin'],
-            ['id'=>'ctv','tenvaitro'=>'Cộng tác viên'],
-            ['id'=>'dn','tenvaitro'=>'Doanh nghiệp'],
-            ['id'=>'cg','tenvaitro'=>'Chuyên gia'],
-            ['id'=>'hhdn','tenvaitro'=>'Hiệp hội doanh nghiệp'],
+            ['id'=>'ad','tenvaitro'=>'Admin','hinhanh' =>'admin.png'],
+            ['id'=>'ctv','tenvaitro'=>'Cộng tác viên','hinhanh'=>'collaborations.png'],
+            ['id'=>'dn','tenvaitro'=>'Doanh nghiệp','hinhanh'=>'enterprise.png'],
+            ['id'=>'cg','tenvaitro'=>'Chuyên gia','hinhanh'=>'expert.png'],
+            ['id'=>'hhdn','tenvaitro'=>'Hiệp hội doanh nghiệp','hinhanh'=>'teamwork.png'],
         ]);
     }
 

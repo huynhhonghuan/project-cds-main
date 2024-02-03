@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('linhvuc', function (Blueprint $table) {
             $table->string('id',5)->primary();
             $table->string("tenlinhvuc");
+            $table->string('hinhanh')->nullable();
             $table->timestamps();
         });
 
         DB::table('linhvuc')->insert([
-            ['id'=>'nn','tenlinhvuc'=>'Nông nghiệp'],
-            ['id'=>'cn','tenlinhvuc'=>'Công nghiệp'],
-            ['id'=>'tmdv','tenlinhvuc'=>'Thương mại và dịch vụ'],
-            ['id'=>'kh','tenlinhvuc'=>'Khác']
+            ['id'=>'nn','tenlinhvuc'=>'Nông nghiệp','hinhanh' => 'nongnghiep.jpg'],
+            ['id'=>'cn','tenlinhvuc'=>'Công nghiệp','hinhanh' =>'congnghiep.jpg'],
+            ['id'=>'tmdv','tenlinhvuc'=>'Thương mại và dịch vụ' , 'hinhanh' => 'thuongmaidichvu.jpg'],
+            ['id'=>'kh','tenlinhvuc'=>'Khác', 'hinhanh' =>'khac.jpg']
         ]);
     }
 

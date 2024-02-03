@@ -15,9 +15,5 @@ class Khaosat extends Model
         'thoigiantao',
         'tongdiem',
         'trangthai',
-        'danhsachphieu1_id',
-        'danhsachphieu2_id',
-        'danhsachphieu3_id',
-        'danhsachphieu4_id',
     ];
 }
