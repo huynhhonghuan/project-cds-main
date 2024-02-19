@@ -19,9 +19,11 @@ return new class extends Migration
 
             $table->string('tendanhgia')->default('CHUYỂN ĐỔI SỐ CỦA DOANH NGHIỆP NHỎ VÀ VỪA');
 
+            $table->integer('soluonghoanthanh')->default(0);
+
             $table->integer('diem')->default(0);
 
-            $table->string('trangthai')->default(0);
+            // $table->string('trangthai')->default(0);
             $table->timestamps();
         });
     }

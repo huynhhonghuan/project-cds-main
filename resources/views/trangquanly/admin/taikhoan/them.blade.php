@@ -38,7 +38,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên doanh nghiệp tiếng việt</label>
-                                            <input type="text" class="form-control" name="tentiengviet" required>
+                                            <input type="text" class="form-control" name="doanhnghiep_tentiengviet"
+                                                required value="Công ty TNHH 3H">
                                             <div class="invalid-feedback">
                                                 Nhập tên doanh nghiệp!
                                             </div>
@@ -46,7 +47,8 @@
 
                                         <div class="form-group">
                                             <label>Tên doanh nghiệp tiếng anh</label>
-                                            <input type="text" class="form-control" name="tentienganh" required>
+                                            <input type="text" class="form-control" name="doanhnghiep_tentienganh"
+                                                required value="3H Company Limited">
                                             <div class="invalid-feedback">
                                                 Nhập tên doanh nghiệp!
                                             </div>
@@ -54,7 +56,8 @@
 
                                         <div class="form-group">
                                             <label>Tên doanh nghiệp viết tắt</label>
-                                            <input type="text" class="form-control" name="tenviettat">
+                                            <input type="text" class="form-control" name="doanhnghiep_tenviettat"
+                                                value="">
                                         </div>
 
                                         <div class="row">
@@ -79,7 +82,7 @@
                                                     <label>Ngày thành lập</label>
                                                     <div class="cal-icon">
                                                         <input type="text" class="form-control datetimepicker"
-                                                            name="ngaylap" required>
+                                                            name="doanhnghiep_ngaylap" required>
                                                         <div class="invalid-feedback">
                                                             Nhập ngày thành lập công ty!
                                                         </div>
@@ -92,7 +95,8 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>Mã thuế</label>
-                                                    <input type="text" class="form-control" name="mathue" required>
+                                                    <input type="text" class="form-control" name="doanhnghiep_mathue"
+                                                        required value="810000">
                                                     <div class="invalid-feedback">
                                                         Nhập mã thuế!
                                                     </div>
@@ -101,14 +105,15 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Fax</label>
-                                                    <input type="text" class="form-control" name="fax">
+                                                    <input type="text" class="form-control" name="doanhnghiep_fax"
+                                                        value="0321456789">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Nhân sự</label>
-                                                    <input type="number" class="form-control" name="soluongnhansu"
-                                                        required>
+                                                    <input type="number" class="form-control"
+                                                        name="doanhnghiep_soluongnhansu" value="100" required>
                                                     <div class="invalid-feedback">
                                                         Nhập số lượng nhân sự!
                                                     </div>
@@ -121,7 +126,7 @@
                                                 <div class="form-group">
                                                     <label>Số điện thoại</label>
                                                     <input type="text" class="form-control" name="doanhnghiep_sdt"
-                                                        required>
+                                                        value="0123456789" required>
                                                     <div class="invalid-feedback">
                                                         Nhập số điện thoại của doanh nghiệp!
                                                     </div>
@@ -130,10 +135,10 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Loại số điện thoại</label>
-                                                    <select class="form-control" id="loai_sdt" name="loai_sdt"
+                                                    <select class="form-control" id="loai_sdt" name="doanhnghiep_loai_sdt"
                                                         name="loaisdt" required>
                                                         <option value="">--Chọn--</option>
-                                                        <option>Văn phòng</option>
+                                                        <option selected>Văn phòng</option>
                                                         <option>Di động</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -150,7 +155,7 @@
                                                     <label>Tỉnh</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_city_1" required>
+                                                        id="doanhnghiep_city_1" name="doanhnghiep_thanhpho" required>
                                                         <option value="">--Chọn tỉnh--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -163,7 +168,7 @@
                                                     <label>Quận / Huyện / Thành phố</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_district_1" required>
+                                                        id="doanhnghiep_district_1" name="doanhnghiep_huyen" required>
                                                         <option value="">--Chọn quận/huyện--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -176,7 +181,7 @@
                                                     <label>Phường / Xã</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_ward_1" required>
+                                                        id="doanhnghiep_ward_1" name="doanhnghiep_xa" required>
                                                         <option value="">--Chọn phường/xã--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -187,7 +192,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="diachi_doanhnhiep"
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="doanhnghiep_diachi"
                                                 required></textarea>
                                             <div class="invalid-feedback">
                                                 Nhập địa chỉ chi tiết của doanh nghiệp!
@@ -195,7 +200,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Mô tả chi tiết doanh nghiệp</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="mota_doanhnghiep"></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="doanhnghiep_mota"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +210,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên người đại diện</label>
-                                            <input type="text" class="form-control" name="tendaidien" required>
+                                            <input type="text" class="form-control"
+                                                name="doanhnghiep_daidien_tendaidien" required value="Huỳnh Hồng Huân">
                                             <div class="invalid-feedback">
                                                 Nhập tên người đại diện doanh nghiệp!
                                             </div>
@@ -214,8 +220,8 @@
                                             <div class="col-md-7">
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="email" class="form-control" name="email_daidien"
-                                                        required>
+                                                    <input type="email" class="form-control"
+                                                        name="doanhnghiep_daidien_email" value="huan1@gmail.com" required>
                                                     <div class="invalid-feedback">
                                                         Nhập email của người đại diện!
                                                     </div>
@@ -224,11 +230,13 @@
                                             <div class="col-md-5">
                                                 <div class="form-group">
                                                     <label>Chức vụ</label>
-                                                    <select class="form-control" id="sel1" name="chucvu"
-                                                        name="chucvu" required>
-                                                        <option value="">Văn phòng</option>
-                                                        <option>Văn phòng</option>
-                                                        <option>Di động</option>
+                                                    <select class="form-control" id="sel1"
+                                                        name="doanhnghiep_daidien_chucvu" required>
+                                                        <option value="">--- Chọn ---</option>
+                                                        <option selected>Chủ tịch</option>
+                                                        <option>Giám đốc</option>
+                                                        <option>Trưởng phòng</option>
+                                                        <option>Khác</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Chọn chức vụ!
@@ -243,7 +251,8 @@
                                                     <label>Tỉnh</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_city_2" required>
+                                                        id="doanhnghiep_city_2" name="doanhnghiep_daidien_thanhpho"
+                                                        required>
                                                         <option value="">--Chọn tỉnh--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -256,7 +265,8 @@
                                                     <label>Quận / Huyện / Thành phố</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_district_2" required>
+                                                        id="doanhnghiep_district_2" name="doanhnghiep_daidien_huyen"
+                                                        required>
                                                         <option value="">--Chọn quận/huyện--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -269,7 +279,7 @@
                                                     <label>Phường / Xã</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="doanhnghiep_ward_2" required>
+                                                        id="doanhnghiep_ward_2" name="doanhnghiep_daidien_xa" required>
                                                         <option value="">--Chọn phường/xã--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -281,8 +291,8 @@
 
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="diachi_daidien"
-                                                required></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"
+                                                name="doanhnghiep_daidien_diachi" required></textarea>
                                             <div class="invalid-feedback">
                                                 Nhập địa chỉ chi tiết của người đại diện doanh nghiệp!
                                             </div>
@@ -291,14 +301,16 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>CCCD</label>
-                                            <input type="text" class="form-control" name="cccd" required>
+                                            <input type="text" class="form-control" name="doanhnghiep_daidien_cccd"
+                                                required value="014785236932">
                                             <div class="invalid-feedback">
                                                 Nhập số căn cước công dân!
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Ảnh mặt trước CCCD</label>
-                                            <input type="file" class="form-control" name="img_mattruoc" required>
+                                            <input type="file" class="form-control"
+                                                name="doanhnghiep_daidien_img_mattruoc" required>
 
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt trước!
@@ -306,14 +318,16 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Ảnh mặt sau CCCD</label>
-                                            <input type="file" class="form-control" name="img_matsau" required>
+                                            <input type="file" class="form-control"
+                                                name="doanhnghiep_daidien_img_matsau" required>
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt sau!
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Mô tả chi tiết</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="mota_daidien"></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"
+                                                name="doanhnghiep_daidien_mota"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -325,7 +339,8 @@
                                             <label>Email</label>
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" value="{{ old('email') }}" required />
+                                                value="doanhnghiep1@gmail.com" name="email" value="{{ old('email') }}"
+                                                required />
                                             @error('email')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -334,7 +349,7 @@
                                             <label>Mật khẩu</label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                id="password" name="password" required />
+                                                value="12345678" id="password" name="password" required />
                                             @error('password')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -343,10 +358,19 @@
                                             <label>Xác nhận mật khẩu</label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                id="password_confirmation" name="password_confirmation" required />
+                                                value="12345678" id="password_confirmation" name="password_confirmation"
+                                                required />
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Hình đại diện doanh nghiệp</label>
+                                            <input type="file" class="form-control" name="doanhnghiep_img" required>
+                                            <div class="invalid-feedback">
+                                                Chọn hình ảnh đại diện!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -366,12 +390,14 @@
                         <div class="card-body">
                             <form action="{{ route('admin.taikhoan.them_loai', ['loai' => 'cg']) }}" method="POST"
                                 enctype="multipart/form-data" class="needs-validation" novalidate>
+                                @csrf
                                 <h4 class="card-title">Thông tin chuyên gia</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên chuyên gia</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" name="chuyengia_tendaidien"
+                                                value="Chuyên Gia 1" required>
                                             <div class="invalid-feedback">
                                                 Nhập tên chuyên gia!
                                             </div>
@@ -381,7 +407,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Số điện thoại</label>
-                                                    <input type="text" class="form-control" required>
+                                                    <input type="text" class="form-control" name="chuyengia_sdt"
+                                                        value="0123456789" required>
                                                     <div class="invalid-feedback">
                                                         Nhập số điện thoại!
                                                     </div>
@@ -390,8 +417,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Lĩnh vực</label>
-                                                    <select class="form-control" id="" name="sellist1" required>
-                                                        <option value="">--Chọn lĩnh vực--</option>
+                                                    <select class="form-control" id=""
+                                                        name="chuyengia_linhvuc_id" required>
+                                                        <option value="">--Chọn vĩnh vực hoạt động--</option>
+                                                        @foreach ($linhvuc as $value)
+                                                            <option value="{{ $value->id }}">{{ $value->tenlinhvuc }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Chọn lĩnh vực hoạt động của chuyên gia!
@@ -405,7 +437,7 @@
                                                     <label>Tỉnh</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="chuyengia_city_1" required>
+                                                        id="chuyengia_city_1" name="chuyengia_thanhpho" required>
                                                         <option value="">--Chọn tỉnh--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -418,7 +450,7 @@
                                                     <label>Quận / Huyện / Thành phố</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="chuyengia_district_1" required>
+                                                        id="chuyengia_district_1" name="chuyengia_huyen" required>
                                                         <option value="">--Chọn quận/huyện--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -431,7 +463,7 @@
                                                     <label>Phường / Xã</label>
                                                     <select class="form-control"
                                                         onclick="this.setAttribute('value', this.value);" value=""
-                                                        id="chuyengia_ward_1" required>
+                                                        id="chuyengia_ward_1" name="chuyengia_xa" required>
                                                         <option value="">--Chọn phường/xã--</option>
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -443,7 +475,8 @@
 
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" required></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="chuyengia_diachi"
+                                                required></textarea>
                                             <div class="invalid-feedback">
                                                 Nhập địa chỉ chi tiết!
                                             </div>
@@ -452,28 +485,31 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>CCCD</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" name="chuyengia_cccd"
+                                                value="014785236996" required>
                                             <div class="invalid-feedback">
                                                 Nhập số căn cước công dân!
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Ảnh mặt trước CCCD</label>
-                                            <input type="file" class="form-control" required>
+                                            <input type="file" class="form-control" name="chuyengia_cccd_img_mattruoc"
+                                                required>
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt trước!
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Ảnh mặt sau CCCD</label>
-                                            <input type="file" class="form-control" required>
+                                            <input type="file" class="form-control" name="chuyengia_cccd_img_matsau"
+                                                required>
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt sau!
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Mô tả chi tiết</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" name="chuyengia_mota" placeholder="Enter message"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -484,7 +520,8 @@
                                             <label>Email</label>
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" value="{{ old('email') }}" required />
+                                                value="chuyengia1@gmail.com" name="email" value="{{ old('email') }}"
+                                                required />
                                             @error('email')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -493,7 +530,7 @@
                                             <label>Mật khẩu</label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                id="password" name="password" required />
+                                                value="12345678" id="password" name="password" required />
                                             @error('password')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -502,10 +539,19 @@
                                             <label>Xác nhận mật khẩu</label>
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                id="password_confirmation" name="password_confirmation" required />
+                                                value="12345678" id="password_confirmation" name="password_confirmation"
+                                                required />
                                             @error('password_confirmation')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Hình đại diện doanh nghiệp</label>
+                                            <input type="file" class="form-control" name="chuyengia_img" required>
+                                            <div class="invalid-feedback">
+                                                Chọn hình ảnh đại diện!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -614,7 +660,8 @@
                                         <label class="col-lg-3 col-form-label">Họ và tên</label>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                                id="name" name="name" value="{{ old('name') }}" required />
+                                                value="Huân Huân" id="name" name="name"
+                                                value="{{ old('name') }}" required />
                                             @error('name')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -625,7 +672,8 @@
                                         <div class="col-lg-9">
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                                name="email" value="{{ old('email') }}" required />
+                                                value="huynh1@gmail.com" name="email" value="{{ old('email') }}"
+                                                required />
                                             @error('email')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -636,7 +684,7 @@
                                         <div class="col-lg-9">
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                id="password" name="password" required />
+                                                value="12345678" id="password" name="password" required />
                                             @error('password')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
@@ -647,8 +695,20 @@
                                         <div class="col-lg-9">
                                             <input type="password"
                                                 class="form-control @error('password_confirmation') is-invalid @enderror"
-                                                id="password_confirmation" name="password_confirmation" required />
+                                                value="12345678" id="password_confirmation" name="password_confirmation"
+                                                required />
                                             @error('password_confirmation')
+                                                <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Hình ảnh đại diện</label>
+                                        <div class="col-lg-9">
+                                            <input type="file"
+                                                class="form-control @error('congtacvien_img') is-invalid @enderror"
+                                                id="congtacvien_img" name="congtacvien_img" required />
+                                            @error('congtacvien_img')
                                                 <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                                             @enderror
                                         </div>
@@ -746,6 +806,10 @@
         var doanhnghiep_district_2 = document.getElementById("doanhnghiep_district_2");
         var doanhnghiep_ward_2 = document.getElementById("doanhnghiep_ward_2");
 
+        var chuyengia_city_1 = document.getElementById("chuyengia_city_1");
+        var chuyengia_district_1 = document.getElementById("chuyengia_district_1");
+        var chuyengia_ward_1 = document.getElementById("chuyengia_ward_1");
+
         // địa chỉ của doanh nghiệp - xử lý bằng promise
         var doanhnghiep_promise_1 = axios(Parameter);
         doanhnghiep_promise_1.then(function(result) {
@@ -756,6 +820,12 @@
         var doanhnghiep_promise_2 = axios(Parameter);
         doanhnghiep_promise_2.then(function(result) {
             renderCity(result.data, doanhnghiep_city_2, doanhnghiep_district_2, doanhnghiep_ward_2);
+        });
+
+        //địa chỉ của đại diện doanh nghiệp - xử lý bằng promise
+        var doanhnghiep_promise_3 = axios(Parameter);
+        doanhnghiep_promise_3.then(function(result) {
+            renderCity(result.data, chuyengia_city_1, chuyengia_district_1, chuyengia_ward_1);
         });
 
         //xử lý lựa chọn tỉnh -> huyện -> xã

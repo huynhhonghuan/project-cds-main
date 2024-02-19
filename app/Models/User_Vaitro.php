@@ -13,9 +13,9 @@ class User_Vaitro extends Model
 
     protected $fillable = ['user_id', 'vaitro_id', 'cap_vaitro_id', 'duyet_user_id'];
 
-    public function user()
+    public function nguoiduyet()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'duyet_user_id');
     }
 
     public function vaitro()

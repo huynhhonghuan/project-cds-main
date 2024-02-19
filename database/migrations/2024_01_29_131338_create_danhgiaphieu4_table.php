@@ -19,9 +19,9 @@ return new class extends Migration
 
             $table->string('tendanhgia')->default('RÀO CẢN CHUYỂN ĐỔI SỐ TRONG DOANH NGHIỆP NHỎ VÀ VỪA');
 
-            $table->string('noidungnhucau')->nullable();
-            $table->string('noidungdexuat')->nullable();
-            $table->integer('trangthai')->default(0);
+            $table->longText('noidungnhucau')->nullable();
+            $table->longText('noidungdexuat')->nullable();
+            // $table->integer('trangthai')->default(0);
 
             $table->timestamps();
         });

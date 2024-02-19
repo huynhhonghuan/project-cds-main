@@ -12,6 +12,8 @@ class Cauhoiphieu1 extends Model
     protected $fillable =[
         'id',
         'tencauhoi',
-        'cap',
+        'noidung',
+        'tieude',
+        'cauhoiphieu1_id',
     ];
 }

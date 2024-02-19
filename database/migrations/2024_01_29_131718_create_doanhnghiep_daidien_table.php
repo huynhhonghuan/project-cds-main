@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('sdt')->nullable();
             $table->string('diachi')->nullable();
             $table->string('cccd');
-            $table->string('img_mattruoc');
-            $table->string('img_matsau');
+            $table->string('img_mattruoc')->nullable();
+            $table->string('img_matsau')->nullable();
             $table->string('chucvu')->default('Quản lý');
 
             $table->timestamps();

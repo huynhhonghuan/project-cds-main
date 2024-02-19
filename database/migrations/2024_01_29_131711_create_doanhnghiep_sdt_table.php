@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('doanhnghiep_id')->index();
             $table->foreign('doanhnghiep_id')->references('id')->on('doanhnghiep')->onUpdate('cascade')->onDelete('cascade');
             $table->string('sdt');
-            $table->string('loaisdt')->default('ban'); // ban hoặc didong
+            $table->string('loaisdt')->default('Văn phòng'); // ban hoặc didong
 
             $table->timestamps();
         });

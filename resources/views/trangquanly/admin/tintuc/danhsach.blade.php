@@ -42,7 +42,7 @@
                                             <th scope="col" width="5%">Hình ảnh</th>
                                             <th scope="col">Tên lĩnh vực</th>
                                             <th scope="col">Tên người đăng</th>
-                                            <th scope="col" width="10%">Tiêu đề</th>
+                                            <th scope="col" width="20%">Tiêu đề</th>
                                             <th scope="col">Nội dung chi tiết</th>
                                             <th scope="col">Lượt xem</th>
                                             <th scope="col">Duyệt</th>
@@ -64,19 +64,28 @@
                                                 </td>
 
                                                 <td>{{ $value->getLinhvuc->tenlinhvuc }}</td>
-                                                <td>{{ $value->total_numbers }}</td>
-                                                <td class="short_td">{{ $value->tieude }}</td>
-                                                <td> <a class="dropdown-item xem_noidung" data-toggle="modal"
-                                                        data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
-                                                        data-noidung="{{ $value->noidung }}">
-                                                        Nội dung bài viết
-                                                    </a></td>
+                                                <td>{{ $value->getUser->name }}</td>
+                                                <td>
+                                                    <div
+                                                        style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
+                                                        {{ $value->tieude }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="actions">
+                                                        <a class="btn bg-info-light xem_noidung" data-toggle="modal"
+                                                            data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
+                                                            data-noidung="{{ $value->noidung }}">
+                                                            Xem chi tiết
+                                                        </a>
+                                                    </div>
+                                                </td>
                                                 <td>{{ $value->luotxem }}</td>
 
                                                 <td>
                                                     <div class="actions">
                                                         <a href="{{ route('admin.tintuc.duyet', $value->id) }}"
-                                                            class="btn btn-sm bg-success-light mr-2">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
+                                                            class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
                                                     </div>
                                                 </td>
 
@@ -87,11 +96,11 @@
                                                             <i class="fas fa-ellipsis-v ellipse_color"></i>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item"
+                                                            <a class="btn dropdown-item"
                                                                 href="{{ route('admin.tintuc.sua', $value->id) }}">
                                                                 <i class="fas fa-pencil-alt m-r-5"></i> Sửa
                                                             </a>
-                                                            <a class="dropdown-item bookingDelete" data-toggle="modal"
+                                                            <a class="btn dropdown-item bookingDelete" data-toggle="modal"
                                                                 data-target="#delete_asset" data-id="{{ $value->id }}"
                                                                 data-fileupload="{{ $value->hinhanh }}">
                                                                 <i class="fas fa-trash-alt m-r-5"></i> Xóa
@@ -138,8 +147,8 @@
                 <div class="modal-content">
                     <form action="{{ route('admin.tintuc.xoa') }}" method="POST">
                         @csrf
-                        <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt=""
-                                width="50" height="46">
+                        <div class="modal-body text-center"> <img alt="Hình ảnh" width="30%" height="25%"
+                                id="e_hinhanh">
                             <h3 class="delete_class">Bạn thật sự muốn xóa tin tức này?</h3>
                             <div class="m-t-20">
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
@@ -178,6 +187,8 @@
         $(document).on('click', '.bookingDelete', function() {
             $('#e_id').val($(this).data('id'));
             $('#e_fileupload').val($(this).data('fileupload'));
+            $('#e_hinhanh').attr('src', '{{ URL::to('/assets/frontend/img/trangtin/') }}' + '/' + $(this).data(
+                'fileupload'));
         });
     </script>
     <script>

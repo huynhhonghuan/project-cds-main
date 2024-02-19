@@ -9,14 +9,14 @@ class Doanhnghiep extends Model
 {
     use HasFactory;
 
-    protected $table ='doanhnghiep';
-    protected $fillable =[
+    protected $table = 'doanhnghiep';
+    protected $fillable = [
         'id',
         'user_id',
         'doanhnghiep_loaihinh_id',
         'tentiengviet',
         'tentienganh',
-        'email',
+        // 'email',
         'diachi',
         'mathue',
         'fax',

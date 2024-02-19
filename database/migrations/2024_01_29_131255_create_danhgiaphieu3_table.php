@@ -19,9 +19,11 @@ return new class extends Migration
 
             $table->string('tendanhgia')->default('RÀO CẢN CHUYỂN ĐỔI SỐ TRONG DOANH NGHIỆP NHỎ VÀ VỪA');
 
+            $table->integer('soluonghoanthanh')->default(0);
+
             $table->integer('diem')->default(0);
 
-            $table->string('trangthai')->default(0);
+            // $table->string('trangthai')->default(0);
 
             $table->timestamps();
         });

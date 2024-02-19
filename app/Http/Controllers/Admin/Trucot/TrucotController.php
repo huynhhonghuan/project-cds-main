@@ -12,5 +12,6 @@ class TrucotController extends Controller
     {
         $tendanhsach = 'Trụ cột chuyển đổi số';
         $trucot = Mohinh_Trucot::all();
-        return view('trangquanly.admin.trucot.danhsach', compact('tendanhsach','trucot'));
-    }}
+        return view('trangquanly.admin.trucot.danhsach', compact('tendanhsach', 'trucot'));
+    }
+}

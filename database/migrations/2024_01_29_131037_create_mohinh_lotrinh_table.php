@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('mohinh_id')->index();
             $table->foreign('mohinh_id')->references('id')->on('mohinh')->onUpdate('cascade')->onDelete('cascade');
             $table->string('tenlotrinh');
-            $table->date('thoigian');
+            $table->string('thoigian');
             $table->integer('nhansu')->default(0);
             $table->integer('taichinh')->default(0);
             $table->longText('noidung');

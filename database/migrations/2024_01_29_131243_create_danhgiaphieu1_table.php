@@ -22,9 +22,11 @@ return new class extends Migration
 
             $table->string('tendanhgia')->default('TỔNG HỢP THÔNG TIN CHỈ SỐ ĐÁNH GIÁ MỨC ĐỘ CHUYỂN ĐỔI SỐ CỦA DOANH NGHIỆP');
 
+            $table->integer('soluonghoanthanh')->default(0);
+
             $table->integer('diem')->default(0);
 
-            $table->string('trangthai')->default(0);
+            // $table->string('trangthai')->default(0);
 
             $table->timestamps();
         });

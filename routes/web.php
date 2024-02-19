@@ -7,6 +7,7 @@ use App\Http\Controllers\Chuyengia\ChuyengiaController;
 use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
 use App\Http\Controllers\Congtacvien\CongtacvienController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Bocauhoi\BocauhoiController;
 use App\Http\Controllers\Admin\Danhgia\DanhgiaController;
 use App\Http\Controllers\Admin\Linhvuc\LinhvucController;
 use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController;
@@ -127,7 +128,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::get('sua/{id}', [TaikhoanController::class, 'getsua'])->name('sua');
         Route::post('sua/{id}', [TaikhoanController::class, 'postsua'])->name('sua');
         Route::post('xoa', [TaikhoanController::class, 'postxoa'])->name('xoa');
-        Route::post('duyet', [TaikhoanController::class, 'postduyet'])->name('duyet');
+        Route::post('nguoiduyet', [TaikhoanController::class, 'postnguoiduyet'])->name('nguoiduyet');
+        Route::post('trangthai', [TaikhoanController::class, 'posttrangthai'])->name('trangthai');
     });
 
     //-------------------------------------Vai trò--------------------------------------------//
@@ -152,6 +154,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::get('danhsach', [TrucotController::class, 'getdanhsach'])->name('danhsach');
     });
 
+    //-------------------------------------Trụ cột chuyển đổi số--------------------------------------------//
+    Route::group(['prefix' => 'bocauhoi', 'as' => 'bocauhoi.'], function () {
+
+        Route::post('nhap', [BocauhoiController::class, 'postnhap'])->name('nhap'); //nhập bộ câu hỏi từ excel 1 - 2 - 3
+        Route::get('xuat', [BocauhoiController::class, 'getxuat'])->name('xuat'); //nhập bộ câu hỏi từ excel 1 - 2 - 3
+
+        Route::get('danhsachphieu1', [BocauhoiController::class, 'getdanhsachphieu1'])->name('danhsachphieu1');
+        Route::get('danhsachphieu2', [BocauhoiController::class, 'getdanhsachphieu2'])->name('danhsachphieu2');
+        Route::get('danhsachphieu3', [BocauhoiController::class, 'getdanhsachphieu3'])->name('danhsachphieu3');
+        Route::get('danhsachphieu4', [BocauhoiController::class, 'getdanhsachphieu4'])->name('danhsachphieu4');
+    });
+
     //-------------------------------------Lĩnh vực--------------------------------------------//
     Route::group(['prefix' => 'linhvuc', 'as' => 'linhvuc.'], function () {
         Route::get('danhsach', [LinhvucController::class, 'getdanhsach'])->name('danhsach');
@@ -163,6 +177,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [LinhvucController::class, 'postxoa'])->name('xoa');
         Route::post('duyet', [LinhvucController::class, 'postduyet'])->name('duyet');
     });
+
+
 
     //-------------------------------------Loại hình hoạt động--------------------------------------------//
     Route::group(['prefix' => 'loaihinhdoanhnghiep', 'as' => 'loaihinhdoanhnghiep.'], function () {

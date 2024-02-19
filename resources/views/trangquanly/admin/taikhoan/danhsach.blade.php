@@ -32,7 +32,8 @@
                                         <tr>
                                             <th scope="col">STT</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col" width="15%">Mật khẩu</th>
+                                            <th scope="col">Mật khẩu</th>
+                                            <th scope="col">Hồ sơ</th>
                                             <th scope="col">Hình ảnh</th>
                                             <th scope="col">Loại tài khoản</th>
                                             <th scope="col">Người cấp</th>
@@ -49,17 +50,23 @@
                                                 <td>{{ $value->email }}</td>
 
                                                 <td>
-                                                    <div style="max-width: 75px; text-overflow: ellipsis; overflow: hidden;">
+                                                    <div
+                                                        style="max-width: 75px; text-overflow: ellipsis; overflow: hidden;">
                                                         {{ $value->password }}
                                                     </div>
+                                                </td>
+
+                                                <td>
+                                                    <a href="#" class="btn btn-sm bg-primary-light mr-2">Xem chi
+                                                        tiết</a>
                                                 </td>
 
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="#" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle"
-                                                                src="{{ URL::to('/assets/backend/img/user/' . $value->hinhanh) }}"
-                                                                alt="{{ $value->hinhanh }}">
+                                                                src="{{ URL::to('/assets/backend/img/hoso/' . $value->image) }}"
+                                                                alt="{{ $value->image }}">
                                                         </a>
                                                     </h2>
                                                 </td>
@@ -84,16 +91,15 @@
                                                         <a data-toggle="modal" data-target="#cap_modal"
                                                             data-id="{{ $value->id }}" data-status="{{ $value->status }}"
                                                             data-email="{{ $value->email }}"
-                                                            class="btn btn-sm mr-2 {{  $value->getCapVaitro[0]->id == 'dn' ? 'bg-info-light' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'bg-success-light' : 'bg-danger-light') }} duyet_modal">{{  $value->getCapVaitro[0]->id == 'dn' ? 'Doanh nghiệp đăng ký' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'Hiệp hội doanh nghiệp' : 'Quản trị viên') }}</a>
+                                                            class="btn btn-sm mr-2 {{ $value->getCapVaitro[0]->id == 'dn' ? 'bg-info-light' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'bg-success-light' : 'bg-primary-light') }} duyet_modal">{{ $value->getCapVaitro[0]->id == 'dn' ? 'Doanh nghiệp đăng ký' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'Hiệp hội doanh nghiệp' : 'Quản trị viên') }}</a>
                                                     </div>
                                                 </td>
 
                                                 <td>
                                                     <div class="actions">
-                                                        <a data-toggle="modal" data-target="#duyet_modal"
-                                                            data-id="{{ $value->id }}"
-                                                            data-email="{{ $value->email }}"
-                                                            class="btn btn-sm {{ $value->getDuyet[0]->duyet_user_id == 1 ? 'bg-danger-light' : 'bg-success-light' }} mr-2 duyet_modal">{{ $value->getDuyet[0]->duyet_user_id == 1  ? 'Quản trị viên' : 'Hiệp hội doanh nghiệp' }}</a>
+                                                        <a data-toggle="modal" data-target="#nguoiduyet_modal"
+                                                            data-id="{{ $value->id }}" data-email="{{ $value->email }}"
+                                                            class="btn btn-sm nguoiduyet_modal {{ $value->getVaiTro[0]->pivot->duyet_user_id == null ? 'bg-warning-light' : ($value->getVaiTro[0]->pivot->duyet_user_id == 1 ? 'bg-primary-light' : 'bg-success-light') }} mr-2">{{ $value->getVaiTro[0]->pivot->duyet_user_id == null ? 'Chưa duyệt' : ($value->getVaiTro[0]->pivot->duyet_user_id == 1 ? 'Quản trị viên' : 'Hiệp hội doanh nghiệp') }}</a>
                                                     </div>
                                                 </td>
 
@@ -103,7 +109,7 @@
                                                             data-id="{{ $value->id }}"
                                                             data-status="{{ $value->status }}"
                                                             data-email="{{ $value->email }}"
-                                                            class="btn btn-sm {{ $value->status == 'Active' ? 'bg-success-light' : 'bg-danger-light' }} mr-2 duyet_modal">{{ $value->status == 'Active' ? 'Hoạt động' : 'Không hoạt động' }}</a>
+                                                            class="btn btn-sm trangthai_modal {{ $value->status == 'Active' ? 'bg-success-light' : 'bg-danger-light' }} mr-2">{{ $value->status == 'Active' ? 'Hoạt động' : 'Không hoạt động' }}</a>
                                                     </div>
                                                 </td>
 
@@ -175,20 +181,20 @@
         {{-- End Model delete --}}
 
         {{-- Model duyệt tài khoản --}}
-        <div id="trangthai_modal" class="modal fade delete-modal" role="dialog">
+        <div id="nguoiduyet_modal" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.taikhoan.duyet') }}" method="POST">
+                    <form action="{{ route('admin.taikhoan.nguoiduyet') }}" method="POST">
                         @csrf
                         <div class="modal-body text-center">
-                            <h3 class="delete_class">Bạn thật sự muốn cập nhật trạng thái tài khoản <span class="text-warning"
-                                    id="duyet_email"></span> này?</h3>
+                            <h3 class="delete_class">Bạn thật sự muốn duyệt tài khoản <span class="text-warning"
+                                    id="duyet_email_1"></span> này?</h3>
                             <div class="m-t-20">
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
-                                <input class="form-control" type="hidden" id="duyet_id" name="id"
+                                <input class="form-control" type="hidden" id="duyet_id_1" name="duyet_id"
                                     value="">
-                                <input class="form-control" type="hidden" id="duyet_status" name="status"
-                                    value="">
+                                {{-- <input class="form-control" type="hidden" id="duyet_status" name="status"
+                                    value=""> --}}
                                 <button type="submit" class="btn btn-danger">Duyệt</button>
                             </div>
                         </div>
@@ -197,6 +203,30 @@
             </div>
         </div>
         {{-- End Model duyệt tài khoản --}}
+
+        {{-- Model cập nhật trạng thái --}}
+        <div id="trangthai_modal" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('admin.taikhoan.trangthai') }}" method="POST">
+                        @csrf
+                        <div class="modal-body text-center">
+                            <h3 class="delete_class">Bạn thật sự muốn cập nhật trạng thái tài khoản <span
+                                    class="text-warning" id="duyet_email_2"></span> này?</h3>
+                            <div class="m-t-20">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <input class="form-control" type="hidden" id="duyet_id_2" name="trangthai_id"
+                                    value="">
+                                <input class="form-control" type="hidden" id="duyet_status" name="status"
+                                    value="">
+                                <button type="submit" class="btn btn-danger">Cập nhật</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- End Model cập nhật trang thái --}}
     </div>
 @endsection
 
@@ -217,12 +247,20 @@
         });
     </script>
 
-    {{-- duyệt modal --}}
+    {{-- duyệt tài khoản modal --}}
     <script>
-        $(document).on('click', '.duyet_modal', function() {
-            $('#duyet_id').val($(this).data('id')); // gán id vào input (hidden)
+        $(document).on('click', '.nguoiduyet_modal', function() {
+            $('#duyet_id_1').val($(this).data('id')); // gán id vào input (hidden)
+            document.getElementById("duyet_email_1").innerHTML = $(this).data('email');
+        });
+    </script>
+
+    {{-- cập nhật trạng thái modal --}}
+    <script>
+        $(document).on('click', '.trangthai_modal', function() {
+            $('#duyet_id_2').val($(this).data('id')); // gán id vào input (hidden)
             $('#duyet_status').val($(this).data('status')); // gán id vào input (hidden)
-            document.getElementById("duyet_email").innerHTML = $(this).data('email');
+            document.getElementById("duyet_email_2").innerHTML = $(this).data('email');
         });
     </script>
 

@@ -61,10 +61,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Vaitro', 'user_vaitro', 'user_id', 'cap_vaitro_id');
     }
 
-    public function getDuyet(): HasMany
-    {
-        return $this->hasMany(User_Vaitro::class, 'user_id');
-    }
+    // public function getNguoiDuyet(): HasMany
+    // {
+    //     return $this->hasMany(User_Vaitro::class, 'duyet_user_id');
+    // }
 
     //Kiểm tra tài khoản đăng nhập
 
