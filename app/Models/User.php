@@ -66,6 +66,20 @@ class User extends Authenticatable
     //     return $this->hasMany(User_Vaitro::class, 'duyet_user_id');
     // }
 
+    // public function getDoanhNghiep_DaiDien()
+    // {
+    //     return $this->belongsToMany('App\Model\Doanhnghiep_Daidien','doanhnghiep','user_id', '')
+    // }
+
+    public function getDoanhNghiep()
+    {
+        return $this->hasOne(Doanhnghiep::class);
+    }
+    public function getChuyenGia()
+    {
+        return $this->hasOne(Chuyengia::class);
+    }
+
     //Kiểm tra tài khoản đăng nhập
 
     public function Check_Admin(): bool

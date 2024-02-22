@@ -9,18 +9,26 @@ class Chuyengia extends Model
 {
     use HasFactory;
 
-    protected $table ='chuyengia';
-    protected $fillable =[
+    protected $table = 'chuyengia';
+    protected $fillable = [
         'id',
         'user_id',
         'linhvuc_id',
         'tenchuyengia',
-        'email',
+        // 'email',
         'sdt',
+        'thanhpho',
+        'huyen',
+        'xa',
         'diachi',
         'cccd',
         'img_mattruoc',
         'img_matsau',
         'mota',
     ];
+
+    public function getUser()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

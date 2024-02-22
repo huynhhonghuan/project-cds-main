@@ -32,13 +32,13 @@
                                         <tr>
                                             <th scope="col">STT</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Mật khẩu</th>
-                                            <th scope="col">Hồ sơ</th>
+                                            {{-- <th scope="col">Mật khẩu</th> --}}
                                             <th scope="col">Hình ảnh</th>
                                             <th scope="col">Loại tài khoản</th>
                                             <th scope="col">Người cấp</th>
                                             <th scope="col">Người duyệt</th>
                                             <th scope="col">Trạng thái</th>
+                                            <th scope="col">Xem chi tiết</th>
                                             <th scope="col" width="5%">Sửa</th>
                                             <th scope="col" class="text-center" width="5%">Xóa</th>
                                         </tr>
@@ -49,24 +49,19 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $value->email }}</td>
 
-                                                <td>
+                                                {{-- <td>
                                                     <div
                                                         style="max-width: 75px; text-overflow: ellipsis; overflow: hidden;">
                                                         {{ $value->password }}
                                                     </div>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#" class="btn btn-sm bg-primary-light mr-2">Xem chi
-                                                        tiết</a>
-                                                </td>
+                                                </td> --}}
 
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="#" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle"
                                                                 src="{{ URL::to('/assets/backend/img/hoso/' . $value->image) }}"
-                                                                alt="{{ $value->image }}">
+                                                                alt="Hình ảnh">
                                                         </a>
                                                     </h2>
                                                 </td>
@@ -113,17 +108,25 @@
                                                     </div>
                                                 </td>
 
+                                                <td class="text-center">
+                                                    <a href="#" class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
+                                                            style="color:orange;"></i></a>
+                                                </td>
+
                                                 <td>
-                                                    <a class="" href="{{ route('admin.taikhoan.sua', $value->id) }}">
+                                                    <a class="form-sua"
+                                                        href="{{ route('admin.taikhoan.sua', $value->id) }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
+                                                    <input type="hidden" id="form-sua-value"
+                                                        value="{{ $value->getVaiTro[0]->id }}">
                                                 </td>
 
                                                 <td class="text-right">
                                                     <a class="dropdown-item bookingDelete" data-toggle="modal"
                                                         data-target="#delete_asset" data-id="{{ $value->id }}"
                                                         data-email="{{ $value->email }}">
-                                                        <i class="fas fa-trash-alt m-r-5"></i>
+                                                        <i class="fas fa-trash-alt m-r-5" style="color: limegreen;"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -263,6 +266,22 @@
             document.getElementById("duyet_email_2").innerHTML = $(this).data('email');
         });
     </script>
+
+    {{-- gọi sự kiện click sửa set Session --}}
+    {{-- <script>
+        $(document).on('click', '.form-sua', function() {
+            var value = document.getElementById("form-sua-value").value;
+            console.log(value);
+            if (value === 'dn')
+                sessionStorage.setItem("form-sua", 'table1');
+            if (value === 'cg')
+                sessionStorage.setItem("form-sua", 'table2');
+            if (value === 'hhdn')
+                sessionStorage.setItem("form-sua", 'table3');
+            if (value === 'ctv')
+                sessionStorage.setItem("form-sua", 'table4');
+        });
+    </script> --}}
 
     <script>
         $(document).ready(function() {

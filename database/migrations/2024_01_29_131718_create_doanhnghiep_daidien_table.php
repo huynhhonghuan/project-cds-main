@@ -20,14 +20,31 @@ return new class extends Migration
             $table->string('tendaidien');
             $table->string('email')->unique();
             $table->string('sdt')->nullable();
+            $table->string('thanhpho');
+            $table->string('huyen');
+            $table->string('xa');
             $table->string('diachi')->nullable();
             $table->string('cccd');
             $table->string('img_mattruoc')->nullable();
             $table->string('img_matsau')->nullable();
             $table->string('chucvu')->default('Quản lý');
-
+            $table->longText('mota')->nullable();
             $table->timestamps();
         });
+        DB::table('doanhnghiep_daidien')->insert([
+            [
+                'doanhnghiep_id' => 1,
+                'tendaidien' => 'Đại diện doanh nghiệp',
+                'email' => 'doanhghiepdaidien1@gmail.com',
+                'sdt' => '0124536987',
+                'thanhpho' => '01',
+                'huyen' => '001',
+                'xa' => '00001',
+                'diachi' => '20 Hà Hoàng Hổ',
+                'cccd' => '036985214747',
+                'mota' => 'Mô tả đại diện'
+            ],
+        ]);
     }
 
     /**

@@ -138,8 +138,8 @@
                                                     <select class="form-control" id="loai_sdt" name="doanhnghiep_loai_sdt"
                                                         name="loaisdt" required>
                                                         <option value="">--Chọn--</option>
-                                                        <option selected>Văn phòng</option>
-                                                        <option>Di động</option>
+                                                        <option value="Văn phòng">Văn phòng</option>
+                                                        <option value="Di động">Di động</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Chọn loại số điện thoại!
@@ -219,7 +219,7 @@
                                         <div class="row">
                                             <div class="col-md-7">
                                                 <div class="form-group">
-                                                    <label>Email</label>
+                                                    <label>Số điện thoại</label>
                                                     <input type="email" class="form-control"
                                                         name="doanhnghiep_daidien_email" value="huan1@gmail.com" required>
                                                     <div class="invalid-feedback">
@@ -229,17 +229,11 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="form-group">
-                                                    <label>Chức vụ</label>
-                                                    <select class="form-control" id="sel1"
-                                                        name="doanhnghiep_daidien_chucvu" required>
-                                                        <option value="">--- Chọn ---</option>
-                                                        <option selected>Chủ tịch</option>
-                                                        <option>Giám đốc</option>
-                                                        <option>Trưởng phòng</option>
-                                                        <option>Khác</option>
-                                                    </select>
+                                                    <label>Số điện thoại</label>
+                                                    <input type="text" class="form-control"
+                                                        name="doanhnghiep_daidien_sdt" value="0398521471" required>
                                                     <div class="invalid-feedback">
-                                                        Chọn chức vụ!
+                                                        Nhập số điện thoại của người đại diện!
                                                     </div>
                                                 </div>
                                             </div>
@@ -299,14 +293,36 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>CCCD</label>
-                                            <input type="text" class="form-control" name="doanhnghiep_daidien_cccd"
-                                                required value="014785236932">
-                                            <div class="invalid-feedback">
-                                                Nhập số căn cước công dân!
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="form-group">
+                                                    <label>CCCD</label>
+                                                    <input type="text" class="form-control"
+                                                        name="doanhnghiep_daidien_cccd" required value="014785236932">
+                                                    <div class="invalid-feedback">
+                                                        Nhập số căn cước công dân!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>Chức vụ</label>
+                                                    <select class="form-control" id="sel1"
+                                                        name="doanhnghiep_daidien_chucvu" required>
+                                                        <option value="">--- Chọn ---</option>
+                                                        <option value="Chủ tịch">Chủ tịch</option>
+                                                        <option value="Giám đốc">Giám đốc</option>
+                                                        <option value="Quản lý">Quản lý</option>
+                                                        <option value="Trưởng phòng">Trưởng phòng</option>
+                                                        <option value="Khác">Khác</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Chọn chức vụ!
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <label>Ảnh mặt trước CCCD</label>
                                             <input type="file" class="form-control"
@@ -568,31 +584,86 @@
                             <h4 class="card-title">Hiệp hội doanh nghiệp</h4>
                         </div>
                         <div class="card-body">
-                            <form action="#">
+                            <form action="{{ route('admin.taikhoan.them_loai', ['loai' => 'hhdn']) }}" method="POST"
+                                enctype="multipart/form-data" class="needs-validation" novalidate>
+                                @csrf
                                 <h4 class="card-title">Thông tin hiệp hội doanh nghiệp</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên tiếng việt</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control"
+                                                name="hiephoidoanhnghiep_tentiengviet" value="Hiệp hội doanh nghiệp"
+                                                required>
                                         </div>
                                         <div class="form-group">
                                             <label>Tên tiếng anh</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control"
+                                                name="hiephoidoanhnghiep_tentienganh" value="HHDN" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="hiephoidoanhnghiep_sdt"
+                                                required value="0123654987">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        {{-- <div class="form-group">
-                                        <label>Địa chỉ</label>
-                                        <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
-                                    </div> --}}
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Tỉnh</label>
+                                                    <select class="form-control"
+                                                        onclick="this.setAttribute('value', this.value);" value=""
+                                                        id="hiephoidoanhnghiep_city_1" name="hiephoidoanhnghiep_thanhpho"
+                                                        required>
+                                                        <option value="">--Chọn tỉnh--</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Chọn tỉnh/thành phố!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Quận / Huyện / Thành phố</label>
+                                                    <select class="form-control"
+                                                        onclick="this.setAttribute('value', this.value);" value=""
+                                                        id="hiephoidoanhnghiep_district_1" name="hiephoidoanhnghiep_huyen"
+                                                        required>
+                                                        <option value="">--Chọn quận/huyện--</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Chọn quận/huyện/thành phố!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Phường / Xã</label>
+                                                    <select class="form-control"
+                                                        onclick="this.setAttribute('value', this.value);" value=""
+                                                        id="hiephoidoanhnghiep_ward_1" name="hiephoidoanhnghiep_xa"
+                                                        required>
+                                                        <option value="">--Chọn phường/xã--</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Chọn phường/xã!
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <textarea rows="4" cols="5" class="form-control" name="hiephoidoanhnghiep_diachi" required
+                                                placeholder="Enter message"></textarea>
+                                            <div class="invalid-feedback">
+                                                Thêm địa chỉ của hiệp hội doanh nghiệp!
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label>Mô tả thông tin chi tiết</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" name="hiephoidoanhnghiep_mota"
+                                                placeholder="Enter message"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -602,21 +673,35 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tên người đại diện</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="Hiệp hội 1"
+                                                name="hiephoidoanhnghiep_daidien_tendaidien" required>
+                                            <div class="invalid-feedback">
+                                                Thêm tên người đại diện!
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email" class="form-control"
+                                                value="hiephoidoanhnghiep1@gmail.com"
+                                                name="hiephoidoanhnghiep_daidien_email" required>
+                                            <div class="invalid-feedback">
+                                                Thêm email của người đại diện!
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Số điện thoại</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="0369852147"
+                                                name="hiephoidoanhnghiep_daidien_sdt" required>
+                                            <div class="invalid-feedback">
+                                                Thêm số điện thoại của người đại diện!
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Mô tả thông tin chi tiết</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" name="hiephoidoanhnghiep_daidien_mota"
+                                                placeholder="Enter message"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -626,15 +711,41 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" class="form-control">
+                                            <input type="email"
+                                                class="form-control @error('email') is-invalid @enderror" id="email"
+                                                value="hiephoidoanhnghiep1@gmail.com" name="email"
+                                                value="{{ old('email') }}" required />
+                                            @error('email')
+                                                <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Mật khẩu</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                value="12345678" id="password" name="password" required />
+                                            @error('password')
+                                                <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label>Xác nhận mật khẩu</label>
-                                            <input type="password" class="form-control">
+                                            <input type="password"
+                                                class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                value="12345678" id="password_confirmation" name="password_confirmation"
+                                                required />
+                                            @error('password_confirmation')
+                                                <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Hình đại diện doanh nghiệp</label>
+                                            <input type="file" class="form-control" name="hiephoidoanhnghiep_img"
+                                                required>
+                                            <div class="invalid-feedback">
+                                                Chọn hình ảnh đại diện!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -810,6 +921,10 @@
         var chuyengia_district_1 = document.getElementById("chuyengia_district_1");
         var chuyengia_ward_1 = document.getElementById("chuyengia_ward_1");
 
+        var hiephoidoanhnghiep_city_1 = document.getElementById("hiephoidoanhnghiep_city_1");
+        var hiephoidoanhnghiep_district_1 = document.getElementById("hiephoidoanhnghiep_district_1");
+        var hiephoidoanhnghiep_ward_1 = document.getElementById("hiephoidoanhnghiep_ward_1");
+
         // địa chỉ của doanh nghiệp - xử lý bằng promise
         var doanhnghiep_promise_1 = axios(Parameter);
         doanhnghiep_promise_1.then(function(result) {
@@ -823,10 +938,17 @@
         });
 
         //địa chỉ của đại diện doanh nghiệp - xử lý bằng promise
-        var doanhnghiep_promise_3 = axios(Parameter);
-        doanhnghiep_promise_3.then(function(result) {
+        var chuyengia_promise_3 = axios(Parameter);
+        chuyengia_promise_3.then(function(result) {
             renderCity(result.data, chuyengia_city_1, chuyengia_district_1, chuyengia_ward_1);
         });
+
+        var hiephoidoanhnghiep_promise_4 = axios(Parameter);
+        hiephoidoanhnghiep_promise_4.then(function(result) {
+            renderCity(result.data, hiephoidoanhnghiep_city_1, hiephoidoanhnghiep_district_1,
+                hiephoidoanhnghiep_ward_1);
+        });
+
 
         //xử lý lựa chọn tỉnh -> huyện -> xã
         function renderCity(data, citis, districts, wards) {

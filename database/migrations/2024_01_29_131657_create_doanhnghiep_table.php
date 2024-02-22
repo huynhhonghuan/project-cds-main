@@ -24,6 +24,9 @@ return new class extends Migration
             $table->longText('tentienganh');
             $table->string('tenviettat')->nullable();
             // $table->string('email')->unique();
+            $table->string('thanhpho');
+            $table->string('huyen');
+            $table->string('xa');
             $table->string('diachi')->nullable();
             $table->string('mathue')->nullable();
             $table->string('fax')->nullable();
@@ -33,6 +36,25 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        DB::table('doanhnghiep')->insert([
+            [
+                'user_id' => 3,
+                'doanhnghiep_loaihinh_id' => 1,
+                'tentiengviet' => 'Công ty TNHH',
+                'tentienganh' => 'Company TNHH',
+                'tenviettat' => 'CT 3H',
+                'thanhpho' => '01',
+                'huyen' => '001',
+                'xa' => '00001',
+                'diachi' => '18 Ung Văn Khiêm',
+                'mathue' => '840000',
+                'fax' => '01369824712',
+                'soluongnhansu' => 100,
+                'ngaylap' => '2024-02-20',
+                'mota' => 'Mô tả doanh nghiệp',
+            ],
+        ]);
     }
 
     /**

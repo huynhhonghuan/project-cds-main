@@ -9,13 +9,16 @@ class Hiephoidoanhnghiep extends Model
 {
     use HasFactory;
 
-    protected $table ='hiephoidoanhnghiep';
-    protected $fillable =[
+    protected $table = 'hiephoidoanhnghiep';
+    protected $fillable = [
         'id',
         'user_id',
         'tentiengviet',
         'tentienganh',
         'email',
+        'thanhpho',
+        'huyen',
+        'xa',
         'sdt',
         'diachi',
         'mota',

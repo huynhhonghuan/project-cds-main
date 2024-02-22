@@ -17,6 +17,9 @@ class Doanhnghiep extends Model
         'tentiengviet',
         'tentienganh',
         // 'email',
+        'thanhpho',
+        'huyen',
+        'xa',
         'diachi',
         'mathue',
         'fax',
@@ -24,4 +27,18 @@ class Doanhnghiep extends Model
         'ngaylap',
         'mota',
     ];
+
+    public function getUser()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getDaiDien()
+    {
+        return $this->hasOne(Doanhnghiep_Daidien::class);
+    }
+    public function getSdt()
+    {
+        return $this->hasOne(Doanhnghiep_Sdt::class);
+    }
 }

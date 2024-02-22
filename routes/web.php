@@ -126,7 +126,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::get('them', [TaikhoanController::class, 'getthem'])->name('them');
         Route::post('them/{loai}', [TaikhoanController::class, 'postthem'])->name('them_loai'); //loai: dùng để biết thêm người dùng loại nào
         Route::get('sua/{id}', [TaikhoanController::class, 'getsua'])->name('sua');
-        Route::post('sua/{id}', [TaikhoanController::class, 'postsua'])->name('sua');
+        Route::post('sua/{loai}/{id}', [TaikhoanController::class, 'postsua'])->name('sua_loai');
         Route::post('xoa', [TaikhoanController::class, 'postxoa'])->name('xoa');
         Route::post('nguoiduyet', [TaikhoanController::class, 'postnguoiduyet'])->name('nguoiduyet');
         Route::post('trangthai', [TaikhoanController::class, 'posttrangthai'])->name('trangthai');

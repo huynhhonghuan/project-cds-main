@@ -20,7 +20,10 @@ return new class extends Migration
             $table->longText('tentiengviet');
             $table->longText('tentienganh');
             // $table->string('email')->unique();
-            $table->string('sdt');
+            $table->string('sdt')->unique();
+            $table->string('thanhpho');
+            $table->string('huyen');
+            $table->string('xa');
             $table->string('diachi')->nullable();
             $table->longText('mota')->nullable();
 

@@ -21,6 +21,13 @@ return new class extends Migration
 
             $table->timestamps();
         });
+        DB::table('doanhnghiep_sdt')->insert([
+            [
+                'doanhnghiep_id' => 1,
+                'sdt' => '0369854712',
+                'loaisdt' => 'Văn phòng'
+            ],
+        ]);
     }
 
     /**

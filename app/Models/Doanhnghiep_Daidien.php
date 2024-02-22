@@ -9,8 +9,8 @@ class Doanhnghiep_Daidien extends Model
 {
     use HasFactory;
 
-    protected $table ='doanhnghiep_daidien';
-    protected $fillable =[
+    protected $table = 'doanhnghiep_daidien';
+    protected $fillable = [
         'id',
         'doanhnghiep_id',
         'tendaidien',
@@ -22,4 +22,9 @@ class Doanhnghiep_Daidien extends Model
         'img_matsau',
         'chucvu',
     ];
+
+    public function getDoanhNghiep()
+    {
+        return $this->belongsTo(Doanhnghiep::class);
+    }
 }
