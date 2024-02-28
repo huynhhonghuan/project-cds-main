@@ -33,6 +33,11 @@ class Doanhnghiep extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getLoaiHinh()
+    {
+        return $this->belongsTo(Doanhnghiep_Loaihinh::class, 'doanhnghiep_loaihinh_id', 'id');
+    }
+
     public function getDaiDien()
     {
         return $this->hasOne(Doanhnghiep_Daidien::class);

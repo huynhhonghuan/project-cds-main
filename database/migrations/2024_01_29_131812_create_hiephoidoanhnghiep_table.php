@@ -29,6 +29,19 @@ return new class extends Migration
 
             $table->timestamps();
         });
+        DB::table('hiephoidoanhnghiep')->insert([
+            [
+                'user_id' => 5,
+                'tentiengviet' => 'Hiệp hội doanh nghiệp An Giang',
+                'tentienganh' => 'An Giang HHDN',
+                'sdt' => '0326985147',
+                'thanhpho' => '01',
+                'huyen' => '001',
+                'xa' => '00001',
+                'diachi' => '18 Ung Văn Khiêm',
+                'mota' => 'Mô tả hiệp hội doanh nghiệp',
+            ],
+        ]);
     }
 
     /**

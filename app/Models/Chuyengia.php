@@ -31,4 +31,9 @@ class Chuyengia extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getLinhVuc()
+    {
+        return $this->belongsTo(Linhvuc::class, 'linhvuc_id', 'id');
+    }
 }

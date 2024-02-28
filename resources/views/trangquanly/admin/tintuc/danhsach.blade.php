@@ -43,10 +43,11 @@
                                             <th scope="col">Tên lĩnh vực</th>
                                             <th scope="col">Tên người đăng</th>
                                             <th scope="col" width="20%">Tiêu đề</th>
-                                            <th scope="col">Nội dung chi tiết</th>
                                             <th scope="col">Lượt xem</th>
                                             <th scope="col">Duyệt</th>
-                                            <th class="text-right">Chỉnh sửa</th>
+                                            <th scope="col" class="text-center">Xem chi tiết</th>
+                                            <th scope="col" width="5%">Sửa</th>
+                                            <th scope="col" class="text-center" width="5%">Xóa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -54,13 +55,17 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="#" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle"
-                                                                src="{{ URL::to('/assets/frontend/img/trangtin/' . $value->hinhanh) }}"
-                                                                alt="{{ $value->hinhanh }}">
-                                                        </a>
-                                                    </h2>
+                                                    @if ($value->hinhanh != null)
+                                                        <h2 class="table-avatar">
+                                                            <a href="#" class="avatar avatar-sm mr-2">
+                                                                <img class="avatar-img rounded-circle"
+                                                                    src="{{ URL::to('/assets/backend/img/trangtin/' . $value->hinhanh) }}"
+                                                                    alt="{{ $value->hinhanh }}">
+                                                            </a>
+                                                        </h2>
+                                                    @else
+                                                        <span class="btn bg-danger-light text-danger">Không!</span>
+                                                    @endif
                                                 </td>
 
                                                 <td>{{ $value->getLinhvuc->tenlinhvuc }}</td>
@@ -71,15 +76,7 @@
                                                         {{ $value->tieude }}
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div class="actions">
-                                                        <a class="btn bg-info-light xem_noidung" data-toggle="modal"
-                                                            data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
-                                                            data-noidung="{{ $value->noidung }}">
-                                                            Xem chi tiết
-                                                        </a>
-                                                    </div>
-                                                </td>
+
                                                 <td>{{ $value->luotxem }}</td>
 
                                                 <td>
@@ -89,7 +86,37 @@
                                                     </div>
                                                 </td>
 
+                                                <td class="text-center">
+                                                    <div class="actions">
+                                                        <a class="btn xem_noidung" data-toggle="modal"
+                                                            data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
+                                                            data-noidung="{{ $value->noidung }}">
+                                                            <i class="fa-regular fa-eye" style="color:orange;"></i></a> </a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a class="form-sua"
+                                                        href="{{ route('admin.taikhoan.sua', $value->id) }}">
+                                                        <i class="fas fa-pencil-alt m-r-5"></i>
+                                                    </a>
+                                                    {{-- <input type="hidden" id="form-sua-value"
+                                                        value="{{ $value->getVaiTro[0]->id }}"> --}}
+                                                </td>
+
                                                 <td class="text-right">
+                                                    {{-- <a class="dropdown-item bookingDelete" data-toggle="modal"
+                                                        data-target="#delete_asset" data-id="{{ $value->id }}"
+                                                        data-email="{{ $value->email }}">
+                                                        <i class="fas fa-trash-alt m-r-5" style="color: limegreen;"></i>
+                                                    </a> --}}
+                                                    <a class="btn dropdown-item bookingDelete" data-toggle="modal"
+                                                        data-target="#delete_asset" data-id="{{ $value->id }}"
+                                                        data-fileupload="{{ $value->hinhanh }}">
+                                                        <i class="fas fa-trash-alt m-r-5" style="color: limegreen;"></i>
+                                                    </a>
+                                                </td>
+
+                                                {{-- <td class="text-right">
                                                     <div class="dropdown dropdown-action">
                                                         <a href="#" class="action-icon dropdown-toggle"
                                                             data-toggle="dropdown" aria-expanded="false">
@@ -100,14 +127,10 @@
                                                                 href="{{ route('admin.tintuc.sua', $value->id) }}">
                                                                 <i class="fas fa-pencil-alt m-r-5"></i> Sửa
                                                             </a>
-                                                            <a class="btn dropdown-item bookingDelete" data-toggle="modal"
-                                                                data-target="#delete_asset" data-id="{{ $value->id }}"
-                                                                data-fileupload="{{ $value->hinhanh }}">
-                                                                <i class="fas fa-trash-alt m-r-5"></i> Xóa
-                                                            </a>
+
                                                         </div>
                                                     </div>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -197,7 +220,7 @@
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 5
+                    "targets": 6
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words

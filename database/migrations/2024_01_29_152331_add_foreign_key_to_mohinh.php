@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::table('mohinh', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('mohinh_trucot_id')->index();
-            $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
+            // $table->unsignedBigInteger('mohinh_trucot_id')->index();
+            // $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('doanhnghiep_loaihinh_id')->index();
-            $table->foreign('doanhnghiep_loaihinh_id')->references('id')->on('doanhnghiep_loaihinh')->onUpdate('cascade')->onDelete('cascade');
-
+            // $table->unsignedBigInteger('doanhnghiep_loaihinh_id')->index();
+            // $table->foreign('doanhnghiep_loaihinh_id')->references('id')->on('doanhnghiep_loaihinh')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -28,8 +27,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('mohinh', function (Blueprint $table) {
-            $table->dropForeign('mohinh_mohinh_trucot_id_foreign');
-            $table->dropForeign('mohinh_doanhnghiep_loaihinh_id_foreign');
+            // $table->dropForeign('mohinh_mohinh_trucot_id_foreign');
+            // $table->dropForeign('mohinh_doanhnghiep_loaihinh_id_foreign');
         });
     }
 };

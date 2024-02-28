@@ -23,4 +23,9 @@ class Hiephoidoanhnghiep extends Model
         'diachi',
         'mota',
     ];
+
+    public function getDaiDien()
+    {
+        return $this->hasOne(Hiephoidoanhnghiep_Daidien::class);
+    }
 }

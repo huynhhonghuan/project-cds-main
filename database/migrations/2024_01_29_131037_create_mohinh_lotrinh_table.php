@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('mohinh_id')->index();
             $table->foreign('mohinh_id')->references('id')->on('mohinh')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('tenlotrinh');
+            // $table->string('tenlotrinh');
             $table->string('thoigian');
             $table->integer('nhansu')->default(0);
             $table->integer('taichinh')->default(0);
@@ -24,6 +24,17 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        DB::table('mohinh_lotrinh')->insert([
+            [
+                'mohinh_id' => 1,
+                'thoigian' => '2 năm',
+                'nhansu' => 50,
+                'taichinh' => 100000000,
+                'noidung' => 'Nội dung',
+                'luuy' => 'Lưu ý của lộ trình',
+            ]
+        ]);
     }
 
     /**

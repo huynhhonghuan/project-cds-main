@@ -28,10 +28,40 @@ class TaikhoanController extends Controller
     public function getdanhsach()
     {
         $danhsach  = User::all();
-        // dd($danhsach[0]->getVaiTro[0]->pivot->duyet_user_id);
-        $ds = User_Vaitro::all();
-        // dd($ds[0]->nguoiduyet);
         return view('trangquanly.admin.taikhoan.danhsach', compact('danhsach'));
+    }
+    public function getxem($id)
+    {
+        $user = User::find($id);
+        if ($user->getvaitro[0]->id == 'ad') {
+            $danhsach  = User::all();
+            Toastr::info('Không thể xem tài khoản quản trị viên', 'Info');
+            return view('trangquanly.admin.taikhoan.danhsach', compact('danhsach'));
+        }
+        if ($user->getvaitro[0]->id == 'ctv') {
+            $tendanhsach = 'Xem thông tin cộng tác viên';
+            $suataikhoan = 'Sửa thông tin cộng tác viên';
+            // dd($user->getdoanhnghiep->getloaihinh);
+            return view('trangquanly.admin.taikhoan.xem', compact('user', 'tendanhsach', 'suataikhoan'));
+        }
+        if ($user->getvaitro[0]->id == 'dn') {
+            $tendanhsach = 'Xem thông tin doanh nghiệp';
+            $suataikhoan = 'Sửa thông tin doanh nghiệp';
+
+            // dd($user->getdoanhnghiep->getloaihinh);
+            return view('trangquanly.admin.taikhoan.xem', compact('user', 'tendanhsach', 'suataikhoan'));
+        }
+        if ($user->getvaitro[0]->id == 'cg') {
+            $tendanhsach = 'Xem thông tin chuyên gia';
+            $suataikhoan = 'Sửa thông tin chuyên gia';
+
+            return view('trangquanly.admin.taikhoan.xem', compact('user', 'tendanhsach', 'suataikhoan'));
+        }
+        if ($user->getvaitro[0]->id == 'hhdn') {
+            $tendanhsach = 'Xem thông tin hiệp hội doanh nghiệp';
+            $suataikhoan = 'Sửa thông tin hiệp hội doanh nghiệp';
+            return view('trangquanly.admin.taikhoan.xem', compact('user', 'tendanhsach', 'suataikhoan'));
+        }
     }
     public function getthem()
     {
@@ -344,11 +374,14 @@ class TaikhoanController extends Controller
                 'tentiengviet' => 'hiephoidoanhnghiep_tentiengviet',
                 'tentienganh' => 'hiephoidoanhnghiep_tentienganh',
                 'sdt' => 'hiephoidoanhnghiep_sdt',
+                'thanhpho' => 'hiephoidoanhnghiep_thanhpho',
+                'huyen' => 'hiephoidoanhnghiep_huyen',
+                'xa' => 'hiephoidoanhnghiep_xa',
+                'diachi' => 'hiephoidoanhnghiep_diachi',
                 'mota' => 'hiephoidoanhnghiep_mota',
             ];
             $hiephoidoanhnghiep_nameobject = [
                 'user_id' => $user->id,
-                'diachi' => $request->hiephoidoanhnghiep_diachi . ', ' . $request->hiephoidoanhnghiep_xa . ', ' . $request->hiephoidoanhnghiep_huyen . ', ' . $request->hiephoidoanhnghiep_thanhpho,
             ];
             $model_hiephoidoanhnghiep = new Hiephoidoanhnghiep();
             $hiephoidoanhnghiep = $tk->them($model_hiephoidoanhnghiep, $request, $hiephoidoanhnghiep_namecolumn, $hiephoidoanhnghiep_nameobject);
@@ -368,36 +401,6 @@ class TaikhoanController extends Controller
 
             Toastr::success('Thêm tài khoản hiệp hội doanh nghiệp thành công', 'Success');
             return redirect()->route('admin.taikhoan.danhsach');
-        }
-    }
-    //dùng để lưu hình ảnh vào public
-    public function luuhinhanh($request, $model, $nameprofile, $namefile, $namecolumn, $duongdan)
-    {
-        if ($img = $request->file($namefile)) {
-            $Path = $duongdan;
-            $profileImage = $nameprofile . "-" . $model->id . "."  . $img->getClientOriginalExtension();
-            $img->move($Path, $profileImage);
-            $model->$namecolumn = "$profileImage";
-            $model->save();
-        }
-    }
-    public function suahinhanh($request, $model, $nameprofile, $namefile, $namecolumn, $duongdan)
-    {
-        if ($model->$namecolumn != null) {
-            unlink($duongdan . '/' . $model->$namecolumn);
-        }
-        if ($img = $request->file($namefile)) {
-            $Path = $duongdan;
-            $profileImage = $nameprofile . "-" . $model->id . "."  . $img->getClientOriginalExtension();
-            $img->move($Path, $profileImage);
-            $model->$namecolumn = "$profileImage";
-            $model->save();
-        }
-    }
-    public function xoahinhanh($model, $namecolumn, $duongdan)
-    {
-        if ($model->$namecolumn != null) {
-            unlink($duongdan . '/' . $model->$namecolumn);
         }
     }
     //dùng để thêm tài khoản
@@ -652,21 +655,144 @@ class TaikhoanController extends Controller
             $tk->suahinhanh($request, $chuyengia, 'cg_cccd_mt', 'chuyengia_cccd_img_mattruoc', 'img_mattruoc',  "assets/backend/img/hoso/");
             $tk->suahinhanh($request, $chuyengia, 'cg_cccd_ms', 'chuyengia_cccd_img_matsau', 'img_matsau',  "assets/backend/img/hoso/");
 
-            Toastr::success('Thêm tài khoản chuyên gia thành công', 'Success');
+            Toastr::success('Sửa tài khoản chuyên gia thành công', 'Success');
             return redirect()->route('admin.taikhoan.danhsach');
         }
         if ($loai == 'cg-tk') {
+            //kiểm tra giá trị request
+            $request->validate([
+                // 'name' => ['required', 'string'],
+                'email' => ['required', 'string', 'email', 'unique:users,email,' . $user->id],
+                'status' => ['required', 'string'],
+                'chuyengia_img' => ['image'],
+            ]);
+
+            if ($request->password != null) {
+                $request->validate([
+                    'password' => ['required', 'min:8', 'confirmed'],
+                ]);
+                //Sửa tài khoản
+                $user_namecolumn = [
+                    'password' => 'password',
+                ];
+                $model_user = User::find($id);
+                $user = $tk->sua($model_user, $request, $user_namecolumn, null);
+            }
+
+            // định nghĩa mảng tên giá trị request và tên trường của bảng dạng key : value
+            $user_namecolumn = [
+                // 'name' => 'name',
+                'email' => 'email',
+                'status' => 'status',
+            ];
+
+            //Tạo mới model
+            $model_user = User::find($id);
+            $user = $tk->sua($model_user, $request, $user_namecolumn, null); // gọi function thêm
+            $tk->suahinhanh($request, $user, "cg", "chuyengia_img", "image", "assets/backend/img/hoso/"); //gọi function lưu hình ảnh
+
+            Toastr::success('Sửa tài khoản chuyên gia thành công', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
 
         //Sửa đổi thông tin hiệp hội doanh nghiệp
         if ($loai == 'hhdn-tt') {
+            //kiểm tra giá trị request
+            $request->validate([
+                'hiephoidoanhnghiep_tentiengviet' => ['required', 'string'],
+                'hiephoidoanhnghiep_tentienganh'  => ['required', 'string'],
+                'hiephoidoanhnghiep_sdt'  => ['required', 'string'],
+                'hiephoidoanhnghiep_thanhpho'  => ['required', 'string'],
+                'hiephoidoanhnghiep_huyen'  => ['required', 'string'],
+                'hiephoidoanhnghiep_xa'  => ['required', 'string'],
+                'hiephoidoanhnghiep_diachi'  => ['required', 'string'],
+                'hiephoidoanhnghiep_mota',
+            ]);
+
+            $hiephoidoanhnghiep_namecolumn = [
+                'tentiengviet' => 'hiephoidoanhnghiep_tentiengviet',
+                'tentienganh' => 'hiephoidoanhnghiep_tentienganh',
+                'thanhpho' => 'hiephoidoanhnghiep_thanhpho',
+                'huyen' => 'hiephoidoanhnghiep_huyen',
+                'xa' => 'hiephoidoanhnghiep_xa',
+                'diachi' => 'hiephoidoanhnghiep_diachi',
+                'sdt' => 'hiephoidoanhnghiep_sdt',
+                'mota' => 'hiephoidoanhnghiep_mota',
+            ];
+            $hiephoidoanhnghiep_nameobject = [
+                'user_id' => $user->id,
+            ];
+            $model_hiephoidoanhnghiep = $user->gethiephoidoanhnghiep;
+            $hiephoidoanhnghiep = $tk->sua($model_hiephoidoanhnghiep, $request, $hiephoidoanhnghiep_namecolumn, $hiephoidoanhnghiep_nameobject);
+
+            Toastr::success('Sửa thông tin hiệp hội doanh nghiệp thành công', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
+
         if ($loai == 'hhdn-dd') {
+            //kiểm tra giá trị request
+            $request->validate([
+                'hiephoidoanhnghiep_daidien_tendaidien'  => ['required', 'string'],
+                'hiephoidoanhnghiep_daidien_email'  => ['required', 'string', 'email'],
+                'hiephoidoanhnghiep_daidien_sdt'  => ['required', 'string'],
+                'hiephoidoanhnghiep_daidien_mota',
+            ]);
+
+            $hiephoidoanhnghiep_daidien_namecolumn = [
+                'tendaidien' => 'hiephoidoanhnghiep_daidien_tendaidien',
+                'email' => 'hiephoidoanhnghiep_daidien_email',
+                'sdt' => 'hiephoidoanhnghiep_daidien_sdt',
+                'mota' => 'hiephoidoanhnghiep_daidien_mota',
+            ];
+            $hiephoidoanhnghiep_daidien_nameobject = [
+                'hiephoidoanhnghiep_id' => $user->gethiephoidoanhnghiep->id,
+            ];
+
+            $model_hiephoidoanhnghiep_daidien = $user->gethiephoidoanhnghiep->getdaidien;
+            $hiephoidoanhnghiep_daidien = $tk->sua($model_hiephoidoanhnghiep_daidien, $request, $hiephoidoanhnghiep_daidien_namecolumn, $hiephoidoanhnghiep_daidien_nameobject);
+
+            Toastr::success('Sửa thông tin đại diện hiệp hội doanh nghiệp thành công', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
         if ($loai == 'hhdn-tk') {
+            //kiểm tra giá trị request
+            $request->validate([
+                // 'name' => ['required', 'string'],
+                'email' => ['required', 'string', 'email', 'unique:users,email,' . $user->id],
+                'status' => ['required', 'string'],
+                'hiephoidoanhnghiep_img' => ['image'],
+            ]);
+
+            if ($request->password != null) {
+                $request->validate([
+                    //thông tin tài khoản
+                    'password' => ['required', 'min:8', 'confirmed'],
+                ]);
+                //Sửa tài khoản
+                $user_namecolumn = [
+                    'password' => 'password',
+                ];
+                $model_user = User::find($id);
+                $user = $tk->sua($model_user, $request, $user_namecolumn, null);
+            }
+
+            // định nghĩa mảng tên giá trị request và tên trường của bảng dạng key : value
+            $user_namecolumn = [
+                // 'name' => 'name',
+                'email' => 'email',
+                'status' => 'status',
+            ];
+
+            //Tạo mới model
+            $model_user = User::find($id);
+            $user = $tk->sua($model_user, $request, $user_namecolumn, null); // gọi function thêm
+            $tk->suahinhanh($request, $user, "hhdn", "hiephoidoanhnghiep_img", "image", "assets/backend/img/hoso/"); //gọi function lưu hình ảnh
+
+            Toastr::success('Sửa tài khoản hiệp hội doanh nghiệp thành công', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
     }
-    //dùng để thêm tài khoản
+    //dùng để sửa tài khoản
     public function sua($model, $request, $namecolumn, $nameobject)
     {
         if (!empty($namecolumn))
@@ -750,6 +876,39 @@ class TaikhoanController extends Controller
         }
         return redirect()->route('admin.taikhoan.danhsach');
     }
+    //dùng để lưu hình ảnh vào public
+    public function luuhinhanh($request, $model, $nameprofile, $namefile, $namecolumn, $duongdan)
+    {
+        if ($img = $request->file($namefile)) {
+            $Path = $duongdan;
+            $profileImage = $nameprofile . "-" . $model->id . "."  . $img->getClientOriginalExtension();
+            $img->move($Path, $profileImage);
+            $model->$namecolumn = "$profileImage";
+            $model->save();
+        }
+    }
+    public function suahinhanh($request, $model, $nameprofile, $namefile, $namecolumn, $duongdan)
+    {
+        if ($img = $request->file($namefile)) {
+
+            //xóa ảnh cũ nếu có
+            if ($model->$namecolumn != null && file_exists($duongdan . '/' . $model->$namecolumn)) {
+                unlink($duongdan . '/' . $model->$namecolumn);
+            }
+
+            $Path = $duongdan;
+            $profileImage = $nameprofile . "-" . $model->id . "."  . $img->getClientOriginalExtension();
+            $img->move($Path, $profileImage);
+            $model->$namecolumn = "$profileImage";
+            $model->save();
+        }
+    }
+    public function xoahinhanh($model, $namecolumn, $duongdan)
+    {
+        if ($model->$namecolumn != null && file_exists($duongdan . '/' . $model->$namecolumn)) {
+            unlink($duongdan . '/' . $model->$namecolumn);
+        }
+    }
 }
 
 // public function getdanhsach()
@@ -776,72 +935,3 @@ class TaikhoanController extends Controller
 //     public function getduyet($id)
 //     {
 //     }
-
-
-
-// $user = new User();
-            // $user->name = $request->doanhnghiep_daidien_tendaidien;
-            // $user->email = $request->email;
-            // $user->password = Hash::make($request->password);
-            // $user->status = 'Active';
-            // $user->save();
-
-            // //thêm hình ảnh vào publish theo đường dẫn và sử lý lưu tên hình thay thế bằng năm tháng ngày giờ phút giây
-            // if ($user_image = $request->file('doanhnghiep_img')) {
-            //     $destinationPath = 'assets/backend/img/hoso/';
-            //     $profileImage = "dn-" . $user->id;
-            //     $user_image->move($destinationPath, $profileImage);
-            //     $user->image = "$profileImage";
-            //     $user->save();
-            // }
-
-            // $user_vaitro = new User_Vaitro();
-            // $user_vaitro->user_id = $user->id;
-            // $user_vaitro->vaitro_id = 'dn';
-            // $user_vaitro->cap_vaitro_id = 'ad';
-            // $user_vaitro->duyet_user_id = Auth::user()->id;
-            // $user_vaitro->save();
-
-            // $doanhnghiep = new Doanhnghiep();
-            // $doanhnghiep->user_id = $user->id;
-            // $doanhnghiep->doanhnghiep_loaihinh_id = $request->doanhnghiep_loaihinh_id;
-            // $doanhnghiep->tentiengviet = $request->doanhnghiep_tentiengviet;
-            // $doanhnghiep->tentienganh = $request->doanhnghiep_tentienganh;
-            // $doanhnghiep->tenviettat = $request->doanhnghiep_tenviettat;
-            // $doanhnghiep->diachi = $request->doanhnghiep_diachi . ', ' . $request->doanhnghiep_xa . ', ' . $request->doanhnghiep_huyen . ', ' . $request->doanhnghiep_thanhpho;
-            // $doanhnghiep->mathue = $request->doanhnghiep_mathue;
-            // $doanhnghiep->fax = $request->doanhnghiep_fax;
-            // $doanhnghiep->soluongnhansu = $request->doanhnghiep_soluongnhansu;
-
-            // $dateString = $request->doanhnghiep_ngaylap;
-            // $date = Carbon::createFromFormat('d/m/Y', $dateString);
-            // $doanhnghiep->ngaylap = $date->format('Y-m-d');
-
-            // $doanhnghiep->mota = $request->doanhnghiep_mota;
-            // $doanhnghiep->save();
-
-            // $doanhnghiep_sdt = new Doanhnghiep_Sdt();
-            // $doanhnghiep_sdt->doanhnghiep_id = $doanhnghiep->id;
-            // $doanhnghiep_sdt->sdt = $request->doanhnghiep_sdt;
-            // $doanhnghiep_sdt->loaisdt = $request->doanhnghiep_loai_sdt;
-            // $doanhnghiep_sdt->save();
-
-            // $doanhnghiep_daidien = new Doanhnghiep_Daidien();
-            // $doanhnghiep_daidien->doanhnghiep_id = $doanhnghiep->id;
-            // $doanhnghiep_daidien->tendaidien = $request->doanhnghiep_daidien_tendaidien;
-            // $doanhnghiep_daidien->email = $request->doanhnghiep_daidien_email;
-            // $doanhnghiep_daidien->diachi = $request->doanhnghiep_daidien_diachi . ', ' . $request->doanhnghiep_daidien_xa . ', ' . $request->doanhnghiep_daidien_huyen . ', ' . $request->doanhnghiep_daidien_thanhpho;
-            // $doanhnghiep_daidien->cccd = $request->doanhnghiep_daidien_cccd;
-            // $doanhnghiep_daidien->img_mattruoc = $request->doanhnghiep_daidien_img_mattruoc;
-            // $doanhnghiep_daidien->img_matsau = $request->doanhnghiep_daidien_img_matsau;
-            // $doanhnghiep_daidien->chucvu = $request->doanhnghiep_daidien_chucvu;
-            // $doanhnghiep_daidien->save();
-
-            //thêm hình ảnh vào publish theo đường dẫn và sử lý lưu tên hình thay thế bằng năm tháng ngày giờ phút giây
-            // if ($cccd_img_matruoc = $request->file('doanhnghiep_daidien_img_mattruoc')) {
-            //     $destinationPath = 'assets/backend/img/hoso/';
-            //     $profileImage = "dn-" . $user->id;
-            //     $cccd_img_matruoc->move($destinationPath, $profileImage);
-            //     $user->image = "$profileImage";
-            //     $user->save();
-            // }

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
         DB::table('doanhnghiep_loaihinh')->insert([
-            ['linhvuc_id' => 'nn', 'tenloaihinh' => 'Trồng lúc', 'mota' => 'Lúa là một nguồn thực phẩm cơ bản và quan trọng trong nền kinh tế nông nghiệp của An Giang. Doanh nghiệp thường chuyên về sản xuất lúa, từ cấy gieo đến thu hoạch và chế biến lúa.','hinhanh'=>'tronglua.jpg'],
+            ['linhvuc_id' => 'nn', 'tenloaihinh' => 'Trồng lúa', 'mota' => 'Lúa là một nguồn thực phẩm cơ bản và quan trọng trong nền kinh tế nông nghiệp của An Giang. Doanh nghiệp thường chuyên về sản xuất lúa, từ cấy gieo đến thu hoạch và chế biến lúa.','hinhanh'=>'tronglua.jpg'],
             ['linhvuc_id' => 'nn', 'tenloaihinh' => 'Trồng cây ăn trái', 'mota' => 'An Giang cũng có điều kiện thích hợp để trồng cây ăn trái như bưởi, cam, mãng cầu, măng cụt và các loại cây ăn trái khác. Các doanh nghiệp nông nghiệp thường sản xuất và tiêu thụ các sản phẩm này.','hinhanh'=>'trongcayantrai.jpg'],
             ['linhvuc_id' => 'nn', 'tenloaihinh' => 'Nuôi trồng thủy sản', 'mota' => 'Sản xuất các loại thủy sản, như cá, tôm, cua,... trong các môi trường nước ngọt, nước lợ, nước mặn. Một ngành kinh tế quan trọng của An Giang, đóng góp đáng kể vào GDP của tỉnh.','hinhanh'=>'nuoitrongthuysan.jpg'],
 

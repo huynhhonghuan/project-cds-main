@@ -9,10 +9,11 @@ class Mohinh_Lotrinh extends Model
 {
     use HasFactory;
 
-    protected $table ='mohinh_lotrinh';
-    protected $fillable =[
+    protected $table = 'mohinh_lotrinh';
+    protected $fillable = [
         'id',
-        'tenlotrinh',
+        'mohinh_id',
+        // 'tenlotrinh',
         'thoigian',
         'nhansu',
         'taichinh',

@@ -129,7 +129,7 @@
         </div>
 
         {{-- Modal sửa thông tin tài khoản --}}
-        <div id="xem_noidung" class="modal fade" role="dialog">
+        {{-- <div id="xem_noidung" class="modal fade" role="dialog">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -146,11 +146,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- Kết thúc xem nội dung --}}
 
         {{-- Model delete xóa 1 bài báo --}}
-        <div id="delete_asset" class="modal fade delete-modal" role="dialog">
+        {{-- <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <form action="{{ route('admin.taikhoan.xoa') }}" method="POST">
@@ -167,11 +167,11 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- End Model delete --}}
 
         {{-- Model duyệt tài khoản --}}
-        <div id="trangthai_modal" class="modal fade delete-modal" role="dialog">
+        {{-- <div id="trangthai_modal" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <form action="{{ route('admin.taikhoan.duyet') }}" method="POST">
@@ -189,7 +189,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div> --}}
         {{-- End Model duyệt tài khoản --}}
     </div>
 @endsection

@@ -9,9 +9,15 @@ class Linhvuc extends Model
 {
     use HasFactory;
 
-    protected $table='linhvuc';
-    protected $primaryKey ='id';
-    protected $keyType='string';
+    protected $table = 'linhvuc';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+
+    protected $fillable = [
+        'id',
+        'tenlinhvuc',
+        'hinhanh'
+    ];
 
     // public function getUser_Linhvuc()
     // {

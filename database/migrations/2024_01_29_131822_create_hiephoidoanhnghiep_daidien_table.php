@@ -24,6 +24,16 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        DB::table('hiephoidoanhnghiep_daidien')->insert([
+            [
+                'hiephoidoanhnghiep_id' => 1,
+                'tendaidien' => 'Đại diện hiệp hội An Giang',
+                'email' =>'daidienhiephoi_angiang@gmail.com',
+                'sdt' => '0326985471',
+                'mota' => 'Mô tả đại diện hiệp hội doanh nghiệp An Giang',
+            ],
+        ]);
     }
 
     /**

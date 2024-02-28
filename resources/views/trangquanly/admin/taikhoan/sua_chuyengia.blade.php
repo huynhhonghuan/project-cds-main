@@ -183,9 +183,9 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <div class="form-group">
-                                                                <label for="">Hình CCCD mặt sau hiện tại</label>
+                                                                <label for="">Hình CCCD mặt trước hiện tại</label>
                                                                 <img class="w-100 h-75"
-                                                                    src="{{ URL::to('/assets/backend/img/hoso/' . $user->getchuyengia->img_matsau) }}"
+                                                                    src="{{ URL::to('/assets/backend/img/hoso/' . $user->getchuyengia->img_mattruoc) }}"
                                                                     alt="Hình">
                                                             </div>
                                                         </div>
@@ -216,7 +216,8 @@
                                             </div>
 
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Sửa đổi thông tin chuyên gia</button>
+                                                <button type="submit" class="btn btn-primary">Sửa đổi thông tin chuyên
+                                                    gia</button>
                                             </div>
                                         </form>
                                     </div>
@@ -240,14 +241,42 @@
                                                             </div>
                                                         @enderror
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-3 col-form-label">Trạng thái tài khoản</label>
+                                                        <div class="col-lg-9">
+                                                            <div class="form-check form-check-inline rounded border p-2">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="status" id="blog_active" value="Active"
+                                                                    @if ($user->status == 'Active') checked="true" @endif>
+                                                                <label class="form-check-label" for="blog_active"> Hoạt
+                                                                    động
+                                                                </label>
+                                                                <span style="width: 30px;"></span>
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="status" id="blog_active_1" value="Inactive"
+                                                                    @if ($user->status == 'Inactive') checked="true" @endif>
+                                                                <label class="form-check-label" for="blog_active_1"> Không
+                                                                    hoạt động
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Hình đại diện doanh nghiệp</label>
+                                                        <input type="file" class="form-control" name="chuyengia_img">
+                                                        <div class="invalid-feedback">
+                                                            Chọn hình ảnh đại diện!
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <h6 class="text-center">Đổi mật khẩu</h6>
                                                     <div class="form-group">
                                                         <label>Mật khẩu mới</label>
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <input type="password"
                                                                     class="form-control @error('password') is-invalid @enderror"
-                                                                    value="" id="password" name="password"
-                                                                    required />
+                                                                    value="" id="password" name="password" />
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-eye" id="toggle-password"></i>
                                                                 </span>
@@ -258,7 +287,6 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Xác nhận mật khẩu</label>
@@ -267,7 +295,7 @@
                                                                 <input type="password"
                                                                     class="form-control @error('password_confirmation') is-invalid @enderror"
                                                                     value="" id="password_confirmation"
-                                                                    name="password_confirmation" required />
+                                                                    name="password_confirmation" />
                                                                 <span class="input-group-addon">
                                                                     <i class="fa fa-eye" id="toggle-password-confirm"></i>
                                                                 </span>
@@ -280,27 +308,20 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Hình đại diện doanh nghiệp</label>
-                                                        <input type="file" class="form-control" name="chuyengia_img"
-                                                            required>
-                                                        <div class="invalid-feedback">
-                                                            Chọn hình ảnh đại diện!
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Hình hiện tại</label>
                                                         <br>
-                                                        <img class="w-50 py-2"
+                                                        <img class="w-100 py-2"
                                                             src="{{ URL::to('/assets/backend/img/hoso/' . $user->image) }}"
                                                             alt="Hình">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-primary">Sửa đổi tài khoản chuyên gia</button>
+                                                <button type="submit" class="btn btn-primary">Sửa đổi tài khoản chuyên
+                                                    gia</button>
                                             </div>
                                         </form>
                                     </div>

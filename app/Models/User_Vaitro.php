@@ -22,4 +22,9 @@ class User_Vaitro extends Model
     {
         return $this->belongsTo(Vaitro::class);
     }
+
+    public function getuser()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id')->whereNotIn('vaitro_id', ['ad', 'ctv']);
+    }
 }

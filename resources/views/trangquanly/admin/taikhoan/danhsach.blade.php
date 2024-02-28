@@ -57,13 +57,17 @@
                                                 </td> --}}
 
                                                 <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="#" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle"
-                                                                src="{{ URL::to('/assets/backend/img/hoso/' . $value->image) }}"
-                                                                alt="Hình ảnh">
-                                                        </a>
-                                                    </h2>
+                                                    @if ($value->hinhanh != null)
+                                                        <h2 class="table-avatar">
+                                                            <a href="#" class="avatar avatar-sm mr-2">
+                                                                <img class="avatar-img rounded-circle"
+                                                                    src="{{ URL::to('/assets/backend/img/hoso/' . $value->hinhanh) }}"
+                                                                    alt="{{ $value->hinhanh }}">
+                                                            </a>
+                                                        </h2>
+                                                    @else
+                                                        <span class="btn bg-danger-light text-danger">Không!</span>
+                                                    @endif
                                                 </td>
 
                                                 <td>
@@ -109,7 +113,8 @@
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
+                                                    <a href="{{ route('admin.taikhoan.xem', ['id' => $value->id]) }}"
+                                                        class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
                                                             style="color:orange;"></i></a>
                                                 </td>
 
@@ -266,22 +271,6 @@
             document.getElementById("duyet_email_2").innerHTML = $(this).data('email');
         });
     </script>
-
-    {{-- gọi sự kiện click sửa set Session --}}
-    {{-- <script>
-        $(document).on('click', '.form-sua', function() {
-            var value = document.getElementById("form-sua-value").value;
-            console.log(value);
-            if (value === 'dn')
-                sessionStorage.setItem("form-sua", 'table1');
-            if (value === 'cg')
-                sessionStorage.setItem("form-sua", 'table2');
-            if (value === 'hhdn')
-                sessionStorage.setItem("form-sua", 'table3');
-            if (value === 'ctv')
-                sessionStorage.setItem("form-sua", 'table4');
-        });
-    </script> --}}
 
     <script>
         $(document).ready(function() {

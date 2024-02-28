@@ -1,10 +1,12 @@
-{{--Navbar của trang quản lý--}}
+{{-- Navbar của trang quản lý --}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('admin.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/vaitro/admin.png') }}"
-                width="50" height="70" alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
+        <a href="{{ route('admin.home') }}" class="logo"> <img
+                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" width="50" height="70"
+                alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
         <a href="{{ route('admin.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('assets/backend/img/admin.png') }}" alt="Logo" width="30" height="30">
+                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" alt="Logo" width="30"
+                height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -88,14 +90,15 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}" width="31"
-                        alt="Soeng Souy"></span> </a>
+                        class="rounded-circle" src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}"
+                        width="31" alt="Soeng Souy"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
-                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}"
-                            alt="User Image" class="avatar-img rounded-circle"> </div>
+                    <div class="avatar avatar-sm"> <img
+                            src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}" alt="User Image"
+                            class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
-                        <h6>{{Auth::user()->name}}</h6>
+                        <h6>{{ Auth::user()->name }}</h6>
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-{{--nhúng tất cả thành phần của footer--}}
+{{-- nhúng tất cả thành phần của footer --}}
 <!-- Footer -->
 <footer class="text-center text-lg-start bg-white text-muted">
 
@@ -11,10 +11,12 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                     <!-- Content -->
                     <h6 class="text-uppercase fw-bold mb-4">
-                        <img src="{{ URL::to('assets/frontend/img/logo/footer_logo-1.png')}}" alt="logo" class="me-2"></i>Chuyển đổi số
+                        <img src="{{ URL::to('public/assets/frontend/img/logo/footer_logo-1.png') }}" alt="logo"
+                            class="me-2"></i>Chuyển đổi số
                     </h6>
                     <p>
-                        Cung cấp thông tin về chuyển đổi số cho doanh nghiệp và hệ thống tư vấn chuyển đổi số cho doanh nghiệp vừa và nhỏ.
+                        Cung cấp thông tin về chuyển đổi số cho doanh nghiệp và hệ thống tư vấn chuyển đổi số cho doanh
+                        nghiệp vừa và nhỏ.
                     </p>
                     <div>
                         <a href="" class="me-4 link-secondary text-decoration-none">
@@ -114,15 +116,15 @@
 <!-- Footer -->
 
 <!--Jqurey js file-->
-<script src="{{ URL::to('assets/jquery/jquery.3.7.1.js') }}"></script>
+<script src="{{ URL::to('public/assets/jquery/jquery.3.7.1.js') }}"></script>
 
 <!--Bootstrap js file-->
-<script src="{{ URL::to('assets/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ URL::to('public/assets/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
 
 <!--Datepicker-->
-<script src="{{ URL::to('assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ URL::to('public/assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
 
 <!--custom js file-->
-<script src="{{ URL::to('assets/frontend/js/main.js') }}"></script>
+<script src="{{ URL::to('public/assets/frontend/js/main.js') }}"></script>
 
 @yield('footer')
