@@ -28,4 +28,9 @@ class Hiephoidoanhnghiep extends Model
     {
         return $this->hasOne(Hiephoidoanhnghiep_Daidien::class);
     }
+
+    public function getUser()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
