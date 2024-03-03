@@ -46,4 +46,8 @@ class Doanhnghiep extends Model
     {
         return $this->hasOne(Doanhnghiep_Sdt::class);
     }
+    public function getSdts()
+    {
+        return $this->hasMany(Doanhnghiep_Sdt::class);
+    }
 }

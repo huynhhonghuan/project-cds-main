@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoanhNghiepResource;
 use App\Http\Resources\UserResource;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Daidien;
@@ -55,7 +56,6 @@ class DoanhNghiepController extends Controller
             'doanhnghiep_daidien_img_matsau' => ['required', 'image'],
             'doanhnghiep_daidien_mota'
         ]);
-
 
         //Thêm tài khoản
         $user_namecolumn = [
@@ -141,16 +141,6 @@ class DoanhNghiepController extends Controller
         return response()->json(['success' => 'success'], 200);
     }
 
-    public function profile()
-    {
-        return response()->json(auth()->user(), 200);
-    }
-
-    public function test()
-    {
-        return response()->json(["success" => "success"], 200);
-    }
-
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -168,10 +158,26 @@ class DoanhNghiepController extends Controller
             return response()->json(['error' => 'Tài khoản chưa được kích hoạt'], 401);
         }
 
-        return response()->json([
-            'userProfile' => new UserResource($user),
-            'accessToken' => $token
-        ], 200);
+        return $this->responseWithToken($token, $user);
+    }
+
+    public function loginemail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if (!$user) return response()->json(['error' => 'Không tìm thấy user'], 404);
+        if (!$token = auth('api')->login($user)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        if ($user->status != "Active") {
+            return response()->json(['error' => 'Tài khoản chưa được kích hoạt'], 401);
+        }
+
+        return $this->responseWithToken($token, $user);
     }
 
     public function logout()
@@ -180,10 +186,27 @@ class DoanhNghiepController extends Controller
         return response()->json(['message' => 'Đăng xuất thành công'], 200);
     }
 
-    public function log($message)
+    public function profile()
     {
-        $output = new ConsoleOutput();
-        $output->writeln("<info>" . $message . "</info>");
+        if (!$user = auth('api')->user()) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $doanhnghiep = Doanhnghiep::with(['getUser', 'getLoaiHinh', 'getDaiDien', 'getSdts'])
+            ->where('user_id', $user->id)->first();
+
+        if (!$doanhnghiep)
+            return response()->json(['error' => 'Không tìm thấy thông tin doanh nghiệp'], 404);
+
+        return new DoanhNghiepResource($doanhnghiep);
+    }
+
+    protected function responseWithToken($token, $user)
+    {
+        return response()->json([
+            'userProfile' => new UserResource($user),
+            'accessToken' => $token
+        ]);
     }
 
     //dùng để thêm tài khoản
