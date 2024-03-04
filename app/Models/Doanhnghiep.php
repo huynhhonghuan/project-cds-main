@@ -52,4 +52,8 @@ class Doanhnghiep extends Model
     {
         return $this->hasMany(Khaosat::class, 'doanhnghiep_id', 'id');
     }
+    public function getSdts()
+    {
+        return $this->hasMany(Doanhnghiep_Sdt::class);
+    }
 }

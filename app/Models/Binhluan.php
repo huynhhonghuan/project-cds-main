@@ -9,8 +9,8 @@ class Binhluan extends Model
 {
     use HasFactory;
 
-    protected $table ='binhluan';
-    protected $fillable =[
+    protected $table = 'binhluan';
+    protected $fillable = [
         'id',
         'user_id',
         'tintuc_id',
@@ -18,4 +18,14 @@ class Binhluan extends Model
         'ngaydang',
         'binhluan_id',
     ];
+
+    public function getUser()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getPhanHois()
+    {
+        return $this->hasMany(Binhluan::class);
+    }
 }
