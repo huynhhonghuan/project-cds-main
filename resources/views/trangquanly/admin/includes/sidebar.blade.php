@@ -10,7 +10,7 @@
                 <li class="submenu"> <a href="#"><i class="fa-regular fa-building"></i> <span> Khảo sát </span>
                         <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href=""> Danh sách khảo sát tổng</a></li>
+                        <li><a href="{{ route('admin.khaosat.danhsach') }}"> Danh sách khảo sát tổng</a></li>
                         <li><a href=""> Khảo sát - nông nghiệp</a></li>
                         <li><a href=""> Khảo sát - công nghiệp</a></li>
                         <li><a href=""> Khảo sát - thương mại và dịch vụ</a></li>
@@ -18,7 +18,7 @@
                     </ul>
                 </li>
 
-                <li class="submenu"> <a href="#"><i class="fa-solid fa-bullseye"></i> <span> Chiến lược </span>
+                {{-- <li class="submenu"> <a href="#"><i class="fa-solid fa-bullseye"></i> <span> Chiến lược </span>
                         <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href=""> Danh sách chiến lược tổng</a></li>
@@ -27,7 +27,7 @@
                         <li><a href=""> Chiến lược - thương mại và dịch vụ</a></li>
                         <li><a href=""> Chiến lược - khác</a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>

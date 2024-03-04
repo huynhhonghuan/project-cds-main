@@ -375,7 +375,7 @@
                                                                                     <td colspan="2"
                                                                                         style="font-weight: bold;">
                                                                                         {{ $item_1->tencauhoi }}</td>
-                                                                                    <td> {{ $item_1->noidung }}</td>
+                                                                                    <td> {!! $item_1->noidung !!}</td>
                                                                                 </tr>
 
                                                                                 @php
@@ -392,7 +392,7 @@
                                                                                                 style="font-weight: bold;">
                                                                                                 {{ $item_2->tencauhoi }}
                                                                                             </td>
-                                                                                            <td> {{ $item_2->noidung }}</td>
+                                                                                            <td> {!! $item_2->noidung !!} </td>
                                                                                         </tr>
 
                                                                                         @php
@@ -416,9 +416,9 @@
                                                                                                             <td>{{ $item_4->tencauhoi }}
                                                                                                             </td>
                                                                                                             <td>
-                                                                                                                {{ $item_4->noidung }}
+                                                                                                                {!! $item_4->noidung !!}
                                                                                                             </td>
-                                                                                                            <td>1 2 3 4 5
+                                                                                                            <td>0 1 2 3 4 5
                                                                                                             </td>
                                                                                                         </tr>
 
@@ -433,9 +433,9 @@
                                                                                                     </td>
                                                                                                     <td>{{ $item_3->tencauhoi }}
                                                                                                     </td>
-                                                                                                    <td>{{ $item_3->noidung }}
+                                                                                                    <td>{!! $item_3->noidung !!}
                                                                                                     </td>
-                                                                                                    <td>5 10 15 20 25</td>
+                                                                                                    <td>0 5 10 15 20 25</td>
                                                                                                 </tr>
                                                                                             @endif
                                                                                         @endforeach

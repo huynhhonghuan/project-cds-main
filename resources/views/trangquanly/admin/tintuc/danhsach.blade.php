@@ -96,7 +96,7 @@
                                                 </td>
                                                 <td>
                                                     <a class="form-sua"
-                                                        href="{{ route('admin.taikhoan.sua', $value->id) }}">
+                                                        href="{{ route('admin.tintuc.sua', $value->id) }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
                                                     {{-- <input type="hidden" id="form-sua-value"

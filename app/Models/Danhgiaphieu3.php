@@ -12,7 +12,7 @@ class Danhgiaphieu3 extends Model
     protected $fillable =[
         'id',
         'danhsachphieu3_id',
-        'tendanhgia',
+        'cauhoiphieu3_id',
         'diem',
         'trangthai',
     ];

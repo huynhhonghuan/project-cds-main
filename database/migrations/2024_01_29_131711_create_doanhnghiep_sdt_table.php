@@ -14,20 +14,20 @@ return new class extends Migration
         Schema::create('doanhnghiep_sdt', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('doanhnghiep_id')->index();
-            $table->foreign('doanhnghiep_id')->references('id')->on('doanhnghiep')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('sdt');
-            $table->string('loaisdt')->default('Văn phòng'); // ban hoặc didong
+            // $table->unsignedBigInteger('doanhnghiep_id')->index();
+            // $table->foreign('doanhnghiep_id')->references('id')->on('doanhnghiep')->onUpdate('cascade')->onDelete('cascade');
+            // $table->string('sdt');
+            // $table->string('loaisdt')->default('Văn phòng'); // ban hoặc didong
 
             $table->timestamps();
         });
-        DB::table('doanhnghiep_sdt')->insert([
-            [
-                'doanhnghiep_id' => 1,
-                'sdt' => '0369854712',
-                'loaisdt' => 'Văn phòng'
-            ],
-        ]);
+        // DB::table('doanhnghiep_sdt')->insert([
+        //     [
+        //         'doanhnghiep_id' => 1,
+        //         'sdt' => '0369854712',
+        //         'loaisdt' => 'Văn phòng'
+        //     ],
+        // ]);
     }
 
     /**
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('doanhnghiep_sdt');
+        // Schema::dropIfExists('doanhnghiep_sdt');
     }
 };

@@ -14,6 +14,7 @@ use App\Http\Controllers\Chung\Mucdo\MucdoController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Chienluoc\ChienluocController;
 use App\Http\Controllers\Admin\Danhgia\DanhgiaController;
+use App\Http\Controllers\Admin\Khaosat\KhaosatController;
 use App\Http\Controllers\Admin\Linhvuc\LinhvucController;
 use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController;
 use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
@@ -34,7 +35,7 @@ use App\Http\Controllers\Chuyengia\Thongtin\DoanhnghiepController as ThongtinDoa
 
 //Chức năng dành cho cộng tác viên
 use App\Http\Controllers\Congtacvien\CongtacvienController;
-
+use App\Http\Controllers\Doanhnghiep\KhaosatController as DoanhnghiepKhaosatController;
 
 function set_active($route)
 {
@@ -104,7 +105,6 @@ Route::group(['prefix' => 'chung', 'middleware' => ['auth'], 'as' => 'chung.'], 
     });
 });
 
-
 //-------------------------------------Admin--------------------------------------------//
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as' => 'admin.'], function () {
     //-------------------------------------Home--------------------------------------------//
@@ -139,6 +139,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [TaikhoanController::class, 'postxoa'])->name('xoa');
         Route::post('nguoiduyet', [TaikhoanController::class, 'postnguoiduyet'])->name('nguoiduyet');
         Route::post('trangthai', [TaikhoanController::class, 'posttrangthai'])->name('trangthai');
+
+        //nhập excel thông tin tài khoản
+        Route::post('nhapdoanhnghiep', [TaikhoanController::class, 'postnhapdoanhnghiep'])->name('nhapdoanhnghiep');
+        Route::post('nhapchuyengia', [TaikhoanController::class, 'postnhapchuyengia'])->name('nhapchuyengia');
+        Route::post('nhaphiephoidoanhnghiep', [TaikhoanController::class, 'postnhaphiephoidoanhnghiep'])->name('nhaphiephoidoanhnghiep');
+        Route::post('nhapcongtacvien', [TaikhoanController::class, 'postnhapcongtacvien'])->name('nhapcongtacvien');
+
+        //xuất excel thông tin tài khoản
+        Route::get('xuatdoanhnghiep', [TaikhoanController::class, 'getxuatdoanhnghiep'])->name('xuatdoanhnghiep');
+        Route::get('xuatchuyengia', [TaikhoanController::class, 'getxuatchuyengia'])->name('xuatchuyengia');
+        Route::get('xuathiephoidoanhnghiep', [TaikhoanController::class, 'getxuathiephoidoanhnghiep'])->name('xuathiephoidoanhnghiep');
+        Route::get('xuatcongtacvien', [TaikhoanController::class, 'getxuatcongtacvien'])->name('xuatcongtacvien');
     });
 
     //-------------------------------------Vai trò--------------------------------------------//
@@ -204,6 +216,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [DanhgiaController::class, 'postxoa'])->name('xoa');
         Route::post('duyet', [DanhgiaController::class, 'postduyet'])->name('duyet');
     });
+
+    //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
+    Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
+        Route::get('danhsach', [KhaosatController::class, 'getdanhsach'])->name('danhsach');
+
+        Route::get('xem/{id}', [KhaosatController::class, 'getxem'])->name('xem');
+        Route::get('them', [KhaosatController::class, 'getthem'])->name('them');
+        Route::post('them', [KhaosatController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [KhaosatController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [KhaosatController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [KhaosatController::class, 'postxoa'])->name('xoa');
+        // Route::post('duyet', [DanhgiaController::class, 'postduyet'])->name('duyet');
+    });
 });
 
 //-------------------------------------Doanh nghiệp--------------------------------------------//
@@ -212,6 +237,20 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     Route::get('home', [DoanhnghiepController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [DoanhnghiepController::class, 'profile'])->name('profile');
+
+
+    //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
+    Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
+        Route::get('khoitao', [DoanhnghiepKhaosatController::class, 'getkhoitao'])->name('khoitao');
+        // Route::get('danhsach', [DoanhnghiepKhaosatController::class, 'getdanhsach'])->name('danhsach');
+
+        Route::get('xem/{id}', [DoanhnghiepKhaosatController::class, 'getxem'])->name('xem');
+        Route::get('them', [DoanhnghiepKhaosatController::class, 'getthem'])->name('them');
+        Route::post('them', [DoanhnghiepKhaosatController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [DoanhnghiepKhaosatController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [DoanhnghiepKhaosatController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [DoanhnghiepKhaosatController::class, 'postxoa'])->name('xoa');
+    });
 });
 
 //-------------------------------------Chuyên gia--------------------------------------------//

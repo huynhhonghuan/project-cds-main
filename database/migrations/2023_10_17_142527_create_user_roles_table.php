@@ -30,10 +30,10 @@ return new class extends Migration
 
         DB::table('user_vaitro')->insert([
             ['user_id' => 1, 'vaitro_id' => 'ad', 'cap_vaitro_id' => 'ad', 'duyet_user_id' => '1'],
-            ['user_id' => 2, 'vaitro_id' => 'ctv', 'cap_vaitro_id' => 'ad', 'duyet_user_id' => '1'],
-            ['user_id' => 3, 'vaitro_id' => 'dn', 'cap_vaitro_id' => 'dn', 'duyet_user_id' => '1'],
-            ['user_id' => 4, 'vaitro_id' => 'cg', 'cap_vaitro_id' => 'hhdn', 'duyet_user_id' => '1'],
-            ['user_id' => 5, 'vaitro_id' => 'hhdn', 'cap_vaitro_id' => 'ad', 'duyet_user_id' => '1'],
+            ['user_id' => 2, 'vaitro_id' => 'hhdn', 'cap_vaitro_id' => 'ad', 'duyet_user_id' => '1'],
+            ['user_id' => 3, 'vaitro_id' => 'cg', 'cap_vaitro_id' => 'hhdn', 'duyet_user_id' => '1'],
+            ['user_id' => 4, 'vaitro_id' => 'ctv', 'cap_vaitro_id' => 'ad', 'duyet_user_id' => '1'],
+            ['user_id' => 5, 'vaitro_id' => 'dn', 'cap_vaitro_id' => 'dn', 'duyet_user_id' => '1'],
         ]);
     }
 

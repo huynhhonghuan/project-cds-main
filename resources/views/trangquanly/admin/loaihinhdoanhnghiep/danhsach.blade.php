@@ -57,7 +57,7 @@
                                                                         {{ $item->tenloaihinh }}</h6>
                                                                     <hr>
                                                                     <img class="card-img"
-                                                                        src="{{ URL::to('/assets/backend/img/loaihinhdoanhnghiep/' . $item->hinhanh) }}"
+                                                                        src="{{ URL::to('public/assets/backend/img/loaihinhdoanhnghiep/' . $item->hinhanh) }}"
                                                                         alt="" height="200">
                                                                     <p class="mt-3">{{$item->mota}}</p>
                                                                     <hr>
@@ -87,7 +87,7 @@
                                                                         {{ $item->tenloaihinh }}</h6>
                                                                     <hr>
                                                                     <img class="card-img"
-                                                                        src="{{ URL::to('/assets/backend/img/loaihinhdoanhnghiep/' . $item->hinhanh) }}"
+                                                                        src="{{ URL::to('public/assets/backend/img/loaihinhdoanhnghiep/' . $item->hinhanh) }}"
                                                                         alt="" height="200">
                                                                     <p class="mt-3">{{$item->mota}}</p>
                                                                     <hr>

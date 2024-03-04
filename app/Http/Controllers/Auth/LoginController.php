@@ -42,10 +42,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except([
             'logout',
-            'locked',
-            'unlock'
+            // 'locked',
+            // 'unlock'
         ]);
     }
+
+    public function username()
+    {
+        $identity = request()->get('email');
+        if (is_numeric($identity))
+            $fieldName = 'phone';
+        elseif (filter_var($identity, FILTER_VALIDATE_EMAIL))
+            $fieldName = 'email';
+        else
+            $fieldName = 'username';
+        request()->merge([$fieldName => $identity]);
+        return $fieldName;
+    }
+
     public function login()
     {
         return view('auth.login');
@@ -53,15 +67,16 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|email',
+            'email' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $email    = $request->email;
+
+        $email    = $request->email; // email hoặc số điện thoại
         $password = $request->password;
 
         // tài khoản đang hoạt động - Active
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'Active'])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 'Active']) || Auth::attempt(['phone' => $email, 'password' => $password, 'status' => 'Active'])) {
 
             //đăng nhập vơi quyền admin
             if (Auth::user()->Check_Admin()) {
@@ -99,7 +114,6 @@ class LoginController extends Controller
             Toastr::error('Tài khoản hoặc mật khẩu không chính xác!', 'Error');
             return redirect('login');
         }
-
     }
     public function logout()
     {

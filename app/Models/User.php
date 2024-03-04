@@ -24,8 +24,12 @@ class User extends Authenticatable  implements JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'name',
         'email',
+        'phone',
         'password',
+        'image',
         'status',
     ];
 
@@ -45,6 +49,7 @@ class User extends Authenticatable  implements JWTSubject
      * @var array<string, string>
      */
     protected $casts = [
+        'id' => 'integer',
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];

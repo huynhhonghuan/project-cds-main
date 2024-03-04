@@ -132,7 +132,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            {{-- <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Loại số điện thoại</label>
                                                     <select class="form-control" id="loai_sdt" name="doanhnghiep_loai_sdt"
@@ -145,7 +145,7 @@
                                                         Chọn loại số điện thoại!
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="col-md-6">

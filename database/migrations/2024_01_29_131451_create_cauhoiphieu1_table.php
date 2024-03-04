@@ -17,8 +17,11 @@ return new class extends Migration
             $table->Text('tencauhoi')->nullable();
             $table->longText('noidung')->nullable();
             $table->integer('tieude')->default(0)->nullable();
+            $table->integer('traloi')->default(0)->nullable();
             $table->unsignedBigInteger('cauhoiphieu1_id')->index()->nullable();
             $table->foreign('cauhoiphieu1_id')->references('id')->on('cauhoiphieu1')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('mohinh_trucot_id')->index()->nullable();
+            $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Taikhoan;
 
+use App\Exports\Taikhoan\ChuyengiaExport;
+use App\Exports\Taikhoan\CongtacvienExport;
+use App\Exports\Taikhoan\Doanhnghiep as TaikhoanDoanhnghiep;
+use App\Exports\Taikhoan\DoanhnghiepExport;
+use App\Exports\Taikhoan\HiephoidoanhnghiepExport;
 use App\Http\Controllers\Controller;
+use App\Imports\Taikhoan\DoanhnghiepImport;
 use App\Models\Chuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Daidien;
@@ -22,6 +28,7 @@ use Auth;
 use DateTime;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TaikhoanController extends Controller
 {
@@ -161,6 +168,7 @@ class TaikhoanController extends Controller
             $user_namecolumn = [
                 'name' => 'doanhnghiep_daidien_tendaidien',
                 'email' => 'email',
+                'phone' => 'doanhnghiep_sdt',
                 'password' => 'password',
             ];
             //định nghĩa các giá trị truyền vào nhưng không nhận từ Request
@@ -192,6 +200,7 @@ class TaikhoanController extends Controller
                 'huyen' => 'doanhnghiep_huyen',
                 'xa' => 'doanhnghiep_xa',
                 'diachi' => 'doanhnghiep_diachi',
+                'sdt' => 'doanhnghiep_sdt',
                 'mathue' => 'doanhnghiep_mathue',
                 'fax' => 'doanhnghiep_fax',
                 'soluongnhansu' => 'doanhnghiep_soluongnhansu',
@@ -206,15 +215,15 @@ class TaikhoanController extends Controller
             $doanhnghiep = $tk->them($model_doanhnghiep, $request, $doanhnghiep_namecolumn, $doanhnghiep_nameobject);
 
             //Thông tin số điện thoại doanh nghiệp
-            $model_doanhnghiep_sdt = new Doanhnghiep_Sdt();
-            $doanhnghiep_sdt_namecolumn = [
-                'sdt' => 'doanhnghiep_sdt',
-                'loaisdt' => 'doanhnghiep_loai_sdt',
-            ];
-            $doanhnghiep_sdt_nameobject = [
-                'doanhnghiep_id' => $doanhnghiep->id,
-            ];
-            $tk->them($model_doanhnghiep_sdt, $request, $doanhnghiep_sdt_namecolumn, $doanhnghiep_sdt_nameobject);
+            // $model_doanhnghiep_sdt = new Doanhnghiep_Sdt();
+            // $doanhnghiep_sdt_namecolumn = [
+            //     'sdt' => 'doanhnghiep_sdt',
+            //     'loaisdt' => 'doanhnghiep_loai_sdt',
+            // ];
+            // $doanhnghiep_sdt_nameobject = [
+            //     'doanhnghiep_id' => $doanhnghiep->id,
+            // ];
+            // $tk->them($model_doanhnghiep_sdt, $request, $doanhnghiep_sdt_namecolumn, $doanhnghiep_sdt_nameobject);
 
             //Thêm thông tin đại diện doanh nghiệp
             $model_doanhnghiep_daidien = new Doanhnghiep_Daidien();
@@ -269,6 +278,7 @@ class TaikhoanController extends Controller
             // định nghĩa mảng tên giá trị request và tên trường của bảng dạng key : value
             $user_namecolumn = [
                 'email' => 'email',
+                'phone' => 'chuyengia_sdt',
                 'password' => 'password'
             ];
             //định nghĩa các giá trị truyền vào nhưng không nhận từ Request
@@ -344,6 +354,7 @@ class TaikhoanController extends Controller
             // định nghĩa mảng tên giá trị request và tên trường của bảng dạng key : value
             $user_namecolumn = [
                 'email' => 'email',
+                'phone' => 'hiephoidoanhnghiep_sdt',
                 'password' => 'password'
             ];
             //định nghĩa các giá trị truyền vào nhưng không nhận từ Request
@@ -817,16 +828,23 @@ class TaikhoanController extends Controller
             if ($user->image != null) {
                 $xoahinhanh->xoahinhanh($user, "image", "assets/backend/img/hoso");
             }
+
             if ($user->getVaiTro[0]->id == 'dn') {
-                $doanhnghiep_daidien = $user->getDoanhNghiep->getDaiDien;
-                $xoahinhanh->xoahinhanh($doanhnghiep_daidien, "img_mattruoc", "assets/backend/img/hoso");
-                $xoahinhanh->xoahinhanh($doanhnghiep_daidien, "img_matsau", "assets/backend/img/hoso");
+                if ($user->getDoanhNghiep != null) {
+                    $doanhnghiep_daidien = $user->getDoanhNghiep->getDaiDien;
+                    $xoahinhanh->xoahinhanh($doanhnghiep_daidien, "img_mattruoc", "assets/backend/img/hoso");
+                    $xoahinhanh->xoahinhanh($doanhnghiep_daidien, "img_matsau", "assets/backend/img/hoso");
+                }
             }
+
             if ($user->getVaiTro[0]->id == 'cg') {
-                $chuyengia = $user->getChuyenGia;
-                $xoahinhanh->xoahinhanh($chuyengia, "img_mattruoc", "assets/backend/img/hoso");
-                $xoahinhanh->xoahinhanh($chuyengia, "img_matsau", "assets/backend/img/hoso");
+                if ($user->getChuyenGia != null) {
+                    $chuyengia = $user->getChuyenGia;
+                    $xoahinhanh->xoahinhanh($chuyengia, "img_mattruoc", "assets/backend/img/hoso");
+                    $xoahinhanh->xoahinhanh($chuyengia, "img_matsau", "assets/backend/img/hoso");
+                }
             }
+
             if ($user->getVaiTro[0]->id == 'ad') {
                 Toastr::info('Không thể xoá tài khoản quản trị viên', 'Info');
             } else {
@@ -907,6 +925,62 @@ class TaikhoanController extends Controller
     {
         if ($model->$namecolumn != null && file_exists($duongdan . '/' . $model->$namecolumn)) {
             unlink($duongdan . '/' . $model->$namecolumn);
+        }
+    }
+    public function postnhapdoanhnghiep(Request $request)
+    {
+        try {
+            Excel::import(new DoanhnghiepImport, $request->file('excel_file'));
+            Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
+        } catch (Exception $e) {
+            Toastr::warning('Nhập dữ liệu excel tài khoản doanh nghiệp không thành công!', 'Warning');
+            return redirect()->route('admin.taikhoan.danhsach');
+        }
+    }
+    public function postnhapchuyengia(Request $request)
+    {
+    }
+    public function postnhaphiephoidoanhnghiep(Request $request)
+    {
+    }
+    public function postnhapcongtacvien(Request $request)
+    {
+    }
+    public function getxuatdoanhnghiep()
+    {
+        try {
+            return Excel::download(new DoanhnghiepExport, 'doanhnghiep.xlsx');
+        } catch (Exception $e) {
+            Toastr::info('Xuất thông tin doanh nghiệp không thành công!', 'Info');
+            return redirect()->route('admin.taikhoan.danhsach');
+        }
+    }
+    public function getxuatchuyengia()
+    {
+        try {
+            return Excel::download(new ChuyengiaExport, 'chuyengia.xlsx');
+        } catch (Exception $e) {
+            Toastr::info('Xuất thông tin chuyên gia không thành công!', 'Info');
+            return redirect()->route('admin.taikhoan.danhsach');
+        }
+    }
+    public function getxuathiephoidoanhnghiep()
+    {
+        try {
+            return Excel::download(new HiephoidoanhnghiepExport, 'hiephoidoanhnghiep.xlsx');
+        } catch (Exception $e) {
+            Toastr::info('Xuất thông tin hiệp hội doanh nghiệp không thành công!', 'Info');
+            return redirect()->route('admin.taikhoan.danhsach');
+        }
+    }
+    public function getxuatcongtacvien()
+    {
+        try {
+            return Excel::download(new CongtacvienExport, 'congtacvien.xlsx');
+        } catch (Exception $e) {
+            Toastr::info('Xuất thông tin doanh nghiệp không thành công!', 'Info');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
     }
 }

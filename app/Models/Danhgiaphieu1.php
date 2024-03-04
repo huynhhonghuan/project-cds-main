@@ -12,9 +12,8 @@ class Danhgiaphieu1 extends Model
     protected $table ='danhgiaphieu1';
     protected $fillable =[
         'id',
-        'mohinh_trucot_id',
         'danhsachphieu1_id',
-        'tendanhgia',
+        'cauhoiphieu1_id',
         'diem',
         'trangthai',
     ];

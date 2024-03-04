@@ -158,14 +158,14 @@
                                                                 <label>Số điện thoại</label>
                                                                 <input type="text" class="form-control"
                                                                     name="doanhnghiep_sdt"
-                                                                    value="{{ $user->getdoanhnghiep->getsdt->sdt }}"
+                                                                    value="{{ $user->getdoanhnghiep->sdt }}"
                                                                     required>
                                                                 <div class="invalid-feedback">
                                                                     Nhập số điện thoại của doanh nghiệp!
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        {{-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Loại số điện thoại</label>
                                                                 <select class="form-control" id="loai_sdt"
@@ -182,7 +182,7 @@
                                                                     Chọn loại số điện thoại!
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

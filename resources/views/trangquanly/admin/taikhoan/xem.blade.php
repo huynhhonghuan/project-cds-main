@@ -71,10 +71,10 @@
                                     <label>Nhân sự: {{ $user->getdoanhnghiep->soluongnhansu }} người</label>
                                 </div>
                                 <div class="form-group">
-                                    <label>Số điện thoại: {{ $user->getdoanhnghiep->getsdt->sdt }}</label>
+                                    <label>Số điện thoại: {{ $user->getdoanhnghiep->sdt }}</label>
                                 </div>
 
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Loại số điện thoại:
                                         @if ($user->getdoanhnghiep->getsdt->loaisdt == 'Văn phòng')
                                             Văn phòng
@@ -83,7 +83,7 @@
                                             Di động
                                         @endif
                                     </label>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <p id="doanhnghiep_local_1_page">Địa chỉ: </p>

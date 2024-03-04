@@ -15,5 +15,6 @@ class Khaosat extends Model
         'thoigiantao',
         'tongdiem',
         'trangthai',
+        'doanhnghiep_id',
     ];
 }

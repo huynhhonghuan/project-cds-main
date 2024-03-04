@@ -30,7 +30,9 @@ class Phieu1 implements ToModel, WithHeadingRow
             'tencauhoi' => $row['tencauhoi'],
             'noidung' => $row['noidung'],
             'tieude' => $row['tieude'],
+            'traloi' => $row['traloi'],
             'cauhoiphieu1_id' => $row['cauhoiphieu1_id'],
+            'mohinh_trucot_id' => $row['mohinh_trucot_id'],
         ]);
     }
 
