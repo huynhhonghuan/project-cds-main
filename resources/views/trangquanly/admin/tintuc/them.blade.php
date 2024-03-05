@@ -69,7 +69,6 @@
 @endsection
 
 @section('script')
-    <script src="{{ URL::to('assets/ckeditor5/ckeditor.js') }} "></script>
     <script>
         ClassicEditor.create(document.querySelector('#editor1'), {
             licenseKey: '',

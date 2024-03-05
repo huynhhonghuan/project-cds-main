@@ -22,9 +22,16 @@
                                         </h2>
 
                                         <div class="form-floating mb-4">
-                                            <input type="email" id="floatingEmail" name="email"
-                                                class="form-control form-control-lg" placeholder="Email" />
+                                            <input type="text" id="floatingEmail" name="email"
+                                                class="form-control form-control-lg {{ $errors->has('email') || $errors->has('phone') ? 'is-invalid' : '' }}"
+                                                placeholder="Email" />
                                             <label class="form-label" for="floatingEmail">Email</label>
+
+                                            {{-- @if ($errors->has('email') || $errors->has('username'))
+                                                <div class="invalid-feedback">
+                                                    <strong>{{ empty($errors->first('email')) ? $errors->first('username') : $errors->first('email') }}</strong>
+                                                </div>
+                                            @enderror --}}
                                         </div>
 
                                         <div class="form-floating mb-2">

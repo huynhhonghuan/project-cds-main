@@ -117,4 +117,27 @@ class BocauhoiController extends Controller
         if ($layout != null)
             return view('trangquanly.chung.bocauhoi.danhsachphieu4', compact('tendanhsach', 'layout'));
     }
+
+    public function getdanhsachphieu1_demo()
+    {
+        $tendanhsach = 'Phiếu khảo sát 01';
+        $danhsach = Cauhoiphieu1::all();
+        $soluong = Cauhoiphieu1::whereNull('cauhoiphieu1_id')->get();
+        // dd($soluong);
+        $layout = '';
+        if (Auth::user()->getvaitro[0]->id == 'ad') {
+            $layout = 'trangquanly.admin.layout';
+        }
+        if (Auth::user()->getvaitro[0]->id == 'dn') {
+            $layout = 'trangquanly.doanhnghiep.layout';
+        }
+        if (Auth::user()->getvaitro[0]->id == 'cg') {
+            $layout = 'trangquanly.chuyengia.layout';
+        }
+        if (Auth::user()->getvaitro[0]->id == 'hhdn') {
+            $layout = 'trangquanly.hiephoidoanhnghiep.layout';
+        }
+        if ($layout != null)
+            return view('trangquanly.chung.bocauhoi.danhsachphieu1_demo', compact('tendanhsach', 'danhsach', 'layout'));
+    }
 }

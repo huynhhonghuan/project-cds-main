@@ -14,11 +14,17 @@ return new class extends Migration
         Schema::create('cauhoiphieu2', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
             $table->primary('id');
-            $table->longText('tencauhoi');
+            $table->longText('tencauhoi')->nullable();
             $table->unsignedBigInteger('cauhoiphieu2_id')->index()->nullable();
             $table->foreign('cauhoiphieu2_id')->references('id')->on('cauhoiphieu2')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
+
+        // DB::table('cauhoiphieu2')->insert([
+        //     'id' => 1,
+        //     'tencauhoi' => 'huan',
+        //     'cauhoiphieu2_id' => null,
+        // ]);
     }
 
     /**

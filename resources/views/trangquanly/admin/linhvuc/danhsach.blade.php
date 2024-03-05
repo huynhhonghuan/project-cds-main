@@ -36,7 +36,7 @@
                                                     {{ $item->tenlinhvuc }}</h4>
                                                 <hr>
                                                 <img class="card-img"
-                                                    src="{{ URL::to('/assets/backend/img/linhvuc/' . $item->hinhanh) }}"
+                                                    src="{{ URL::to('public/assets/backend/img/linhvuc/' . $item->hinhanh) }}"
                                                     alt="" height="200">
                                                 <hr>
                                                 <a href="edit-pricing.html"

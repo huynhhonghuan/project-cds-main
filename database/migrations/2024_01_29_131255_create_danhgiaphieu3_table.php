@@ -16,15 +16,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('danhsachphieu3_id')->index();
             $table->foreign('danhsachphieu3_id')->references('id')->on('danhsachphieu3')->onUpdate('cascade')->onDelete('cascade');
-
-            $table->string('tendanhgia')->default('RÀO CẢN CHUYỂN ĐỔI SỐ TRONG DOANH NGHIỆP NHỎ VÀ VỪA');
-
-            $table->integer('soluonghoanthanh')->default(0);
-
-            $table->integer('diem')->default(0);
-
-            // $table->string('trangthai')->default(0);
-
+            $table->tinyInteger('diem')->default(0);
+            $table->tinyInteger('trangthai')->default(0);
             $table->timestamps();
         });
     }

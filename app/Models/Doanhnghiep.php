@@ -21,6 +21,7 @@ class Doanhnghiep extends Model
         'huyen',
         'xa',
         'diachi',
+        'sdt',
         'mathue',
         'fax',
         'soluongnhansu',
@@ -42,9 +43,14 @@ class Doanhnghiep extends Model
     {
         return $this->hasOne(Doanhnghiep_Daidien::class);
     }
-    public function getSdt()
+    // public function getSdt()
+    // {
+    //     return $this->hasOne(Doanhnghiep_Sdt::class);
+    // }
+
+    public function getkhaosat()
     {
-        return $this->hasOne(Doanhnghiep_Sdt::class);
+        return $this->hasMany(Khaosat::class, 'doanhnghiep_id', 'id');
     }
     public function getSdts()
     {

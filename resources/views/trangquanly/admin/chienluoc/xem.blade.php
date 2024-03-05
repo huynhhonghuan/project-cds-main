@@ -48,7 +48,7 @@
                                         @if ($danhsach->hinhanh != null)
                                             <div class="col-4 mt-3 mx-auto">
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/' . $danhsach->hinhanh) }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/' . $danhsach->hinhanh) }}"
                                                     alt="Hình">
                                             </div>
                                         @else
@@ -72,7 +72,7 @@
                                                 <h3 class="text-center text-info">Thời gian chuyển đổi</h3>
 
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/thoigian.png') }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/thoigian.png') }}"
                                                     alt="Hình">
                                                 <hr class="bg-info">
 
@@ -85,7 +85,7 @@
                                                 {{-- <hr class="bg-danger"> --}}
 
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/nhansu.png') }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/nhansu.png') }}"
                                                     alt="Hình">
 
                                                 <hr class="bg-danger">
@@ -99,7 +99,7 @@
                                                 <h3 class="text-center text-warning">Kinh tế tài chính</h3>
 
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/kinhte.png') }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/kinhte.png') }}"
                                                     alt="Hình">
                                                 <hr class="bg-warning">
 
@@ -124,7 +124,7 @@
                                         <div class="row">
                                             <div class="col-3 my-auto">
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/lotrinh.png') }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/lotrinh.png') }}"
                                                     alt="Hình">
                                             </div>
 
@@ -155,7 +155,7 @@
                                         <div class="row">
                                             <div class="col-3 my-auto">
                                                 <img class="w-100 h-75"
-                                                    src="{{ URL::to('/assets/backend/img/mohinh/luuy.png') }}"
+                                                    src="{{ URL::to('public/assets/backend/img/mohinh/luuy.png') }}"
                                                     alt="Hình">
                                             </div>
                                             @if ($danhsach->getlotrinh->luuy != null)

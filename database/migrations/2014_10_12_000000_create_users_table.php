@@ -14,8 +14,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name',255)->nullable();
+            $table->string('name', 255)->nullable();
             $table->string('email')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
@@ -24,19 +25,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $pass=Hash::make('1');
+        $pass = Hash::make('1');
 
         DB::table('users')->insert([
-            ['name'=>'Admin', 'email'=>'admin@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['name'=>'Cộng tác viên','email'=>'congtacvien@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['name'=>'Doanh nghiệp','email'=>'doanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['name'=>'Chuyên gia','email'=>'chuyengia@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-            ['name'=>'Hiệp hội doanh nghiệp','email'=>'hiephoidoanhnghiep@gmail.com', 'password'=>$pass, 'status'=>'Active'],
-
+            ['name' => 'Admin', 'email' => 'admin@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
+            ['name' => 'Hiệp hội doanh nghiệp', 'email' => 'hiephoidoanhnghiep@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
+            ['name' => 'Chuyên gia', 'email' => 'chuyengia@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
+            ['name' => 'Cộng tác viên', 'email' => 'congtacvien@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
+            ['name' => 'Doanh nghiệp', 'email' => 'doanhnghiep@gmail.com', 'phone' => '0919112392', 'password' => $pass, 'status' => 'Active'],
         ]);
     }
 
-    /**
+    /**`
      * Reverse the migrations.
      */
     public function down(): void

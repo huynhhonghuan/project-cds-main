@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('danhsachphieu3_id')->index();
             $table->foreign('danhsachphieu3_id')->references('id')->on('danhsachphieu3')->onUpdate('cascade')->onDelete('cascade');
             $table->longText('noidung')->nullable();
-
+            $table->tinyInteger('trangthai')->default(0);
             $table->timestamps();
         });
     }

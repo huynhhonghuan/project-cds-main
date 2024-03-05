@@ -15,6 +15,11 @@ return new class extends Migration
             $table->unsignedBigInteger('doanhnghiep_id')->index();
             $table->foreign('doanhnghiep_id')->references('id')->on('doanhnghiep')->onUpdate('cascade')->onDelete('cascade');
         });
+
+        // DB::table('khaosat')->insert([
+        //     'thoigiantao' => '2024-03-04',
+        //     'doanhnghiep_id' => 1,
+        // ]);
     }
 
     /**

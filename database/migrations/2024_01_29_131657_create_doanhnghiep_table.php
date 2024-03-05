@@ -21,17 +21,18 @@ return new class extends Migration
             $table->foreign('doanhnghiep_loaihinh_id')->references('id')->on('doanhnghiep_loaihinh')->onUpdate('cascade')->onDelete('cascade');
 
             $table->longText('tentiengviet');
-            $table->longText('tentienganh');
+            $table->longText('tentienganh')-> nullable();
             $table->string('tenviettat')->nullable();
             // $table->string('email')->unique();
             $table->string('thanhpho');
             $table->string('huyen');
             $table->string('xa');
             $table->string('diachi')->nullable();
+            $table->string('sdt')->nullable();
             $table->string('mathue')->nullable();
             $table->string('fax')->nullable();
             $table->integer('soluongnhansu')->default(0);
-            $table->date('ngaylap');
+            $table->date('ngaylap')->nullable();
             $table->longText('mota')->nullable();
 
             $table->timestamps();
@@ -39,7 +40,8 @@ return new class extends Migration
 
         DB::table('doanhnghiep')->insert([
             [
-                'user_id' => 3,
+                'id' => 1,
+                'user_id' => 5,
                 'doanhnghiep_loaihinh_id' => 1,
                 'tentiengviet' => 'Công ty TNHH',
                 'tentienganh' => 'Company TNHH',
@@ -48,6 +50,7 @@ return new class extends Migration
                 'huyen' => '001',
                 'xa' => '00001',
                 'diachi' => '18 Ung Văn Khiêm',
+                'sdt' => '0919112392',
                 'mathue' => '840000',
                 'fax' => '01369824712',
                 'soluongnhansu' => 100,

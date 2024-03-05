@@ -21,6 +21,72 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="row align-items-center">
+                    <div class="col">
+                        <div class="mt-3">
+                            <a href="{{ route('admin.taikhoan.xuatdoanhnghiep') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Nhập doanh
+                                nghiệp</a>
+                            <a href="{{ route('admin.taikhoan.xuatchuyengia') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Nhập chuyên
+                                gia</a>
+                            <a href="{{ route('admin.taikhoan.xuathiephoidoanhnghiep') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Nhập hiệp hội
+                                doanh nghiệp</a>
+                            <a href="{{ route('admin.taikhoan.xuatcongtacvien') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Nhập cộng tác
+                                viên</a>
+                            <a href="{{ route('admin.taikhoan.xuatdoanhnghiep') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Xuất doanh
+                                nghiệp</a>
+                            <a href="{{ route('admin.taikhoan.xuatchuyengia') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Xuất chuyên
+                                gia</a>
+                            <a href="{{ route('admin.taikhoan.xuathiephoidoanhnghiep') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Xuất hiệp hội
+                                doanh nghiệp</a>
+                            <a href="{{ route('admin.taikhoan.xuatcongtacvien') }}"
+                                class="btn btn-primary float-left veiwbutton" style="margin-left: 10px;">Xuất cộng tác
+                                viên</a>
+                        </div>
+                    </div>
+                </div> --}}
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row formtype mb-3">
+                        <div class="col-md-2">
+                            <label>Nhập Excel</label>
+                            <select class="form-control" id="select-excel-nhap" name="sellist1">
+                                <option value="nhapdoanhnghiep">Doanh nghiệp</option>
+                                <option value="nhapchuyengia">Chuyên gia</option>
+                                <option value="nhaphiephoidoanhnghiep">Hiệp hội doanh nghiệp</option>
+                                <option value="nhapcongtacvien">Cộng tác viên</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <br>
+                            <a data-toggle="modal" data-target="#nhap_excel_modal"
+                                href="#"class="btn btn-success search_button mt-2"> Nhập </a>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>Xuất Excel</label>
+                            <select class="form-control" id="select-excel" name="sellist1">
+                                <option value="xuatdoanhnghiep">Doanh nghiệp</option>
+                                <option value="xuatchuyengia">Chuyên gia</option>
+                                <option value="xuathiephoidoanhnghiep">Hiệp hội doanh nghiệp</option>
+                                <option value="xuatcongtacvien">Cộng tác viên</option>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <br>
+                            <a href="{{ route('admin.taikhoan.xuatdoanhnghiep') }}"
+                                class="btn btn-success search_button mt-2" id="xuat-excel"> Xuất </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -32,6 +98,7 @@
                                         <tr>
                                             <th scope="col">STT</th>
                                             <th scope="col">Email</th>
+                                            <th scope="col">Số điện thoại</th>
                                             {{-- <th scope="col">Mật khẩu</th> --}}
                                             <th scope="col">Hình ảnh</th>
                                             <th scope="col">Loại tài khoản</th>
@@ -48,6 +115,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $value->email }}</td>
+                                                <td>{{ $value->phone }}</td>
+
 
                                                 {{-- <td>
                                                     <div
@@ -61,12 +130,13 @@
                                                         <h2 class="table-avatar">
                                                             <a href="#" class="avatar avatar-sm mr-2">
                                                                 <img class="avatar-img rounded-circle"
-                                                                    src="{{ URL::to('/assets/backend/img/hoso/' . $value->hinhanh) }}"
+                                                                    src="{{ URL::to('public/assets/backend/img/hoso/' . $value->hinhanh) }}"
                                                                     alt="{{ $value->hinhanh }}">
                                                             </a>
                                                         </h2>
                                                     @else
-                                                        <span class="btn bg-danger-light text-danger">Không!</span>
+                                                        <span
+                                                            class="bg-danger-light text-danger px-2 py-1 rounded">Không!</span>
                                                     @endif
                                                 </td>
 
@@ -235,6 +305,28 @@
             </div>
         </div>
         {{-- End Model cập nhật trang thái --}}
+
+        {{-- Model thêm excel - bộ câu hỏi --}}
+        <div id="nhap_excel_modal" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('admin.taikhoan.nhapdoanhnghiep') }}" method="POST" id="nhap-excel-form"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body text-center">
+                            <h3 class="delete_class">Chọn file excel thông tin doanh nghiệp!</h3>
+                            <hr>
+                            <div class="m-t-20">
+                                <input class="form-control mb-3" type="file" name="excel_file">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Thêm doanh nghiệp</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- End Model thêm excel - bộ câu hỏi --}}
     </div>
 @endsection
 
@@ -278,7 +370,7 @@
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 5
+                    "targets": 6
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words
@@ -304,5 +396,51 @@
                 }
             })
         });
+    </script>
+
+    <script>
+        function handleSelectChange() {
+            // Get the selected value from the dropdown list
+            const selectedValue = document.getElementById("select-excel");
+            var value = '';
+            if (selectedValue.value === 'xuatdoanhnghiep') {
+                value = '{{ route('admin.taikhoan.xuatdoanhnghiep') }}';
+            }
+            if (selectedValue.value === 'xuatchuyengia') {
+                value = '{{ route('admin.taikhoan.xuatchuyengia') }}';
+            }
+            if (selectedValue.value === 'xuathiephoidoanhnghiep') {
+                value = '{{ route('admin.taikhoan.xuathiephoidoanhnghiep') }}';
+            }
+            if (selectedValue.value === 'xuatcongtacvien') {
+                value = '{{ route('admin.taikhoan.xuatcongtacvien') }}';
+            }
+            // Update the href attribute of the button based on the selected value
+            document.getElementById("xuat-excel").href = value; // Modify this line to create the desired URL
+        }
+        // Gắn sự kiện click cho thẻ select
+        document.getElementById("select-excel").addEventListener("change", handleSelectChange);
+
+        function handleSelectChange1() {
+            // Get the selected value from the dropdown list
+            const selectedValue = document.getElementById("select-excel-nhap");
+            var value = '';
+            if (selectedValue.value === 'nhapdoanhnghiep') {
+                value = '{{ route('admin.taikhoan.nhapdoanhnghiep') }}';
+            }
+            if (selectedValue.value === 'nhapchuyengia') {
+                value = '{{ route('admin.taikhoan.nhapchuyengia') }}';
+            }
+            if (selectedValue.value === 'nhaphiephoidoanhnghiep') {
+                value = '{{ route('admin.taikhoan.nhaphiephoidoanhnghiep') }}';
+            }
+            if (selectedValue.value === 'nhapcongtacvien') {
+                value = '{{ route('admin.taikhoan.nhapcongtacvien') }}';
+            }
+            // Update the href attribute of the button based on the selected value
+            document.getElementById("nhap-excel-form").action = value; // Modify this line to create the desired URL
+        }
+        // Gắn sự kiện click cho thẻ select
+        document.getElementById("select-excel-nhap").addEventListener("change", handleSelectChange1);
     </script>
 @endsection

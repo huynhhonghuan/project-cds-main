@@ -14,5 +14,6 @@
 <script src="{{ URL::to('public/assets/backend/plugins/morris/morris.min.js') }}"></script>
 <script src="{{ URL::to('public/assets/backend/js/chart.morris.js') }}"></script>
 
+<script src="{{ URL::to('public/assets/ckeditor5/ckeditor.js') }} "></script>
 
 @yield('footer'){{-- nhúng động footer --}}

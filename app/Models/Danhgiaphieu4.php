@@ -9,11 +9,10 @@ class Danhgiaphieu4 extends Model
 {
     use HasFactory;
 
-    protected $table ='danhgiaphieu4';
-    protected $fillable =[
+    protected $table = 'danhgiaphieu4';
+    protected $fillable = [
         'id',
         'danhsachphieu4_id',
-        'tendanhgia',
         'noidungnhucau',
         'noidungdexuat',
         'trangthai',

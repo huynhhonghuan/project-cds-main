@@ -13,7 +13,7 @@
                 <li class="submenu"> <a href="#"><i class="fa-solid fa-list-ol"></i> <span> Khảo sát </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="#"> Khởi tạo khảo sát </a></li>
+                        <li><a href="{{ route('doanhnghiep.khaosat.khoitao') }}"> Khởi tạo khảo sát </a></li>
                         <li><a href="#"> Khảo sát lần 1</a></li>
                         <li><a href="#"> Khảo sát lần 2</a></li>
                         <li><a href="#"> Khảo sát lần 3</a></li>
