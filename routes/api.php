@@ -5,10 +5,12 @@ use App\Http\Controllers\Api\ChuyenGiaController;
 use App\Http\Controllers\Api\DanhGiaController;
 use App\Http\Controllers\Api\DoanhNghiepController;
 use App\Http\Controllers\Api\HiepHoiDoanhNghiepController;
+use App\Http\Controllers\Api\KhaoSatController;
 use App\Http\Controllers\Api\LinhVucController;
 use App\Http\Controllers\Api\LoaiHinhDoanhNghiepController;
 use App\Http\Controllers\Api\MucDoController;
 use App\Http\Controllers\Api\TaiKhoanController;
+use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,6 +61,10 @@ Route::group(['prefix' => 'binhluan', 'middleware' => ['auth:api']], function ()
     Route::post('', [BinhLuanController::class, 'store']);
 });
 
-Route::group(['prefix' => 'danhgia', 'middleware' => ['auth:api']], function () {
-    Route::get('', [DanhGiaController::class, 'index']);
+Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () {
+    Route::get('', [KhaoSatController::class, 'index']);
+});
+
+Route::group(['prefix' => 'thongke', 'middleware' => ['auth:api']], function () {
+    Route::get('mucdo', [ThongKeController::class, 'mucdo']);
 });

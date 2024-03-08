@@ -15,13 +15,15 @@ class KhaoSatResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'mucDo' => new MucDoResource($this->getChienLuoc?->getMucDo),
-            'moHinh' => new MoHinhResource($this->getChienLuoc?->getMoHinh),
-            'chuyenGia' => new ChuyenGiaResource($this->getChuyenGiaDanhGia?->getChuyenGia),
+            'id' => $this?->id,
+            'mucDo' => $this->whenLoaded('getMucDo', new MucDoResource($this->getMucDo)),
+            'moHinh' => $this->whenLoaded('getMoHinh', new MoHinhResource($this->getMoHinh)),
+            'chuyenGia' => $this->whenLoaded('getChuyenGia', new ChuyenGiaResource($this->getChuyenGia)),
             'chuyenGiaDanhGia' => $this->getChuyenGiaDanhGia?->danhgia,
             'chuyenGiaDeXuat' => $this->getChuyenGiaDanhGia?->dexuat,
-            'chuyenGiaDanhGiaAt' => $this->getChuyenGiaDanhGia?->created_at
+            'chuyenGiaDanhGiaAt' => $this->getChuyenGiaDanhGia?->created_at,
+            'tongDiem' => $this?->tongdiem,
+            'createdAt' => $this?->created_at,
         ];
     }
 }
