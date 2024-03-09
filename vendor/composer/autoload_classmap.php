@@ -2133,7 +2133,6 @@ return array(
     'Illuminate\\Log\\ParsesLogConfiguration' => $vendorDir . '/laravel/framework/src/Illuminate/Log/ParsesLogConfiguration.php',
     'Illuminate\\Mail\\Attachment' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/Attachment.php',
     'Illuminate\\Mail\\Events\\MessageSending' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/Events/MessageSending.php',
-    'Illuminate\\Mail\\Events\\MessageSent' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/Events/MessageSent.php',
     'Illuminate\\Mail\\MailManager' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/MailManager.php',
     'Illuminate\\Mail\\MailServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/MailServiceProvider.php',
     'Illuminate\\Mail\\Mailable' => $vendorDir . '/laravel/framework/src/Illuminate/Mail/Mailable.php',

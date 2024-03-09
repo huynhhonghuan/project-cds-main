@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\MoHinhResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -45,4 +46,25 @@ class Khaosat extends Model
         return $this->hasMany(Chuyengia_Danhgia::class, 'khaosat_id', 'id');
     }
 
+    //
+
+    public function getChuyenGiaDanhGia()
+    {
+        return $this->hasOne(Chuyengia_Danhgia::class);
+    }
+
+    public function getChuyenGia()
+    {
+        return $this->hasOneThrough(Chuyengia::class, Chuyengia_Danhgia::class, 'khaosat_id', 'id', 'id', 'chuyengia_id');
+    }
+
+    public function getMoHinh()
+    {
+        return $this->hasOneThrough(Mohinh::class, Khaosat_Chienluoc::class, 'khaosat_id', 'id', 'id', 'mohinh_id');
+    }
+
+    public function getMucDo()
+    {
+        return $this->hasOneThrough(Mucdo::class, Khaosat_Chienluoc::class, 'khaosat_id', 'id', 'id', 'mucdo_id');
+    }
 }

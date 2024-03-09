@@ -18,4 +18,14 @@ class Khaosat_Chienluoc extends Model
         'user_id',
         'trangthai'
     ];
+
+    public function getmohinh()
+    {
+        return $this->belongsTo(Mohinh::class, 'mohinh_id');
+    }
+
+    public function getmucdo()
+    {
+        return $this->belongsTo(Mucdo::class, 'mucdo_id');
+    }
 }

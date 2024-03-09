@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Tintuc as ResourcesTintuc;
-use App\Http\Resources\TinTucCollection;
 use App\Http\Resources\TinTucResource;
-use App\Http\Resources\TinTucResourse;
 use App\Models\Linhvuc;
 use App\Models\Tintuc;
 use Illuminate\Http\Request;
@@ -20,10 +17,16 @@ class TinTucController extends Controller
     public function index(Request $request)
     {
         $tinTucs = [];
-        if ($linhvucid = $request->input('linhvucid')) {
-            $tinTucs = Tintuc::with(['getLinhvuc', 'getUser'])->where('linhvuc_id', $linhvucid)->orderBy('created_at', 'desc')->get();
-        } else if ($tukhoa = $request->input('tukhoa')) {
-            $tinTucs = Tintuc::with(['getLinhvuc', 'getUser'])->where('tieuDe', 'LIKE', '%' . $tukhoa . '%')->orderBy('created_at', 'desc')->get();
+        if ($linhVucId = $request->input('linhVucId')) {
+            $tinTucs = $this->getTinTucByLinhVuc($linhVucId);
+        } else if ($tukhoa = $request->input('tuKhoa')) {
+            $tinTucs = $this->timKiemTin($tukhoa);
+        } else if ($type = $request->input('type')) {
+            if ($type == 'xem-nhieu') {
+                $tinTucs = $this->getTinXemNhieu();
+            } else if ($type == 'lien-quan' && $tinTucId = $request->input('tinTucId')) {
+                $tinTucs = $this->getTinLienQuan($tinTucId);
+            }
         }
         return TinTucResource::collection($tinTucs);
     }
@@ -34,22 +37,45 @@ class TinTucController extends Controller
     public function show(Tintuc $tintuc)
     {
         //
+        $tintuc->luotxem += 1;
+        $tintuc->save();
         return new TinTucResource($tintuc);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    private function getTinTucByLinhVuc($linhVucId)
     {
-        //
+        return  Tintuc::with(['getLinhvuc', 'getUser'])
+            ->where('linhvuc_id', $linhVucId)
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    private function getTinXemNhieu()
     {
-        //
+        return  Tintuc::with(['getLinhvuc', 'getUser'])
+            ->orderByDesc('luotxem')
+            ->take(3)
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    private function getTinLienQuan($id)
+    {
+        $linhVucId = Tintuc::find($id)->linhvuc_id;
+        $tinLienQuan = Tintuc::with(['getLinhvuc', 'getUser'])
+            ->where('linhvuc_id', $linhVucId)
+            ->whereNotIn('id', [$id])
+            ->orderByDesc('created_at')
+            ->take(3)
+            ->get();
+        return $tinLienQuan;
+    }
+
+    private function timKiemTin($tuKhoa)
+    {
+        return Tintuc::with(['getLinhvuc', 'getUser'])
+            ->where('tieuDe', 'LIKE', '%' . $tuKhoa . '%')
+            ->orderBy('created_at', 'desc')
+            ->get();
     }
 }
