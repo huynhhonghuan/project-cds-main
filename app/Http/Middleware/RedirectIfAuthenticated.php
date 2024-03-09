@@ -21,16 +21,24 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            // if (Auth::guard($guard)->check()) {
+            //     return redirect(RouteServiceProvider::HOME);
+            // }
+            if (Auth::guard($guard)->check() && Auth::user()->getvaitro[0] == 'ad') {
+                return redirect()(RouteServiceProvider::ADMIN);
             }
-            // if (Auth::guard($guard)->check() && Auth::user()->id == 1) {
-            //     return redirect()->intended(RouteServiceProvider::ADMIN);
-            // }
-
-            // if (Auth::guard($guard)->check() && Auth::user()->id ==3) {
-            //     return redirect(RouteServiceProvider::DOANHNHGIEP);
-            // }
+            if (Auth::guard($guard)->check() && Auth::user()->getvaitro[0] == 'cvt') {
+                return redirect()(RouteServiceProvider::CONGTACVIEN);
+            }
+            if (Auth::guard($guard)->check() && Auth::user()->getvaitro[0] == 'dn') {
+                return redirect()(RouteServiceProvider::DOANHNHGIEP);
+            }
+            if (Auth::guard($guard)->check() && Auth::user()->getvaitro[0] == 'cg') {
+                return redirect()(RouteServiceProvider::CHUYENGIA);
+            }
+            if (Auth::guard($guard)->check() && Auth::user()->getvaitro[0] == 'hhdn') {
+                return redirect()(RouteServiceProvider::HOIDOANHNGHIEP);
+            }
         }
 
         return $next($request);

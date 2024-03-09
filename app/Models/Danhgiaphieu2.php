@@ -16,4 +16,9 @@ class Danhgiaphieu2 extends Model
         'diem',
         'trangthai',
     ];
+
+    public function getdanhsachphieu2()
+    {
+        return $this->belongsTo(Danhsachphieu2::class, 'danhsachphieu2_id', 'id');
+    }
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Doanhnghiep;
 
 use App\Http\Controllers\Controller;
+use App\Models\Khaosat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DoanhnghiepController extends Controller
 {
@@ -12,6 +14,7 @@ class DoanhnghiepController extends Controller
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,11 +28,17 @@ class DoanhnghiepController extends Controller
     //home doanh nghiệp
     public function home()
     {
-        return view('trangquanly.doanhnghiep.home');
+        $khaosat = Auth::user()->getdoanhnghiep->getkhaosat;
+        // $chienluoc = $khaosat->getchienluoc;
+        return view('trangquanly.doanhnghiep.home', compact('khaosat'));
     }
     //profile doanh nghiệp
-    public function profile(){
+    public function profile()
+    {
         return view('trangquanly.doanhnghiep.profile');
     }
 
+    public function khaosat()
+    {
+    }
 }

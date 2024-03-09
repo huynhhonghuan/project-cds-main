@@ -9,12 +9,13 @@ class Khaosat_Chienluoc extends Model
 {
     use HasFactory;
 
-    protected $table ='khaosat_chienluoc';
-    protected $fillable =[
+    protected $table = 'khaosat_chienluoc';
+    protected $fillable = [
         'id',
         'khaosat_id',
         'mucdo_id',
         'mohinh_id',
+        'user_id',
+        'trangthai'
     ];
-
 }
