@@ -40,6 +40,10 @@ use App\Http\Controllers\Congtacvien\CongtacvienController;
 use App\Http\Controllers\Doanhnghiep\ChienluocController as DoanhnghiepChienluocController;
 use Livewire\Livewire;
 
+
+//Hiển thị lên giao diện màn hình chính
+use App\Http\Controllers\Frontend\TrangtinController;
+
 function set_active($route)
 {
     if (is_array($route)) {
@@ -62,9 +66,9 @@ Route::get('/', function () {
     return view('trangchu.home');
 })->name('home');
 
-Route::get('/home', function () {
-    return view('trangchu.home');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('trangchu.home');
+// })->name('home');
 
 //Đăng kí Auth
 Auth::routes();
@@ -325,3 +329,10 @@ Route::group(['prefix' => 'congtacvien', 'middleware' => ['auth', 'check_congtac
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [CongtacvienController::class, 'profile'])->name('profile');
 });
+
+
+// Giao diện chính
+Route::get('/', [TrangtinController::class, 'getslides'])->name('home');
+Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name('tintuc');
+Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
+Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
