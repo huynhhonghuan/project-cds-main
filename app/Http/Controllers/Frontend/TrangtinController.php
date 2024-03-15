@@ -115,9 +115,6 @@ class TrangtinController extends Controller
             ->select('tintuc.id as IdTin', 'tintuc.*')
             ->orderBy('luotxem', 'desc')
             ->paginate(3);
-        // $News =  DB::table('tintuc')
-        // ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')->where('tintuc.linhvuc_id',$TinTuc->linhvuc_id)->where('tintuc.id','!=',$id)
-        // ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.*')->orderBy('luotxem', 'desc')->limit(3)->get();
         return view('trangchu.tindetail')->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
     }
 }
