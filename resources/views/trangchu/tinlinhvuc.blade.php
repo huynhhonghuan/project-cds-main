@@ -1,5 +1,13 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
+<style>
+    .list-news a {
+        margin-top: 0;
+    }
+    .item-img {
+        margin-top: 0;
+    }
+</style>
 <div class="news-background" style="margin-top: 132px;">
     <div class="image-heading">
         @foreach($laybanner as $bn)
@@ -17,6 +25,14 @@
             @else 
             @endif @endif @endif
         @endforeach
+    </div>
+    <div class="container" style="margin-top : 24px;padding-left:16px">
+        <nav aria-label="breadcrumb" style="font-size:18px;font-weight:600;">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ route('home')}}" style="text-decoration: none">Trang chủ</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{$title}}</li>
+            </ol>
+        </nav>
     </div>
     <div class="container">
         <div class="news">
