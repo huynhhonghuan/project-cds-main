@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\ChuyenGiaController;
 use App\Http\Controllers\Api\DanhGiaController;
 use App\Http\Controllers\Api\DoanhNghiepController;
 use App\Http\Controllers\Api\HiepHoiDoanhNghiepController;
+use App\Http\Controllers\Api\HoiDapController;
 use App\Http\Controllers\Api\KhaoSatController;
 use App\Http\Controllers\Api\LinhVucController;
 use App\Http\Controllers\Api\LoaiHinhDoanhNghiepController;
@@ -67,4 +68,11 @@ Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () 
 
 Route::group(['prefix' => 'thongke', 'middleware' => ['auth:api']], function () {
     Route::get('mucdo', [ThongKeController::class, 'mucdo']);
+});
+
+Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
+    Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
+    Route::post('hoithoai/add', [HoiDapController::class, 'themhoithoai']);
+    Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
+    Route::post('tinnhan/add', [HoiDapController::class, 'themtinnhan']);
 });
