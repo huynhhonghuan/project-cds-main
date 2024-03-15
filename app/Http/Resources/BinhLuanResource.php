@@ -19,8 +19,8 @@ class BinhLuanResource extends JsonResource
         return [
             'id' => $this->id,
             'noiDung' => $this->noidung,
-            'hoTen' => $this->getUser->name,
-            'avatar' => create_image_uri('hoso', $this->getUser->image),
+            'hoTen' => $this->getUser?->name ?? "Khách",
+            'avatar' => create_image_uri('hoso', $this->getUser?->image),
             'phanHois' => BinhLuanResource::collection($this->getPhanHois->sortByDesc('ngaydang')),
             'createdAt' => $this->created_at,
         ];

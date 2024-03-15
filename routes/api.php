@@ -56,7 +56,7 @@ Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function (
     Route::post('changepassword', [TaiKhoanController::class, 'changepassword']);
 });
 
-Route::group(['prefix' => 'binhluan', 'middleware' => ['auth:api']], function () {
+Route::group(['prefix' => 'binhluan'], function () {
     Route::get('', [BinhLuanController::class, 'index']);
     Route::post('', [BinhLuanController::class, 'store']);
 });
