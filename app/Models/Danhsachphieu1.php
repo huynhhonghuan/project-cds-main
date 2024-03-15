@@ -9,8 +9,8 @@ class Danhsachphieu1 extends Model
 {
     use HasFactory;
 
-    protected $table ='danhsachphieu1';
-    protected $fillable =[
+    protected $table = 'danhsachphieu1';
+    protected $fillable = [
         'id',
         'khaosat_id',
         'tendanhgia',
@@ -18,4 +18,17 @@ class Danhsachphieu1 extends Model
         'soluonghoanthanh',
         'trangthai',
     ];
+
+    public function getdanhgiaphieu1()
+    {
+        return $this->hasMany(Danhgiaphieu1::class, 'danhsachphieu1_id', 'id');
+    }
+    public function getkhaosat()
+    {
+        return $this->belongsTo(Khaosat::class, 'khaosat_id', 'id');
+    }
+    public function getketquaphieu1()
+    {
+        return $this->hasMany(Ketquaphieu1::class, 'danhsachphieu1_id', 'id');
+    }
 }

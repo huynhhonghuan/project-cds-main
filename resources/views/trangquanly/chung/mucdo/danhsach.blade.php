@@ -10,7 +10,7 @@
         .bg-light-1 {
             background-color: rgb(131, 199, 131);
         }
-
+        
         .bg-green {
             background-color: rgb(122, 201, 43);
         }

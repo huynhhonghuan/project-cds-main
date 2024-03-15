@@ -18,4 +18,9 @@ class Danhsachphieu2 extends Model
         'soluonghoanthanh',
         'trangthai',
     ];
+
+    public function getdanhgiaphieu2()
+    {
+        return $this->hasMany(Danhgiaphieu2::class, 'danhsachphieu2_id', 'id');
+    }
 }

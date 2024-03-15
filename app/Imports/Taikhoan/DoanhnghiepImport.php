@@ -34,7 +34,7 @@ class Taikhoan implements ToModel, WithHeadingRow
             'name' => $row['name'],
             'email' => $row['email'],
             'phone' => $row['phone'],
-            'password' => $row['password'] != null ? $row['password'] : Hash::make('12345678'),
+            'password' => Hash::needsRehash($row['password']) == true ?  Hash::make($row['password']) : $row['password'],
             'image' => $row['image'],
             'status' => $row['status'],
         ]);

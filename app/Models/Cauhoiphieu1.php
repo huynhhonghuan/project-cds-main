@@ -18,4 +18,9 @@ class Cauhoiphieu1 extends Model
         'cauhoiphieu1_id',
         'mohinh_trucot_id',
     ];
+
+    public function getmohinhtrucot()
+    {
+        return $this->belongsTo(Mohinh_Trucot::class, 'mohinh_trucot_id', 'id');
+    }
 }
