@@ -15,7 +15,7 @@
                         <div class="appint-btn" style="display: ruby">
                             <div class="nav-but my-auto">
                                 @if (Auth::user()!=null)
-                                <a class="btn btn-outline-secondary text-uppercase fw-bold fs-6 " href="
+                                <a class="btn text-uppercase fw-bold fs-12 text-white b-main btn-head" href="
                                     @if (Auth::user()->getVaiTro[0]->id == "ad")
                                         {{route('admin.home')}}
                                     @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
