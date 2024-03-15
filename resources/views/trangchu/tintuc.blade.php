@@ -20,8 +20,8 @@
                                 {{$news->updated_at}}
                             </div>
                             <div class="item-content">
-                                <div class="item-content--main">{{$news->tieude}}</div>
-                                <div class="item-content--sub">{{$news->tomtat}}</div>
+                                <div class="item-content--main"  title="{{$news->tieude}}">{{$news->tieude}}</div>
+                                <div class="item-content--sub"  title="{{$news->tomtat}}">{{$news->tomtat}}</div>
                             </div>
                             <div class="item-footer">
                                 <div class="item-view">
