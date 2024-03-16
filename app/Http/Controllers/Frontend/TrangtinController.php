@@ -110,11 +110,16 @@ class TrangtinController extends Controller
         $luotxem = $TinTuc->luotxem + 1;
         DB::table('tintuc')->where('tintuc.id',$id)->update(['luotxem'=>$luotxem]);
         $comments = DB::table('binhluan')->where('tintuc_id',$TinTuc->id)->get();
+        $laybanner = DB::table('tintuc')
+                ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
+                ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
+                ->where('tintuc.linhvuc_id', 'tmdv')
+                ->paginate(1); 
         $News = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*')
             ->orderBy('luotxem', 'desc')
             ->paginate(3);
-        return view('trangchu.tindetail')->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
+        return view('trangchu.tindetail')->with('laybanner', $laybanner)->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
     }
 }
