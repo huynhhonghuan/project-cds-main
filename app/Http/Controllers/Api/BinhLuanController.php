@@ -32,7 +32,7 @@ class BinhLuanController extends Controller
         ]);
 
         $model = new Binhluan([
-            'user_id' => auth()->id(),
+            'user_id' => $request->userId,
             'tintuc_id' => $request->tinTucId,
             'noidung' => $request->noiDung,
             'binhluan_id' => $request->binhLuanChaId,
