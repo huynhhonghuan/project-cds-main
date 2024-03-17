@@ -18,10 +18,10 @@ class DoanhnghiepImport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
-            'Thông tin tài khoản' => new Taikhoan(),
-            'Thông tin vai trò tài khoản' => new Vaitro(),
-            'Thông tin doanh nghiệp' => new Doanhnghiep(),
-            'Thông tin đại diện doanh nghiệp' => new Daidien(),
+            'taikhoan' => new Taikhoan(),
+            'vaitro' => new Vaitro(),
+            'doanhnghiep' => new Doanhnghiep(),
+            'daidien' => new Daidien(),
         ];
     }
 }
@@ -75,7 +75,7 @@ class Doanhnghiep implements ToModel, WithHeadingRow
             'huyen' => $row['huyen'],
             'xa' => $row['xa'],
             'diachi' => $row['diachi'],
-            'sdt' => $row['sdt'],
+            // 'sdt' => $row['sdt'],
             'mathue' => $row['mathue'],
             'fax' => $row['fax'],
             'soluongnhansu' => $row['soluongnhansu'],

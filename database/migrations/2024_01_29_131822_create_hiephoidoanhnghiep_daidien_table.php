@@ -23,6 +23,8 @@ return new class extends Migration
             $table->longText('mota')->nullable();
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('hiephoidoanhnghiep_daidien')->insert([

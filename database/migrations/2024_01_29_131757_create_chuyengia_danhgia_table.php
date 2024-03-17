@@ -24,6 +24,8 @@ return new class extends Migration
             $table->longText('dexuat')->nullable();
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('luuy')->nullable();
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('mohinh_lotrinh')->insert([

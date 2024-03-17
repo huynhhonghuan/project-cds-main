@@ -22,6 +22,8 @@ return new class extends Migration
             $table->longText('mota')->nullable();
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
         DB::table('doanhnghiep_loaihinh')->insert([
             ['id' => 1, 'linhvuc_id' => 'nn', 'tenloaihinh' => 'Trồng lúa', 'mota' => 'Lúa là một nguồn thực phẩm cơ bản và quan trọng trong nền kinh tế nông nghiệp của An Giang. Doanh nghiệp thường chuyên về sản xuất lúa, từ cấy gieo đến thu hoạch và chế biến lúa.', 'hinhanh' => 'tronglua.jpg'],

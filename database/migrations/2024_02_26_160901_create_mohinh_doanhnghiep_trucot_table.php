@@ -24,6 +24,8 @@ return new class extends Migration
             $table->foreign('doanhnghiep_loaihinh_id')->references('id')->on('doanhnghiep_loaihinh')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('mohinh_doanhnghiep_trucot')->insert([

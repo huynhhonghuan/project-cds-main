@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('cauhoiphieu2_id')->index()->nullable();
             $table->foreign('cauhoiphieu2_id')->references('id')->on('cauhoiphieu2')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         // DB::table('cauhoiphieu2')->insert([

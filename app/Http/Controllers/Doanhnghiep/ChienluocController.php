@@ -10,11 +10,8 @@ class ChienluocController extends Controller
 {
     public function getxem($id)
     {
-
-        $tendanhsach = 'Chiến lược chuyển đổi số';
-        $chienluoc = Khaosat::find($id)->getchienluoc;
-        dd($chienluoc);
-        // $solankhaosat = count(Auth::user()->getdoanhnghiep->getkhaosat);
-        return view('trangquanly.doanhnghiep.chienluoc.xem', compact('tendanhsach', 'chienluoc'));
+        $tendanhsach = 'Xem chi tiết chiến lược chuyển đổi số';
+        $danhsach = Khaosat::find($id)->getchienluoc->getmohinh;
+        return view('trangquanly.doanhnghiep.chienluoc.xem', compact('tendanhsach', 'danhsach'));
     }
 }

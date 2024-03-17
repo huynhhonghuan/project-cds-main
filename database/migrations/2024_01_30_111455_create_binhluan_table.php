@@ -27,6 +27,8 @@ return new class extends Migration
             $table->foreign('binhluan_id')->references('id')->on('binhluan')->onUpdate('cascade')->onDelete('cascade');
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

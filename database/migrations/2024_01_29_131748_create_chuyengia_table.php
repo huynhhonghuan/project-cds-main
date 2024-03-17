@@ -36,7 +36,7 @@ return new class extends Migration
         });
         DB::table('chuyengia')->insert([
             [
-                'user_id' => 4,
+                'user_id' => 3,
                 'linhvuc_id' => 'nn',
                 'tenchuyengia' => 'Chuyên gia',
                 'sdt' => '0147852369',

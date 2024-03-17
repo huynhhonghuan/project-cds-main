@@ -26,6 +26,8 @@ return new class extends Migration
             $table->foreign('duyet_user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('restrict');
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('user_vaitro')->insert([

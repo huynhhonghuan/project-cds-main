@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('hinhanh')->nullable();
             $table->string('ghichu')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('mohinh_trucot')->insert([

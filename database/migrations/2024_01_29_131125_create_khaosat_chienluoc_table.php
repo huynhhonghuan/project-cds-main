@@ -27,6 +27,8 @@ return new class extends Migration
 
             $table->integer('trangthai')->default(0); // trạng thái là 0 thì chưa có đề xuất, 1 là hệ thống đề xuất, 2 là chuyên gia đề xuất
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

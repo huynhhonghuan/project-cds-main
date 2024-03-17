@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('mohinh_trucot_id')->index()->nullable();
             $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

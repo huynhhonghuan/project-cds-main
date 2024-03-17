@@ -15,14 +15,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255)->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image')->nullable();
-            $table->string('status')->default('Inactive');
+            $table->string('status')->default('Active');
             $table->rememberToken();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 
         $pass = Hash::make('1');
@@ -32,7 +33,7 @@ return new class extends Migration
             ['name' => 'Hiệp hội doanh nghiệp', 'email' => 'hiephoidoanhnghiep@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
             ['name' => 'Chuyên gia', 'email' => 'chuyengia@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
             ['name' => 'Cộng tác viên', 'email' => 'congtacvien@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
-            ['name' => 'Doanh nghiệp', 'email' => 'doanhnghiep@gmail.com', 'phone' => '0919112392', 'password' => $pass, 'status' => 'Active'],
+            ['name' => 'Doanh nghiệp', 'email' => 'doanhnghiep@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],
         ]);
     }
 

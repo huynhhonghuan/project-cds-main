@@ -105,7 +105,7 @@
 
     <!-- Copyright -->
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-        © Copyright 2023 tỉnh An Giang<span style="padding: 0 15px;">|</span>
+        © Copyright {{ date('Y') }} tỉnh An Giang<span style="padding: 0 15px;">|</span>
         ® Chuyển đổi số online giữ bản quyền<span style="padding: 0 15px;">|</span>
         Thiết kế và xây dựng bởi
         <a class="text-reset fw-bold" href="https://fit.agu.edu.vn/" style="color: #00d7eb; font-weight: bold;">FIT -

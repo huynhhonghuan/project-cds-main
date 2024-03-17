@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("tenlinhvuc");
             $table->string('hinhanh')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 
         DB::table('linhvuc')->insert([
