@@ -8,8 +8,8 @@
         margin-top: 16px;
         font-size: 42px;
     }
-    .item-content--main:hover {
-        color: #000;
+    .item-content--sub {
+        font-size: 18px;
     }
     .list-news > col {
         display: flex;
@@ -31,10 +31,12 @@
         display: flex;
         justify-content: center;
         padding: 16px;
+        transition: .3s;
     }
     .icon-news:hover {
         color: #000;
         cursor: pointer;
+        transform: scale(1.2);
     }
 </style>
 
@@ -43,8 +45,24 @@
     <div class="container">
         <nav aria-label="breadcrumb" style="font-size:18px;font-weight:600;">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{ route('home')}}" style="text-decoration: none">Trang chủ</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{$TinTuc->tieude}}</li>
+                <li class="breadcrumb-item"><a href="{{ route('home')}}" style="text-decoration: none">Trang chủ</a></li>
+                @if($TinTuc->linhvuc_id == 'nn')
+                    <a href="{{ URL::to('/tintuc/NongNghiep')}}" style="text-decoration:none;">
+                        <li class="breadcrumb-item item_bread" style="cursor: pointer;padding:0 8px;">> Tin tức nông nghiệp ></li>
+                    </a>
+                @else 
+                @if ($TinTuc->linhvuc_id == 'cn')
+                    <a href="{{ URL::to('/tintuc/CongNghiep')}}" style="text-decoration:none;">
+                        <li class="breadcrumb-item item_bread" style="cursor: pointer;padding:0 8px;">> Tin tức công nghiệp ></li>
+                    </a>    
+                @else 
+                @if ($TinTuc->linhvuc_id == 'tmdv')
+                    <a href="{{ URL::to('/tintuc/TMDV')}}" style="text-decoration:none;">
+                        <li class="breadcrumb-item item_bread" style="cursor: pointer;padding:0 8px;">> Tin tức thương mại - dịch vụ ></li>
+                    </a>    
+                @else 
+                @endif @endif @endif
+                <li class="breadcrumb-item active" aria-current="page">{{$TinTuc->tieude}}</li>
             </ol>
         </nav>
     </div>
@@ -93,7 +111,7 @@
                                 <div class="item-img-2">
                                     <img src="{{ asset('public/image/AnhTinTuc/'.$TinTuc->hinhanh) }}" alt="">
                                 </div>
-                                <div class="item-news--detail">
+                                <div class="item-news--detail" style="text-align: justify">
                                     {{$TinTuc->noidung}}
                                 </div>
                             </div>
@@ -139,141 +157,135 @@
         </div>
     </div>
 </div>
-<div id="comment" class="comment" style="width: 100%;margin-top: 32px">
-    <div class="container" style="border: 1px solid #bebebe;border-radius: 4px">
+<div id="comment" class="comment" style="margin-top: 32px">
+    <div class="container" >
         <div class="row">
-            <div class="col-xl-12" style="display:flex; align-items:center;">
-                <h4 class="headline" style="border-bottom: 1px solid #009688">Bình luận ({{ $comments->count()}})</h4>
+            <div class="col-xl-8" style="border: 1px solid #bebebe;border-radius: 4px;padding: 10px 20px;"> 
+                <div class="col-xl-12" style="display:flex; align-items:center;">
+                    <h4 class="headline" style="border-bottom: 1px solid #009688">Bình luận ({{ $comments->count()}})</h4>
+                </div>
+                @if($comments->count() == 0)
+                    <h4 class="headline">Chưa có bình luận nào</h4>
+                @else
+                <div class="col">
+                    <!-- Comment Area Start -->
+                    <div class="comment_area clearfix">
+                        <ul style="list-style-type:none;padding-left:0">
+                            @foreach ($comments as $cmt)
+                                <!-- Comment Content -->
+                                @if ($cmt->binhluan_id == 1)
+                                    <li class="single_comment_area" style="margin-top: 4px">
+                                        <div class="comment-wrapper d-flex">
+                                            <!-- Comment Meta -->
+                                            <div class="comment-author">
+                                                <img src="{{ asset('public/image/BinhLuan/Khach.png') }}" alt="">
+                                            </div>
+                                            <div class="comment-content" style="max-width:500px;">
+                                                <span class="comment-name" style="font-weight: 700;">Khách 1</span>
+                                                <p style="background: #e7e7e7; border-radius: 8px;padding:6px;margin:4px 0 0">{{ $cmt->noidung }}</p>
+                                                <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $cmt->id }}">Phản
+                                                    hồi</a>
+                                                    <form action="{{ URL::to('/BinhLuan') }}" method="post"
+                                                        id="{{ $cmt->id }}" style="display: none;"
+                                                        target="hidden-form" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-12 col-md-4" style="padding-left: 12px;padding-right: 4px;">
+                                                                <div class="form-group">
+                                                                    <input type="hidden" class="form-control"
+                                                                        name="IdCon" value="{{ $cmt->id }}"
+                                                                        id="contact-name">
+                                                                    <input type="hidden" class="form-control"
+                                                                        name="IdNews" value="{{ $TinTuc->id }}"
+                                                                        id="contact-name">
+                                                                    <input type="text" class="form-control"
+                                                                        name="Name" id="contact-name"
+                                                                        placeholder="Nhập Họ tên">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 col-md-8" style="padding: 0 2px;">
+                                                                <div class="form-group">
+                                                                    <textarea class="form-control" name="message" id="message" cols="30" rows="1" placeholder="Phản hồi của bạn"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12 mt-2" style="display:flex; justify-content: end;">
+                                                                <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                        {{-- @foreach ($comments as $chill)
+                                            @if ($chill->IdCon == $cmt->Id)
+                                                <ol class="children">
+                                                    <li class="single_comment_area">
+                                                        <div class="comment-wrapper d-flex">
+                                                            <!-- Comment Meta -->
+                                                            <div class="comment-author">
+                                                                <img src="{{ asset('img/speech-bubble.gif') }}"
+                                                                    alt="">
+                                                            </div>
+                                                            <!-- Comment Content -->
+                                                            <div class="comment-content">
+                                                                <span
+                                                                    class="comment-date">{{ $chill->NgayCMT }}</span>
+                                                                <h5>{{ $chill->TenNguoiBL }}</h5>
+                                                                <p>{{ $chill->NoiDung }}</p>
+                                                                <a href="#">Like</a>
+                                                                <a class="active replybtn"
+                                                                    data-id="{{ $chill->IdCon }}">Phản hồi
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            @endif
+                                        @endforeach --}}
+                                    </li>
+                                @else
+                                @endif
+                            @endforeach
+                            <!-- Single Comment Area -->
+    
+                        </ul>
+                    </div>
+                    <!-- Leave A Comment -->
+                </div> 
+                @endif
             </div>
-            @if($comments->count() == 0)
-                <h4 class="headline">Chưa có bình luận nào</h4>
-            @else
-            <div class="col">
-                {{-- <form action="" method="post" target="hidden-form"
-                    enctype="multipart/form-data">
+            <div class="col-xl-4">
+                <form action="" method="post"
+                    id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
+                    target="hidden-form" enctype="multipart/form-data">
                     @csrf
+                    <h5 style="color: #009688; padding-left: 4px;user-select: none;">Nhập Bình Luận :</h5>
                     <div class="row">
-                        <div class="col-12 col-md-6">
+                        <div class="col-12" style="margin-bottom: 6px">
                             <div class="form-group">
-                                <input type="hidden" class="form-control" name="IdNews"
-                                    value="" id="contact-name">
-                                <input type="text" class="form-control" name="Name"
-                                    id="contact-name" placeholder="Họ tên">
+                                <input type="hidden" class="form-control"
+                                    name="IdCon" value=""
+                                    id="contact-name">
+                                <input type="hidden" class="form-control"
+                                    name="IdNews" value=""
+                                    id="contact-name">
+                                <input type="text" class="form-control"
+                                    name="Name" id="contact-name"
+                                    placeholder="Nhập họ tên ">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12" style="margin-bottom: 6px">
                             <div class="form-group">
-                                <input type="email" class="form-control" name="Email"
-                                    id="contact-email" placeholder="Email">
+                                <textarea class="form-control" name="message" id="message" cols="30" rows="2" placeholder="Chia sẻ ý kiến của bạn "></textarea>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" id="message" cols="30" rows="10"
-                                    placeholder="Nhập thông tin bình luận"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class=" nikki-btn">Gửi bình luận</button>
+                        <div class="col-12" style="display:flex; justify-content: end;">
+                            <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
                         </div>
                     </div>
-                </form> --}}
-                <!-- Comment Area Start -->
-                <div class="comment_area clearfix">
-                    <ol>
-                        @foreach ($comments as $cmt)
-                            <!-- Comment Content -->
-                            @if ($cmt->binhluan_id == 1)
-                                <li class="single_comment_area">
-                                    <div class="comment-wrapper d-flex">
-                                        <!-- Comment Meta -->
-                                        <div class="comment-author">
-                                            <img src="{{ asset('img/speech-bubble.gif') }}" alt="">
-                                        </div>
-                                        <div class="comment-content">
-                                            <span class="comment-date">{{ $cmt->ngaydang }}</span>
-                                            {{-- <h5>{{ $cmt->TenNguoiBL }}</h5> --}}
-                                            <p>{{ $cmt->noidung }}</p>
-                                            {{-- <a href="#">Like</a> --}}
-                                            <a class="active replybtn " data-id="{{ $cmt->id }}">Phản
-                                                hồi</a>
-                                            {{-- <form action="{{ URL::to('/BinhLuan') }}" method="post"
-                                                id="{{ $cmt->Id }}" style="display: none;"
-                                                target="hidden-form" enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="hidden" class="form-control"
-                                                                name="IdCon" value="{{ $cmt->Id }}"
-                                                                id="contact-name">
-                                                            <input type="hidden" class="form-control"
-                                                                name="IdNews" value="{{ $TinTuc->Id }}"
-                                                                id="contact-name">
-                                                            <input type="text" class="form-control"
-                                                                name="Name" id="contact-name"
-                                                                placeholder="Name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="email" class="form-control"
-                                                                name="Email" id="contact-email"
-                                                                placeholder="Email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control" name="message" id="message" cols="30" rows="2" placeholder="Comment"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn nikki-btn">Send
-                                                            Message</button>
-                                                    </div>
-                                                </div>
-                                            </form> --}}
-                                        </div>
-                                    </div>
-                                    {{-- @foreach ($comments as $chill)
-                                        @if ($chill->IdCon == $cmt->Id)
-                                            <ol class="children">
-                                                <li class="single_comment_area">
-                                                    <div class="comment-wrapper d-flex">
-                                                        <!-- Comment Meta -->
-                                                        <div class="comment-author">
-                                                            <img src="{{ asset('img/speech-bubble.gif') }}"
-                                                                alt="">
-                                                        </div>
-                                                        <!-- Comment Content -->
-                                                        <div class="comment-content">
-                                                            <span
-                                                                class="comment-date">{{ $chill->NgayCMT }}</span>
-                                                            <h5>{{ $chill->TenNguoiBL }}</h5>
-                                                            <p>{{ $chill->NoiDung }}</p>
-                                                            <a href="#">Like</a>
-                                                            <a class="active replybtn"
-                                                                data-id="{{ $chill->IdCon }}">Phản hồi
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        @endif
-                                    @endforeach --}}
-                                </li>
-                            @else
-                            @endif
-                        @endforeach
-                        <!-- Single Comment Area -->
-
-                    </ol>
-                </div>
-                <!-- Leave A Comment -->
-            </div> 
-            @endif
+                </form>
+            </div>
         </div>
     </div>
 </div>
-{{-- @include('trangchu.layouts.script') --}}
+@include('trangchu.layouts.script')
 @endsection
