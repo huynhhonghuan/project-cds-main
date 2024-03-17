@@ -12,15 +12,15 @@
     <div class="image-heading">
         @foreach($laybanner as $bn)
             @if($bn->linhvuc_id == 'nn')
-                <img src="../assets/backend/img/linhvuc/nongnghiep.jpg" alt="">
+                <img src="public/assets/backend/img/linhvuc/nongnghiep.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @if ($bn->linhvuc_id == 'cn')
-                <img src="../assets/backend/img/linhvuc/congnghiep.jpg" alt="">
+                <img src="public/assets/backend/img/linhvuc/congnghiep.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @if ($bn->linhvuc_id == 'tmdv')
-                <img src="../assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="">
+                <img src="public/assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @endif @endif @endif
@@ -42,7 +42,7 @@
                     <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
                         <div class="item-news col" style="width: 100px; margin:5px">
                             <div class="item-img">
-                                <img src="{{ asset('image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
+                                <img src="{{ asset('public/image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
                             </div>
                             <div class="item-date">
                                 <i class="fa-solid fa-calendar-days"></i>

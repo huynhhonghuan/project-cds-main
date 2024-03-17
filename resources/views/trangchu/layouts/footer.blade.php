@@ -1,7 +1,6 @@
 {{-- nhúng tất cả thành phần của footer --}}
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
-
+<footer class="text-center text-lg-start bg-white text-muted" style="margin-top: 800px">
     <!-- Section: Links  -->
     <section class="">
         <div class="container text-center text-md-start mt-5">

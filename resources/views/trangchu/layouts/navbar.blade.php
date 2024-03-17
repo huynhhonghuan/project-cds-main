@@ -40,7 +40,7 @@
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
             <div class="container">
-                <a class="navbar-brand mx-5" href="{{ route('home') }}"><img src="{{ URL::to('assets/frontend/img/logo/navbar_logo-1.png') }}" alt="logo"></a>
+                <a class="navbar-brand mx-5" href="{{ route('home') }}"><img src="{{ URL::to('public/assets/frontend/img/logo/navbar_logo-1.png') }}" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">

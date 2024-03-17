@@ -91,7 +91,7 @@
                             </div>
                             <div class="col-xl-8" style="">
                                 <div class="item-img-2">
-                                    <img src="{{ asset('image/AnhTinTuc/'.$TinTuc->hinhanh) }}" alt="">
+                                    <img src="{{ asset('public/image/AnhTinTuc/'.$TinTuc->hinhanh) }}" alt="">
                                 </div>
                                 <div class="item-news--detail">
                                     {{$TinTuc->noidung}}
@@ -106,7 +106,7 @@
                                             <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;border-bottom: 1px solid #eaeaea;border-radius:0;margin-top: 0">
                                                 <div class="col-xl-3" style="margin:10px">
                                                     <div class="item-img">
-                                                        <img src="{{ asset('image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
+                                                        <img src="{{ asset('public/image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-9">
