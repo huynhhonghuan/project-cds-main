@@ -1,6 +1,6 @@
 {{-- nhúng tất cả thành phần của footer --}}
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted" style="margin-top: 800px">
+<footer class="text-center text-lg-start bg-white text-muted" style="border-top: 3px solid #009688; ">
     <!-- Section: Links  -->
     <section class="">
         <div class="container text-center text-md-start mt-5">
@@ -103,11 +103,11 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    <div class="text-center p-4" style="background-color: #009688;color: #fff">
         © Copyright {{ date('Y') }} tỉnh An Giang<span style="padding: 0 15px;">|</span>
         ® Chuyển đổi số online giữ bản quyền<span style="padding: 0 15px;">|</span>
         Thiết kế và xây dựng bởi
-        <a class="text-reset fw-bold" href="https://fit.agu.edu.vn/" style="color: #00d7eb; font-weight: bold;">FIT -
+        <a class="text-reset fw-bold" href="https://fit.agu.edu.vn/" style="color: #fff; font-weight: bold;">FIT -
             TRƯỜNG ĐH AN GIANG</a>
     </div>
     <!-- Copyright -->

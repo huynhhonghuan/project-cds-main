@@ -63,6 +63,12 @@
                             </a>
                         </li>
                         <li class="nav-item mx-1">
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('AllVideo') }}" role="button"
+                                aria-expanded="false">
+                                Video
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Thư Viện
@@ -74,9 +80,6 @@
                                 Giải pháp
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#">Về CDS</a>
-                          </li>
                         <form class="d-flex mx-5" role="search">
                             <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
                             <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

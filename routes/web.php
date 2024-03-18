@@ -336,7 +336,8 @@ Route::group(['prefix' => 'congtacvien', 'middleware' => ['auth', 'check_congtac
 
 
 // Giao diện chính
-Route::get('/', [TrangtinController::class, 'getslides'])->name('home');
+Route::get('/', [TrangtinController::class, 'Index'])->name('home');
 Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name('tintuc');
 Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
+Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
