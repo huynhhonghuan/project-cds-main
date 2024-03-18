@@ -60,3 +60,53 @@
         }
     });
 </script>
+
+<script>
+    window.onload = function hienthingaythang()
+    {
+        const t = new Date();
+    let day = t.getDay();
+    let d = t.getDate();
+    let m = t.getMonth() + 1;
+    let y = t.getFullYear();
+
+    let h = t.getHours();
+    let mi = t.getMinutes();
+    let s = t.getSeconds();
+
+    mi = dinhdang(mi);
+    s = dinhdang(s);
+    switch (day) {
+    case 0:
+        day = "Chủ nhật";
+        break;
+    case 1:
+        day = "Thứ hai";
+        break;
+    case 2:
+        day = "Thứ ba";
+        break;
+    case 3:
+        day = "Thứ tư";
+        break;
+    case 4:
+        day = "Thứ năm";
+        break;
+    case 5:
+        day = "Thứ sau";
+        break;
+    case 6:
+        day = "Thứ bảy";
+    }
+
+    document.getElementById("day").innerHTML = day + ", " +d+ "/"+m+ "/" +y ;
+    document.getElementById("time").innerHTML = h + ": " + mi + ": " + s;
+    setTimeout(hienthingaythang, 1000);
+    };
+
+    function dinhdang(x) {
+        if(x < 10) 
+            x = "0" + x;
+        return x;
+    }
+</script>

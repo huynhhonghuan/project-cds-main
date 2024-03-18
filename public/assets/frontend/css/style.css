@@ -292,6 +292,13 @@ ul {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.item-content--sub__spec {
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    padding: 10px;
+    text-align: justify;
+}
 .item-date {
     padding-left: 10px;
     padding-top: 10px;

@@ -47,16 +47,13 @@
                         Tin tức
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Nông nghiệp</a>
+                        <a href="{{ URL::to('/tintuc/NongNghiep') }}" class="text-reset text-decoration-none">Nông nghiệp</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Công nghiệp</a>
+                        <a href="{{ URL::to('/tintuc/CongNghiep') }}" class="text-reset text-decoration-none">Công nghiệp</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Thương mại & dịch vụ</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset text-decoration-none">Tin tức nỗi bật</a>
+                        <a href="{{ URL::to('/tintuc/TMDV') }}" class="text-reset text-decoration-none">Thương mại & dịch vụ</a>
                     </p>
                 </div>
                 <!-- Grid column -->

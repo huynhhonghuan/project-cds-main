@@ -341,3 +341,5 @@ Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name(
 Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
 Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
+
+Route::get('/search', [TrangtinController::class, 'search'])->name('search');

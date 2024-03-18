@@ -121,4 +121,11 @@ class TrangtinController extends Controller
         $AllVideo = Video::all(); 
         return view('trangchu.video', compact('AllVideo'));
     }
+
+    public function search() {
+        $searchText = $_GET['query'];
+        $New = Tintuc::where('tieude' ,'LIKE', '%'.$searchText.'%')->get();
+
+        return view('trangchu.search', compact('New', 'searchText'));
+    }
 }

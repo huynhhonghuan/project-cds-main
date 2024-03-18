@@ -8,9 +8,6 @@
         margin-top: 16px;
         font-size: 42px;
     }
-    .item-content--sub {
-        font-size: 18px;
-    }
     .list-news > col {
         display: flex;
     }
@@ -42,7 +39,7 @@
 
     
 <div class="news-background" style="margin-top:200px;">
-    <div class="container">
+    <div class="container" style="display: flex;justify-content:space-between ">
         <nav aria-label="breadcrumb" style="font-size:18px;font-weight:600;">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home')}}" style="text-decoration: none">Trang chủ</a></li>
@@ -65,6 +62,10 @@
                 <li class="breadcrumb-item active" aria-current="page">{{$TinTuc->tieude}}</li>
             </ol>
         </nav>
+        <div class="timeCurrent" style="display:flex;">
+            <h6><span id="day" style="padding-right: 8px"></span>|</h6>
+            <h6 style="padding-left: 8px"><span id="time"></span></h6>
+        </div>
     </div>
     <div class="container" style=" box-shadow: 1px 1px 15px 2px #dadada">
         <div class="news">
@@ -78,7 +79,7 @@
                         </div>
                         <div class="item-content">
                             <div class="item-content--main__detail">{{$TinTuc->tieude}}</div>
-                            <div class="item-content--sub">{{$TinTuc->tomtat}}</div>
+                            <div class="item-content--sub__spec">{{$TinTuc->tomtat}}</div>
                         </div>
                         {{-- <div class="item-audio row" style="height: 100px; background:rgb(233 236 239)">
                             <div class="col-xl-9">
@@ -157,7 +158,7 @@
         </div>
     </div>
 </div>
-<div id="comment" class="comment" style="margin-top: 32px">
+<div id="comment" class="comment" style="margin-top: 32px; margin-bottom: 32px">
     <div class="container" >
         <div class="row">
             <div class="col-xl-8" style="border: 1px solid #bebebe;border-radius: 4px;padding: 10px 20px;"> 
@@ -289,3 +290,4 @@
 </div>
 @include('trangchu.layouts.script')
 @endsection
+{{-- https://www.youtube.com/watch?v=iT7v7AY3_ng --}}

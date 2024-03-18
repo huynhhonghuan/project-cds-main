@@ -80,9 +80,9 @@
                                 Giải pháp
                             </a>
                         </li>
-                        <form class="d-flex mx-5" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">
+                            <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </ul>
                 </div>
