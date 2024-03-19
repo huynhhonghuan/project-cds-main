@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\TinNhan;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,9 @@ class HoiThoaiResource extends JsonResource
         return [
             'id' => $this->id,
             'doanhNghiep' => new UserResource($this->getDoanhNghiepUser),
-            'chuyenGia' => new UserResource($this->getChuyenGiaUser)
+            'chuyenGia' => new UserResource($this->getChuyenGiaUser),
+            'tinNhans' => TinNhanResource::collection($this->getTinNhans)
+            // 'tinNhans' => $this->whenLoaded('getTinNhans', TinNhanResource::collection($this->getTinNhans))
         ];
     }
 }

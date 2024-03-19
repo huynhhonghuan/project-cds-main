@@ -72,7 +72,6 @@ Route::group(['prefix' => 'thongke', 'middleware' => ['auth:api']], function () 
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
-    Route::post('hoithoai/add', [HoiDapController::class, 'themhoithoai']);
     Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
-    Route::post('tinnhan/add', [HoiDapController::class, 'themtinnhan']);
+    Route::post('tinnhan', [HoiDapController::class, 'themtinnhan']);
 });

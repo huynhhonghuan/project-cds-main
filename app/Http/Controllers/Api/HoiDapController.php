@@ -21,9 +21,7 @@ class HoiDapController extends Controller
             ->where('doanhnghiep_id', $userId)->get();
         return HoiThoaiResource::collection($hoiThoais);
     }
-    public function themhoithoai(Request $request)
-    {
-    }
+
     public function tinnhan(Request $request)
     {
         $request->validate([
@@ -34,25 +32,36 @@ class HoiDapController extends Controller
 
         $chuyenGiaUser = ModelsChuyengia::where('id', $chuyenGiaId)->firstOrFail();
 
-        $hoiThoai = HoiThoai::where('chuyengia_id', $chuyenGiaUser->user_id)
+        $hoiThoai = HoiThoai::with('getDoanhNghiepUser', 'getChuyenGiaUser', 'getTinNhans', 'getTinNhans.getUser')
+            ->where('chuyengia_id', $chuyenGiaUser->user_id)
             ->where('doanhnghiep_id', $userId)
             ->first();
 
         if (!$hoiThoai) {
-            $model = new HoiThoai([
+            $hoiThoai = new HoiThoai([
                 'chuyengia_id' => $chuyenGiaUser->user_id,
                 'doanhnghiep_id' => $userId,
             ]);
-            $model->save();
-            return [];
+            $hoiThoai->save();
         }
 
-        $tinNhans = TinNhan::with(['getUser'])
-            ->where('hoithoai_id', $hoiThoai->id)
-            ->get();
-        return TinNhanResource::collection($tinNhans);
+        return new HoiThoaiResource($hoiThoai);
     }
     public function themtinnhan(Request $request)
     {
+        $request->validate([
+            'message' => 'required',
+            'hoiThoaiId' => 'required|exists:hoithoai,id',
+        ]);
+
+        $userId = auth()->id();
+
+        $model = new TinNhan([
+            'user_id' => $userId,
+            'hoithoai_id' => request()->hoiThoaiId,
+            'noidung' => request()->message
+        ]);
+        $model->save();
+        return response()->json(['message' => "Lưu thành công"]);
     }
 }
