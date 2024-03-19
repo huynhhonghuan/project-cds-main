@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use App\Models\Tintuc;
+use App\Models\Video;
 
 class TrangtinController extends Controller
 {
@@ -17,22 +18,16 @@ class TrangtinController extends Controller
         
     }
 
-    public function getslides(Request $request)
+    public function Index(Request $request)
     {
         // $request->user()->authorizeRoles(['Admin', 'CTV']);
         $slides = Slide::all();
-        $danhsach = Tintuc::with(['getUser', 'getLinhvuc'])->orderBy('updated_at', 'desc')->get();
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*')
             ->paginate(3); 
-        // $tinnoibat =  DB::table('tintucs')
-        //     ->leftjoin('linhvuc', 'linhvuc.Id', '=', 'tintucs.LinhVuc_id')
-        //     ->select('tintucs.Id as IdTin', 'tintucs.*', 'linhvuc.*')
-        //     ->orderBy('LuotXem', 'desc')
-        //     ->limit(5)
-        //     ->get();
-        return view('trangchu.home', compact('slides', 'tinmoi'));
+        $videos = DB::table('videos')->paginate(6);    
+        return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));
     }
     public function AllTin(Request $request) {
         $AllTin = Tintuc::all(); 
@@ -110,14 +105,27 @@ class TrangtinController extends Controller
         $luotxem = $TinTuc->luotxem + 1;
         DB::table('tintuc')->where('tintuc.id',$id)->update(['luotxem'=>$luotxem]);
         $comments = DB::table('binhluan')->where('tintuc_id',$TinTuc->id)->get();
+        $laybanner = DB::table('tintuc')
+                ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
+                ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
+                ->where('tintuc.linhvuc_id', 'tmdv')
+                ->paginate(1); 
         $News = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*')
             ->orderBy('luotxem', 'desc')
             ->paginate(3);
-        // $News =  DB::table('tintuc')
-        // ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')->where('tintuc.linhvuc_id',$TinTuc->linhvuc_id)->where('tintuc.id','!=',$id)
-        // ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.*')->orderBy('luotxem', 'desc')->limit(3)->get();
-        return view('trangchu.tindetail')->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
+        return view('trangchu.tindetail')->with('laybanner', $laybanner)->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
+    }
+    public function AllVideo(Request $request) {
+        $AllVideo = Video::all(); 
+        return view('trangchu.video', compact('AllVideo'));
+    }
+
+    public function search() {
+        $searchText = $_GET['query'];
+        $New = Tintuc::where('tieude' ,'LIKE', '%'.$searchText.'%')->get();
+
+        return view('trangchu.search', compact('New', 'searchText'));
     }
 }

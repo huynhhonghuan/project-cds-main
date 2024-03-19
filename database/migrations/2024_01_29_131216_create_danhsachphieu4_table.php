@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('khaosat_id')->index();
             $table->foreign('khaosat_id')->references('id')->on('khaosat')->onUpdate('cascade')->onDelete('cascade');
             // $table->integer('diem')->default(0);
-            $table->string('tendanhgia')->default('Ý KIẾN CỦA DOANH NGHIỆP VỀ CHUYỂN ĐỔI SỐ');
+            $table->string('tendanhgia')->default('Ý KIẾN CỦA DOANH NGHIỆP VỀ CHUYỂN ĐỔI SỐ')->nullable();
             $table->tinyInteger('soluonghoanthanh')->default(0);
             $table->integer('trangthai')->default(0);
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

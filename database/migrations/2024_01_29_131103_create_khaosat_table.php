@@ -16,8 +16,10 @@ return new class extends Migration
             $table->date('thoigiantao');
             $table->integer('tongdiem')->default(0);
             $table->integer('trangthai')->default(0);
-            
+
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

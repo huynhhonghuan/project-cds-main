@@ -18,18 +18,19 @@ return new class extends Migration
             $table->foreign('doanhnghiep_id')->references('id')->on('doanhnghiep')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('tendaidien');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('sdt')->nullable();
             $table->string('thanhpho');
             $table->string('huyen');
             $table->string('xa');
             $table->string('diachi')->nullable();
-            $table->string('cccd');
+            $table->string('cccd')->nullable();
             $table->string('img_mattruoc')->nullable();
             $table->string('img_matsau')->nullable();
-            $table->string('chucvu')->default('Quản lý');
+            $table->string('chucvu')->default('Quản lý')->nullable();
             $table->longText('mota')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
         DB::table('doanhnghiep_daidien')->insert([
             [

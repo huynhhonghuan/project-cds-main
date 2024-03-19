@@ -1,7 +1,6 @@
 {{-- nhúng tất cả thành phần của footer --}}
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
-
+<footer class="text-center text-lg-start bg-white text-muted" style="border-top: 3px solid #009688; ">
     <!-- Section: Links  -->
     <section class="">
         <div class="container text-center text-md-start mt-5">
@@ -48,16 +47,13 @@
                         Tin tức
                     </h6>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Nông nghiệp</a>
+                        <a href="{{ URL::to('/tintuc/NongNghiep') }}" class="text-reset text-decoration-none">Nông nghiệp</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Công nghiệp</a>
+                        <a href="{{ URL::to('/tintuc/CongNghiep') }}" class="text-reset text-decoration-none">Công nghiệp</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset text-decoration-none">Thương mại & dịch vụ</a>
-                    </p>
-                    <p>
-                        <a href="#!" class="text-reset text-decoration-none">Tin tức nỗi bật</a>
+                        <a href="{{ URL::to('/tintuc/TMDV') }}" class="text-reset text-decoration-none">Thương mại & dịch vụ</a>
                     </p>
                 </div>
                 <!-- Grid column -->
@@ -104,11 +100,11 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
-        © Copyright 2023 tỉnh An Giang<span style="padding: 0 15px;">|</span>
+    <div class="text-center p-4" style="background-color: #009688;color: #fff">
+        © Copyright {{ date('Y') }} tỉnh An Giang<span style="padding: 0 15px;">|</span>
         ® Chuyển đổi số online giữ bản quyền<span style="padding: 0 15px;">|</span>
         Thiết kế và xây dựng bởi
-        <a class="text-reset fw-bold" href="https://fit.agu.edu.vn/" style="color: #00d7eb; font-weight: bold;">FIT -
+        <a class="text-reset fw-bold" href="https://fit.agu.edu.vn/" style="color: #fff; font-weight: bold;">FIT -
             TRƯỜNG ĐH AN GIANG</a>
     </div>
     <!-- Copyright -->

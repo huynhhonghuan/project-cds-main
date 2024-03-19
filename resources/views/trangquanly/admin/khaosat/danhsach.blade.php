@@ -24,6 +24,12 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-3 mb-3">
+                    <a data-toggle="modal" data-target="#khaosat_modal"
+                        href="#"class="btn btn-success search_button mt-2"> Nhập khảo sát - excel</a>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
                         <div class="card-body p-3">
@@ -37,14 +43,43 @@
                                             <th scope="col">Loại hình hoạt động</th>
                                             <th scope="col">Trạng thái khảo sát</th>
                                             {{-- <th scope="col">Tên chiến lược</th> --}}
-                                            <th scope="col">Chiến lược đề xuât</th>
-                                            <th scope="col">Đánh giá và đề xuất</th>
+                                            {{-- <th scope="col">Chiến lược đề xuât</th>
+                                            <th scope="col">Đánh giá và đề xuất</th> --}}
                                             <th class="text-center" width="5%">Xem chi tiết</th>
                                             {{-- <th class="text-center" width="5%">Sửa</th>
                                             <th class="text-center" width="5%">Xóa</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($danhsach as $value)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+
+                                                <td>{{ $value->tentiengviet }}</td>
+                                                <td>{{ $value->getloaihinh->getlinhvuc->tenlinhvuc }}</td>
+                                                <td>{{ $value->getloaihinh->tenloaihinh }}</td>
+                                                <td>
+                                                    {{-- @php
+                                                        $trangthai = $value->getkhaosat;
+                                                        dd($trangthai);
+                                                    @endphp --}}
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @if ($value->getkhaosat->last()->trangthai == 1)
+                                                            <div class="btn btn-sm bg-success-light mr-2"> Hoàn thành</div>
+                                                        @else
+                                                            <div class="btn btn-sm bg-warning-light mr-2">Chưa hoàn thành
+                                                            </div>
+                                                        @endif
+                                                    @else
+                                                        <div class="btn btn-sm bg-danger-light mr-2">Chưa khảo sát
+                                                        </div>
+                                                    @endif
+
+                                                </td>
+
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -55,51 +90,28 @@
             </div>
         </div>
 
-        {{-- Model duyệt tài khoản --}}
-        {{-- <div id="sua_modal" class="modal fade delete-modal" role="dialog">
+
+        {{-- Model thêm excel --}}
+        <div id="khaosat_modal" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Chỉnh sửa vai trò</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
-                                aria-hidden="true">×</span> </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-8">
-
-                                    <input type="hidden" class="form-control" value="" id="sua_id">
-
-                                    <div class="form-group">
-                                        <label>Tên vai trò</label>
-                                        <input type="text" class="form-control" value="" id="sua_tenvaitro">
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <h6>Hình ảnh</h6>
-                                    <img class="img-vaitro" src="" alt="Hình" id="sua_hinhanh">
-                                </div>
-
-                                <div class="col-12 mt-3">
-                                    <h5 class="form-title"><span>Chọn hình ảnh mới</span></h5>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control">
-                                    </div>
-                                </div>
-
+                    <form action="{{ route('admin.khaosat.nhap') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-body text-center">
+                            <h3 class="delete_class">Chọn file excel!</h3>
+                            <hr>
+                            <div class="m-t-20">
+                                <input class="form-control mb-3" type="file" name="khaosat_excel">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Nhập</button>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Lưu thay đổi</button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div> --}}
-        {{-- End Model duyệt tài khoản --}}
+        </div>
+        {{-- End Model thêm excel --}}
+
 
     </div>
 @endsection
@@ -121,7 +133,7 @@
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 6
+                    "targets": 4
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words

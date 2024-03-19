@@ -1,13 +1,13 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
-    <div id="body">
+    <div id="body" style="margin-bottom: 32px;">
         <div class="container-fluid">
             <div class="slider">
                 <div class="list">
                     @foreach ($slides as $id => $slide)
                         @if ($slide->status == 1)
                             <div class="item">
-                                <img class="" src="{{ asset('slide/' . $slide->link) }}" style="">
+                                <img class="" src="{{ asset('public/slide/' . $slide->hinhanh) }}" style="">
                             </div>
                         @endif
                     @endforeach
@@ -34,26 +34,26 @@
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
-                            <img src="../assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
+                            <img src="public/assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Nông Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/CongNghiep') }}" style="text-decoration: none">
-                            <img src="../assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
+                            <img src="public/assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Công Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/TMDV') }}" style="text-decoration: none">
-                            <img src="../assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
+                            <img src="public/assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
                             <div class="content"><h3 style="text-align : center">Thương Mại & Dịch Vụ</h3></div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(../image/AnhNen/hinh-nen-mau-den_1.jpg)">
+        <div class="news-background" style="background-image: url(public/image/AnhNen/hinh-nen-mau-den_1.jpg)">
             <div class="container">
                 <div class="news">
                     <h2 class="news-heading row">Tin Tức Nổi Bật</h2>
@@ -63,7 +63,7 @@
                             <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
                                 <div class="item-news col" style="margin:10px">
                                     <div class="item-img">
-                                        <img src="{{ asset('image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
+                                        <img src="{{ asset('public/image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
                                     </div>
                                     <div class="item-date">
                                         <i class="fa-solid fa-calendar-days"></i>
@@ -93,6 +93,23 @@
                             <i></i>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="video-content" style="margin-top: 24px">
+            <div class="container">
+                <h2 class="news-heading row" style="color: black">Video Nổi Bật</h2>
+                <div class="row row-cols-3 row-cols-md-1">
+                    @foreach($videos as $vd)
+                    <div class="col-xl-4" style="text-align: center">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe width="415" height="200" src="{{$vd->file}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        </div>
+                        <a class="video-tt-href" href="" style="text-decoration: none;">
+                            <div class="video-title" style="font-size: 18px; margin-bottom: 12px;">{{$vd->tieude}}</div>
+                        </a>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
                         <div class="appint-btn" style="display: ruby">
                             <div class="nav-but my-auto">
                                 @if (Auth::user()!=null)
-                                <a class="btn btn-outline-secondary text-uppercase fw-bold fs-6 " href="
+                                <a class="btn text-uppercase fw-bold fs-12 text-white b-main btn-head" href="
                                     @if (Auth::user()->getVaiTro[0]->id == "ad")
                                         {{route('admin.home')}}
                                     @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
@@ -40,7 +40,7 @@
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary py-3">
             <div class="container">
-                <a class="navbar-brand mx-5" href="{{ route('home') }}"><img src="{{ URL::to('assets/frontend/img/logo/navbar_logo-1.png') }}" alt="logo"></a>
+                <a class="navbar-brand mx-5" href="{{ route('home') }}"><img src="{{ URL::to('public/assets/frontend/img/logo/navbar_logo-1.png') }}" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon">
@@ -63,6 +63,12 @@
                             </a>
                         </li>
                         <li class="nav-item mx-1">
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('AllVideo') }}" role="button"
+                                aria-expanded="false">
+                                Video
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Thư Viện
@@ -74,12 +80,9 @@
                                 Giải pháp
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#">Về CDS</a>
-                          </li>
-                        <form class="d-flex mx-5" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                            <button class="btn btn-outline-secondary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">
+                            <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </ul>
                 </div>

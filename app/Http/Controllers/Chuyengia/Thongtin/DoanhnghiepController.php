@@ -12,12 +12,22 @@ class DoanhnghiepController extends Controller
     public function getdanhsach()
     {
         $danhsach = Doanhnghiep::all();
-        // dd($doanhnghiep[0]->getloaihinh->getlinhvuc);
         foreach ($danhsach as $value) {
             if ($value->getloaihinh->getlinhvuc->id != Auth::user()->getchuyengia->getlinhvuc->id) {
                 unset($value);
             }
         }
-        return view('trangquanly.chuyengia.taikhoan.danhsach', compact('danhsach'));
+        return view('trangquanly.chuyengia.doanhnghiep.danhsach', compact('danhsach'));
+    }
+    public function getxemdoanhnghiep()
+    {
+    }
+
+    public function getxemkhaosat()
+    {
+    }
+
+    public function getxemchienluoc()
+    {
     }
 }

@@ -18,6 +18,9 @@ class LoaihinhdoanhnghiepController extends Controller
     }
     public function getthem()
     {
+        $tendanhsach = 'Thêm loại hình hoạt động của doanh nghiệp';
+        $linhvuc = Linhvuc::all();
+        return view('trangquanly.admin.loaihinhdoanhnghiep.them', compact('tendanhsach','linhvuc'));
     }
     public function postthem(Request $request)
     {

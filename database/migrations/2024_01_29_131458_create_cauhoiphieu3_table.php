@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->longText('tencauhoi');
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

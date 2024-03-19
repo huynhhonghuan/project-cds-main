@@ -44,6 +44,7 @@ use PHPUnit\Util\Reflection;
 use PHPUnit\Util\Test as TestUtil;
 use ReflectionClass;
 use ReflectionMethod;
+use SebastianBergmann\CodeCoverage\InvalidArgumentException;
 use SebastianBergmann\CodeCoverage\UnintentionallyCoveredCodeException;
 use Throwable;
 
@@ -308,10 +309,10 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     }
 
     /**
-     * @throws \SebastianBergmann\CodeCoverage\InvalidArgumentException
      * @throws CodeCoverageException
      * @throws Event\RuntimeException
      * @throws Exception
+     * @throws InvalidArgumentException
      * @throws NoPreviousThrowableException
      * @throws UnintentionallyCoveredCodeException
      */
@@ -463,7 +464,7 @@ class TestSuite implements IteratorAggregate, Reorderable, SelfDescribing, Test
     }
 
     /**
-     * @throws \PHPUnit\Event\TestData\MoreThanOneDataSetFromDataProviderException
+     * @throws Event\TestData\MoreThanOneDataSetFromDataProviderException
      * @throws Exception
      */
     protected function addTestMethod(ReflectionClass $class, ReflectionMethod $method): void

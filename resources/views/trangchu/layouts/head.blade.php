@@ -17,9 +17,10 @@
  <link rel="stylesheet" href="{{ URL::to('public/assets/fontawesome-free-6.4.2-web/css/all.min.css') }}">
 
  <!--Custom CSS file-->
- <link rel="stylesheet" href="{{ URL::to('public/assets/frontend/css/style.css') }}">
- </link>
+ <link rel="stylesheet" href="{{ URL::to('public/assets/frontend/css/style.css') }}"></link>
 
+  <!-- Box Icon -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
  {{-- message toastr --}}
  <link rel="stylesheet" href="{{ URL::to('public/assets/backend/css/toastr.min.css') }}">
  <script src="{{ URL::to('public/assets/backend/js/toastr_jquery.min.js') }}"></script>

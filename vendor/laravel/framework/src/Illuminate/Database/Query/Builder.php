@@ -82,7 +82,7 @@ class Builder implements BuilderContract
     /**
      * The columns that should be returned.
      *
-     * @var array
+     * @var array|null
      */
     public $columns;
 
@@ -587,6 +587,39 @@ class Builder implements BuilderContract
     }
 
     /**
+     * Add a lateral join clause to the query.
+     *
+     * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string  $query
+     * @param  string  $as
+     * @param  string  $type
+     * @return $this
+     */
+    public function joinLateral($query, string $as, string $type = 'inner')
+    {
+        [$query, $bindings] = $this->createSub($query);
+
+        $expression = '('.$query.') as '.$this->grammar->wrapTable($as);
+
+        $this->addBinding($bindings, 'join');
+
+        $this->joins[] = $this->newJoinLateralClause($this, $type, new Expression($expression));
+
+        return $this;
+    }
+
+    /**
+     * Add a lateral left join to the query.
+     *
+     * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string  $query
+     * @param  string  $as
+     * @return $this
+     */
+    public function leftJoinLateral($query, string $as)
+    {
+        return $this->joinLateral($query, $as, 'left');
+    }
+
+    /**
      * Add a left join to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $table
@@ -723,6 +756,19 @@ class Builder implements BuilderContract
     protected function newJoinClause(self $parentQuery, $type, $table)
     {
         return new JoinClause($parentQuery, $type, $table);
+    }
+
+    /**
+     * Get a new join lateral clause.
+     *
+     * @param  \Illuminate\Database\Query\Builder  $parentQuery
+     * @param  string  $type
+     * @param  string  $table
+     * @return \Illuminate\Database\Query\JoinLateralClause
+     */
+    protected function newJoinLateralClause(self $parentQuery, $type, $table)
+    {
+        return new JoinLateralClause($parentQuery, $type, $table);
     }
 
     /**
@@ -1379,7 +1425,7 @@ class Builder implements BuilderContract
      * Add a "where date" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|null  $operator
      * @param  \DateTimeInterface|string|null  $value
      * @param  string  $boolean
      * @return $this
@@ -1403,7 +1449,7 @@ class Builder implements BuilderContract
      * Add an "or where date" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|null  $operator
      * @param  \DateTimeInterface|string|null  $value
      * @return $this
      */
@@ -1420,7 +1466,7 @@ class Builder implements BuilderContract
      * Add a "where time" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|null  $operator
      * @param  \DateTimeInterface|string|null  $value
      * @param  string  $boolean
      * @return $this
@@ -1444,7 +1490,7 @@ class Builder implements BuilderContract
      * Add an "or where time" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|null  $operator
      * @param  \DateTimeInterface|string|null  $value
      * @return $this
      */
@@ -1461,7 +1507,7 @@ class Builder implements BuilderContract
      * Add a "where day" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @param  string  $boolean
      * @return $this
@@ -1489,7 +1535,7 @@ class Builder implements BuilderContract
      * Add an "or where day" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @return $this
      */
@@ -1506,7 +1552,7 @@ class Builder implements BuilderContract
      * Add a "where month" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @param  string  $boolean
      * @return $this
@@ -1534,7 +1580,7 @@ class Builder implements BuilderContract
      * Add an "or where month" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @return $this
      */
@@ -1551,7 +1597,7 @@ class Builder implements BuilderContract
      * Add a "where year" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @param  string  $boolean
      * @return $this
@@ -1575,7 +1621,7 @@ class Builder implements BuilderContract
      * Add an "or where year" statement to the query.
      *
      * @param  \Illuminate\Contracts\Database\Query\Expression|string  $column
-     * @param  string  $operator
+     * @param  \DateTimeInterface|string|int|null  $operator
      * @param  \DateTimeInterface|string|int|null  $value
      * @return $this
      */
@@ -2047,6 +2093,80 @@ class Builder implements BuilderContract
     public function orWhereFullText($columns, $value, array $options = [])
     {
         return $this->whereFulltext($columns, $value, $options, 'or');
+    }
+
+    /**
+     * Add a "where" clause to the query for multiple columns with "and" conditions between them.
+     *
+     * @param  string[]  $columns
+     * @param  mixed  $operator
+     * @param  mixed  $value
+     * @param  string  $boolean
+     * @return $this
+     */
+    public function whereAll($columns, $operator = null, $value = null, $boolean = 'and')
+    {
+        [$value, $operator] = $this->prepareValueAndOperator(
+            $value, $operator, func_num_args() === 2
+        );
+
+        $this->whereNested(function ($query) use ($columns, $operator, $value) {
+            foreach ($columns as $column) {
+                $query->where($column, $operator, $value, 'and');
+            }
+        }, $boolean);
+
+        return $this;
+    }
+
+    /**
+     * Add an "or where" clause to the query for multiple columns with "and" conditions between them.
+     *
+     * @param  string[]  $columns
+     * @param  string  $operator
+     * @param  mixed  $value
+     * @return $this
+     */
+    public function orWhereAll($columns, $operator = null, $value = null)
+    {
+        return $this->whereAll($columns, $operator, $value, 'or');
+    }
+
+    /**
+     * Add an "where" clause to the query for multiple columns with "or" conditions between them.
+     *
+     * @param  string[]  $columns
+     * @param  string  $operator
+     * @param  mixed  $value
+     * @param  string  $boolean
+     * @return $this
+     */
+    public function whereAny($columns, $operator = null, $value = null, $boolean = 'and')
+    {
+        [$value, $operator] = $this->prepareValueAndOperator(
+            $value, $operator, func_num_args() === 2
+        );
+
+        $this->whereNested(function ($query) use ($columns, $operator, $value) {
+            foreach ($columns as $column) {
+                $query->where($column, $operator, $value, 'or');
+            }
+        }, $boolean);
+
+        return $this;
+    }
+
+    /**
+     * Add an "or where" clause to the query for multiple columns with "or" conditions between them.
+     *
+     * @param  string[]  $columns
+     * @param  string  $operator
+     * @param  mixed  $value
+     * @return $this
+     */
+    public function orWhereAny($columns, $operator = null, $value = null)
+    {
+        return $this->whereAny($columns, $operator, $value, 'or');
     }
 
     /**
@@ -3402,6 +3522,25 @@ class Builder implements BuilderContract
 
         return $this->connection->affectingStatement(
             $this->grammar->compileInsertUsing($this, $columns, $sql),
+            $this->cleanBindings($bindings)
+        );
+    }
+
+    /**
+     * Insert new records into the table using a subquery while ignoring errors.
+     *
+     * @param  array  $columns
+     * @param  \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder|string  $query
+     * @return int
+     */
+    public function insertOrIgnoreUsing(array $columns, $query)
+    {
+        $this->applyBeforeQueryCallbacks();
+
+        [$sql, $bindings] = $this->createSub($query);
+
+        return $this->connection->affectingStatement(
+            $this->grammar->compileInsertOrIgnoreUsing($this, $columns, $sql),
             $this->cleanBindings($bindings)
         );
     }

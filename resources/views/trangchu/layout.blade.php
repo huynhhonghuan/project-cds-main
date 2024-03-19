@@ -8,7 +8,7 @@
     @yield('style')
 </head>
 
-<body>
+<body onload="hienthingaythang()">
     {{--nhúng tĩnh Navbar--}}
     @include('trangchu.layouts.navbar')
     {{--nhúng động Contents từ bên form kế thừa--}}

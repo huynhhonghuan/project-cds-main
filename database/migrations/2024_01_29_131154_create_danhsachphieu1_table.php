@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('khaosat_id')->index();
             $table->foreign('khaosat_id')->references('id')->on('khaosat')->onUpdate('cascade')->onDelete('cascade');
-
-            $table->string('tendanhgia')->default('TỔNG HỢP THÔNG TIN CHỈ SỐ ĐÁNH GIÁ MỨC ĐỘ CHUYỂN ĐỔI SỐ CỦA DOANH NGHIỆP');
-
+            $table->string('tendanhgia')->default('TỔNG HỢP THÔNG TIN CHỈ SỐ ĐÁNH GIÁ MỨC ĐỘ CHUYỂN ĐỔI SỐ CỦA DOANH NGHIỆP')->nullable();
             $table->integer('diem')->default(0);
             $table->tinyInteger('soluonghoanthanh')->default(0);
             $table->integer('trangthai')->default(0);
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

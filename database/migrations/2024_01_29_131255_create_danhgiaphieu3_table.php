@@ -19,6 +19,8 @@ return new class extends Migration
             $table->tinyInteger('diem')->default(0);
             $table->tinyInteger('trangthai')->default(0);
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

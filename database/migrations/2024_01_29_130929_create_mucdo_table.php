@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('noidung');
             $table->integer('diem');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
 
         DB::table('mucdo')->insert([

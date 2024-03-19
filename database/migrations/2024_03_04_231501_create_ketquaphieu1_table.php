@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('mohinh_trucot_id')->references('id')->on('mohinh_trucot')->onUpdate('cascade')->onDelete('cascade');
             $table->double('phantram')->default(0);
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
     }
 

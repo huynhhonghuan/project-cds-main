@@ -194,7 +194,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::get('danhsach', [LoaihinhdoanhnghiepController::class, 'getdanhsach'])->name('danhsach');
 
         Route::get('them', [LoaihinhdoanhnghiepController::class, 'getthem'])->name('them');
-        Route::post('them/{loai}', [LoaihinhdoanhnghiepController::class, 'postthem'])->name('them');
+        Route::post('them', [LoaihinhdoanhnghiepController::class, 'postthem'])->name('them');
         Route::get('sua/{id}', [LoaihinhdoanhnghiepController::class, 'getsua'])->name('sua');
         Route::post('sua/{id}', [LoaihinhdoanhnghiepController::class, 'postsua'])->name('sua');
         Route::post('xoa', [LoaihinhdoanhnghiepController::class, 'postxoa'])->name('xoa');
@@ -232,6 +232,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
     Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
         Route::get('danhsach', [KhaosatController::class, 'getdanhsach'])->name('danhsach');
+        Route::post('nhap', [KhaosatController::class, 'postnhap'])->name('nhap');
 
         Route::get('xem/{id}', [KhaosatController::class, 'getxem'])->name('xem');
         Route::get('them', [KhaosatController::class, 'getthem'])->name('them');
@@ -297,6 +298,9 @@ Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth', 'check_chuyengia
 
     Route::group(['prefix' => 'doanhnghiep', 'as' => 'doanhnghiep.'], function () {
         Route::get('danhsach', [ThongtinDoanhnghiepController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('xemdoanhnghiep/{id}', [ThongtinDoanhnghiepController::class, 'getxemdoanhnghiep'])->name('xemdoanhnghiep');
+        Route::get('xemkhaosat/{id}', [ThongtinDoanhnghiepController::class, 'getxemkhaosat'])->name('xemkhaosat');
+        Route::get('xemchienluoc/{id}', [ThongtinDoanhnghiepController::class, 'getxemchienluoc'])->name('xemchienluoc');
     });
 });
 
@@ -332,7 +336,10 @@ Route::group(['prefix' => 'congtacvien', 'middleware' => ['auth', 'check_congtac
 
 
 // Giao diện chính
-Route::get('/', [TrangtinController::class, 'getslides'])->name('home');
+Route::get('/', [TrangtinController::class, 'Index'])->name('home');
 Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name('tintuc');
 Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
+Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
+
+Route::get('/search', [TrangtinController::class, 'search'])->name('search');

@@ -31,11 +31,13 @@ return new class extends Migration
             $table->string('sdt')->nullable();
             $table->string('mathue')->nullable();
             $table->string('fax')->nullable();
-            $table->integer('soluongnhansu')->default(0);
+            $table->integer('soluongnhansu')->default(0)->nullable();
             $table->date('ngaylap')->nullable();
             $table->longText('mota')->nullable();
 
             $table->timestamps();
+            $table->engine = 'InnoDB';
+
         });
 
         DB::table('doanhnghiep')->insert([

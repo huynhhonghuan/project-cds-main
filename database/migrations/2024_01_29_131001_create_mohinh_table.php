@@ -22,6 +22,8 @@ return new class extends Migration
             //thêm khóa ngoại của bảng mohinh_trucot
 
             //thêm khóa ngoại của bảng doanhnghiep_loaihinh
+            $table->engine = 'InnoDB';
+
         });
 
         // 1: Khách hàng
