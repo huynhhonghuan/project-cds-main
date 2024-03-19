@@ -1,6 +1,6 @@
 @extends('trangchu.layout')
 @section('content')
-    <section class="vh-100">
+    <section class="vh-100" style="margin-top: 90px">
         <div class="container py-3 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col col-xl-10">

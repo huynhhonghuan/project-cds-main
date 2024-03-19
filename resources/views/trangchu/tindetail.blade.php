@@ -101,7 +101,7 @@
                         <div class="item-body row">
                             <div class="col-xl-1" style="margin-top: 16px;display:flex;justify-content:center;height:10%;">
                                 <div class="list-icon">
-                                    <div class="col"><i class='bx bx-message-dots icon-news' style="border-bottom : 1px solid #dfdfdf;"></i></div>
+                                    <div class="col"><a href="#comment" style="text-decoration: none;"><i class='bx bx-message-dots icon-news' style="border-bottom : 1px solid #dfdfdf;"></i></a></div>
                                     <div class="col"><i class='bx bx-link icon-news'></i></div>
                                     <div class="col"><i class='bx bxl-facebook icon-news'></i></div>
                                     <div class="col"><i class='bx bxl-messenger icon-news'></i></div>
@@ -255,35 +255,65 @@
                 @endif
             </div>
             <div class="col-xl-4">
-                <form action="" method="post"
-                    id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
-                    target="hidden-form" enctype="multipart/form-data">
-                    @csrf
-                    <h5 style="color: #009688; padding-left: 4px;user-select: none;">Nhập Bình Luận :</h5>
-                    <div class="row">
-                        <div class="col-12" style="margin-bottom: 6px">
-                            <div class="form-group">
-                                <input type="hidden" class="form-control"
-                                    name="IdCon" value=""
-                                    id="contact-name">
-                                <input type="hidden" class="form-control"
-                                    name="IdNews" value=""
-                                    id="contact-name">
-                                <input type="text" class="form-control"
-                                    name="Name" id="contact-name"
-                                    placeholder="Nhập họ tên ">
+                @if(auth()->check())
+                    <form action="" method="post"
+                        id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
+                        target="hidden-form" enctype="multipart/form-data">
+                        @csrf
+                        <h5 style="color: #009688; padding-left: 4px;user-select: none;">Nhập Bình Luận :</h5>
+                        <div class="row">
+                            <div class="col-12" style="margin-bottom: 6px">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control"
+                                        name="IdCon" value=""
+                                        id="contact-name">
+                                    <input type="hidden" class="form-control"
+                                        name="IdNews" value=""
+                                        id="contact-name">
+                                    <input type="text" class="form-control"
+                                        name="Name" id="contact-name"
+                                        placeholder="Nhập họ tên ">
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom: 6px">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" id="message" cols="30" rows="2" placeholder="Chia sẻ ý kiến của bạn "></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12" style="display:flex; justify-content: end;">
+                                <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
                             </div>
                         </div>
-                        <div class="col-12" style="margin-bottom: 6px">
-                            <div class="form-group">
-                                <textarea class="form-control" name="message" id="message" cols="30" rows="2" placeholder="Chia sẻ ý kiến của bạn "></textarea>
+                    </form>
+                @else
+                    <form action="" method="post"
+                        id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
+                        target="hidden-form" enctype="multipart/form-data">
+                        @csrf
+                        <h5 style="color: #009688; padding-left: 4px;user-select: none;">Nhập Bình Luận :</h5>
+                        <div class="row">
+                            <div class="col-12" style="margin-bottom: 6px">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control"
+                                        name="IdCon" value=""
+                                        id="contact-name">
+                                    <input type="hidden" class="form-control"
+                                        name="IdNews" value=""
+                                        id="contact-name">
+                                    <span>Chào quản trị viên</span>
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom: 6px">
+                                <div class="form-group">
+                                    <textarea class="form-control" name="message" id="message" cols="30" rows="2" disabled placeholder="Đăng nhập để bình luận!"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12" style="display:flex; justify-content: end;">
+                                <button class="btn" style="background-color: #009688; color: #fff; font-weight:700"><a href="{{route('login')}}" style="text-decoration: none;color:#fff">Đăng nhập</a></button>
                             </div>
                         </div>
-                        <div class="col-12" style="display:flex; justify-content: end;">
-                            <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                @endif
             </div>
         </div>
     </div>
