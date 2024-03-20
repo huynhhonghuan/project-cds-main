@@ -26,9 +26,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::table('tintuc')->insert([
-            ['linhvuc_id'=>'nn','user_id'=>'1','tieude'=>'Tiêu đề 1','tomtat'=>'Tóm tắt 1','noidung'=>'Nội dung 1'],
-        ]);
     }
 
     /**

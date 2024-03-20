@@ -13,7 +13,7 @@
                     <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
                         <div class="item-news col" style="width: 100px; margin:5px">
                             <div class="item-img">
-                                <img src="{{ asset('public/image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
+                                <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                             </div>
                             <div class="item-date">
                                 <i class="fa-solid fa-calendar-days"></i>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="item-content">
                                 <div class="item-content--main"  title="{{$news->tieude}}">{{$news->tieude}}</div>
-                                <div class="item-content--sub"  title="{{$news->tomtat}}">{{$news->tomtat}}</div>
+                                <div class="item-content--sub"  title="{!!$news->tomtat!!}">{!!$news->tomtat!!}</div>
                             </div>
                             <div class="item-footer">
                                 <div class="item-view">

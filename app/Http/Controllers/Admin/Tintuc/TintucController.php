@@ -60,6 +60,7 @@ class TintucController extends Controller
             'tomtat' => 'required|string',
             'noidung' => 'required|string',
             'hinhanh' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'nguon' => 'required'
         ]);
 
         //nhận tất cả giá trị từ request của form
@@ -148,6 +149,7 @@ class TintucController extends Controller
             'tomtat' => $request->tomtat,
             'noidung' => $request->noidung,
             'hinhanh' => $profileImage,
+            'nguon'=> $request->nguon
         ];
 
         Tintuc::where('id', $id)->update($tintuc);
