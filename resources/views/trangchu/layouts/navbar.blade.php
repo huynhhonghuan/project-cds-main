@@ -80,6 +80,12 @@
                                 Giải pháp
                             </a>
                         </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Thông tin CĐS
+                            </a>
+                        </li>
                         <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">
                             <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Search">
                             <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
