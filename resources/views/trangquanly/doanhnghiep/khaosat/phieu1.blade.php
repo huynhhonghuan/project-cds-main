@@ -167,9 +167,7 @@
                                                                                                         <td>{!! $item_5->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                        <td>
                                                                                                             @livewire('clickphieu1-chienluoc', ['id' => $item_5->id, 'diem' => $item_5->diem, 'trangthai' => $item_5->trangthai])
-                                                                                                        </td>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 @endif

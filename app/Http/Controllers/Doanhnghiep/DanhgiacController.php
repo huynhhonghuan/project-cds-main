@@ -12,8 +12,7 @@ class DanhgiacController extends Controller
     public function getxem($id)
     {
         $tendanhsach = 'Đánh giá chuyển đổi số';
-        $danhsach = Khaosat::find($id);
-        // $danhgia = null;
+        $danhsach = Khaosat::find($id);//->orderBy('updated_at', 'desc')->get(); //->paginate(5);
         // dd(count($danhsach->getdanhgia));
         // $solankhaosat = count(Auth::user()->getdoanhnghiep->getkhaosat);
         return view('trangquanly.doanhnghiep.danhgia.xem', compact('tendanhsach', 'danhsach'));

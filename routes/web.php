@@ -66,9 +66,9 @@ Route::get('/', function () {
     return view('trangchu.home');
 })->name('home');
 
-// Route::get('/home', function () {
-//     return view('trangchu.home');
-// })->name('home');
+Route::get('/home', function () {
+    return view('trangchu.home');
+})->name('home');
 
 //Đăng kí Auth
 Auth::routes();
@@ -84,11 +84,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/registerdoanhnghiep', [RegisterController::class, 'registerdoanhnghiep'])->name('registerdoanhnghiep');
 //-------------------------------------Đăng ký doanh nghiệp xử lý--------------------------------------------//
 Route::post('/registerdoanhnghiep', [RegisterController::class, 'storeUserdoanhnghiep'])->name('registerdoanhnghiep');
-
-
-//Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
-
-//Route::group(['prefix'=>'trangquanly', 'middleware' => 'auth:sanctum'],function () {
 
 //-------------------------------------Chuyên gia--------------------------------------------//
 Route::group(['prefix' => 'chung', 'middleware' => ['auth'], 'as' => 'chung.'], function () {

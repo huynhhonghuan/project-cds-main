@@ -45,8 +45,8 @@ class KhaosatController extends Controller
             Toastr::success('Thêm khảo sát của doanh nghiệp thành công', 'Success');
             return redirect()->route('admin.khaosat.danhsach');
         } catch (Exception $e) {
-            // dd($e);
-            Toastr::warning('Thêm khảo sát của doanh nghiệp thành công', 'Warning');
+            dd($e);
+            Toastr::warning('Thêm khảo sát của doanh nghiệp không thành công', 'Warning');
             return redirect()->route('admin.khaosat.danhsach');
         }
     }

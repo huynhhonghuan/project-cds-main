@@ -7,7 +7,7 @@
                     @foreach ($slides as $id => $slide)
                         @if ($slide->status == 1)
                             <div class="item">
-                                <img class="" src="{{ asset('slide/' . $slide->link) }}" style="">
+                                <img class="" src="{{ asset('public/slide/' . $slide->link) }}" style="">
                             </div>
                         @endif
                     @endforeach

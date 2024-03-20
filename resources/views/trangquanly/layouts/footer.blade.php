@@ -16,4 +16,6 @@
 
 <script src="{{ URL::to('public/assets/ckeditor5/ckeditor.js') }} "></script>
 
+<script src="//cdn.datatables.net/plug-ins/1.10.13/i18n/Vietnamese.json"></script>
+
 @yield('footer'){{-- nhúng động footer --}}

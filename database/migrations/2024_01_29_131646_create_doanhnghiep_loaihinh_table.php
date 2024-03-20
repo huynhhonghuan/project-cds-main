@@ -23,7 +23,6 @@ return new class extends Migration
 
             $table->timestamps();
             $table->engine = 'InnoDB';
-
         });
         DB::table('doanhnghiep_loaihinh')->insert([
             ['id' => 1, 'linhvuc_id' => 'nn', 'tenloaihinh' => 'Trồng lúa', 'mota' => 'Lúa là một nguồn thực phẩm cơ bản và quan trọng trong nền kinh tế nông nghiệp của An Giang. Doanh nghiệp thường chuyên về sản xuất lúa, từ cấy gieo đến thu hoạch và chế biến lúa.', 'hinhanh' => 'tronglua.jpg'],
@@ -41,7 +40,11 @@ return new class extends Migration
             ['id' => 10, 'linhvuc_id' => 'kh', 'tenloaihinh' => 'Bán lẻ', 'mota' => 'Các doanh nghiệp bán lẻ hoạt động trong các cửa hàng, siêu thị, chợ, và trung tâm mua sắm để cung cấp các sản phẩm tiêu dùng như thực phẩm, đồ dùng gia đình, quần áo, giày dép, và nhiều mặt hàng khác.', 'hinhanh' => 'banle.jpg'],
             ['id' => 11, 'linhvuc_id' => 'kh', 'tenloaihinh' => 'Du lịch nông nghiệp', 'mota' => 'An Giang có nhiều điểm đến du lịch nông nghiệp như vườn cây ăn trái, trang trại nuôi thú, và khu vườn trồng hoa và cây cỏ. Doanh nghiệp trong lĩnh vực này cung cấp dịch vụ du lịch liên quan đến nông nghiệp và quê hương.', 'hinhanh' => 'dulichnongnghiep.jpg'],
 
+            //doanh nghiệp thực tế của thầy
+            //nông nghiệp
             ['id' => 12, 'linhvuc_id' => 'nn', 'tenloaihinh' => 'Du lịch sinh thái vườn', 'mota' => null, 'hinhanh' => null],
+            //công nghiệp
+            //thương mại - dịch vụ
         ]);
     }
 
