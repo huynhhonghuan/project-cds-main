@@ -112,15 +112,15 @@
 <!-- Footer -->
 
 <!--Jqurey js file-->
-<script src="{{ URL::to('public/assets/jquery/jquery.3.7.1.js') }}"></script>
+<script src="{{ URL::to('assets/jquery/jquery.3.7.1.js') }}"></script>
 
 <!--Bootstrap js file-->
-<script src="{{ URL::to('public/assets/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ URL::to('assets/bootstrap-5.0.2/dist/js/bootstrap.bundle.min.js') }}"></script>
 
 <!--Datepicker-->
-<script src="{{ URL::to('public/assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ URL::to('assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
 
 <!--custom js file-->
-<script src="{{ URL::to('public/assets/frontend/js/main.js') }}"></script>
+<script src="{{ URL::to('assets/frontend/js/main.js') }}"></script>
 
 @yield('footer')

@@ -2,10 +2,10 @@
 <div class="header">
     <div class="header-left">
         <a href="{{ route('admin.home') }}" class="logo"> <img
-                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" width="50" height="70"
+                src="{{ URL::to('assets/backend/img/vaitro/admin.png') }}" width="50" height="70"
                 alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
         <a href="{{ route('admin.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" alt="Logo" width="30"
+                src="{{ URL::to('assets/backend/img/vaitro/admin.png') }}" alt="Logo" width="30"
                 height="30">
         </a>
     </div>

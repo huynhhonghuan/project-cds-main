@@ -7,7 +7,7 @@
                     @foreach ($slides as $id => $slide)
                         @if ($slide->status == 1)
                             <div class="item">
-                                <img class="" src="{{ asset('public/slide/' . $slide->hinhanh) }}" style="">
+                                <img class="" src="{{ asset('slide/' . $slide->hinhanh) }}" style="">
                             </div>
                         @endif
                     @endforeach
@@ -34,26 +34,26 @@
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Nông Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/CongNghiep') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Công Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/TMDV') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
                             <div class="content"><h3 style="text-align : center">Thương Mại & Dịch Vụ</h3></div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(public/image/AnhNen/hinh-nen-mau-den_1.jpg)">
+        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg)">
             <div class="container">
                 <div class="news">
                     <h2 class="news-heading row">Tin Tức Nổi Bật</h2>
@@ -63,7 +63,7 @@
                             <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
                                 <div class="item-news col" style="margin:10px">
                                     <div class="item-img">
-                                        <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
+                                        <img src="{{ asset('../assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                     </div>
                                     <div class="item-date">
                                         <i class="fa-solid fa-calendar-days"></i>

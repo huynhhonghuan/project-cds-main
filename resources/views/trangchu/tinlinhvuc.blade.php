@@ -12,15 +12,15 @@
     <div class="image-heading">
         @foreach($laybanner as $bn)
             @if($bn->linhvuc_id == 'nn')
-                <img src="../public/assets/backend/img/linhvuc/nongnghiep.jpg" alt="">
+                <img src="../assets/backend/img/linhvuc/nongnghiep.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @if ($bn->linhvuc_id == 'cn')
-                <img src="../public/assets/backend/img/linhvuc/congnghiep.jpg" alt="">
+                <img src="../assets/backend/img/linhvuc/congnghiep.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @if ($bn->linhvuc_id == 'tmdv')
-                <img src="../public/assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="">
+                <img src="../assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="">
                 <h2 class="news-heading row">{{$title}}</h2>
             @else 
             @endif @endif @endif

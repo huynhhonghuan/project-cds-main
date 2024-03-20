@@ -61,6 +61,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Nguồn Tin Tức</label>
+                                    <input type="text"
+                                    class="form-control @error('nguon') is-invalid @enderror"name="nguon"
+                                    value="{{$tintuc->nguon}}">    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

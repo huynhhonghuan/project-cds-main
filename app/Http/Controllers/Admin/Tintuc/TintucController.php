@@ -123,6 +123,7 @@ class TintucController extends Controller
             'tieude' => 'required|string',
             'tomtat' => 'required|string',
             'noidung' => 'required|string',
+            'nguon' => 'required',
         ]);
 
         $input['linhvuc_id'] = $request->linhvuc_id;

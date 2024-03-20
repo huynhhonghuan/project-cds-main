@@ -2,7 +2,7 @@
 @section('content'){{--nhúng nội dung content vào layout--}}
 <div class="news-background" style="margin-top: 132px;">
     <div class="image-heading">
-        <img src="public/image/AnhNen/hinh-nen-mau-den_1.jpg" alt="">
+        <img src="image/AnhNen/hinh-nen-mau-den_1.jpg" alt="">
         <h2 class="news-heading row">Tất cả tin tức</h2>
     </div>
     <div class="container">

@@ -426,7 +426,8 @@ ul {
     width: 100%;
 }
 .item-news--detail img {
-    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
 }
 .btn-voice {
     display: flex;
