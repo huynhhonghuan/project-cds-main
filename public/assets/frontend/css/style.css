@@ -420,6 +420,13 @@ ul {
 .item-news--detail {
     font-size: 18px;
     margin-top: 32px;
+    max-width: 100%;
+}
+.item-news--detail image{
+    width: 100%;
+}
+.item-news--detail img {
+    width: 100%;
 }
 .btn-voice {
     display: flex;

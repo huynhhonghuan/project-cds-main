@@ -18,6 +18,7 @@ class Tintuc extends Model
         'noidung',
         'luotxem',
         'duyet',
+        'nguon'
     ];
 
     // public function getUser_Linhvuc()
