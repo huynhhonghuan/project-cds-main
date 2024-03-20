@@ -9,7 +9,7 @@ class Tintuc extends Model
 {
     use HasFactory;
     protected $table = 'tintuc';
-    protected $fillable =[
+    protected $fillable = [
         'linhvuc_id',
         'user_id',
         'tieude',
@@ -18,6 +18,7 @@ class Tintuc extends Model
         'noidung',
         'luotxem',
         'duyet',
+        'nguon'
     ];
 
     // public function getUser_Linhvuc()
@@ -27,10 +28,10 @@ class Tintuc extends Model
 
     public function getUser()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function getLinhvuc()
     {
-        return $this->belongsTo(Linhvuc::class,'linhvuc_id');
+        return $this->belongsTo(Linhvuc::class, 'linhvuc_id');
     }
 }

@@ -17,8 +17,8 @@ class HoiThoaiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'doanhNghiep' => new UserResource($this->getDoanhNghiepUser),
-            'chuyenGia' => new UserResource($this->getChuyenGiaUser),
+            'doanhNghiep' => new DoanhNghiepResource($this->getDoanhNghiep),
+            'chuyenGia' => new ChuyenGiaResource($this->getChuyenGia),
             'tinNhans' => TinNhanResource::collection($this->getTinNhans)
             // 'tinNhans' => $this->whenLoaded('getTinNhans', TinNhanResource::collection($this->getTinNhans))
         ];

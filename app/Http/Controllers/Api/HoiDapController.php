@@ -17,7 +17,7 @@ class HoiDapController extends Controller
     public function hoithoai()
     {
         $userId = auth()->id();
-        $hoiThoais = HoiThoai::with(['getDoanhNghiepUser', 'getChuyenGiaUser'])
+        $hoiThoais = HoiThoai::with(['getChuyenGia',  'getDoanhNghiep'])
             ->where('doanhnghiep_id', $userId)->get();
         return HoiThoaiResource::collection($hoiThoais);
     }
@@ -32,7 +32,7 @@ class HoiDapController extends Controller
 
         $chuyenGiaUser = ModelsChuyengia::where('id', $chuyenGiaId)->firstOrFail();
 
-        $hoiThoai = HoiThoai::with('getDoanhNghiepUser', 'getChuyenGiaUser', 'getTinNhans', 'getTinNhans.getUser')
+        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
             ->where('chuyengia_id', $chuyenGiaUser->user_id)
             ->where('doanhnghiep_id', $userId)
             ->first();
@@ -46,6 +46,10 @@ class HoiDapController extends Controller
         }
 
         return new HoiThoaiResource($hoiThoai);
+    }
+    public function test()
+    {
+        return HoiThoai::with(['getChuyenGia', 'getChuyenGia.getUser', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])->get();
     }
     public function themtinnhan(Request $request)
     {
