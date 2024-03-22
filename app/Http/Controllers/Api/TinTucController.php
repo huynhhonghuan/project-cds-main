@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SliderResource;
 use App\Http\Resources\TinTucResource;
+use App\Http\Resources\VideoResource;
 use App\Models\Linhvuc;
+use App\Models\Slide;
 use App\Models\Tintuc;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class TinTucController extends Controller
@@ -34,12 +38,23 @@ class TinTucController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tintuc $tintuc)
+    public function show(Request $request)
     {
         //
+        $tintuc = Tintuc::with(['getLinhvuc', 'getUser'])->where('id', $request->input('id'))->first();
         $tintuc->luotxem += 1;
         $tintuc->save();
         return new TinTucResource($tintuc);
+    }
+
+    public function slide()
+    {
+        return SliderResource::collection(Slide::all());
+    }
+
+    public function video()
+    {
+        return VideoResource::collection(Video::all());
     }
 
     private function getTinTucByLinhVuc($linhVucId)

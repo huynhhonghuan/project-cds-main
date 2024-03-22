@@ -7,7 +7,7 @@
                     @foreach ($slides as $id => $slide)
                         @if ($slide->status == 1)
                             <div class="item">
-                                <img class="" src="{{ asset('public/slide/' . $slide->hinhanh) }}" style="">
+                                <img class="" src="{{ asset('slide/' . $slide->hinhanh) }}" style="">
                             </div>
                         @endif
                     @endforeach
@@ -34,44 +34,56 @@
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Nông Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/CongNghiep') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/congnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Công Nghiệp</h3></div>
                         </a>
                     </div>
                     <div class="item-field col">
                         <a href="{{ URL::to('/tintuc/TMDV') }}" style="text-decoration: none">
-                            <img src="public/assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
+                            <img src="assets/backend/img/linhvuc/thuongmaidichvu.jpg" alt="Hình ảnh">
                             <div class="content"><h3 style="text-align : center">Thương Mại & Dịch Vụ</h3></div>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(public/image/AnhNen/hinh-nen-mau-den_1.jpg)">
+        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
             <div class="container">
                 <div class="news">
-                    <h2 class="news-heading row">Tin Tức Nổi Bật</h2>
+                    <h2 class="news-heading row"  data-aos="fade-up">Tin Tức Nổi Bật</h2>
                     <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-3">
                         @foreach($tinmoi as $news)
                         <div class="col">
-                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
-                                <div class="item-news col" style="margin:10px">
+                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;"  data-aos-duration="1500" data-aos="fade-up">
+                                <div class="item-news col"  style="margin:10px">
                                     <div class="item-img">
-                                        <img src="{{ asset('public/image/AnhTinTuc/'.$news->hinhanh) }}" alt="">
+                                        <img src="{{ asset('../assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                     </div>
-                                    <div class="item-date">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        {{$news->updated_at}}
+                                    <div class="item-header" style="display:flex;justify-content:space-between">
+                                        <div class="item-date">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            {{$news->updated_at}}
+                                        </div>
+                                        <div class="item-field-all" style="padding-top: 10px;padding-right:10px">
+                                            {{-- <span>{{$news->tenlinhvuc}}</span> --}}
+                                            @if($news->tenlinhvuc == 'Nông nghiệp') 
+                                                <span style="background-color: green;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Nông Nghiệp</span>
+                                            @elseif($news->tenlinhvuc == 'Công nghiệp') 
+                                                <span style="background-color: blue;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Công Nghiệp</span>
+                                            @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ') 
+                                                <span style="background-color: yellow;padding:4px 16px;border-radius:10px;font-weight:600">Thương mại - Dịch vụ</span>
+                                            @endif    
+                                        </div>
                                     </div>
                                     <div class="item-content">
                                         <div class="item-content--main">{{$news->tieude}}</div>
-                                        <div class="item-content--sub">{{$news->tomtat}}</div>
+                                        <div class="item-content--sub">{!!$news->tomtat!!}</div>
                                     </div>
                                     <div class="item-footer">
                                         <div class="item-view">
@@ -87,7 +99,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="row news-footer">
+                    <div class="row news-footer" data-aos="zoom-in">
                         <a href="{{route('AllTin')}}" style="--clr: #009688">
                             <span>Xem tất cả</span>
                             <i></i>

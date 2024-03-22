@@ -7,6 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Slide;
 use App\Models\Tintuc;
 use App\Models\Video;
@@ -24,18 +25,17 @@ class TrangtinController extends Controller
         $slides = Slide::all();
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
-            ->select('tintuc.id as IdTin', 'tintuc.*')
+            ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
             ->paginate(3); 
         $videos = DB::table('videos')->paginate(6);    
         return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));
     }
     public function AllTin(Request $request) {
-        $AllTin = Tintuc::all(); 
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
-            ->select('tintuc.id as IdTin', 'tintuc.*')
-            ->paginate(3); 
-        return view('trangchu.tintuc', compact('AllTin', 'tinmoi'));
+            ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
+            ->get();
+        return view('trangchu.tintuc', compact('tinmoi'));
     }
     public function TinTheoLV($LinhVuc)
     {
@@ -127,5 +127,30 @@ class TrangtinController extends Controller
         $New = Tintuc::where('tieude' ,'LIKE', '%'.$searchText.'%')->get();
 
         return view('trangchu.search', compact('New', 'searchText'));
+    }
+    public function binhluan(Request $request) {
+        $input = $request->collect();
+        $cmt = array();
+
+        if (isset($input['IdCon'])) {
+            $cmt['binhluan_id'] = $input['IdCon'];
+        }
+        $cmt['noidung'] = $input['message'];
+        if(Auth::user()->getVaiTro[0]->id == "ad")
+            $cmt['user_id'] = 1;
+        elseif(Auth::user()->getVaiTro[0]->id == "ctv")
+            $cmt['user_id'] = 4;
+        elseif(Auth::user()->getVaiTro[0]->id == "dn")
+            $cmt['user_id'] = 5;
+        elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
+            $cmt['user_id'] = 2;
+        $cmt['tintuc_id'] = $input['IdNews'];
+        $cmt['ngaydang'] = date('Y-m-d');
+        if (DB::table('binhluan')->insert($cmt)) {
+            $alert = "đã thêm bình luận";
+        } else {
+            $alert = " Bình luận không thành công";
+        }
+        return redirect()->back()->with('alert', $alert);
     }
 }

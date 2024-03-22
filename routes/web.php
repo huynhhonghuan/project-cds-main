@@ -43,6 +43,7 @@ use Livewire\Livewire;
 
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
+use App\Http\Controllers\Frontend\ThongtinCDSController;
 
 function set_active($route)
 {
@@ -336,5 +337,10 @@ Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
-
+// Tìm kiếm
 Route::get('/search', [TrangtinController::class, 'search'])->name('search');
+//Bình luận
+Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
+
+//Giao diện trang tin chuyển đổi số
+Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');

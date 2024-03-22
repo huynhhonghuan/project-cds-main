@@ -31,11 +31,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource("linhvuc", LinhVucController::class);
-Route::apiResource("tintuc", TinTucController::class);
 Route::apiResource("chuyengia", ChuyenGiaController::class);
 Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
 Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);
+
+Route::group(['prefix' => 'tintuc'], function () {
+    Route::get('', [TinTucController::class, 'index']);
+    Route::get('detail', [TinTucController::class, 'show']);
+    Route::get('slide', [TinTucController::class, 'slide']);
+    Route::get('video', [TinTucController::class, 'video']);
+});
 
 Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::post('register', [DoanhNghiepController::class, 'register']);
@@ -74,4 +80,5 @@ Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
     Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
     Route::post('tinnhan', [HoiDapController::class, 'themtinnhan']);
+    Route::get('test', [HoiDapController::class, 'test']);
 });

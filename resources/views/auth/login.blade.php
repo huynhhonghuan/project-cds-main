@@ -7,7 +7,7 @@
                     <div class="card" style="border-radius: 1rem; background-color: #e5e7ef;">
                         <div class="row g-0">
                             <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                <img src="{{ URL::to('public/assets/frontend/img/login/login.png') }}" alt="login form"
+                                <img src="{{ URL::to('assets/frontend/img/login/login.png') }}" alt="login form"
                                     class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 98%;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">

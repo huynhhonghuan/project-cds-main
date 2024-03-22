@@ -62,6 +62,18 @@
 </script>
 
 <script>
+    const copyBtn = document.getElementById('copyURL');
+
+    copyBtn.addEventListener('click', () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Đã copy link thành công');
+        }).catch(() => {
+            alert('Copy link thất bại !');
+        });
+    });
+</script>
+<script>
     window.onload = function hienthingaythang()
     {
         const t = new Date();
@@ -109,4 +121,7 @@
             x = "0" + x;
         return x;
     }
+</script>
+<script>
+    AOS.init();
 </script>

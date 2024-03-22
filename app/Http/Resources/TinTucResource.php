@@ -25,6 +25,7 @@ class TinTucResource extends JsonResource
             'tacGia' => $this->getUser->name,
             'linhVuc' => new LinhVucResource($this->getLinhvuc),
             'luotXem' => $this->luotxem,
+            'nguon' => $this->nguon,
             'createdAt' => $this->created_at,
         ];
     }
