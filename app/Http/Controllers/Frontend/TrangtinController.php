@@ -21,11 +21,11 @@ class TrangtinController extends Controller
 
     public function Index(Request $request)
     {
-        // $request->user()->authorizeRoles(['Admin', 'CTV']);
         $slides = Slide::all();
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
+            ->orderBy('created_at', 'desc')
             ->paginate(3); 
         $videos = DB::table('videos')->paginate(6);    
         return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));

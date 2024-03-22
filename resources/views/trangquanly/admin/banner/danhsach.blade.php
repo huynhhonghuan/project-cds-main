@@ -1,5 +1,4 @@
 @extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
-
 @section('head')
     <!-- Data Table CSS -->
     <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
@@ -14,8 +13,6 @@
 @endsection
 
 @section('content')
-    {{-- thêm content vào form kế thừa chỗ @yield('content') --}}
-    {{-- message --}}
     {!! Toastr::message() !!}
     <div class="page-wrapper">
         <div class="content container-fluid">
@@ -24,8 +21,8 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="{{ route('admin.tintuc.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
-                                tin tức</a>
+                            <a href="{{ route('admin.banner.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
+                                Banner</a>
                         </div>
                     </div>
                 </div>
@@ -38,28 +35,24 @@
                                 <table id="huan" class="table table-stripped table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">STT</th>
-                                            <th scope="col" width="5%">Hình ảnh</th>
-                                            <th scope="col">Tên lĩnh vực</th>
-                                            <th scope="col">Tên người đăng</th>
-                                            <th scope="col" width="20%">Tiêu đề</th>
-                                            <th scope="col">Lượt xem</th>
-                                            <th scope="col">Duyệt</th>
-                                            <th scope="col" class="text-center">Xem chi tiết</th>
+                                            <th scope="col" width="10%">STT</th>
+                                            <th scope="col" width="40%">Hình ảnh</th>
+                                            <th scope="col" width="30%" style="text-align: center">Tên Banner</th>
+                                            <th scope="col" width="5%">Duyệt</th>
                                             <th scope="col" width="5%">Sửa</th>
                                             <th scope="col" class="text-center" width="5%">Xóa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($danhsach as $value)
+                                        @foreach ($slides as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     @if ($value->hinhanh != null)
                                                         <h2 class="table-avatar">
-                                                            <a href="#" class="avatar avatar-sm mr-2">
-                                                                <img class="avatar-img rounded-circle"
-                                                                    src="{{ URL::to('/assets/frontend/img/trangtin/' . $value->hinhanh) }}"
+                                                            <a href="#" class="avatar avatar-sm mr-2" style="width:480px;height:130px;border-radius:0">
+                                                                <img class="avatar-img" style="border-radius: 0;object-fit:unset"
+                                                                    src="{{ URL::to('assets/frontend/img/slide/' . $value->hinhanh) }}"
                                                                     alt="{{ $value->hinhanh }}">
                                                             </a>
                                                         </h2>
@@ -67,36 +60,17 @@
                                                         <span class="btn bg-danger-light text-danger">Không!</span>
                                                     @endif
                                                 </td>
-
-                                                <td>{{ $value->getLinhvuc->tenlinhvuc }}</td>
-                                                <td>{{ $value->getUser->name }}</td>
-                                                <td>
-                                                    <div
-                                                        style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
-                                                        {{ $value->tieude }}
-                                                    </div>
-                                                </td>
-
-                                                <td>{{ $value->luotxem }}</td>
+                                                <td style="text-align: center; font-size:16px">{{ $value->tenbanner }}</td>
 
                                                 <td>
                                                     <div class="actions">
-                                                        <a href="{{ route('admin.tintuc.duyet', $value->id) }}"
-                                                            class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
-                                                    </div>
-                                                </td>
-
-                                                <td class="text-center">
-                                                    <div class="actions">
-                                                        <a class="btn xem_noidung" data-toggle="modal"
-                                                            data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
-                                                            data-noidung="{{ $value->noidung }}">
-                                                            <i class="fa-regular fa-eye" style="color:orange;"></i></a> </a>
+                                                        <a href="{{ route('admin.banner.duyet', $value->id) }}"
+                                                            class="btn btn-sm mr-2 {{ $value->status == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->status == 1 ? 'Duyệt' : 'Chưa' }}</a>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <a class="form-sua"
-                                                        href="{{ route('admin.tintuc.sua', $value->id) }}">
+                                                        href="{{ route('admin.banner.sua', $value->id) }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
                                                     {{-- <input type="hidden" id="form-sua-value"
@@ -168,11 +142,11 @@
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.tintuc.xoa') }}" method="POST">
+                    <form action="{{ route('admin.banner.xoa') }}" method="POST">
                         @csrf
-                        <div class="modal-body text-center"> <img alt="Hình ảnh" width="30%" height="25%"
+                        <div class="modal-body text-center"><img alt="Hình ảnh" width="30%" height="25%"
                                 id="e_hinhanh">
-                            <h3 class="delete_class">Bạn thật sự muốn xóa tin tức này?</h3>
+                            <h3 class="delete_class">Bạn thật sự muốn xóa banner này?</h3>
                             <div class="m-t-20">
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
                                 <input class="form-control" type="hidden" id="e_id" name="id" value="">
@@ -210,7 +184,7 @@
         $(document).on('click', '.bookingDelete', function() {
             $('#e_id').val($(this).data('id'));
             $('#e_fileupload').val($(this).data('fileupload'));
-            $('#e_hinhanh').attr('src', '{{ URL::to('/assets/frontend/img/trangtin/') }}' + '/' + $(this).data(
+            $('#e_hinhanh').attr('src', '{{ URL::to('/assets/frontend/img/slide/') }}' + '/' + $(this).data(
                 'fileupload'));
         });
     </script>
@@ -218,10 +192,6 @@
         $(document).ready(function() {
             $('#huan').DataTable({
                 //disable sorting on last column
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 6
-                }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words
                     'paginate': {

@@ -7,7 +7,7 @@
                     @foreach ($slides as $id => $slide)
                         @if ($slide->status == 1)
                             <div class="item">
-                                <img class="" src="{{ asset('slide/' . $slide->hinhanh) }}" style="">
+                                <img class="" src="{{ asset('assets/frontend/img/slide/' . $slide->hinhanh) }}" style="">
                             </div>
                         @endif
                     @endforeach
@@ -78,6 +78,8 @@
                                                 <span style="background-color: blue;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Công Nghiệp</span>
                                             @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ') 
                                                 <span style="background-color: yellow;padding:4px 16px;border-radius:10px;font-weight:600">Thương mại - Dịch vụ</span>
+                                            @elseif($news->tenlinhvuc == 'Khác') 
+                                                <span style="background-color: rgb(9, 153, 243);padding:4px 16px;border-radius:10px;font-weight:600">Chuyển đổi số</span>
                                             @endif    
                                         </div>
                                     </div>

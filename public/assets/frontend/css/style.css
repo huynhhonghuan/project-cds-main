@@ -11,7 +11,7 @@
     --lines-to-show-2 : 2;
 }
 
-body::-webkit-scrollbar { width: 14px;}
+body::-webkit-scrollbar { width: 8px;}
 body::-webkit-scrollbar-thumb {background-image: linear-gradient(to bottom, #ffa400,  rgb(10, 216, 10));border-radius: 100rem;}
 
 /*start navigation*/

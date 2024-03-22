@@ -54,7 +54,7 @@
                                     <div class="custom-file mb-3">
                                         <input type="file"
                                             class="custom-file-input @error('hinhanh') is-invalid @enderror" id="customFile"
-                                            name="hinhanh" value="{{ old('hinhanh') }}">
+                                            name="hinhanh" value="">
                                         <label class="custom-file-label" for="customFile">Chọn hình ảnh</label>
                                     </div>
                                 </div>

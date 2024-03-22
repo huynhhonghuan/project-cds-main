@@ -20,6 +20,8 @@ use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController
 use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
 use App\Http\Controllers\Admin\Taikhoan\VaitroController;
 use App\Http\Controllers\Admin\Tintuc\TintucController;
+use App\Http\Controllers\Frontend\BannerController;
+
 
 //Chức năng dùng cho doanh nghiệp
 use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
@@ -139,7 +141,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [TintucController::class, 'postxoa'])->name('xoa');
         Route::get('duyet/{id}', [TintucController::class, 'getduyet'])->name('duyet');
     });
-
+    //-------------------------------------Banner-------------------------------------------------//
+    Route::group(['prefix' => 'banner', 'as' => 'banner.'], function () {
+        Route::get('danhsach', [BannerController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [BannerController::class, 'getthem'])->name('them');
+        Route::post('them', [BannerController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [BannerController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [BannerController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [BannerController::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [BannerController::class, 'getduyet'])->name('duyet');
+    });
+    //------------------------------------------------------------------------------------------//
     //-------------------------------------Tài khoản--------------------------------------------//
     Route::group(['prefix' => 'taikhoan', 'as' => 'taikhoan.'], function () {
         Route::get('danhsach', [TaikhoanController::class, 'getdanhsach'])->name('danhsach');
