@@ -40,26 +40,73 @@
         })
     });
 </script>
-{{-- <script>
-    let speech = new SpeechSynthesisUtterance();
-    let voices = [];
-    let voiceSelect = document.querySelector("select");
 
-    window.speechSynthesis.onvoiceschanged = () => {
-        voices = window.speechSynthesis.getVoices();
-        speech.voice.lang = 'vi-EN';
+<script>
+    @if (session('alert'))
+        window.onload = function() {
+            alert('{{ session('alert') }}');
+            window.location.reload();
+        }
+    @endif
+    $('.replybtn').click(function() {
+        var id = $(this).data("id");
+        const form = document.getElementById(id);
+        if (form.style.display === 'none') {
+            // 👇️ this SHOWS the form
+            form.style.display = 'block';
+        } else {
+            // 👇️ this HIDES the form
+            form.style.display = 'none';
+        }
+    });
+</script>
 
-        voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)))
+<script>
+    window.onload = function hienthingaythang()
+    {
+        const t = new Date();
+    let day = t.getDay();
+    let d = t.getDate();
+    let m = t.getMonth() + 1;
+    let y = t.getFullYear();
+
+    let h = t.getHours();
+    let mi = t.getMinutes();
+    let s = t.getSeconds();
+
+    mi = dinhdang(mi);
+    s = dinhdang(s);
+    switch (day) {
+    case 0:
+        day = "Chủ nhật";
+        break;
+    case 1:
+        day = "Thứ hai";
+        break;
+    case 2:
+        day = "Thứ ba";
+        break;
+    case 3:
+        day = "Thứ tư";
+        break;
+    case 4:
+        day = "Thứ năm";
+        break;
+    case 5:
+        day = "Thứ sau";
+        break;
+    case 6:
+        day = "Thứ bảy";
+    }
+
+    document.getElementById("day").innerHTML = day + ", " +d+ "/"+m+ "/" +y ;
+    document.getElementById("time").innerHTML = h + ": " + mi + ": " + s;
+    setTimeout(hienthingaythang, 1000);
     };
 
-    voiceSelect.addEventListener("change", () => {
-        speech.voice = voices[voiceSelect.value];
-    })
-
-    document.querySelector("button").addEventListener("click", () => {
-        speech.text = document.querySelector("textarea").value;
-        window.speechSynthesis.speak(speech);
-    console.log(speech);
-
-    });
-</script> --}}
+    function dinhdang(x) {
+        if(x < 10) 
+            x = "0" + x;
+        return x;
+    }
+</script>

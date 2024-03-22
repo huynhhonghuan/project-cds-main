@@ -1,14 +1,13 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
-<div class="news-background" style="margin-top: 132px;">
-    <div class="image-heading">
-        <img src="public/image/AnhNen/hinh-nen-mau-den_1.jpg" alt="">
-        <h2 class="news-heading row">Tất cả tin tức</h2>
+<div class="news-background" style="margin-top: 185px;">
+    <div class="container">
+        <h2 style="font-size: 24px;padding-left:24px">Kết quả tìm kiếm cho từ khóa : <span style="color:blue">{{$searchText}}</span></h2>
     </div>
     <div class="container">
         <div class="news">
             <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-3">
-                @foreach($AllTin as $news)
+                @foreach($New as $news)
                 <div class="col">
                     <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
                         <div class="item-news col" style="width: 100px; margin:5px">
@@ -36,12 +35,6 @@
                     </a>
                 </div>
                 @endforeach
-            </div>
-            <div class="row news-footer">
-                <a href="" style="--clr: #009688">
-                    <span>Xem Thêm</span>
-                    <i></i>
-                </a>
             </div>
         </div>
     </div>

@@ -1,10 +1,10 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('chuyengia.home') }}" class="logo"> <img src="{{ URL::to('assets/backend/img/expert.png') }}"
+        <a href="{{ route('chuyengia.home') }}" class="logo"> <img src="{{ env('APP_URL') }}/assets/backend/img/vaitro/expert.png"
                 width="50" height="70" alt="logo"> <span class="logoclass">Chuyên gia</span> </a>
         <a href="{{ route('chuyengia.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('assets/backend/img/expert.png') }}" alt="Logo" width="30" height="30">
+                src="{{ env('APP_URL') }}/assets/backend/img/vaitro/expert.png" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
@@ -22,7 +22,7 @@
                             <a href="#">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
+                                            src="{{ env('APP_URL') }}/assets/img/profiles/avatar-02.jpg">
                                     </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
@@ -37,7 +37,7 @@
                             <a href="#">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-11.jpg') }}">
+                                            src="{{ env('APP_URL') }}/assets/img/profiles/avatar-11.jpg">
                                     </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">International Software
@@ -53,7 +53,7 @@
                             <a href="#">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-17.jpg') }}">
+                                            src="{{ env('APP_URL') }}/assets/img/profiles/avatar-17.jpg">
                                     </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">John Hendry</span> sent
@@ -69,7 +69,7 @@
                             <a href="#">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('') }}assets/img/profiles/avatar-13.jpg">
+                                            src="{{ env('APP_URL') }}/assets/img/profiles/avatar-13.jpg">
                                     </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Mercury Software
@@ -88,11 +88,11 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                class="rounded-circle" src="{{ URL::to('assets/backend/img/user-profile.png') }}" width="31"
+                class="rounded-circle" src="{{ env('APP_URL') }}/assets/backend/img/user-profile.png" width="31"
                 alt="Doanh nghiệp"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
-                    <div class="avatar avatar-sm"> <img src="{{ URL::to('assets/backend/img/user-profile.png') }}"
+                    <div class="avatar avatar-sm"> <img src="{{ env('APP_URL') }}/assets/backend/img/user-profile.png"
                             alt="User Image" class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
                         <h6>{{Auth::user()->name}}</h6>{{--hiện tên của người đại diện--}}

@@ -2,10 +2,10 @@
 <div class="header">
     <div class="header-left">
         <a href="{{ route('admin.home') }}" class="logo"> <img
-                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" width="50" height="70"
+                src="{{ env('APP_URL') }}/assets/backend/img/vaitro/admin.png" width="50" height="70"
                 alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
         <a href="{{ route('admin.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('public/assets/backend/img/vaitro/admin.png') }}" alt="Logo" width="30"
+                src="{{ env('APP_URL') }}/assets/backend/img/vaitro/admin.png" alt="Logo" width="30"
                 height="30">
         </a>
     </div>
@@ -24,7 +24,7 @@
                             <a href="#">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
+                                            src="{{ env('APP_URL') }}/assets/backend/img/hoso/admin.jpg') }}">
                                     </span>
                                     <div class="media-body">
                                         <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
@@ -95,7 +95,7 @@
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm"> <img
-                            src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}" alt="User Image"
+                        src="{{ env('APP_URL') }}/assets/backend/img/hoso/user-profile.png') }}" alt="User Image"
                             class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
                         <h6>{{ Auth::user()->name }}</h6>

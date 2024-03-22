@@ -1,10 +1,10 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('doanhnghiep.home') }}" class="logo"> <img src="{{ URL::to('public/assets/backend/img/vaitro/enterprise.png') }}"
+        <a href="{{ route('doanhnghiep.home') }}" class="logo"> <img src="{{ env('APP_URL') }}/assets/backend/img/vaitro/enterprise.png"
                 width="50" height="70" alt="logo"> <span class="logoclass">Doanh nghiệp</span> </a>
         <a href="{{ route('doanhnghiep.home') }}" class="logo logo-small"> <img
-                src="{{ URL::to('public/assets/backend/img/vaitro/enterprise.png') }}" alt="Logo" width="30" height="30">
+                src="{{ env('APP_URL') }}/assets/backend/img/vaitro/enterprise.png" alt="Logo" width="30" height="30">
         </a>
     </div>
     <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>

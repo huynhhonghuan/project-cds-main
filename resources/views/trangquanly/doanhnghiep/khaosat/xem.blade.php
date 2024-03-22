@@ -79,7 +79,7 @@
                                             {{ $khaosat->getdanhsachphieu1->soluonghoanthanh }}/60 câu hỏi</h4>
                                     </div>
                                 </div>
-                                <img src="{{ URL::to('public/assets/backend/img/khaosat/phieu1.png') }}" alt=""
+                                <img src="{{ env('APP_URL') }}/assets/backend/img/khaosat/phieu1.png" alt=""
                                     style="height: 50%;">
                                 <div class="row">
                                     <div class="col-8">
@@ -111,7 +111,7 @@
                                             câu hỏi</h4>
                                     </div>
                                 </div>
-                                <img src="{{ URL::to('public/assets/backend/img/khaosat/phieu2.png') }}" alt=""
+                                <img src="{{ env('APP_URL') }}/assets/backend/img/khaosat/phieu2.png" alt=""
                                     style="height: 50%;">
                                 <div class="row">
                                     <div class="col-8">
@@ -143,7 +143,7 @@
                                             câu hỏi</h4>
                                     </div>
                                 </div>
-                                <img src="{{ URL::to('public/assets/backend/img/khaosat/phieu3.png') }}" alt=""
+                                <img src="{{ env('APP_URL') }}/assets/backend/img/khaosat/phieu3.png" alt=""
                                     style="height: 50%;">
                                 <div class="row">
                                     <div class="col-8">
@@ -174,7 +174,7 @@
                                             {{ $khaosat->getdanhsachphieu4->soluonghoanthanh }}/2 câu hỏi</h4>
                                     </div>
                                 </div>
-                                <img src="{{ URL::to('public/assets/backend/img/khaosat/phieu4.png') }}" alt=""
+                                <img src="{{ env('APP_URL') }}/assets/backend/img/khaosat/phieu4.png" alt=""
                                     style="height: 50%;">
                                 <div class="row">
                                     <div class="col-8">
