@@ -17,23 +17,21 @@
     .col a {
         padding: 0;
     }
-    .list-icon {
-        border: 1px solid #e4e4e4;
-        border-radius: 32px;
-        width: 50%;
-    }
     .icon-news{
         font-size: 24px;
-        color: #999;
+        color: #000;
         display: flex;
         justify-content: center;
-        padding: 16px;
+        padding: 12px 12px;
         transition: .3s;
+        border-radius: 10px;
+        border: 2px solid #000;
+        margin-bottom: 8px;
     }
     .icon-news:hover {
-        color: #000;
+        background: #000;
         cursor: pointer;
-        transform: scale(1.2);
+        color: #fff
     }
     .item-news--detail image{
         text-align: center;
@@ -101,14 +99,17 @@
                             </div>
                             <div class="col-xl-3"></div>
                         </div> --}}
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-8"><div class="sharethis-inline-share-buttons"></div></div>
+                            <div class="col-3"></div>
+                        </div>
                         <div class="item-body row">
                             <div class="col-xl-1" style="margin-top: 16px;display:flex;justify-content:center;height:10%;">
                                 <div class="list-icon">
-                                    <div class="col"><a href="#comment" style="text-decoration: none;"><i class='bx bx-message-dots icon-news' style="border-bottom : 1px solid #dfdfdf;"></i></a></div>
-                                    <div class="col"><i class='bx bx-link icon-news'></i></div>
-                                    <div class="col"><i class='bx bxl-facebook icon-news'></i></div>
-                                    <div class="col"><i class='bx bxl-messenger icon-news'></i></div>
-                                    <div class="col"><i class='bx bxl-instagram icon-news' ></i></div>
+                                    <div class="col"><a href="#comment" style="text-decoration: none;"><i class='bx bx-message-dots icon-news'></i></a></div>
+                                    <div class="col" id="copyURL"><i class='bx bx-link icon-news'></i></div>
+                                    <div class="col"><i class='bx bx-printer icon-news'></i></div>
                                 </div>
                             </div>
                             <div class="col-xl-8">

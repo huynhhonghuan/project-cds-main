@@ -10,6 +10,10 @@
     --lines-to-show-3 : 3;
     --lines-to-show-2 : 2;
 }
+
+body::-webkit-scrollbar { width: 14px;}
+body::-webkit-scrollbar-thumb {background-image: linear-gradient(to bottom, #ffa400,  rgb(10, 216, 10));border-radius: 100rem;}
+
 /*start navigation*/
 
 .header_area .main-menu .navbar-nav .dropdown:hover > .dropdown-menu{
@@ -471,9 +475,111 @@ ul {
 }
 .video-tt-href:hover {
     color: #009688;
-    
 }
 
+/* Trang Tin Chuyển đổi số */
+.cdsTitle h2{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 2px 2px #009688;
+}
+
+.list-md {
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    margin-top: 32px;
+}
+.list-md li {
+    position: relative;
+    cursor: pointer;
+}
+.list-md li:hover .md-content-1,
+.list-md li:hover .md-content-2,
+.list-md li:hover .md-content-3,
+.list-md li:hover .md-content-4,
+.list-md li:hover .md-content-5,
+.list-md li:hover .md-content-6 {
+    bottom: 75px;
+    opacity: 1;
+}
+.md-content-1,
+.md-content-2,
+.md-content-3,
+.md-content-4,
+.md-content-5,
+.md-content-6 {
+    width: 500px;
+    padding: 24px;
+    border: 2px solid #009688;
+    border-radius: 8px;
+    opacity: 0;
+    transition: all .4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.md-content-1 {
+    position: absolute;
+    bottom: 30px;
+    left: 130%;
+}
+.md-content-2 {
+    position: absolute;
+    bottom: 30px;
+    left: 30%;
+}
+.md-content-3 {
+    position: absolute;
+    bottom: 30px;
+    left: -170%;
+    width: 800px;
+}
+.md-content-4 {
+    position: absolute;
+    bottom: 30px;
+    right: -175%;
+    width: 800px;
+}
+.md-content-5 {
+    position: absolute;
+    bottom: 30px;
+    right: -145%;
+    width: 1000px;
+}
+.md-content-6 {
+    position: absolute;
+    bottom: 30px;
+    left: -535%;
+    width: 1000px;
+}
+
+.md-content-head {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 8px;
+}
+.md-content-body {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: justify;
+}
+.list-md li span{
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 32px;
+    margin: 0 8px;
+    border: 2px solid #009688;
+    color: #000;
+    border-radius: 100px;
+    transition: .3s;
+}
+.list-md li span:hover {
+    color: #fff;
+    background-color: #009688;
+}
 /* Mobile : Width < 740px */
 @media only screen and (max-width: 46.1875em) {
     .list-unstyled li span {

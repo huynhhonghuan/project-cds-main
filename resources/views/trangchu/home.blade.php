@@ -53,15 +53,15 @@
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg)">
+        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
             <div class="container">
                 <div class="news">
-                    <h2 class="news-heading row">Tin Tức Nổi Bật</h2>
+                    <h2 class="news-heading row"  data-aos="fade-up">Tin Tức Nổi Bật</h2>
                     <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-3">
                         @foreach($tinmoi as $news)
                         <div class="col">
-                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
-                                <div class="item-news col" style="margin:10px">
+                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;"  data-aos-duration="1500" data-aos="fade-up">
+                                <div class="item-news col"  style="margin:10px">
                                     <div class="item-img">
                                         <img src="{{ asset('../assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                     </div>
@@ -99,7 +99,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="row news-footer">
+                    <div class="row news-footer" data-aos="zoom-in">
                         <a href="{{route('AllTin')}}" style="--clr: #009688">
                             <span>Xem tất cả</span>
                             <i></i>
