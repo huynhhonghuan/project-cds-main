@@ -394,6 +394,9 @@
                     "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                     "search": "Tìm kiếm:",
                 }
+                //         language: {
+                //     url: "//cdn.datatables.net/plug-ins/1.10.13/i18n/Vietnamese.json"
+                // }
             })
         });
     </script>

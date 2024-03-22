@@ -58,7 +58,7 @@
                         </span> <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         @foreach (Auth::user()->getdoanhnghiep->getkhaosat as $key => $item)
-                            @if ($item->get != null)
+                            @if ($item != null)
                                 <li><a href="{{ route('doanhnghiep.danhgia.xem', ['id' => $item->id]) }}">
                                         Đánh giá của khảo sát lần
                                         {{ $key + 1 }}</a></li>

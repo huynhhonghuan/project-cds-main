@@ -20,100 +20,46 @@
                             <div class="activity">
                                 <div class="activity-box">
                                     <ul class="activity-list">
-                                        <li class="activity-list_li">
-                                            <div class="activity-user">
-                                                <a href="profile.html" title="" data-toggle="tooltip" class="avatar"
-                                                    data-original-title="Lesley Grauer"> <img alt="Lesley Grauer"
-                                                        src="assets/img/profiles/avatar-01.jpg"
-                                                        class="img-fluid rounded-circle"> </a>
-                                            </div>
-                                            <div class="activity-content">
-                                                <div class="timeline-content"> <a href="profile.html" class="name">Chuyên
-                                                        gia 1</a> thuộc lĩnh vực <a href="activities.html"
-                                                        class="text-success">Nông nghiệp</a> <span class="time">4 mins
-                                                        ago</span>
+                                        @foreach ($danhsach->getdanhgia as $item)
+                                            <li class="activity-list_li">
+                                                <div class="activity-user">
+                                                    <a href="profile.html" title="" data-toggle="tooltip"
+                                                        class="avatar" data-original-title="Lesley Grauer"> <img
+                                                            alt="Lesley Grauer" src="assets/img/profiles/avatar-01.jpg"
+                                                            class="img-fluid rounded-circle"> </a>
                                                 </div>
-                                                <div class="mt-1">
-                                                    <p><span class="text-info">Đánh giá: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
-                                                    <p><span class="text-info">Đề xuất: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
+                                                <div class="activity-content">
+                                                    <div class="timeline-content"> <a href="profile.html"
+                                                            class="name">{{ $item->getchuyengia->tenchuyengia }}</a> thuộc
+                                                        lĩnh vực
+                                                        <a href="#"
+                                                            class="text-success">{{ $item->getchuyengia->getlinhvuc->tenlinhvuc }}</a>
+                                                        <span class="time">
+                                                            @if ($item->updated_at->diffInMinutes(date('Y-m-d H:i:s')) <= 60)
+                                                                $item->updated_at->diffInMinutes(date('Y-m-d H:i:s')) phút
+                                                                trước
+                                                            @elseif(
+                                                                $item->updated_at->diffInHours(date('Y-m-d H:i:s')) >= 1 &&
+                                                                    $item->updated_at->diffInHours(date('Y-m-d H:i:s')) <= 24)
+                                                                $item->updated_at->diffInHours(date('Y-m-d H:i:s')) giờ
+                                                                trước
+                                                            @else
+                                                                $item->updated_at
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                    <div class="mt-1">
+                                                        <p><span class="text-info">Đánh giá: </span>
+                                                            {{ $item->danhgia }}
+                                                        </p>
+                                                        <p><span class="text-info">Đề xuất: </span>
+                                                            {{ $item->dexuat }}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            {{-- <a class="activity-delete" href="" title="Delete">Thông&nbsp;tin</a> --}}
-                                        </li>
-                                        <li class="activity-list_li">
-                                            <div class="activity-user">
-                                                <a href="profile.html" title="" data-toggle="tooltip" class="avatar"
-                                                    data-original-title="Lesley Grauer"> <img alt="Lesley Grauer"
-                                                        src="assets/img/profiles/avatar-01.jpg"
-                                                        class="img-fluid rounded-circle"> </a>
-                                            </div>
-                                            <div class="activity-content">
-                                                <div class="timeline-content"> <a href="profile.html" class="name">Chuyên
-                                                        gia 2</a> thuộc lĩnh vực <a href="activities.html"
-                                                        class="text-success">Nông nghiệp</a> <span class="time">10 mins
-                                                        ago</span>
-                                                </div>
-                                                <div class="mt-1">
-                                                    <p><span class="text-info">Đánh giá: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
-                                                    <p><span class="text-info">Đề xuất: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="activity-list_li">
-                                            <div class="activity-user">
-                                                <a href="profile.html" title="" data-toggle="tooltip" class="avatar"
-                                                    data-original-title="Lesley Grauer"> <img alt="Lesley Grauer"
-                                                        src="assets/img/profiles/avatar-01.jpg"
-                                                        class="img-fluid rounded-circle"> </a>
-                                            </div>
-                                            <div class="activity-content">
-                                                <div class="timeline-content"> <a href="profile.html" class="name">Chuyên
-                                                        gia 3</a> thuộc lĩnh vực <a href="activities.html"
-                                                        class="text-success">Nông nghiệp</a> <span class="time">14 mins
-                                                        ago</span>
-                                                </div>
-                                                <div class="mt-1">
-                                                    <p><span class="text-info">Đánh giá: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
-                                                    <p><span class="text-info">Đề xuất: </span>
-                                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-                                                        minus? Quisquam iure quae dicta nobis vel ratione accusamus alias
-                                                        similique reprehenderit laboriosam porro doloribus, deserunt
-                                                        voluptatum.
-                                                        Hic sequi ipsam quia.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                                {{-- <a class="activity-delete" href="" title="Delete">Thông&nbsp;tin</a> --}}
+                                            </li>
+                                        @endforeach
 
                                     </ul>
                                 </div>

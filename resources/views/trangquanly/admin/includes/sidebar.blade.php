@@ -11,10 +11,10 @@
                         <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{ route('admin.khaosat.danhsach') }}"> Danh sách khảo sát tổng</a></li>
-                        <li><a href=""> Khảo sát - nông nghiệp</a></li>
+                        {{-- <li><a href=""> Khảo sát - nông nghiệp</a></li>
                         <li><a href=""> Khảo sát - công nghiệp</a></li>
                         <li><a href=""> Khảo sát - thương mại và dịch vụ</a></li>
-                        <li><a href=""> Khảo sát - khác</a></li>
+                        <li><a href=""> Khảo sát - khác</a></li> --}}
                     </ul>
                 </li>
 

@@ -1,8 +1,8 @@
-{{--nhúng tất cả các header--}}
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+{{-- nhúng tất cả các header --}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
- <title>Chuyển đổi số</title>
+<title>Chuyển đổi số</title>
 
  <!-- Hình ảnh logo con trên tab-->
  <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo-1.png">
@@ -33,4 +33,4 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0" nonce="18q7swbU"></script>
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65fc074295cfbf00121e87cd&product=inline-share-buttons&source=platform" async="async"></script>
 
- @yield('head'){{--nhúng động head từ bên form kế thừa--}}
+@yield('head'){{-- nhúng động head từ bên form kế thừa --}}
