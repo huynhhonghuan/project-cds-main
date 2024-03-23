@@ -69,9 +69,6 @@ Route::get('/', function () {
     return view('trangchu.home');
 })->name('home');
 
-Route::get('/home', function () {
-    return view('trangchu.home');
-})->name('home');
 
 //Đăng kí Auth
 Auth::routes();

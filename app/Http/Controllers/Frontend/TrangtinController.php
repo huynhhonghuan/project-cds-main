@@ -21,7 +21,7 @@ class TrangtinController extends Controller
 
     public function Index(Request $request)
     {
-        $slides = Slide::all();
+        $slides = DB::table('slides')->paginate(3);
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
@@ -44,7 +44,7 @@ class TrangtinController extends Controller
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'nn')
-                ->paginate(3);
+                ->paginate(50);
             $laybanner = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
@@ -64,7 +64,7 @@ class TrangtinController extends Controller
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'cn')
-                ->paginate(3);
+                ->paginate(50);
             $laybanner = DB::table('tintuc')
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
@@ -84,7 +84,7 @@ class TrangtinController extends Controller
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'tmdv')
-                ->paginate(3);
+                ->paginate(50);
             $laybanner = DB::table('tintuc')
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
