@@ -5,8 +5,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use function App\Helpers\create_image_uri;
-
 class UserResource extends JsonResource
 {
     /**
@@ -20,7 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'image' => create_image_uri('hoso', $this->image),
+            'image' => $this->image ? env('APP_IMAGE_URL') . 'assets/backend/img/hoso/' . $this->image . '?' . rand(0, 99999) : "",
             'status' => $this->status,
         ];
     }

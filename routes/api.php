@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\BinhLuanController;
 use App\Http\Controllers\Api\ChuyenGiaController;
-use App\Http\Controllers\Api\DanhGiaController;
 use App\Http\Controllers\Api\DoanhNghiepController;
 use App\Http\Controllers\Api\HiepHoiDoanhNghiepController;
 use App\Http\Controllers\Api\HoiDapController;
@@ -30,6 +29,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
 Route::apiResource("chuyengia", ChuyenGiaController::class);
 Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
@@ -37,12 +38,18 @@ Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);
 
 Route::group(['prefix' => 'tintuc'], function () {
-    Route::get('', [TinTucController::class, 'index']);
+    Route::get('index', [TinTucController::class, 'index']);
     Route::get('detail', [TinTucController::class, 'show']);
     Route::get('slide', [TinTucController::class, 'slide']);
     Route::get('video', [TinTucController::class, 'video']);
 });
 
+Route::group(['prefix' => 'thongke'], function () {
+    Route::get('mucdo', [ThongKeController::class, 'mucdo']);
+});
+
+
+// Private routes
 Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::post('register', [DoanhNghiepController::class, 'register']);
     Route::post("login", [DoanhNghiepController::class, 'login']);
@@ -51,7 +58,6 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     // Authenticated routes
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('profile', [DoanhNghiepController::class, 'profile']);
-        Route::post('avatar', [DoanhNghiepController::class, 'avatar']);
         Route::post('changepassword', [DoanhNghiepController::class, 'changepassword']);
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
     });
@@ -72,9 +78,7 @@ Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () 
     Route::get('', [KhaoSatController::class, 'index']);
 });
 
-Route::group(['prefix' => 'thongke', 'middleware' => ['auth:api']], function () {
-    Route::get('mucdo', [ThongKeController::class, 'mucdo']);
-});
+
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);

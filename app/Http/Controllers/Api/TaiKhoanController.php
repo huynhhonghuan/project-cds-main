@@ -7,8 +7,6 @@ use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-use function App\Helpers\upload_image;
-
 class TaiKhoanController extends Controller
 {
     // Lấy thông tin tài khoản
@@ -42,7 +40,11 @@ class TaiKhoanController extends Controller
         ]);
         $user = auth()->user();
 
-        $user->image = upload_image($request->file('avatar'), 'avatar-' . $user->id, 'hoso');
+        $file = $request->file('avatar');
+        $path = 'assets/backend/img/hoso';
+        $saveFileName = 'avatar-' . $file->getClientOriginalExtension();
+        $file->move($path, $saveFileName);
+        $user->image = $saveFileName;
         $user->save();
         return response()->json(['success' => 'Lưu ảnh thành công']);
     }

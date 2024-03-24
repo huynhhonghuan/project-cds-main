@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Prompts\Output\ConsoleOutput;
+use Psy\Readline\Hoa\Console;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DoanhNghiepController extends Controller
@@ -141,6 +142,11 @@ class DoanhNghiepController extends Controller
         return response()->json(['success' => 'success'], 200);
     }
 
+    private function log($message)
+    {
+        $output = new \Symfony\Component\Console\Output\ConsoleOutput();
+        $output->writeln("<info>" . $message . "</info>");
+    }
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -149,7 +155,7 @@ class DoanhNghiepController extends Controller
         ]);
 
         if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Sai mật khẩu'], 401);
         }
 
         $user = auth()->user();
@@ -170,7 +176,7 @@ class DoanhNghiepController extends Controller
         $user = User::where('email', $request->email)->first();
         if (!$user) return response()->json(['error' => 'Không tìm thấy user'], 404);
         if (!$token = auth('api')->login($user)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Sai mật khẩu'], 401);
         }
 
         if ($user->status != "Active") {

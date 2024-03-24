@@ -14,6 +14,7 @@ class Binhluan extends Model
         'id',
         'user_id',
         'tintuc_id',
+        'ten',
         'noidung',
         'ngaydang',
         'binhluan_id',
