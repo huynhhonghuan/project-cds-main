@@ -19,7 +19,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Lĩnh vực</label>
-                                    <select class="form-control @error('linhvuc') is-invalid @enderror" id="sel1"
+                                    <select class="form-co  ntrol @error('linhvuc') is-invalid @enderror" id="sel1"
                                         name="linhvuc_id">
                                         <option selected disabled> --Chọn-- </option>
                                         @foreach ($linhvuc as $value)

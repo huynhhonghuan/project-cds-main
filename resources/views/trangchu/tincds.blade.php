@@ -1,58 +1,109 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
-    @foreach($mucdo as $md)
-    @endforeach
+    <style>
+        .carousel-indicators img {
+            width: 80px;
+            display: block;
+        }
+        .carousel-indicators button {
+            width: max-content!important;
+        }
+        .carousel-indicators button.active img {
+            border: 2px solid red;
+        }
+        .carousel-indicators {
+            position: unset;
+        }
+        .item-news {
+            position: relative;
+            display: block;
+        }
+        .item-news:hover span {
+            opacity: 1;
+            bottom: 10%;
+        }
+        .item-news span {
+            position: absolute;
+            font-weight: 600;
+            font-size: 20px;
+            color: #fff;
+            bottom: 0;
+            left: 10%;
+            opacity: 0;
+            transition: all .5s ease-in-out;
+        }
+    </style>
     <div id="id" style="margin-top: 200px;margin-bottom: 132px;">
         <div class="container">
-            <div class="row cdsTitle">
-                <h2>Các mức độ chuyển đổi số</h2>
+            <div class="container">
+                <div class="carousel slide carousel-fade" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
+                    <div class="row">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\Muc0.png" alt="" class="w-100">
+                            </div>
+                            <div class="carousel-item"  data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\Muc1.png" alt="" class="w-100">
+                            </div>
+                            <div class="carousel-item"  data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\3.png" alt="" class="w-100">
+                            </div>
+                            <div class="carousel-item"  data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\4.png" alt="" class="w-100">
+                            </div>
+                            <div class="carousel-item"  data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\5.png" alt="" class="w-100">
+                            </div>
+                            <div class="carousel-item"  data-bs-interval="1800">
+                                <img style="height: 400px" src="assets\frontend\img\trangtin\6.png" alt="" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="cdsTitle">
+                                <h2>Các mức độ chuyển đổi số :</h2>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="0" class="active">
+                                    <img title="Mức 0" src="assets\frontend\img\trangtin\Muc0.png" alt="" class="">
+                                </button>
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="1">
+                                    <img title="Mức 1" src="assets\frontend\img\trangtin\Muc1.png" alt="" class="">
+                                </button>
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="2">
+                                    <img title="Mức 2" src="assets\frontend\img\trangtin\3.png" alt="" class="">
+                                </button>
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="3">
+                                    <img title="Mức 3" src="assets\frontend\img\trangtin\4.png" alt="" class="">
+                                </button>
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="4">
+                                    <img title="Mức 4" src="assets\frontend\img\trangtin\5.png" alt="" class="">
+                                </button>
+                                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="5">
+                                    <img title="Mức 5" src="assets\frontend\img\trangtin\6.png" alt="" class="">
+                                </button>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row" style="padding-top: 200px">
-                <ul class="list-md">
-                    <li>  
-                        <div class="md-content-1">
-                            <div class="md-content-head">Mức 0 : Chưa chuyển đổi số</div>
-                            <div class="md-content-body">Doanh nghiệp chưa có hoạt động nào, hoặc có nhưng không đáng kể các hoạt động chuyển đổi số.</div>
+        </div>
+        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
+            <div class="container">
+                <h2 class="news-heading row">Các Mô Hình Chuyển Đổi Số</h2>
+                <div class="row row-xl-4">
+                    @foreach($mohinh as $mh)
+                        <div class="item-news col"  style="margin:10px">
+                            <img src="{{ asset('../assets/frontend/img/trangtin/'.$mh->hinhanh) }}" alt="" style="height: 280px; width: 220px">
+                            <span style="width: 200px; z-index:100">{{$mh->tenmohinh}}</span>
+                            <div class="content"></div>
                         </div>
-                        <span>Mức 0</span>
-                    </li>
-                    <li>
-                        <div class="md-content-2">
-                            <div class="md-content-head">Mức 1 : Khởi động</div>
-                            <div class="md-content-body">Doanh nghiệp đã bắt đầu có một số hoạt động nhỏ trong quá trình chuyển đổi số.</div>
-                        </div>
-                        <span>Mức 1</span>
-                    </li>
-                    <li>
-                        <div class="md-content-3">
-                            <div class="md-content-head">Mức 2 : Bắt Đầu</div>
-                            <div class="md-content-body">Doanh nghiệp nhận thức được tầm quan trọng của chuyển đổi số, bắt đầu có những hoạt động chuyển đổi số doanh nghiệp. Theo đó, những hoạt động này cũng bắt đầu mang lại lợi ích trong hoạt động của doanh nghiệp cũng như trải nghiệm khách hàng.</div>
-                        </div>
-                        <span>Mức 2</span>
-                    </li>
-                    <li>
-                        <div class="md-content-4">
-                            <div class="md-content-head">Mức 3 : Hình Thành</div>
-                            <div class="md-content-body">Các hoạt động chuyển đổi số trong doanh nghiệp đã cơ bản hình thành theo các trụ cột ở các bộ phận, mang lại lợi ích và hiệu quả thiết thực cho doanh nghiệp cũng như trải nghiệm của khách hàng. Khi đạt được mức này là đang bắt đầu hình thành doanh nghiệp số.</div>
-                        </div>
-                        <span>Mức 3</span>
-                    </li>
-                    <li>
-                        <div class="md-content-5">
-                            <div class="md-content-head">Mức 4 : Nâng Cao</div>
-                            <div class="md-content-body">Ở mức này, quá trình chuyển đổi số của doanh nghiệp đã được nâng cao thêm một bước. Các nền tảng, công nghệ, dữ liệu số giúp tối ưu hiệu quả hoạt động sản xuất kinh doanh của doanh nghiệp và trải nghiệm khách hàng. Đạt được mức này, doanh nghiệp đã trở thành doanh nghiệp số với mô thức chính dựa trên nền tảng, dữ liệu số.</div>
-                        </div>
-                        <span>Mức 4</span>
-                    </li>
-                    <li>
-                        <div class="md-content-6">
-                            <div class="md-content-head">Mức 5 : Dẫn Dắt</div>
-                            <div class="md-content-body">Chuyển đổi số doanh nghiệp đã sắp hoàn thiện, doanh nghiệp thực sự đã trở thành doanh nghiệp số với hầu hết các phương thức, mô hình kinh doanh chủ yếu dựa trên nền tảng, dữ liệu số. Doanh nghiệp ở mức này có khả năng dẫn dắt, tạo lập hệ sinh thái doanh nghiệp số vệ tinh.</div>
-                        </div>
-                        <span>Mức 5</span>
-                    </li>
-                </ul>
-            </div>
+                    @endforeach
+                </div>
+            </div>  
         </div>
     </div>
 @endsection

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mucdo;
+use App\Models\Mohinh;
 
 
 class ThongtinCDSController extends Controller
@@ -21,8 +22,9 @@ class ThongtinCDSController extends Controller
     public function Index(Request $request)
     {
         $mucdo = Mucdo::all();
+        $mohinh = Mohinh::all();
 
-        return view('trangchu.tincds', compact('mucdo'));
+        return view('trangchu.tincds', compact('mucdo', 'mohinh'));
     }
 
 }
