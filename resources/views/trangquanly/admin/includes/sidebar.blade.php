@@ -114,11 +114,14 @@
                 <li><a href="{{ route('admin.banner.danhsach') }}"><i class='bx bxs-carousel'></i>
                     <span>Quản lý banner</span></a> 
                 </li>
-                <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class='bx bxs-videos'></i>
+                <li><a href="{{ route('admin.video.danhsach') }}"><i class='bx bxs-videos'></i>
                     <span>Quản lý video</span></a> 
                 </li>
                 <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class='bx bx-message-square-dots'></i>
                     <span>Quản lý Bình luận</span></a> 
+                </li>
+                <li><a href="{{ route('admin.thuvien.danhsach') }}"><i class='bx bx-library'></i>
+                    <span>Quản lý Thư Viện</span></a> 
                 </li>
 
                 {{-- <li class="submenu"> <a href="#"><i class="fa-regular fa-newspaper"></i> <span> Tin tức </span>

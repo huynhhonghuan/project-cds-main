@@ -57,6 +57,7 @@ return array(
     'App\\Http\\Controllers\\Frontend\\BannerController' => $baseDir . '/app/Http/Controllers/Frontend/BannerController.php',
     'App\\Http\\Controllers\\Frontend\\ThongtinCDSController' => $baseDir . '/app/Http/Controllers/Frontend/ThongtinCDSController.php',
     'App\\Http\\Controllers\\Frontend\\TrangtinController' => $baseDir . '/app/Http/Controllers/Frontend/TrangtinController.php',
+    'App\\Http\\Controllers\\Frontend\\VideoController' => $baseDir . '/app/Http/Controllers/Frontend/VideoController.php',
     'App\\Http\\Controllers\\Hiephoidoanhnghiep\\HiephoidoanhnghiepController' => $baseDir . '/app/Http/Controllers/Hiephoidoanhnghiep/HiephoidoanhnghiepController.php',
     'App\\Http\\Controllers\\Hiephoidoanhnghiep\\Taikhoan\\TaikhoanController' => $baseDir . '/app/Http/Controllers/Hiephoidoanhnghiep/Taikhoan/TaikhoanController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

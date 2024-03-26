@@ -32,6 +32,13 @@
             opacity: 0;
             transition: all .5s ease-in-out;
         }
+        .item-news img {
+            height: 220px; 
+            width: 220px;
+        }
+        .item-news--img:nth-child(21) {
+            width: 100%;
+        }
     </style>
     <div id="id" style="margin-top: 200px;margin-bottom: 132px;">
         <div class="container">
@@ -91,19 +98,19 @@
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
+        {{-- <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
             <div class="container">
                 <h2 class="news-heading row">Các Mô Hình Chuyển Đổi Số</h2>
                 <div class="row row-xl-4">
                     @foreach($mohinh as $mh)
-                        <div class="item-news col"  style="margin:10px">
-                            <img src="{{ asset('../assets/frontend/img/trangtin/'.$mh->hinhanh) }}" alt="" style="height: 280px; width: 220px">
+                        <div class="item-news col" style="margin:10px">
+                            <img class="item-news--img" src="{{ asset('../assets/frontend/img/trangtin/'.$mh->hinhanh) }}" alt="">
                             <span style="width: 200px; z-index:100">{{$mh->tenmohinh}}</span>
                             <div class="content"></div>
                         </div>
                     @endforeach
                 </div>
             </div>  
-        </div>
+        </div> --}}
     </div>
 @endsection

@@ -46,6 +46,9 @@ use Livewire\Livewire;
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
+use App\Http\Controllers\Frontend\VideoController;
+use App\Http\Controllers\Frontend\ThuvienController;
+use App\Models\Thuvien;
 
 function set_active($route)
 {
@@ -143,6 +146,28 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [BannerController::class, 'postxoa'])->name('xoa');
         Route::get('duyet/{id}', [BannerController::class, 'getduyet'])->name('duyet');
     });
+    //------------------------------------- Video ----------------------------------------------//
+    Route::group(['prefix' => 'video', 'as' => 'video.'], function () {
+        Route::get('danhsach', [VideoController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [VideoController::class, 'getthem'])->name('them');
+        Route::post('them', [VideoController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [VideoController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [VideoController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [VideoController::class, 'getduyet'])->name('duyet');
+    });
+    //------------------------------------- Thư Viện ----------------------------------------------//
+    Route::group(['prefix' => 'thuvien', 'as' => 'thuvien.'], function () {
+        Route::get('danhsach', [ThuvienController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [ThuvienController::class, 'getthem'])->name('them');
+        Route::post('them', [ThuvienController::class, 'postthem'])->name('them');
+        // Route::get('sua/{id}', [VideoController::class, 'getsua'])->name('sua');
+        // Route::post('sua/{id}', [VideoController::class, 'postsua'])->name('sua');
+        // Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
+        Route::get('/download/{file}', [ThuvienController::class, 'download']);
+    });
+
+
     //------------------------------------------------------------------------------------------//
     //-------------------------------------Tài khoản--------------------------------------------//
     Route::group(['prefix' => 'taikhoan', 'as' => 'taikhoan.'], function () {
@@ -345,6 +370,7 @@ Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name(
 Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
+Route::get('/thuvien', [TrangtinController::class, 'thuvien'])->name('Thuvien');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 // Tìm kiếm
 Route::get('/search', [TrangtinController::class, 'search'])->name('search');
@@ -353,3 +379,7 @@ Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhlua
 
 //Giao diện trang tin chuyển đổi số
 Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
+//Giao diện thư viện
+Route::get('/thuvien/{phanloai}', [ThuvienController::class, 'getloaithuvien'])->name('thuvien1');
+
+

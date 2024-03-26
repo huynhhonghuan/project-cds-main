@@ -53,39 +53,36 @@
                 </div>
             </div>
         </div>
-        <div class="news-background" style="background-image: url(image/AnhNen/hinh-nen-mau-den_1.jpg); margin-top:32px">
+        <div class="news-background" style="background:rgb(237, 246, 253)">
             <div class="container">
                 <div class="news">
-                    <h2 class="news-heading row"  data-aos="fade-up">Tin Tức Nổi Bật</h2>
-                    <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-3">
+                    <span class="news-heading" data-aos="fade-up" style="padding : 32px 0;padding-top: 48px">
+                        <span class="news-heading-f">Tin Tức</span>
+                        <span class="news-heading-l">Nổi Bật</span>
+                    </span>
+                    <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-4">
                         @foreach($tinmoi as $news)
                         <div class="col">
                             <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;"  data-aos-duration="1500" data-aos="fade-up">
-                                <div class="item-news col"  style="margin:10px">
+                                <div class="item-news col">
                                     <div class="item-img">
                                         <img src="{{ asset('../assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                     </div>
-                                    <div class="item-header" style="display:flex;justify-content:space-between">
-                                        <div class="item-date">
-                                            <i class="fa-solid fa-calendar-days"></i>
-                                            {{$news->updated_at}}
-                                        </div>
-                                        <div class="item-field-all" style="padding-top: 10px;padding-right:10px">
-                                            {{-- <span>{{$news->tenlinhvuc}}</span> --}}
+                                    <div class="item-header">
+                                        <div class="item-field-all" style="padding-top: 4px">
                                             @if($news->tenlinhvuc == 'Nông nghiệp') 
-                                                <span style="background-color: green;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Nông Nghiệp</span>
+                                                <span style="background-color: green;padding:4px 6px;border-radius:10px;color:#fff;font-weight:600;font-size:14px">Nông Nghiệp</span>
                                             @elseif($news->tenlinhvuc == 'Công nghiệp') 
-                                                <span style="background-color: blue;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Công Nghiệp</span>
+                                                <span style="background-color: blue;padding:4px 6px;border-radius:10px;color:#fff;font-weight:600;font-size:14px">Công Nghiệp</span>
                                             @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ') 
-                                                <span style="background-color: yellow;padding:4px 16px;border-radius:10px;font-weight:600">Thương mại - Dịch vụ</span>
+                                                <span style="background-color: yellow;padding:4px 6px;border-radius:10px;font-weight:600;font-size:14px">Thương mại - Dịch vụ</span>
                                             @elseif($news->tenlinhvuc == 'Khác') 
-                                                <span style="background-color: rgb(9, 153, 243);padding:4px 16px;border-radius:10px;font-weight:600">Chuyển đổi số</span>
+                                                <span style="background-color: rgb(9, 153, 243);padding:4px 6px;border-radius:10px;font-weight:600;font-size:14px">Chuyển đổi số</span>
                                             @endif    
                                         </div>
                                     </div>
                                     <div class="item-content">
                                         <div class="item-content--main">{{$news->tieude}}</div>
-                                        <div class="item-content--sub">{!!$news->tomtat!!}</div>
                                     </div>
                                     <div class="item-footer">
                                         <div class="item-view">
@@ -93,7 +90,7 @@
                                         </div>
                                         <div class="item-detail">
                                             Xem chi tiết
-                                            <i class='bx bx-chevron-right'></i>
+                                            <i class='bx bx-chevron-right' style="font-size: 20px"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -101,8 +98,8 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="row news-footer" data-aos="zoom-in">
-                        <a href="{{route('AllTin')}}" style="--clr: #009688">
+                    <div class="row news-footer">
+                        <a href="{{route('AllTin')}}" style="--clr: #080463">
                             <span>Xem tất cả</span>
                             <i></i>
                         </a>
@@ -110,14 +107,17 @@
                 </div>
             </div>
         </div>
-        <div class="video-content" style="margin-top: 24px">
+        <div class="video-content" style="margin-top: 32px">
             <div class="container">
-                <h2 class="news-heading row" style="color: black">Video Nổi Bật</h2>
-                <div class="row row-cols-3 row-cols-md-1">
+                <span class="news-heading"  data-aos="fade-up" style="margin:16px 0">
+                    <span class="news-heading-f">Video</span>
+                    <span class="news-heading-l">Chuyển đổi số</span>
+                </span>
+                <div class="row row-cols-xl-4" style="margin-top: 32px"  data-aos="fade-up">
                     @foreach($videos as $vd)
-                    <div class="col-xl-4" style="text-align: center">
+                    <div class="col-xl" style="text-align: center">
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe width="415" height="200" src="{{$vd->file}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe height="200" src="{{$vd->file}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                         <a class="video-tt-href" href="" style="text-decoration: none;">
                             <div class="video-title" style="font-size: 18px; margin-bottom: 12px;">{{$vd->tieude}}</div>
