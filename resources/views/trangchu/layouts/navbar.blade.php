@@ -69,10 +69,14 @@
                             </a>
                         </li>
                         <li class="nav-item mx-1">
-                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button"
+                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Thư Viện
                             </a>
+                            <ul id="submenu">
+                                <li style="list-style:none"><a href="{{ URL::to('/thuvien/1') }}" style="text-decoration: none">Văn bản địa phương</a></li>
+                                <li style="list-style:none"><a href="{{ URL::to('/thuvien/0') }}" style="text-decoration: none">Văn bản Trung ương</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
@@ -88,7 +92,7 @@
                         </li>
                         <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">
                             <input class="form-control me-2" name="query" type="search" placeholder="Tìm kiếm..." aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                     </ul>
                 </div>

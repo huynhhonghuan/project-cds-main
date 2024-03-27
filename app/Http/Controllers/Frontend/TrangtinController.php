@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Slide;
 use App\Models\Tintuc;
 use App\Models\Video;
+use App\Models\Thuvien;
 
 class TrangtinController extends Controller
 {
@@ -26,8 +27,8 @@ class TrangtinController extends Controller
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
             ->orderBy('created_at', 'desc')
-            ->paginate(3); 
-        $videos = DB::table('videos')->paginate(6);    
+            ->paginate(4); 
+        $videos = DB::table('videos')->paginate(4);    
         return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));
     }
     public function AllTin(Request $request) {
@@ -121,6 +122,10 @@ class TrangtinController extends Controller
         $AllVideo = Video::all(); 
         return view('trangchu.video', compact('AllVideo'));
     }
+    public function thuvien(Request $request) {
+        $thuviens = Thuvien::all(); 
+        return view('trangchu.thuvien', compact('thuviens'));
+    }
 
     public function search() {
         $searchText = $_GET['query'];
@@ -144,8 +149,11 @@ class TrangtinController extends Controller
             $cmt['user_id'] = 5;
         elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
             $cmt['user_id'] = 2;
+        else
+            $cmt['user_id'] = 3;
         $cmt['tintuc_id'] = $input['IdNews'];
         $cmt['ngaydang'] = date('Y-m-d');
+        $cmt['ten'] = $input['Name'];
         if (DB::table('binhluan')->insert($cmt)) {
             $alert = "đã thêm bình luận";
         } else {

@@ -149,4 +149,13 @@ class User extends Authenticatable  implements JWTSubject
             ],
         );
     }
+    public function Check_Khach(): bool
+    {
+        return in_array(
+            $this->getVaiTro[0]->id,
+            [
+                'kh',
+            ],
+        );
+    }
 }

@@ -1,13 +1,15 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
 <div class="news-background" style="margin-top: 132px;">
-    <div class="image-heading">
-        <img src="image/AnhNen/hinh-nen-mau-den_1.jpg" alt="">
-        <h2 class="news-heading row">Tổng hợp tin tức</h2>
+    <div class="image-heading-tt" style="padding : 32px 0;padding-top: 48px;">
+        <span class="news-heading"style="padding:0 20px;border-left: 10px solid #043359;border-right: 10px solid #043359;">
+            <span class="news-heading-f">Tin Tức</span>
+            <span class="news-heading-l">Nổi Bật</span>
+        </span>
     </div>
     <div class="container">
         <div class="news">
-            <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-4">
                 @foreach($tinmoi as $news)
                 <div class="col">
                     <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;">
@@ -15,11 +17,7 @@
                             <div class="item-img">
                                 <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                             </div>
-                            <div class="item-header" style="display:flex;justify-content:space-between">
-                                <div class="item-date">
-                                    <i class="fa-solid fa-calendar-days"></i>
-                                    {{$news->updated_at}}
-                                </div>
+                            <div class="item-header">
                                 <div class="item-field-all" style="padding-top: 10px;padding-right:10px">
                                     {{-- <span>{{$tinmoi->tenlinhvuc}}</span> --}}
                                     @if($news->tenlinhvuc == 'Nông nghiệp') 
@@ -35,7 +33,6 @@
                             </div>
                             <div class="item-content">
                                 <div class="item-content--main"  title="{{$news->tieude}}">{{$news->tieude}}</div>
-                                <div class="item-content--sub"  title="{!!$news->tomtat!!}">{!!$news->tomtat!!}</div>
                             </div>
                             <div class="item-footer">
                                 <div class="item-view">
@@ -43,7 +40,7 @@
                                 </div>
                                 <div class="item-detail">
                                     Xem chi tiết
-                                    <i class='bx bx-chevron-right'></i>
+                                    <i class='bx bx-chevron-right' style="font-size: 20px"></i>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +49,7 @@
                 @endforeach
             </div>
             <div class="row news-footer">
-                <a href="" style="--clr: #009688">
+                <a href="" style="--clr: #080463">
                     <span>Xem Thêm</span>
                     <i></i>
                 </a>

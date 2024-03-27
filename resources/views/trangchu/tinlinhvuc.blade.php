@@ -44,10 +44,6 @@
                             <div class="item-img">
                                 <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                             </div>
-                            <div class="item-date">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                {{$news->updated_at}}
-                            </div>
                             <div class="item-content">
                                 <div class="item-content--main">{{$news->tieude}}</div>
                                 <div class="item-content--sub">{!!$news->tomtat!!}</div>

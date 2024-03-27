@@ -22,9 +22,9 @@ class VideoController extends Controller
     {
         $videos = Video::all();
   
-        return view('trangquanly.admin.banner.danhsach', compact('videos'))->with('tendanhsach', 'Danh sách Video');
+        return view('trangquanly.admin.video.danhsach', compact('videos'))->with('tendanhsach', 'Danh sách Video');
     }
-    // Thêm banner
+    // Thêm Video
     public function getthem()
     {
         $videos = DB::table('videos')->get();
@@ -35,10 +35,7 @@ class VideoController extends Controller
         //kiểm tra dữ liệu từ form
         $request->validate([
             'tieude' => 'required',
-            'hinhanh' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'file' => 'required',
-            'user_id',
-
         ]);
 
         //nhận tất cả giá trị từ request của form
@@ -46,89 +43,68 @@ class VideoController extends Controller
         //truy xuất để biết quyền của user
         $role = Auth::user()->getVaiTro->first();
         //nếu là admin thì bài báo đã được duyệt
-        if ($role == 'ad') $input['status'] = 1;
-
-        //thêm hình ảnh vào publish theo đường dẫn và sử lý lưu tên hình thay thế bằng năm tháng ngày giờ phút giây
-        if ($image = $request->file('hinhanh')) {
-            $destinationPath = 'assets/frontend/img/slide/';
-            $profileImage = date('YmdHis') . "." .  $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['hinhanh'] = "$profileImage";
+        if ($role == 'ad') {
+            $input['status'] = 1;
         }
+        $input['user_id'] = 1;
+
         //Thêm dữ liệu vào csdl
-        Slide::create($input);
+        Video::create($input);
 
         Toastr::success('Thêm thành công:)', 'Success');
-        return redirect()->route('admin.banner.danhsach');
+        return redirect()->route('admin.video.danhsach');
     }
     //-------------------------------------------------
-    // Sửa Banner
+    // Sửa Video
     public function getsua($id)
     {
         //tìm tin tức theo id
-        $slides = Slide::find($id);
-        return view('trangquanly.admin.banner.sua', compact('slides'));
+        $videos = Video::find($id);
+        return view('trangquanly.admin.video.sua', compact('videos'));
     }
     public function postsua(Request $request, $id)
     {
         //kiểm tra dữ liệu từ form
         $request->validate([
-            'tenbanner' => 'required',
+            'tieude' => 'required',
+            'file' => 'required'
         ]);
 
-        //kiểm tra nếu thêm mới hình ảnh thì lấy ảnh đó
-        if (!empty($request->hinhanh)) {
-            //set up để lưu tên hình ảnh và lưu ảnh đó vào publish theo đường dẫn
-            $image = $request->file('hinhanh');
-            $destinationPath = 'assets/frontend/img/slide/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-
-            //xóa ảnh cũ ra khỏi danh sách ảnh
-            if (!empty($request->hidden_hinhanh))
-                unlink('assets/frontend/img/slide/' . $request->hidden_hinhanh);
-        } else {
-            //lấy tên hình ảnh cũ
-            $profileImage = $request->hidden_hinhanh;
-        }
-
-        $slides = [
-            'hinhanh' => $profileImage,
-            'tenbanner'=> $request->tenbanner
+        $videos = [
+            'tieude'=> $request->tieude,
+            'file'=> $request->file,
         ];
 
-        Slide::where('id', $id)->update($slides);
+        Video::where('id', $id)->update($videos);
 
         Toastr::success('Sửa thành công:)', 'Success');
-        return redirect()->route('admin.banner.danhsach');
+        return redirect()->route('admin.video.danhsach');
     }
-    // Xóa Banner
+    // // Xóa Video
     public function postxoa(Request $request)
     {
         //xóa dữ liệu trong csdl
-        Slide::destroy($request->id);
-        //xóa ảnh khỏi thư mục trangtin trong publish
-        unlink('assets/frontend/img/slide/' . $request->hinhanh);
+        Video::destroy($request->id);
 
-        Toastr::success('Xóa tin tức thành công :)', 'Success');
+        Toastr::success('Xóa video thành công :)', 'Success');
         return redirect()->back();
     }
-    //duyệt bài báo
+    // //duyệt bài báo
     public function getduyet($id)
     {
         //tìm tin tức theo id
-        $slides = Slide::find($id);
+        $videos = Video::find($id);
 
         //nếu 1 thì set = 0 và ngược lại
-        $slides->status == 1 ? $input['duyet'] = 0 : $input['duyet'] = 1;
+        $videos->duyet == 1 ? $input['duyet'] = 0 : $input['duyet'] = 1;
 
-        $slides->status = $input['duyet'];
+        $videos->duyet = $input['duyet'];
 
         //Tintuc::where('id',$id)->update($tintuc);
-        $slides->save();
+        $videos->save();
 
         Toastr::success('Duyệt thành công:)', 'Success');
-        return redirect()->route('admin.banner.danhsach');
+        return redirect()->route('admin.video.danhsach');
     }
 
 }

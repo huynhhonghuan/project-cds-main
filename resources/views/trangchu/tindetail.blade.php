@@ -184,17 +184,22 @@
                                                 <img src="{{ asset('image/BinhLuan/Khach.png') }}" alt="">
                                             </div>
                                             <div class="comment-content" style="max-width:500px;">
-                                                <span class="comment-name" style="font-weight: 700;">
-                                                    @if($cmt->user_id == 1)
-                                                        <span>Quản Trị Viên</span>
-                                                    @elseif($cmt->user_id == 4)
-                                                        <span>Cộng Tác Viên</span>
-                                                    @elseif($cmt->user_id == 5)
-                                                        <span>Doanh Nghiệp</span>
-                                                    @elseif($cmt->user_id == 2)
-                                                        <span>Hiệp Hội Doanh Nghiệp</span>    
-                                                    @endif    
-                                                </span>
+                                                <div class="comment-header" style="display:flex; align-items:center">
+                                                    <span class="comment-name"  style="font-weight: 700; font-size:16px; margin-right:6px">{{$cmt->ten}}</span>
+                                                    <span class="comment-role" style="font-size: 12px; font-weight:500">
+                                                        @if($cmt->user_id == 1)
+                                                            <span style="background: #e2d300; border-radius:4px;padding: 2px 4px">Quản Trị Viên</span>
+                                                        @elseif($cmt->user_id == 4)
+                                                            <span style="background: #02b529; border-radius:4px;padding: 2px 4px">Cộng Tác Viên</span>
+                                                        @elseif($cmt->user_id == 5)
+                                                            <span style="background: #2005ec; border-radius:4px;padding: 2px 4px; color: #fff">Doanh Nghiệp</span>
+                                                        @elseif($cmt->user_id == 2)
+                                                            <span style="background: #04e2ab; border-radius:4px;padding: 2px 4px">Hiệp Hội Doanh Nghiệp</span> 
+                                                        @else 
+                                                            <span style="border: 1px solid #000;padding: 2px 4px">Khách</span> 
+                                                        @endif    
+                                                    </span>
+                                                </div>
                                                 <p style="background: #e7e7e7; border-radius: 8px;padding:6px;margin:4px 0 0">{{ $cmt->noidung }}</p>
                                                 <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $cmt->id }}">Phản
                                                     hồi</a>
@@ -231,7 +236,7 @@
                                                                     @else
                                                                         <input type="text" class="form-control"
                                                                         name="Name" id="contact-name"
-                                                                        placeholder="Nhập họ tên ">
+                                                                        placeholder="Khách">
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -298,20 +303,32 @@
                                     value="{{ $TinTuc->id }}" id="contact-name">
                                 @if (Auth::user()!= null)
                                     @if (Auth::user()->getVaiTro[0]->id == "ad")
-                                        <input type="text" class="form-control" name="user"
+                                        <input type="text" class="form-control" name="role"
                                         id="contact-name" placeholder="Quản Trị Viên" @disabled(true)>
+                                        <input type="text" class="form-control"
+                                        name="Name" id="contact-name"
+                                        placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
                                         <input type="text" class="form-control"
-                                        name="Name" id="contact-name" value="Cộng tác viên"
+                                        name="role" id="contact-name" value="Cộng tác viên"
                                         placeholder="Cộng tác viên" @disabled(true)>
+                                        <input type="text" class="form-control"
+                                        name="Name" id="contact-name"
+                                        placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "dn")
                                         <input type="text" class="form-control" value="Doanh nghiệp"
-                                        name="Name" id="contact-name"
+                                        name="role" id="contact-name"
                                         placeholder="Doanh Nghiệp" @disabled(true)> 
+                                        <input type="text" class="form-control"
+                                        name="Name" id="contact-name"
+                                        placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
                                         <input type="text" class="form-control" value="Hiệp hội doanh nghiệp"
+                                        name="role" id="contact-name"
+                                        placeholder="Hiệp hội doanh nghiệp" @disabled(true)> 
+                                        <input type="text" class="form-control"
                                         name="Name" id="contact-name"
-                                        placeholder="Hiệp hội doanh nghiệp" @disabled(true)>    
+                                        placeholder="Nhập họ tên ">   
                                     @endif 
                                 @else
                                     <input type="text" class="form-control"
