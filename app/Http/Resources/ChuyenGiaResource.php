@@ -17,7 +17,7 @@ class ChuyenGiaResource extends JsonResource
         return [
             'id' => $this->id,
             'tenChuyenGia' => $this->tenchuyengia,
-            'hinhAnh' => $this->getUser?->image ? env('APP_IMAGE_URL') . 'assets/backend/img/hoso/' . $this->getUser->image . '?' . rand(0, 99999) : "",
+            'hinhAnh' => $this->getUser?->image ? env('APP_IMAGE_URL') . '/assets/backend/img/hoso/' . $this->getUser->image . '?' . rand(0, 99999) : "",
             'email' => $this->getUser->email,
             'sdt' => $this->sdt,
             'diaChi' => $this->diachi . ', ' . $this->xa . ', ' . $this->huyen . ', ' . $this->thanhpho,

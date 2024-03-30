@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MoHinhResource extends JsonResource
+class VaiTroResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class MoHinhResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'tenMoHinh' => $this->tenmohinh,
-            'noiDung' => $this->noidung,
-            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/mohinh/' . $this->hinhanh . '?' . rand(0, 99999) : "",
-
+            "id" => $this->id,
+            'name' => $this->tenvaitro
         ];
     }
 }

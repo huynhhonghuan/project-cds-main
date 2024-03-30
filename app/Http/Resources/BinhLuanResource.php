@@ -19,7 +19,7 @@ class BinhLuanResource extends JsonResource
             'id' => $this->id,
             'noiDung' => $this->noidung,
             'hoTen' => $this->getUser?->name ?? "Khách",
-            'avatar' => $this->getUser?->image ? env('APP_IMAGE_URL') . 'assets/backend/img/hoso/' . $this->getUser?->image . '?' . rand(0, 99999) : "",
+            'avatar' => $this->getUser?->image ? env('APP_IMAGE_URL') . '/assets/backend/img/hoso/' . $this->getUser?->image . '?' . rand(0, 99999) : "",
             'phanHois' => BinhLuanResource::collection($this->getPhanHois->sortByDesc('ngaydang')),
             'createdAt' => $this->created_at,
         ];

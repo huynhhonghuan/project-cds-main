@@ -42,6 +42,7 @@ Route::group(['prefix' => 'tintuc'], function () {
     Route::get('detail', [TinTucController::class, 'show']);
     Route::get('slide', [TinTucController::class, 'slide']);
     Route::get('video', [TinTucController::class, 'video']);
+    Route::get('thuvien', [TinTucController::class, 'thuvien']);
 });
 
 Route::group(['prefix' => 'thongke'], function () {
@@ -82,7 +83,9 @@ Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () 
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
+    Route::get('chuyengiahoithoai', [HoiDapController::class, 'chuyengiahoithoai']);
     Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
+    Route::get('tinnhanchuyengia', [HoiDapController::class, 'tinnhanchuyengia']);
     Route::post('tinnhan', [HoiDapController::class, 'themtinnhan']);
     Route::get('test', [HoiDapController::class, 'test']);
 });

@@ -19,7 +19,7 @@ class TinTucResource extends JsonResource
             'tieuDe' => $this->tieude,
             'noiDung' => $this->noidung,
             'tomTat' => $this->tomtat,
-            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . 'assets/fronend/img/trangtin/' . $this->hinhanh . '?' . rand(0, 99999) : "",
+            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/frontend/img/trangtin/' . $this->hinhanh . '?' . rand(0, 99999) : "",
             'tacGia' => $this->getUser->name,
             'linhVuc' => new LinhVucResource($this->getLinhvuc),
             'luotXem' => $this->luotxem,

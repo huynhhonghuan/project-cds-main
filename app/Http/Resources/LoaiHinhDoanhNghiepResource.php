@@ -17,7 +17,7 @@ class LoaiHinhDoanhNghiepResource extends JsonResource
         return [
             'id' => $this->id,
             'tenLoaiHinh' => $this->tenloaihinh,
-            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . 'assets/backend/img/loaihinhdoanhnghiep/' . $this->hinhanh . '?' . rand(0, 99999) : "",
+            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/loaihinhdoanhnghiep/' . $this->hinhanh . '?' . rand(0, 99999) : "",
             'moTa' => $this->mota
         ];
     }

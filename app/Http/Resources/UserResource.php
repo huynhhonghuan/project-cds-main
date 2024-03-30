@@ -18,8 +18,9 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'image' => $this->image ? env('APP_IMAGE_URL') . 'assets/backend/img/hoso/' . $this->image . '?' . rand(0, 99999) : "",
+            'image' => $this->image ? env('APP_IMAGE_URL') . '/assets/backend/img/hoso/' . $this->image . '?' . rand(0, 99999) : "",
             'status' => $this->status,
+            'vaitro' => VaiTroResource::collection($this->getVaiTro)
         ];
     }
 }
