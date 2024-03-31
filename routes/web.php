@@ -48,7 +48,6 @@ use App\Http\Controllers\Frontend\TrangtinController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
 use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\ThuvienController;
-use App\Models\Thuvien;
 
 function set_active($route)
 {

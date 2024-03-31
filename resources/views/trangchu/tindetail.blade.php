@@ -75,8 +75,8 @@
                     <div class="item-news col" style="width: 100px; margin:5px">
                         <div class="item-date row" style="border-bottom: 1px solid #000; padding-bottom: 11px;text-align:end">
                             <div class="col" style="text-align:start"><i class="fa-solid fa-eye"></i> {{$TinTuc->luotxem}}</div>
-                            <div class="col"><i class="fa-solid fa-clock-rotate-left"></i>
-                                {{$TinTuc->updated_at}}</div>
+                            <div class="col" style="font-weight: 600"><i class="fa-regular fa-clock"></i>
+                                {{ date('d/m/Y', strtotime($TinTuc->updated_at))}}</div>
                         </div>
                         <div class="item-content">
                             <div class="item-content--main__detail">{!!$TinTuc->tieude!!}</div>
@@ -112,7 +112,7 @@
                                     <div class="col"><i class='bx bx-printer icon-news'></i></div>
                                 </div>
                             </div>
-                            <div class="col-xl-8">
+                            <div class="col-xl-8" style="padding-right: 20px">
                                 <div class="item-news--detail" style="text-align: justify">
                                     {!!$TinTuc->noidung!!}
                                 </div>
@@ -121,26 +121,35 @@
                             <div class="col-xl-3" style="padding-left: 0;">
                                 <div class="col-xl-12 news-hot">Tin nổi bật</div>
                                 <div class="col-xl-12">
-                                    <div class="list-news row row-cols-1 row-cols-md-2 row-cols-xl-1">
+                                    <div class="row-cols-1 row-cols-md-2 row-cols-xl-1">
                                         @foreach($News as $news)
-                                        <div class="col">
-                                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;border-bottom: 1px solid #eaeaea;border-radius:0;margin-top: 0">
+                                        <div style="margin-bottom:6px">
+                                            <a href="{{ URL::to('/tin/'. $news->id) }}" style="text-decoration: none; display:flex;padding-bottom:7px;border-bottom: 1px solid #929292;margin-top: 0;border-radius:0">
                                                 <div class="col-xl-3" style="margin:10px">
-                                                    <div class="item-img">
+                                                    <div class="item-img-2">
                                                         <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-9">
+                                                <div class="col-xl-8">
                                                     <div class="item-content">
-                                                        <div class="item-content--main" style="margin-top: 0;font-size:16px;">{{$news->tieude}}</div>
+                                                        <div class="item-content--main" style="margin-top: 0;font-size:16px;padding: 0;padding-top: 16px;width:100% ">{{$news->tieude}}</div>
                                                     </div>
-                                                    <div class="item-footer" style="padding: 6px 0;margin-right: 10px;">
-                                                        <div class="item-date" style="font-size: 14px; padding-top: 0;">
-                                                            <i class="fa-solid fa-calendar-days"></i>
-                                                            {{$news->updated_at}}
-                                                        </div>
-                                                        <div class="item-view" style="font-size: 14px; padding-right: 10px;">
-                                                            <i class="fa-solid fa-eye"></i> {{$news->luotxem}}
+                                                    <div class="item-footer">
+                                                        <div class="item-header row" style="display:flex;align-items:center">
+                                                            <div class="col-xl-9" style="padding-right:0">
+                                                                @if($news->tenlinhvuc == 'Nông nghiệp') 
+                                                                    <span style="background-color: green;padding:2px 6px;border-radius:10px;color:#fff;font-weight:600;font-size:12px">Nông Nghiệp</span>
+                                                                @elseif($news->tenlinhvuc == 'Công nghiệp') 
+                                                                    <span style="background-color: blue;padding:2px 6px;border-radius:10px;color:#fff;font-weight:600;font-size:12px">Công Nghiệp</span>
+                                                                @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ') 
+                                                                    <span style="background-color: yellow;padding:2px 6px;border-radius:10px;font-weight:600;font-size:12px">Thương mại - Dịch vụ</span>
+                                                                @elseif($news->tenlinhvuc == 'Khác') 
+                                                                    <span style="background-color: rgb(9, 153, 243);padding:2px 6px;border-radius:10px;font-weight:600;font-size:12px">Chuyển đổi số</span>
+                                                                @endif    
+                                                            </div>
+                                                            <div class="col-xl-3" style="font-size: 14px;padding:0;font-weight:700;color:blue">
+                                                                Chi tiết
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -176,7 +185,7 @@
                         <ul style="list-style-type:none;padding-left:0">
                             @foreach ($comments as $cmt)
                                 <!-- Comment Content -->
-                                {{-- @if ($cmt->binhluan_id == 1) --}}
+                                @if ($cmt->binhluan_id == null)
                                     <li class="single_comment_area" style="margin-top: 4px">
                                         <div class="comment-wrapper d-flex">
                                             <!-- Comment Meta -->
@@ -196,100 +205,183 @@
                                                         @elseif($cmt->user_id == 2)
                                                             <span style="background: #04e2ab; border-radius:4px;padding: 2px 4px">Hiệp Hội Doanh Nghiệp</span> 
                                                         @else 
-                                                            <span style="border: 1px solid #000;padding: 2px 4px">Khách</span> 
+                                                            <span style="border: 1px solid #000;padding: 2px 4px; border-radius:4px;">Khách</span> 
                                                         @endif    
                                                     </span>
                                                 </div>
                                                 <p style="background: #e7e7e7; border-radius: 8px;padding:6px;margin:4px 0 0">{{ $cmt->noidung }}</p>
-                                                <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $cmt->id }}">Phản
-                                                    hồi</a>
-                                                    <form action="{{ URL::to('/BinhLuan') }}" method="post"
-                                                        id="{{ $cmt->id }}" style="display: none;"
-                                                        target="hidden-form" enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-12 col-md-4" style="padding-left: 12px;padding-right: 4px;">
-                                                                <div class="form-group">
-                                                                    <input type="hidden" class="form-control"
-                                                                        name="IdCon" value="{{ $cmt->id }}"
-                                                                        id="contact-name">
-                                                                    <input type="hidden" class="form-control"
-                                                                        name="IdNews" value="{{ $TinTuc->id }}"
-                                                                        id="contact-name">
-                                                                    @if (Auth::user()!= null)
-                                                                        @if (Auth::user()->getVaiTro[0]->id == "ad")
-                                                                            <input type="text" class="form-control" name="user"
-                                                                            id="contact-name" placeholder="Quản Trị Viên" @disabled(true)>
-                                                                        @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
-                                                                            <input type="text" class="form-control"
-                                                                            name="Name" id="contact-name" value="Cộng tác viên"
-                                                                            placeholder="Cộng tác viên" @disabled(true)>
-                                                                        @elseif(Auth::user()->getVaiTro[0]->id == "dn")
-                                                                            <input type="text" class="form-control" value="Doanh nghiệp"
-                                                                            name="Name" id="contact-name"
-                                                                            placeholder="Doanh Nghiệp" @disabled(true)> 
-                                                                        @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
-                                                                            <input type="text" class="form-control" value="Hiệp hội doanh nghiệp"
-                                                                            name="Name" id="contact-name"
-                                                                            placeholder="Hiệp hội doanh nghiệp" @disabled(true)>    
-                                                                        @endif 
-                                                                    @else
+                                                <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $cmt->id }}">Phản hồi</a>
+                                                <form action="{{ URL::to('/BinhLuan') }}" method="post"
+                                                    id="{{ $cmt->id }}" style="display: none;"
+                                                    target="hidden-form" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-4" style="padding-left: 12px;padding-right: 4px;">
+                                                            <div class="form-group">
+                                                                <input type="hidden" class="form-control"
+                                                                    name="IdCon" value="{{ $cmt->id }}"
+                                                                    id="contact-name">
+                                                                <input type="hidden" class="form-control"
+                                                                    name="IdNews" value="{{ $TinTuc->id }}"
+                                                                    id="contact-name">
+                                                                @if (Auth::user()!= null)
+                                                                    @if (Auth::user()->getVaiTro[0]->id == "ad")
+                                                                        <input type="hidden" class="form-control"
+                                                                        name="vaitro" value='1' id="contact-name"
+                                                                        placeholder="Quản Trị Viên"> 
                                                                         <input type="text" class="form-control"
                                                                         name="Name" id="contact-name"
-                                                                        placeholder="Khách">
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 col-md-8" style="padding: 0 2px;">
-                                                                <div class="form-group">
-                                                                    <textarea class="form-control" name="message" id="message" cols="30" rows="1" placeholder="Phản hồi của bạn"></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12 mt-2" style="display:flex; justify-content: end;">
-                                                                <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
+                                                                        placeholder="Nhập họ tên ">   
+                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
+                                                                        <input type="text" class="form-control"
+                                                                        name="vaitro" id="contact-name" value="4"
+                                                                        placeholder="Cộng tác viên">
+                                                                        <input type="text" class="form-control"
+                                                                        name="Name" id="contact-name"
+                                                                        placeholder="Nhập họ tên "> 
+                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "dn")
+                                                                        <input type="text" class="form-control" value="5"
+                                                                        name="vaitro" id="contact-name"
+                                                                        placeholder="Doanh Nghiệp"> 
+                                                                        <input type="text" class="form-control"
+                                                                        name="Name" id="contact-name"
+                                                                        placeholder="Nhập họ tên "> 
+                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
+                                                                        <input type="text" class="form-control" value="2"
+                                                                        name="vaitro" id="contact-name"
+                                                                        placeholder="Hiệp hội doanh nghiệp">  
+                                                                        <input type="text" class="form-control"
+                                                                        name="Name" id="contact-name"
+                                                                        placeholder="Nhập họ tên ">   
+                                                                    @endif 
+                                                                @else
+                                                                    <input type="hidden" class="form-control"
+                                                                    name="vaitro" id="contact-name" value=""
+                                                                    placeholder="Khách">
+                                                                    <input type="text" class="form-control"
+                                                                    name="Name" id="contact-name"
+                                                                    placeholder="Nhập họ tên "> 
+                                                                @endif
                                                             </div>
                                                         </div>
-                                                    </form>
+                                                        <div class="col-12 col-md-8" style="padding: 0 2px;">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" name="message" id="message" cols="30" rows="1" placeholder="Phản hồi của bạn"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12 mt-2" style="display:flex; justify-content: end;">
+                                                            <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
-                                        {{-- @foreach ($comments as $chill)
-                                            @if ($chill->IdCon == $cmt->Id)
-                                                <ol class="children">
+                                        @foreach ($comments as $chill)
+                                            @if ($chill->binhluan_id == $cmt->id)
+                                                <ol class="children" style="list-style: none">
                                                     <li class="single_comment_area">
                                                         <div class="comment-wrapper d-flex">
                                                             <!-- Comment Meta -->
                                                             <div class="comment-author">
-                                                                <img src="{{ asset('img/speech-bubble.gif') }}"
-                                                                    alt="">
+                                                                <img src="{{ asset('image/BinhLuan/Khach.png') }}" alt="">
                                                             </div>
-                                                            <!-- Comment Content -->
-                                                            <div class="comment-content">
-                                                                <span
-                                                                    class="comment-date">{{ $chill->NgayCMT }}</span>
-                                                                <h5>{{ $chill->TenNguoiBL }}</h5>
-                                                                <p>{{ $chill->NoiDung }}</p>
-                                                                <a href="#">Like</a>
-                                                                <a class="active replybtn"
-                                                                    data-id="{{ $chill->IdCon }}">Phản hồi
-                                                                </a>
+                                                            <div class="comment-content" style="max-width:500px;">
+                                                                <div class="comment-header" style="display:flex; align-items:center">
+                                                                    <span class="comment-name"  style="font-weight: 700; font-size:16px; margin-right:6px">{{$chill->ten}}</span>
+                                                                    <span class="comment-role" style="font-size: 12px; font-weight:500">
+                                                                        @if($chill->user_id == 1)
+                                                                            <span style="background: #e2d300; border-radius:4px;padding: 2px 4px">Quản Trị Viên</span>
+                                                                        @elseif($chill->user_id == 4)
+                                                                            <span style="background: #02b529; border-radius:4px;padding: 2px 4px">Cộng Tác Viên</span>
+                                                                        @elseif($chill->user_id == 5)
+                                                                            <span style="background: #2005ec; border-radius:4px;padding: 2px 4px; color: #fff">Doanh Nghiệp</span>
+                                                                        @elseif($chill->user_id == 2)
+                                                                            <span style="background: #04e2ab; border-radius:4px;padding: 2px 4px">Hiệp Hội Doanh Nghiệp</span> 
+                                                                        @else 
+                                                                            <span style="border: 1px solid #000;padding: 2px 4px; border-radius:4px;">Khách</span> 
+                                                                        @endif    
+                                                                    </span>
+                                                                </div>
+                                                                <p style="background: #e7e7e7; border-radius: 8px;padding:6px;margin:4px 0 0">{{ $chill->noidung }}</p>
+                                                                <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $chill->id }}">Phản hồi</a>
+                                                                <form action="{{ URL::to('/BinhLuan') }}" method="post"
+                                                                    id="{{ $chill->id }}" style="display: none;"
+                                                                    target="hidden-form" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-md-4" style="padding-left: 12px;padding-right: 4px;">
+                                                                            <div class="form-group">
+                                                                                <input type="hidden" class="form-control"
+                                                                                    name="IdCon" value="{{ $chill->id }}"
+                                                                                    id="contact-name">
+                                                                                <input type="hidden" class="form-control"
+                                                                                    name="IdNews" value="{{ $TinTuc->id }}"
+                                                                                    id="contact-name">
+                                                                                @if (Auth::user()!= null)
+                                                                                    @if (Auth::user()->getVaiTro[0]->id == "ad")
+                                                                                        <input type="hidden" class="form-control"
+                                                                                        name="vaitro" value='1' id="contact-name"
+                                                                                        placeholder="Quản Trị Viên"> 
+                                                                                        <input type="text" class="form-control"
+                                                                                        name="Name" id="contact-name"
+                                                                                        placeholder="Nhập họ tên ">   
+                                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
+                                                                                        <input type="text" class="form-control"
+                                                                                        name="vaitro" id="contact-name" value="4"
+                                                                                        placeholder="Cộng tác viên">
+                                                                                        <input type="text" class="form-control"
+                                                                                        name="Name" id="contact-name"
+                                                                                        placeholder="Nhập họ tên "> 
+                                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "dn")
+                                                                                        <input type="text" class="form-control" value="5"
+                                                                                        name="vaitro" id="contact-name"
+                                                                                        placeholder="Doanh Nghiệp"> 
+                                                                                        <input type="text" class="form-control"
+                                                                                        name="Name" id="contact-name"
+                                                                                        placeholder="Nhập họ tên "> 
+                                                                                    @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
+                                                                                        <input type="text" class="form-control" value="2"
+                                                                                        name="vaitro" id="contact-name"
+                                                                                        placeholder="Hiệp hội doanh nghiệp">  
+                                                                                        <input type="text" class="form-control"
+                                                                                        name="Name" id="contact-name"
+                                                                                        placeholder="Nhập họ tên ">   
+                                                                                    @endif 
+                                                                                @else
+                                                                                    <input type="hidden" class="form-control"
+                                                                                    name="vaitro" id="contact-name" value=""
+                                                                                    placeholder="Khách">
+                                                                                    <input type="text" class="form-control"
+                                                                                    name="Name" id="contact-name"
+                                                                                    placeholder="Nhập họ tên "> 
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-md-8" style="padding: 0 2px;">
+                                                                            <div class="form-group">
+                                                                                <textarea class="form-control" name="message" id="message" cols="30" rows="1" placeholder="Phản hồi của bạn"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 mt-2" style="display:flex; justify-content: end;">
+                                                                            <button type="submit" class="btn" style="background-color: #009688; color: #fff; font-weight:700">Gửi bình luận</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </li>
                                                 </ol>
                                             @endif
-                                        @endforeach --}}
+                                        @endforeach
                                     </li>
-                                {{-- @else --}}
-                                {{-- @endif --}}
+                                @endif    
                             @endforeach
-                            <!-- Single Comment Area -->
-    
                         </ul>
                     </div>
-                    <!-- Leave A Comment -->
                 </div> 
                 @endif
             </div>
+            <!-- Commemt Chính -->
             <div class="col-xl-4">
                 <form action="{{ URL::to('/BinhLuan') }}" method="post"
                     id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
@@ -303,34 +395,38 @@
                                     value="{{ $TinTuc->id }}" id="contact-name">
                                 @if (Auth::user()!= null)
                                     @if (Auth::user()->getVaiTro[0]->id == "ad")
-                                        <input type="text" class="form-control" name="role"
-                                        id="contact-name" placeholder="Quản Trị Viên" @disabled(true)>
+                                        <input type="hidden" class="form-control"
+                                        name="vaitro" id="contact-name" value="1"
+                                        placeholder="Nhập họ tên ">
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
                                         <input type="text" class="form-control"
-                                        name="role" id="contact-name" value="Cộng tác viên"
+                                        name="vaitro" value=4 id="contact-name"
                                         placeholder="Cộng tác viên" @disabled(true)>
-                                        <input type="text" class="form-control"
+                                        <input type="hidden" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "dn")
-                                        <input type="text" class="form-control" value="Doanh nghiệp"
-                                        name="role" id="contact-name"
+                                        <input type="hidden" class="form-control" 
+                                        name="vaitro" value=5 id="contact-name"
                                         placeholder="Doanh Nghiệp" @disabled(true)> 
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
-                                        <input type="text" class="form-control" value="Hiệp hội doanh nghiệp"
-                                        name="role" id="contact-name"
-                                        placeholder="Hiệp hội doanh nghiệp" @disabled(true)> 
+                                        <input type="hidden" class="form-control"
+                                        name="vaitro" id="contact-name" value="2"
+                                        placeholder="Nhập họ tên ">
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">   
                                     @endif 
                                 @else
+                                    <input type="hidden" class="form-control"
+                                    name="vaitro" id="contact-name" value=""
+                                    placeholder="Nhập họ tên ">
                                     <input type="text" class="form-control"
                                     name="Name" id="contact-name"
                                     placeholder="Nhập họ tên ">
@@ -348,6 +444,7 @@
                     </div>
                 </form>
             </div>
+            <!--  End Commemt Chính -->
         </div>
     </div>
 </div>

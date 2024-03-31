@@ -12,6 +12,7 @@ use App\Models\Slide;
 use App\Models\Tintuc;
 use App\Models\Video;
 use App\Models\Thuvien;
+use App\Models\Binhluan;
 
 class TrangtinController extends Controller
 {
@@ -26,10 +27,22 @@ class TrangtinController extends Controller
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
+            // ->orderBy('created_at', 'desc')
+            ->where('tintuc.id', 1)
+            ->paginate(1); 
+        $tinmoi3 = DB::table('tintuc')
+            ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
+            ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
+            // ->orderBy('created_at', 'desc')
+            ->where('tintuc.id', 2)
+            ->paginate(1); 
+        $tinmoi2 = DB::table('tintuc')
+            ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
+            ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
             ->orderBy('created_at', 'desc')
-            ->paginate(4); 
-        $videos = DB::table('videos')->paginate(4);    
-        return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));
+            ->paginate(4);
+        $videos = DB::table('videos')->paginate(3);    
+        return view('trangchu.home', compact('slides', 'tinmoi','tinmoi2', 'tinmoi3','videos'));
     }
     public function AllTin(Request $request) {
         $tinmoi = DB::table('tintuc')
@@ -113,9 +126,9 @@ class TrangtinController extends Controller
                 ->paginate(1); 
         $News = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
-            ->select('tintuc.id as IdTin', 'tintuc.*')
+            ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
             ->orderBy('luotxem', 'desc')
-            ->paginate(3);
+            ->paginate(6);
         return view('trangchu.tindetail')->with('laybanner', $laybanner)->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
     }
     public function AllVideo(Request $request) {
@@ -134,27 +147,18 @@ class TrangtinController extends Controller
         return view('trangchu.search', compact('New', 'searchText'));
     }
     public function binhluan(Request $request) {
-        $input = $request->collect();
-        $cmt = array();
+        
+        $input = $request->all();
 
         if (isset($input['IdCon'])) {
-            $cmt['binhluan_id'] = $input['IdCon'];
+            $input['binhluan_id'] = $input['IdCon'];
         }
-        $cmt['noidung'] = $input['message'];
-        if(Auth::user()->getVaiTro[0]->id == "ad")
-            $cmt['user_id'] = 1;
-        elseif(Auth::user()->getVaiTro[0]->id == "ctv")
-            $cmt['user_id'] = 4;
-        elseif(Auth::user()->getVaiTro[0]->id == "dn")
-            $cmt['user_id'] = 5;
-        elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
-            $cmt['user_id'] = 2;
-        else
-            $cmt['user_id'] = 3;
-        $cmt['tintuc_id'] = $input['IdNews'];
-        $cmt['ngaydang'] = date('Y-m-d');
-        $cmt['ten'] = $input['Name'];
-        if (DB::table('binhluan')->insert($cmt)) {
+        $input['noidung'] = $input['message'];
+        $input['user_id'] = $input['vaitro'];
+        $input['tintuc_id'] = $input['IdNews'];
+        $input['ngaydang'] = date('Y-m-d');
+        $input['ten'] = $input['Name'];
+        if (Binhluan::create($input)) {
             $alert = "đã thêm bình luận";
         } else {
             $alert = " Bình luận không thành công";

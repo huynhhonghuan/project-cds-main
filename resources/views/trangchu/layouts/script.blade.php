@@ -1,7 +1,7 @@
 <script>
     let list = document.querySelector('.slider .list');
     let items = document.querySelectorAll('.slider .list .item');
-    let dots = document.querySelectorAll('.slider .dots li');
+    let dots = document.querySelectorAll('.slider .dots li img');
     let prev = document.getElementById('prev');
     let next = document.getElementById('next');
 
@@ -26,7 +26,7 @@
     function reloadSlider() {
         let checkLeft = items[active].offsetLeft;
         list.style.left = -checkLeft + 'px';
-        let lastActiveDot = document.querySelector('.slider .dots li.active');
+        let lastActiveDot = document.querySelector('.slider .dots li img.active');
         lastActiveDot.classList.remove('active');
         dots[active].classList.add('active');
         clearInterval(refreshSlider);
@@ -105,7 +105,7 @@
         day = "Thứ năm";
         break;
     case 5:
-        day = "Thứ sau";
+        day = "Thứ sáu";
         break;
     case 6:
         day = "Thứ bảy";
@@ -125,3 +125,15 @@
 <script>
     AOS.init();
 </script>
+{{-- <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const windowPathname = window.location.pathname;
+
+    navLinks.forEach(navLink => {
+        const navLinkPathname = new URL(navLink.href).pathname;
+        if((windowPathname === navLinkPathname) || windowPathname === '/'){
+            navLink.classList.add('active');
+            console.log(navLinkPathname);
+        }
+    });
+</script> --}}

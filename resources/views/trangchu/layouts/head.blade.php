@@ -5,7 +5,7 @@
 <title>Chuyển đổi số</title>
 
  <!-- Hình ảnh logo con trên tab-->
- <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo-1.png">
+ <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo.png">
 
  <!--Bootstrap CSS file nhớ cài npm i bootstrap@5.3.1 phiên bản tùy theo lấy file json-->
  <link rel="stylesheet" href="{{ env('APP_URL')}}/assets/bootstrap-5.0.2/dist/css/bootstrap.min.css">

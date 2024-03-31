@@ -12,7 +12,10 @@
             @foreach($AllVideo as $vd)
             <div class="col-xl-4" style="text-align: center; padding-bottom: 16px">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe width="415" height="200" src="{{$vd->file}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="video--main" style="width:400px; height:250px">
+                        {!!$vd->file!!}
+                    </div>
+                    {{-- <iframe width="415" height="200" src="{{$vd->file}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> --}}
                 </div>
                 <a class="video-tt-href" href="#" style="text-decoration: none;">
                     <div class="video-title" style="font-size: 18px; margin-bottom: 12px;">{{$vd->tieude}}</div>

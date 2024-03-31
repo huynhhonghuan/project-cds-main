@@ -7,7 +7,7 @@
         <h2 class="news-heading row" style="padding:0 24px;border-left: 10px solid #ecdd0b;border-right: 10px solid #ecdd0b;">Văn bản Chuyển đổi số</h2>
     </div>
     <div class="container" style="margin-top: 24px">
-        <nav aria-label="breadcrumb" style="font-size:18px;font-weight:600;">
+        <nav aria-label="breadcrumb" style="font-size:16px;font-weight:500;margin-bottom:52px">
             <ol class="breadcrumb" style="display: flex; align-item:center">
                 <li class="breadcrumb-item"><a href="{{ route('home')}}" style="text-decoration: none">Trang chủ</a></li>
                 <a href="#" style="text-decoration:none;">
@@ -24,15 +24,15 @@
                 @endforeach
             </ol>
         </nav>
-        <div class="lib-content">
+        <div class="lib-content" style="margin-bottom: 64px">
             <table class="table table-stripped table table-hover table-center mb-3">
                 <thead>
                     <tr>
-                        <th scope="col" width="10%" class="text-center">STT</th>
-                        <th scope="col" width="20%" class="text-center">Ký Hiệu</th>
-                        <th scope="col" width="45%" class="text-center" style="text-align: center">Trích Yếu</th>
-                        <th scope="col" width="15%" class="text-center">Ngày Ban Hành</th>
-                        <th scope="col" class="text-center" width="10%">Tải Xuống</th>
+                        <th scope="col" width="10%" class="text-center" style="text-transform: uppercase">STT</th>
+                        <th scope="col" width="20%" class="text-center" style="text-transform: uppercase">Ký Hiệu</th>
+                        <th scope="col" width="45%" class="text-center" style="text-transform: uppercase" style="text-align: center">Trích Yếu</th>
+                        <th scope="col" width="15%" class="text-center" style="text-transform: uppercase">Ngày Ban Hành</th>
+                        <th scope="col" class="text-center" style="text-transform: uppercase" width="10%">Tải Xuống</th>
                     </tr>
                 </thead>
                 <tbody>

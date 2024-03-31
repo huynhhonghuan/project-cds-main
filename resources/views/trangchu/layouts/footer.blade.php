@@ -1,6 +1,6 @@
 {{-- nhúng tất cả thành phần của footer --}}
 <!-- Footer -->
-<footer class="text-center text-lg-start text-muted" style="background: #eef6ff;border-top: 1px solid #0276f1" >
+<footer class="text-center text-lg-start text-muted" style="background: #fffeee;border-top: 1px solid #f7c51e;" >
     <!-- Section: Links  -->
     <section class="">
         <div class="container text-center text-md-start">
@@ -50,7 +50,7 @@
                     <p style="text-align: justify;color: #000"><i class="fas fa-phone me-3"></i> + 84 0296 6256 565</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-4 mx-auto">
-                    <div class="map" style="border: 1px solid #0276f1;border-radius: 10px">
+                    <div class="map" style="border: 1px solid #f7c51e;border-radius: 10px">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7849.272319015193!2d!3d10.3716558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a731e7546fd7b%3A0x953539cd7673d9e5!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBBbiBHaWFuZyAtIMSQSFFHIFRQSENN!5e0!3m2!1svi!2s!4v1710994386040!5m2!1svi!2s" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
     <!-- Section: Links  -->
 
     <!-- Copyright -->
-    <div class="text-center p-2" style="background-color: #0276f1;color: #fff">
+    <div class="text-center p-2" style="background-color: #f7c51e;color: #000">
         © Copyright {{ date('Y') }} tỉnh An Giang<span style="padding: 0 15px;">|</span>
         ® Chuyển đổi số online giữ bản quyền<span style="padding: 0 15px;">|</span>
         Thiết kế và xây dựng bởi
