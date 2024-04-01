@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\HoiThoaiResource;
 use App\Http\Resources\TinNhanResource;
 use App\Models\Chuyengia as ModelsChuyengia;
+use App\Models\Doanhnghiep;
 use App\Models\HoiThoai;
 use App\Models\TinNhan;
 use App\Models\User;
@@ -17,8 +18,18 @@ class HoiDapController extends Controller
     public function hoithoai()
     {
         $userId = auth()->id();
-        $hoiThoais = HoiThoai::with(['getChuyenGia',  'getDoanhNghiep'])
+        $hoiThoais = HoiThoai::with(['getChuyenGia',  'getDoanhNghiep', 'getDoanhNghiep.getUser'])
             ->where('doanhnghiep_id', $userId)->get();
+        return HoiThoaiResource::collection($hoiThoais);
+    }
+
+    public function chuyengiahoithoai()
+    {
+        // Userid  =  chuyengiaId
+        $userId = auth()->id();
+        $hoiThoais = HoiThoai::with(['getChuyenGia', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])
+            ->where('chuyengia_id', $userId)->get();
+        // $hoiThoais = HoiThoai::all();
         return HoiThoaiResource::collection($hoiThoais);
     }
 
@@ -32,7 +43,7 @@ class HoiDapController extends Controller
 
         $chuyenGiaUser = ModelsChuyengia::where('id', $chuyenGiaId)->firstOrFail();
 
-        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
+        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getDoanhNghiep.getUser', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
             ->where('chuyengia_id', $chuyenGiaUser->user_id)
             ->where('doanhnghiep_id', $userId)
             ->first();
@@ -47,10 +58,25 @@ class HoiDapController extends Controller
 
         return new HoiThoaiResource($hoiThoai);
     }
-    public function test()
+
+    public function tinnhanchuyengia(Request $request)
     {
-        return HoiThoai::with(['getChuyenGia', 'getChuyenGia.getUser', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])->get();
+        $request->validate([
+            'doanhNghiepId' => 'required|exists:doanhnghiep,id',
+        ]);
+        $userId = auth()->id(); // user_id của chuyên gia
+        $doanhNghiepId = request()->doanhNghiepId; // doanhnghiep_id
+
+        $doanhnghiep = Doanhnghiep::where('id', $doanhNghiepId)->firstOrFail();
+
+        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getDoanhNghiep.getUser', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
+            ->where('chuyengia_id', $userId)
+            ->where('doanhnghiep_id', $doanhnghiep->user_id)
+            ->firstOrFail();
+
+        return new HoiThoaiResource($hoiThoai);
     }
+
     public function themtinnhan(Request $request)
     {
         $request->validate([

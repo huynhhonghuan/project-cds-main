@@ -19,7 +19,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Lĩnh vực</label>
-                                    <select class="form-control @error('linhvuc') is-invalid @enderror" id="sel1"
+                                    <select class="form-co  ntrol @error('linhvuc') is-invalid @enderror" id="sel1"
                                         name="linhvuc_id">
                                         <option selected disabled> --Chọn-- </option>
                                         @foreach ($linhvuc as $value)
@@ -54,7 +54,7 @@
                                     <div class="custom-file mb-3">
                                         <input type="file"
                                             class="custom-file-input @error('hinhanh') is-invalid @enderror" id="customFile"
-                                            name="hinhanh" value="{{ old('hinhanh') }}">
+                                            name="hinhanh" value="">
                                         <label class="custom-file-label" for="customFile">Chọn hình ảnh</label>
                                     </div>
                                 </div>

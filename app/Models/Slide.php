@@ -12,7 +12,7 @@ class Slide extends Model
     protected $fillable = [
         'id',
         'tenbanner',
-        'link',
+        'hinhanh',
         'status',
         ];
 }

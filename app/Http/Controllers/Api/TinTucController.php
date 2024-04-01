@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SliderResource;
+use App\Http\Resources\ThuVienResource;
 use App\Http\Resources\TinTucResource;
 use App\Http\Resources\VideoResource;
 use App\Models\Linhvuc;
 use App\Models\Slide;
+use App\Models\Thuvien;
 use App\Models\Tintuc;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -50,6 +52,12 @@ class TinTucController extends Controller
     public function slide()
     {
         return SliderResource::collection(Slide::all());
+    }
+    public function thuvien(Request $request)
+    {
+
+        $loai = $request->input('loai');
+        return ThuVienResource::collection(Thuvien::where('loai', $loai)->get());
     }
 
     public function video()

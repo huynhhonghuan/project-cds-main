@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BinhLuanResource;
 use App\Models\Binhluan;
 use App\Models\Tintuc;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,11 @@ class BinhLuanController extends Controller
             'tinTucId' => 'required|exists:tintuc,id'
         ]);
 
+        $user = User::find($request->userId);
+
         $model = new Binhluan([
             'user_id' => $request->userId,
+            'ten' => $user?->name,
             'tintuc_id' => $request->tinTucId,
             'noidung' => $request->noiDung,
             'binhluan_id' => $request->binhLuanChaId,

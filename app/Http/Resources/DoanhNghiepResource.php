@@ -31,6 +31,7 @@ class DoanhNghiepResource extends JsonResource
             'loaiHinh' => new LoaiHinhDoanhNghiepResource($this->getLoaiHinh),
             'daiDien' => new DaiDienDoanhNghiepResource($this->getDaiDien),
             'sdts' => DienThoaiResource::collection($this->getSdts),
+            'user' => new UserResource($this->getUser)
         ];
     }
 }

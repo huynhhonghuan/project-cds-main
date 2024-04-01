@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 
 //Dùng chung cho các quyền tài khoản và xử lý bên trong
 use App\Http\Controllers\Chung\Bocauhoi\BocauhoiController;
@@ -21,6 +23,8 @@ use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController
 use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
 use App\Http\Controllers\Admin\Taikhoan\VaitroController;
 use App\Http\Controllers\Admin\Tintuc\TintucController;
+use App\Http\Controllers\Frontend\BannerController;
+
 
 //Chức năng dùng cho doanh nghiệp
 use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
@@ -46,9 +50,14 @@ use Livewire\Livewire;
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
+<<<<<<< HEAD
 use App\Http\Controllers\Hiephoidoanhnghiep\Chienluoc\ChienluocController as ChienluocChienluocController;
 use App\Http\Controllers\Hiephoidoanhnghiep\Danhgia\DanhgiaController as HiephoidoanhnghiepDanhgiaDanhgiaController;
 use App\Http\Controllers\Hiephoidoanhnghiep\Khaosat\KhaosatController as KhaosatKhaosatController;
+=======
+use App\Http\Controllers\Frontend\VideoController;
+use App\Http\Controllers\Frontend\ThuvienController;
+>>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
 function set_active($route)
 {
@@ -72,9 +81,12 @@ Route::get('/', function () {
     return view('trangchu.home');
 })->name('home');
 
+<<<<<<< HEAD
 // Route::get('/home', function () {
 //     return view('trangchu.home');
 // })->name('home');
+=======
+>>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
 //Đăng kí Auth
 Auth::routes();
@@ -141,7 +153,39 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('xoa', [TintucController::class, 'postxoa'])->name('xoa');
         Route::get('duyet/{id}', [TintucController::class, 'getduyet'])->name('duyet');
     });
+    //-------------------------------------Banner-------------------------------------------------//
+    Route::group(['prefix' => 'banner', 'as' => 'banner.'], function () {
+        Route::get('danhsach', [BannerController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [BannerController::class, 'getthem'])->name('them');
+        Route::post('them', [BannerController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [BannerController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [BannerController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [BannerController::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [BannerController::class, 'getduyet'])->name('duyet');
+    });
+    //------------------------------------- Video ----------------------------------------------//
+    Route::group(['prefix' => 'video', 'as' => 'video.'], function () {
+        Route::get('danhsach', [VideoController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [VideoController::class, 'getthem'])->name('them');
+        Route::post('them', [VideoController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [VideoController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [VideoController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [VideoController::class, 'getduyet'])->name('duyet');
+    });
+    //------------------------------------- Thư Viện ----------------------------------------------//
+    Route::group(['prefix' => 'thuvien', 'as' => 'thuvien.'], function () {
+        Route::get('danhsach', [ThuvienController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('them', [ThuvienController::class, 'getthem'])->name('them');
+        Route::post('them', [ThuvienController::class, 'postthem'])->name('them');
+        // Route::get('sua/{id}', [VideoController::class, 'getsua'])->name('sua');
+        // Route::post('sua/{id}', [VideoController::class, 'postsua'])->name('sua');
+        // Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
+        Route::get('/download/{file}', [ThuvienController::class, 'download']);
+    });
 
+
+    //------------------------------------------------------------------------------------------//
     //-------------------------------------Tài khoản--------------------------------------------//
     Route::group(['prefix' => 'taikhoan', 'as' => 'taikhoan.'], function () {
         Route::get('danhsach', [TaikhoanController::class, 'getdanhsach'])->name('danhsach');
@@ -398,11 +442,17 @@ Route::get('/tintuc/{LinhVuc}', [TrangtinController::class, 'TinTheoLV'])->name(
 Route::get('/tintuc', [TrangtinController::class, 'AllTin'])->name('AllTin');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
+Route::get('/thuvien', [TrangtinController::class, 'thuvien'])->name('Thuvien');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 // Tìm kiếm
 Route::get('/search', [TrangtinController::class, 'search'])->name('search');
+Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search');
 //Bình luận
 Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
 
 //Giao diện trang tin chuyển đổi số
 Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
+//Giao diện thư viện
+Route::get('/thuvien/{phanloai}', [ThuvienController::class, 'getloaithuvien'])->name('thuvien1');
+
+

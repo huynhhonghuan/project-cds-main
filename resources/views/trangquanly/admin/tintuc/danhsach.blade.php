@@ -59,7 +59,7 @@
                                                         <h2 class="table-avatar">
                                                             <a href="#" class="avatar avatar-sm mr-2">
                                                                 <img class="avatar-img rounded-circle"
-                                                                    src="{{ URL::to('/assets/backend/img/trangtin/' . $value->hinhanh) }}"
+                                                                    src="{{ URL::to('/assets/frontend/img/trangtin/' . $value->hinhanh) }}"
                                                                     alt="{{ $value->hinhanh }}">
                                                             </a>
                                                         </h2>

@@ -99,10 +99,22 @@
 
                 <li class="list-divider"></li>
 
-                <li class="menu-title mt-3"> <span>Quản lý tin tức</span> </li>
-
-                <li> <a href="{{ route('admin.tintuc.danhsach') }}"><i class="fa-regular fa-newspaper"></i>
-                        <span>Danh sách tin tức</span></a> </li>
+                <li class="menu-title mt-3"> <span>Quản lý cổng thông tin</span> </li>
+                <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class="fa-regular fa-newspaper"></i>
+                    <span>Danh sách tin tức</span></a> 
+                </li>
+                <li><a href="{{ route('admin.banner.danhsach') }}"><i class='bx bxs-carousel'></i>
+                    <span>Quản lý banner</span></a> 
+                </li>
+                <li><a href="{{ route('admin.video.danhsach') }}"><i class='bx bxs-videos'></i>
+                    <span>Quản lý video</span></a> 
+                </li>
+                <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class='bx bx-message-square-dots'></i>
+                    <span>Quản lý Bình luận</span></a> 
+                </li>
+                <li><a href="{{ route('admin.thuvien.danhsach') }}"><i class='bx bx-library'></i>
+                    <span>Quản lý Thư Viện</span></a> 
+                </li>
 
                 {{-- <li class="submenu"> <a href="#"><i class="fa-regular fa-newspaper"></i> <span> Tin tức </span>
                         <span class="menu-arrow"></span></a>
@@ -116,17 +128,16 @@
                     </ul>
                 </li> --}}
 
-                <li class="list-divider"></li>
+                {{-- <li class="list-divider"></li>
+                <li class="menu-title mt-3"> <span>Quản lý hệ thống</span> </li> --}}
 
-                <li class="menu-title mt-3"> <span>Quản lý hệ thống</span> </li>
-
-                <li class="submenu"> <a href="#"><i class="fa-solid fa-pen-to-square"></i><span> Trang chủ
+                {{-- <li class="submenu"> <a href="#"><i class="fa-solid fa-pen-to-square"></i><span> Trang chủ
                         </span>
                         <span class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
                         <li><a href="{{ route('admin.tintuc.danhsach') }}"> Danh sách tin tức </a></li>
                     </ul>
-                </li>
+                </li> --}}
 
             </ul>
         </div>

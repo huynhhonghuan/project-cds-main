@@ -5,8 +5,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use function App\Helpers\create_image_uri;
-
 class SliderResource extends JsonResource
 {
     /**
@@ -19,7 +17,7 @@ class SliderResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->tenbanner,
-            'image' => asset('/slide' . '/' . $this->hinhanh . '?' . rand(0, 99999))
+            'image' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/frontend/img/slide' . '/' . $this->hinhanh . '?' . rand(0, 99999) : ""
         ];
     }
 }

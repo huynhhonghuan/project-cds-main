@@ -5,7 +5,7 @@
 <title>Chuyển đổi số</title>
 
  <!-- Hình ảnh logo con trên tab-->
- <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo-1.png">
+ <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo.png">
 
  <!--Bootstrap CSS file nhớ cài npm i bootstrap@5.3.1 phiên bản tùy theo lấy file json-->
  <link rel="stylesheet" href="{{ env('APP_URL')}}/assets/bootstrap-5.0.2/dist/css/bootstrap.min.css">
@@ -25,9 +25,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
  {{-- message toastr --}}
- <link rel="stylesheet" href="{{ env('APP_URL') }}/assets/backend/css/toastr.min.css'}}">
- <script src="{{ env('APP_URL') }}/assets/backend/js/toastr_jquery.min.js' }}"></script>
- <script src="{{ env('APP_URL') }}/assets/backend/js/toastr.min.js' }}"></script>
+ <link rel="stylesheet" href="{{ env('APP_URL') }}/assets/backend/css/toastr.min.css">
+ <script src="{{ env('APP_URL') }}/assets/backend/js/toastr_jquery.min.js"></script>
+ <script src="{{ env('APP_URL') }}/assets/backend/js/toastr.min.js"></script>
 
  <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0" nonce="18q7swbU"></script>

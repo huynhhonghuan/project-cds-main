@@ -5,7 +5,6 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-use function App\Helpers\create_image_uri;
 
 class BinhLuanResource extends JsonResource
 {
@@ -20,7 +19,7 @@ class BinhLuanResource extends JsonResource
             'id' => $this->id,
             'noiDung' => $this->noidung,
             'hoTen' => $this->getUser?->name ?? "Khách",
-            'avatar' => create_image_uri('hoso', $this->getUser?->image),
+            'avatar' => $this->getUser?->image ? env('APP_IMAGE_URL') . '/assets/backend/img/hoso/' . $this->getUser?->image . '?' . rand(0, 99999) : "",
             'phanHois' => BinhLuanResource::collection($this->getPhanHois->sortByDesc('ngaydang')),
             'createdAt' => $this->created_at,
         ];
