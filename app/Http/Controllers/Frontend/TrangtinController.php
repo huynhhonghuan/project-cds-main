@@ -146,6 +146,12 @@ class TrangtinController extends Controller
 
         return view('trangchu.search', compact('New', 'searchText'));
     }
+    public function searchvb() {
+        $searchText = $_GET['query'];
+        $vanban = Thuvien::where('tieude' ,'LIKE', '%'.$searchText.'%')->get();
+
+        return view('trangchu.searchvb', compact('vanban', 'searchText'));
+    }
     public function binhluan(Request $request) {
         
         $input = $request->all();

@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 
 //Dùng chung cho các quyền tài khoản và xử lý bên trong
 use App\Http\Controllers\Chung\Bocauhoi\BocauhoiController;
@@ -373,6 +375,7 @@ Route::get('/thuvien', [TrangtinController::class, 'thuvien'])->name('Thuvien');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
 // Tìm kiếm
 Route::get('/search', [TrangtinController::class, 'search'])->name('search');
+Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search');
 //Bình luận
 Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
 

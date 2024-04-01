@@ -81,13 +81,13 @@
                         <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Giải pháp
+                                Doanh Nghiệp
                             </a>
                         </li>
                         <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('tinCDS') }}" role="button"
                                 aria-expanded="false">
-                                Thông tin CĐS
+                                Tin CĐS
                             </a>
                         </li>
                         <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">
