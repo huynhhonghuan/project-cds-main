@@ -16,8 +16,6 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">Doanh sách tài khoản người dùng</h4>
-                            <a href="{{ route('admin.taikhoan.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
-                                tài khoản</a>
                         </div>
                     </div>
                 </div>
@@ -34,10 +32,6 @@
                                             <th scope="col">Tên doanh nghiệp</th>
                                             <th scope="col" class="text-center" width="10%">Xem chi tiết doanh nghiệp
                                             </th>
-                                            <th scope="col" class="text-center" width="10%">Xem chi tiết khảo sát</th>
-                                            <th scope="col" class="text-center" width="10%">Xem chi tiết chiến lược
-                                            </th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,16 +41,6 @@
                                                 <td>{{ $value->tentiengviet }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('chuyengia.doanhnghiep.xemdoanhnghiep', ['id' => $value->id]) }}"
-                                                        class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
-                                                            style="color:orange;"></i></a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('chuyengia.doanhnghiep.xemkhaosat', ['id' => $value->id]) }}"
-                                                        class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
-                                                            style="color:orange;"></i></a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('chuyengia.doanhnghiep.xemchienluoc', ['id' => $value->id]) }}"
                                                         class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
                                                             style="color:orange;"></i></a>
                                                 </td>
@@ -115,7 +99,7 @@
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 4
+                    "targets": 2
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words

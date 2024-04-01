@@ -41,8 +41,7 @@
                     <ul class="submenu_class" style="display: none;">
                         @foreach (Auth::user()->getdoanhnghiep->getkhaosat as $key => $item)
                             @if ($item->getchienluoc != null)
-                                <li><a
-                                        href="{{ route('doanhnghiep.chienluoc.xem', ['id' => $item->getchienluoc->id]) }}">
+                                <li><a href="{{ route('doanhnghiep.chienluoc.xem', ['id' => $item->id]) }}">
                                         Chiến lược khảo sát lần
                                         {{ $key + 1 }}</a></li>
                             @endif

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->integer('tongdiem')->default(0);
             $table->integer('trangthai')->default(0);
 
+            $table->unsignedBigInteger('mucdo_id')->index()->nullable();
+            $table->foreign('mucdo_id')->references('id')->on('mucdo')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
             $table->engine = 'InnoDB';
 

@@ -17,7 +17,8 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="{{ route('admin.loaihinhdoanhnghiep.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
+                            <a href="{{ route('admin.loaihinhdoanhnghiep.them') }}"
+                                class="btn btn-primary float-right veiwbutton ">Thêm
                                 loại hình hoạt động</a>
                         </div>
                     </div>
@@ -122,6 +123,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" width="8%">STT</th>
+                                            <th scope="col">ID</th>
                                             <th scope="col">Tên loại hình hoạt động</th>
                                             <th scope="col">Hình ảnh</th>
                                             <th scope="col">Lĩnh vực</th>
@@ -133,13 +135,14 @@
                                         @foreach ($danhsach as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $value->id }}</td>
                                                 <td>{{ $value->tenloaihinh }}</td>
                                                 <td>
                                                     @if ($value->hinhanh != null)
                                                         <h2 class="table-avatar">
                                                             <a href="#" class="avatar avatar-sm mr-2">
-                                                                <img class="avatar-img rounded-circle"
-                                                                    src="{{ URL::to('public/assets/backend/img/loaihinhdoanhnghiep/' . $value->hinhanh) }}"
+                                                                <img class="avatar-img rounded-circle" {{-- src="{{ URL::to('/assets/backend/img/loaihinhdoanhnghiep/' . $value->hinhanh) }}" --}}
+                                                                    src="{{ env('APP_URL') }}/assets/backend/img/loaihinhdoanhnghiep/{{ $value->hinhanh }}"
                                                                     alt="{{ $value->hinhanh }}">
                                                             </a>
                                                         </h2>
@@ -160,7 +163,7 @@
 
                                                 <td class="text-center">
                                                     <a class="form-sua"
-                                                        href="{{ route('admin.chienluoc.sua', $value->id) }}">
+                                                        href="{{ route('admin.loaihinhdoanhnghiep.sua', $value->id) }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
 
@@ -188,7 +191,7 @@
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.taikhoan.xoa') }}" method="POST">
+                    <form action="{{ route('admin.loaihinhdoanhnghiep.xoa') }}" method="POST">
                         @csrf
                         <div class="modal-body text-center">
                             <h3 class="delete_class">Bạn thật sự muốn xóa loại hình hoạt động <span class="text-warning"
@@ -226,7 +229,7 @@
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 3
+                    "targets": 4
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words

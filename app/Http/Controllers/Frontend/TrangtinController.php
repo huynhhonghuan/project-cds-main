@@ -16,7 +16,7 @@ class TrangtinController extends Controller
 {
     public function __construct()
     {
-        
+
     }
 
     public function Index(Request $request)
@@ -26,8 +26,8 @@ class TrangtinController extends Controller
         $tinmoi = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*', 'linhvuc.tenlinhvuc')
-            ->paginate(3); 
-        $videos = DB::table('videos')->paginate(6);    
+            ->paginate(3);
+        $videos = DB::table('videos')->paginate(6);
         return view('trangchu.home', compact('slides', 'tinmoi', 'videos'));
     }
     public function AllTin(Request $request) {
@@ -89,7 +89,7 @@ class TrangtinController extends Controller
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'tmdv')
-                ->paginate(1);    
+                ->paginate(1);
             $tinnoibat =  DB::table('tintuc')
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'tmdv')
@@ -109,7 +109,7 @@ class TrangtinController extends Controller
                 ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
                 ->select('tintuc.id as IdTin', 'tintuc.*', 'tintuc.linhvuc_id')
                 ->where('tintuc.linhvuc_id', 'tmdv')
-                ->paginate(1); 
+                ->paginate(1);
         $News = DB::table('tintuc')
             ->leftjoin('linhvuc', 'linhvuc.id', '=', 'tintuc.linhvuc_id')
             ->select('tintuc.id as IdTin', 'tintuc.*')
@@ -118,7 +118,7 @@ class TrangtinController extends Controller
         return view('trangchu.tindetail')->with('laybanner', $laybanner)->with('TinTuc',$TinTuc)->with('comments',$comments)->with('News',$News);
     }
     public function AllVideo(Request $request) {
-        $AllVideo = Video::all(); 
+        $AllVideo = Video::all();
         return view('trangchu.video', compact('AllVideo'));
     }
 

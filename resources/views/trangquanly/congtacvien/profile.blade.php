@@ -1,5 +1,8 @@
-@extends('trangquanly.congtacvien.layout'){{--kế thừa form layout--}}
-@section('content'){{--thêm content vào form kế thừa chỗ @yield('content')--}}
+@extends('trangquanly.congtacvien.layout'){{-- kế thừa form layout --}}
+@section('content')
+    {{-- thêm content vào form kế thừa chỗ @yield('content') --}}
+    {!! Toastr::message() !!}
+
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header mt-5">
@@ -319,23 +322,43 @@
                         <div id="password_tab" class="tab-pane fade">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title">Change Password</h5>
+                                    <h5 class="card-title">Đổi mật khẩu</h5>
                                     <div class="row">
                                         <div class="col-md-10 col-lg-6">
-                                            <form>
+                                            <form action="{{ route('congtacvien.doimatkhau', [Auth::user()->id]) }}"
+                                                method="POST" enctype="multipart/form-data" class="needs-validation"
+                                                novalidate>
+                                                @csrf
                                                 <div class="form-group">
-                                                    <label>Old Password</label>
-                                                    <input type="password" class="form-control">
+                                                    <input type="password"
+                                                        class="form-control @error('password_old') is-invalid @enderror"
+                                                        id="password_old" name="password_old" required />
+                                                    @error('password_old')
+                                                        <div class="invalid-feedback"><strong>{{ $message }}</strong>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>New Password</label>
-                                                    <input type="password" class="form-control">
+                                                    <input type="password"
+                                                        class="form-control @error('password') is-invalid @enderror"
+                                                        id="password" name="password" required />
+                                                    @error('password')
+                                                        <div class="invalid-feedback"><strong>{{ $message }}</strong>
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Confirm Password</label>
-                                                    <input type="password" class="form-control">
+                                                    <input type="password"
+                                                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                        id="password_confirmation" name="password_confirmation"
+                                                        required />
+                                                    @error('password_confirmation')
+                                                        <div class="invalid-feedback"><strong>{{ $message }}</strong>
+                                                        </div>
+                                                    @enderror
                                                 </div>
-                                                <button class="btn btn-primary" type="submit">Save Changes</button>
+
+                                                <button class="btn btn-primary" type="submit">Lưu mật khẩu</button>
                                             </form>
                                         </div>
                                     </div>

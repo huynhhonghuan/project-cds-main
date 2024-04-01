@@ -141,7 +141,6 @@ class TaikhoanController extends Controller
                 'doanhnghiep_fax' => ['string'],
                 'doanhnghiep_soluongnhansu' => ['required', 'int'],
                 'doanhnghiep_sdt' => ['required', 'string'],
-                'doanhnghiep_loai_sdt' => ['required', 'string'],
                 'doanhnghiep_thanhpho' => ['required', 'string'],
                 'doanhnghiep_huyen' => ['required', 'string'],
                 'doanhnghiep_xa' => ['required', 'string'],

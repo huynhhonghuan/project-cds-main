@@ -31,22 +31,14 @@
 
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>
-                {{-- <li class="submenu"> <a href="#"><i class="fa-solid fa-bullseye"></i> <span> Danh sách chiến lược
-                        </span>
-                        <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('admin.chienluoc.danhsach') }}"> Danh sách chiến lược tổng</a></li>
-                        <li><a href=""> Chiến lược - nông nghiệp</a></li>
-                        <li><a href=""> Chiến lược - công nghiệp</a></li>
-                        <li><a href=""> Chiến lược - thương mại và dịch vụ</a></li>
-                        <li><a href=""> Chiến lược - khác</a></li>
-                    </ul>
-                </li> --}}
 
                 <li> <a href="{{ route('admin.chienluoc.danhsach') }}"><i class="fa-solid fa-list-ol"></i> <span>Danh
                             sách chiến lược</span></a> </li>
-
-                <li> <a href="{{ route('chung.mucdo.danhsach') }}"><i class="fa-solid fa-list-ol"></i> <span>Mức độ
+                <li> <a href="{{ route('admin.chienluocchitiet.danhsach') }}"><i class="fa-solid fa-bars-staggered"></i>
+                        <span>Chiến
+                            lược chi tiết</span></a> </li>
+                <li> <a href="{{ route('chung.mucdo.danhsach') }}"><i class="fa-solid fa-arrow-trend-up"></i> <span>Mức
+                            độ
                             chuyển đổi số</span></a> </li>
 
                 <li> <a href="{{ route('chung.trucot.danhsach') }}"><i class="fa-solid fa-recycle"></i></i><span>Trụ cột

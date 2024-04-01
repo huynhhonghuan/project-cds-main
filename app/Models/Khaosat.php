@@ -17,6 +17,7 @@ class Khaosat extends Model
         'thoigiantao',
         'tongdiem',
         'trangthai',
+        'mucdo_id',
         'doanhnghiep_id',
     ];
 
@@ -46,7 +47,15 @@ class Khaosat extends Model
         return $this->hasMany(Chuyengia_Danhgia::class, 'khaosat_id', 'id');
     }
 
-    //
+    // public function getketqua()
+    // {
+    //     return $this->hasOne(Ketquaphieu1::class, 'khaosat_id', 'id');
+    // }
+
+    public function getdoanhnghiep()
+    {
+        return $this->belongsTo(Doanhnghiep::class, 'doanhnghiep_id', 'id');
+    }
 
     public function getChuyenGiaDanhGia()
     {

@@ -72,13 +72,13 @@
                                         </div>
                                         <div class="item-field-all" style="padding-top: 10px;padding-right:10px">
                                             {{-- <span>{{$news->tenlinhvuc}}</span> --}}
-                                            @if($news->tenlinhvuc == 'Nông nghiệp') 
+                                            @if($news->tenlinhvuc == 'Nông nghiệp')
                                                 <span style="background-color: green;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Nông Nghiệp</span>
-                                            @elseif($news->tenlinhvuc == 'Công nghiệp') 
+                                            @elseif($news->tenlinhvuc == 'Công nghiệp')
                                                 <span style="background-color: blue;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Công Nghiệp</span>
-                                            @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ') 
+                                            @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ')
                                                 <span style="background-color: yellow;padding:4px 16px;border-radius:10px;font-weight:600">Thương mại - Dịch vụ</span>
-                                            @endif    
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="item-content">
