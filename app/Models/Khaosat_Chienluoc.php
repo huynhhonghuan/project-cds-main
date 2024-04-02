@@ -13,7 +13,6 @@ class Khaosat_Chienluoc extends Model
     protected $fillable = [
         'id',
         'khaosat_id',
-        'mucdo_id',
         'mohinh_id',
         'user_id',
         'trangthai'
@@ -24,8 +23,8 @@ class Khaosat_Chienluoc extends Model
         return $this->belongsTo(Mohinh::class, 'mohinh_id');
     }
 
-    public function getmucdo()
-    {
-        return $this->belongsTo(Mucdo::class, 'mucdo_id');
-    }
+    // public function getmucdo()
+    // {
+    //     return $this->belongsTo(Mucdo::class, 'mucdo_id');
+    // }
 }

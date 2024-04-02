@@ -14,6 +14,8 @@ class Doanhnghiep_Loaihinh extends Model
         'id',
         'linhvuc_id',
         'tenloaihinh',
+        'hinhanh',
+        'mota'
     ];
 
     public function getdoanhnghiep()

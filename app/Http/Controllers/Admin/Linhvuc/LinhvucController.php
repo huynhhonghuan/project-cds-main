@@ -14,22 +14,4 @@ class LinhvucController extends Controller
         $danhsach  = Linhvuc::all();
         return view('trangquanly.admin.linhvuc.danhsach', compact('tendanhsach','danhsach'));
     }
-    public function getthem()
-    {
-    }
-    public function postthem(Request $request)
-    {
-    }
-    public function getsua($id)
-    {
-    }
-    public function postsua(Request $request, $id)
-    {
-    }
-    public function postxoa(Request $request)
-    {
-    }
-    public function getduyet($id)
-    {
-    }
 }

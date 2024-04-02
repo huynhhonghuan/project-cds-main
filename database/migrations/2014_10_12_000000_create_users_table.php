@@ -26,7 +26,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
         });
 
-        $pass = Hash::make('1');
+        $pass = Hash::make('12345678');
 
         DB::table('users')->insert([
             ['name' => 'Admin', 'email' => 'admin@gmail.com', 'phone' => null, 'password' => $pass, 'status' => 'Active'],

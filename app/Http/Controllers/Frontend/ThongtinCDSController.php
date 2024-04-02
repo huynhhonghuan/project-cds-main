@@ -16,7 +16,7 @@ class ThongtinCDSController extends Controller
 {
     public function __construct()
     {
-        
+
     }
 
     public function Index(Request $request)

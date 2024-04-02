@@ -28,7 +28,7 @@
                 @foreach ($trucot as $value)
                     <div class="col-12 col-sm-8 col-md-6 col-lg-4">
                         <div class="card" style="height: 90%;"> <img class="card-img"
-                                src="{{ URL::to('public/assets/backend/img/trucot/' . $value->hinhanh) }}" alt="">
+                                src="{{ env('APP_URL') }}/assets/backend/img/trucot/{{ $value->hinhanh }}" alt="">
                             <div class="card-img-overlay"> <a href="#" class="btn btn-light btn-sm">Sửa</a> </div>
                             <div class="card-body">
                                 <h4 class="card-title">{{ $value->tentrucot }}</h4>

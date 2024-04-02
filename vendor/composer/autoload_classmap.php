@@ -54,7 +54,10 @@ return array(
     'App\\Http\\Controllers\\Doanhnghiep\\DanhgiacController' => $baseDir . '/app/Http/Controllers/Doanhnghiep/DanhgiacController.php',
     'App\\Http\\Controllers\\Doanhnghiep\\DoanhnghiepController' => $baseDir . '/app/Http/Controllers/Doanhnghiep/DoanhnghiepController.php',
     'App\\Http\\Controllers\\Doanhnghiep\\KhaosatController' => $baseDir . '/app/Http/Controllers/Doanhnghiep/KhaosatController.php',
+<<<<<<< HEAD
+=======
     'App\\Http\\Controllers\\Frontend\\BannerController' => $baseDir . '/app/Http/Controllers/Frontend/BannerController.php',
+>>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
     'App\\Http\\Controllers\\Frontend\\ThongtinCDSController' => $baseDir . '/app/Http/Controllers/Frontend/ThongtinCDSController.php',
     'App\\Http\\Controllers\\Frontend\\TrangtinController' => $baseDir . '/app/Http/Controllers/Frontend/TrangtinController.php',
     'App\\Http\\Controllers\\Frontend\\VideoController' => $baseDir . '/app/Http/Controllers/Frontend/VideoController.php',

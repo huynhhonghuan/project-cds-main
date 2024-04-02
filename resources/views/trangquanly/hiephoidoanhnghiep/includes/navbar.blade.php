@@ -99,7 +99,7 @@
                         <p class="text-muted mb-0">Hiệp hội doanh nghiệp</p>{{--hiện chức vụ của người đại diện--}}
                     </div>
                 </div>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">Thông tin chi tiết</a>
+                <a class="dropdown-item" href="{{ route('hiephoidoanhnghiep.profile') }}">Thông tin chi tiết</a>
                 <a class="dropdown-item" href="settings.html">Cài đặt</a>
                 <a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
             </div>

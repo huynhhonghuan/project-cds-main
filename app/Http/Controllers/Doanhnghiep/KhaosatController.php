@@ -17,6 +17,8 @@ use App\Models\Danhsachphieu4;
 use App\Models\Denghiphieu3;
 use App\Models\Ketquaphieu1;
 use App\Models\Khaosat;
+use App\Models\Khaosat_Chienluoc;
+use App\Models\Mohinh_Doanhnghiep_Trucot;
 use App\Models\Mohinh_Trucot;
 use App\Models\Traloiphieu1;
 use App\Models\Traloiphieu2;
@@ -31,7 +33,7 @@ class KhaosatController extends Controller
     {
         $tendanhsach = 'Khởi tạo phiếu khảo sát';
         //cho có thì tạo mới khảo sát
-        if (Auth::user()->getdoanhnghiep->getkhaosat->last() == null || Auth::user()->getdoanhnghiep->getkhaosat->last()->trangthai == 1) {
+        if (Auth::user()->getdoanhnghiep->getkhaosat->last() == null || Auth::user()->getdoanhnghiep->getkhaosat->last()->trangthai == 2) {
 
             //Tạo mới khảo sát
             $khaosat =  Khaosat::create([
@@ -169,5 +171,51 @@ class KhaosatController extends Controller
         $khaosat = Auth::user()->getdoanhnghiep->getkhaosat->last();
         $solankhaosat = count(Auth::user()->getdoanhnghiep->getkhaosat);
         return redirect()->route('doanhnghiep.khaosat.xem', ['id' => $khaosat->id, 'solankhaosat' => $solankhaosat]);
+    }
+
+    private $ketqua, $doanhnghiep_loaihinh_id, $ketqua_item, $i = 0;
+
+    public final function gethoanthanh($id)
+    {
+        // dd('huan');
+        if ($this->i == 0) {
+            $this->ketqua = Khaosat::find($id)->getdanhsachphieu1->getketquaphieu1;
+            $this->doanhnghiep_loaihinh_id = Khaosat::find($id)->getdoanhnghiep->doanhnghiep_loaihinh_id;
+            $this->ketqua_item = $this->ketqua[0];
+            $this->i = 1;
+        }
+        if (count($this->ketqua) > 0) {
+
+            foreach ($this->ketqua as $key => $value) {
+                if ($value->phantram > $this->ketqua_item->phantram) {
+                    $ketqua_item = $value;
+                    unset($this->ketqua[$key]);
+                }
+            }
+
+            $mohinh = Mohinh_Doanhnghiep_Trucot::whereRaw(
+                'mohinh_trucot_id = ? AND doanhnghiep_loaihinh_id = ?',
+                [$this->ketqua_item->mohinh_trucot_id, $this->doanhnghiep_loaihinh_id]
+            )->first();
+
+            if ($mohinh != null) {
+                $chienluoc = Khaosat_Chienluoc::insert([
+                    'khaosat_id' => $id,
+                    'mohinh_id' => $mohinh->mohinh_id,
+                    'user_id' => null,
+                    'trangthai' => 1,
+                ]);
+
+                $khaosat = Khaosat::find($id);
+                $khaosat->update([
+                    'trangthai' => 2
+                ]);
+
+                return redirect()->route('doanhnghiep.chienluoc.xem', [$id]);
+            } else
+                $this->gethoanthanh($id);
+        } else {
+            return redirect()->refresh();
+        }
     }
 }

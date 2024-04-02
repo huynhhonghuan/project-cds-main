@@ -199,7 +199,8 @@
                             $khaosat->getdanhsachphieu4->trangthai == 1)
                         <div class="row mt-4">
                             <div class="col-2 mx-auto text-center">
-                                <a href="#" class="btn btn-info"><i class="fa-regular fa-circle-check"></i><span
+                                <a href="{{ route('doanhnghiep.khaosat.hoanthanh', [$khaosat->id]) }}"
+                                    class="btn btn-info"><i class="fa-regular fa-circle-check"></i><span
                                         class="px-2">Hoàn thành
                                         khảo sát</span> </a>
                             </div>

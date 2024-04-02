@@ -1,36 +1,42 @@
 <script>
     let list = document.querySelector('.slider .list');
     let items = document.querySelectorAll('.slider .list .item');
-    let dots = document.querySelectorAll('.slider .dots li');
+    let dots = document.querySelectorAll('.slider .dots li img');
     let prev = document.getElementById('prev');
     let next = document.getElementById('next');
 
     let active = 0;
     let lengthItems = items.length - 1;
-    let refreshSlider = setInterval(() => {next.click()} , 3000)
+    let refreshSlider = setInterval(() => {
+        next.click()
+    }, 3000)
     next.onclick = function() {
-        if(active + 1 > lengthItems) {
+        if (active + 1 > lengthItems) {
             active = 0;
-        } else  {
+        } else {
             active = active + 1;
-        } reloadSlider();
+        }
+        reloadSlider();
     }
     prev.onclick = function() {
-        if(active - 1 < 0) {
+        if (active - 1 < 0) {
             active = lengthItems;
-        } else  {
+        } else {
             active = active - 1;
-        } reloadSlider();
+        }
+        reloadSlider();
     }
 
     function reloadSlider() {
         let checkLeft = items[active].offsetLeft;
         list.style.left = -checkLeft + 'px';
-        let lastActiveDot = document.querySelector('.slider .dots li.active');
+        let lastActiveDot = document.querySelector('.slider .dots li img.active');
         lastActiveDot.classList.remove('active');
         dots[active].classList.add('active');
         clearInterval(refreshSlider);
-        refreshSlider = setInterval(() => {next.click()} , 3000)
+        refreshSlider = setInterval(() => {
+            next.click()
+        }, 3000)
     }
 
     dots.forEach((li, key) => {
@@ -74,18 +80,43 @@
     });
 </script>
 <script>
-    window.onload = function hienthingaythang()
-    {
+    window.onload = function hienthingaythang() {
         const t = new Date();
-    let day = t.getDay();
-    let d = t.getDate();
-    let m = t.getMonth() + 1;
-    let y = t.getFullYear();
+        let day = t.getDay();
+        let d = t.getDate();
+        let m = t.getMonth() + 1;
+        let y = t.getFullYear();
 
-    let h = t.getHours();
-    let mi = t.getMinutes();
-    let s = t.getSeconds();
+        let h = t.getHours();
+        let mi = t.getMinutes();
+        let s = t.getSeconds();
 
+<<<<<<< HEAD
+        mi = dinhdang(mi);
+        s = dinhdang(s);
+        switch (day) {
+            case 0:
+                day = "Chủ nhật";
+                break;
+            case 1:
+                day = "Thứ hai";
+                break;
+            case 2:
+                day = "Thứ ba";
+                break;
+            case 3:
+                day = "Thứ tư";
+                break;
+            case 4:
+                day = "Thứ năm";
+                break;
+            case 5:
+                day = "Thứ sau";
+                break;
+            case 6:
+                day = "Thứ bảy";
+        }
+=======
     mi = dinhdang(mi);
     s = dinhdang(s);
     switch (day) {
@@ -105,19 +136,20 @@
         day = "Thứ năm";
         break;
     case 5:
-        day = "Thứ sau";
+        day = "Thứ sáu";
         break;
     case 6:
         day = "Thứ bảy";
     }
+>>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
-    document.getElementById("day").innerHTML = day + ", " +d+ "/"+m+ "/" +y ;
-    document.getElementById("time").innerHTML = h + ": " + mi + ": " + s;
-    setTimeout(hienthingaythang, 1000);
+        document.getElementById("day").innerHTML = day + ", " + d + "/" + m + "/" + y;
+        document.getElementById("time").innerHTML = h + ": " + mi + ": " + s;
+        setTimeout(hienthingaythang, 1000);
     };
 
     function dinhdang(x) {
-        if(x < 10) 
+        if (x < 10)
             x = "0" + x;
         return x;
     }
@@ -125,3 +157,15 @@
 <script>
     AOS.init();
 </script>
+{{-- <script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    const windowPathname = window.location.pathname;
+
+    navLinks.forEach(navLink => {
+        const navLinkPathname = new URL(navLink.href).pathname;
+        if((windowPathname === navLinkPathname) || windowPathname === '/'){
+            navLink.classList.add('active');
+            console.log(navLinkPathname);
+        }
+    });
+</script> --}}

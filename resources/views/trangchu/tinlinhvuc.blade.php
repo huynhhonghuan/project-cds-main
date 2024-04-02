@@ -46,15 +46,10 @@
                             </div>
                             <div class="item-content">
                                 <div class="item-content--main">{{$news->tieude}}</div>
-                                <div class="item-content--sub">{!!$news->tomtat!!}</div>
                             </div>
                             <div class="item-footer">
-                                <div class="item-view">
-                                    <i class="fa-solid fa-eye"></i> {{$news->luotxem}}
-                                </div>
                                 <div class="item-detail">
                                     Xem chi tiết
-                                    <i class='bx bx-chevron-right'></i>
                                 </div>
                             </div>
                         </div>

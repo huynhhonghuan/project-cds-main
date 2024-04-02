@@ -32,4 +32,8 @@ class ChienluocController extends Controller
             $loai = 2;
         return view('trangquanly.chuyengia.chienluoc.xem', compact('danhsach', 'tendanhsach', 'loai'));
     }
+    public function getthem()
+    {
+        return view('trangquanly.chuyengia.chienluoc.them');
+    }
 }

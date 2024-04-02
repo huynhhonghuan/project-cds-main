@@ -18,182 +18,164 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="page-title mt-5">
-                            <a href="{{ route('admin.taikhoan.danhsach') }}" class="btn"><i
+                            <a href="{{ route('chuyengia.doanhnghiep.danhsach') }}" class="btn"><i
                                     class="fa-solid fa-arrow-left"></i></a>
                             <span id="title-tendanhsach"> {{ $tendanhsach }} </span>
                         </h3>
                     </div>
-                    <div class="col me-auto mt-5">
-                        <a href="{{ route('admin.taikhoan.sua', $user->id) }}"
-                            class="btn btn-primary float-right veiwbutton ">{{ $suataikhoan }}</a>
-                    </div>
                 </div>
             </div>
             <div class="row">
-                @if ($user->getVaiTro[0]->id == 'dn')
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Thông tin doanh nghiệp</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <span>Tên doanh nghiệp tiếng việt:
-                                        {{ $user->getdoanhnghiep->tentiengviet }}</span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tên doanh nghiệp tiếng anh:
-                                        {{ $user->getdoanhnghiep->tentienganh }}</label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Tên doanh nghiệp viết tắt: {{ $user->getdoanhnghiep->tenviettat }}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Loại hình hoạt động chính:
-                                        {{ $user->getdoanhnghiep->getloaihinh->tenloaihinh }}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ngày thành lập:
-                                        {{ Date::parse($user->getdoanhnghiep->ngaylap)->format('d/m/Y') }}</label>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Mã thuế: {{ $user->getdoanhnghiep->mathue }}</label>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Fax: {{ $user->getdoanhnghiep->fax }}</label>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Nhân sự: {{ $user->getdoanhnghiep->soluongnhansu }} người</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Số điện thoại: {{ $user->getdoanhnghiep->getsdt->sdt }}</label>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Loại số điện thoại:
-                                        @if ($user->getdoanhnghiep->getsdt->loaisdt == 'Văn phòng')
-                                            Văn phòng
-                                        @endif
-                                        @if ($user->getdoanhnghiep->getsdt->loaisdt == 'Di động')
-                                            Di động
-                                        @endif
-                                    </label>
-                                </div>
-
-                                <div class="form-group">
-                                    <p id="doanhnghiep_local_1_page">Địa chỉ: </p>
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->diachi }}"
-                                        id="doanhnghiep_local_1_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->thanhpho }}"
-                                        id="doanhnghiep_city_1_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->huyen }}"
-                                        id="doanhnghiep_district_1_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->xa }}"
-                                        id="doanhnghiep_ward_1_db">
-                                </div>
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết doanh nghiệp: {{ $user->getdoanhnghiep->mota }} </label>
-                                </div>
-                            </div>
-
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Thông tin doanh nghiệp</h4>
                         </div>
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Thông tin đại diện doanh nghiệp</h4>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <span>Tên doanh nghiệp tiếng việt:
+                                    {{ $user->getdoanhnghiep->tentiengviet }}</span>
                             </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <span>Tên người đại diện:
-                                        {{ $user->getdoanhnghiep->getdaidien->tendaidien }}</span>
-                                </div>
 
-                                <div class="form-group">
-                                    <label>Email:
-                                        {{ $user->getdoanhnghiep->getdaidien->email }}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Chức vụ: {{ $user->getdoanhnghiep->getdaidien->chucvu }}</label>
-                                </div>
+                            <div class="form-group">
+                                <label>Tên doanh nghiệp tiếng anh:
+                                    {{ $user->getdoanhnghiep->tentienganh }}</label>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Số điện thoại: {{ $user->getdoanhnghiep->getdaidien->sdt }}</label>
-                                </div>
+                            <div class="form-group">
+                                <label>Tên doanh nghiệp viết tắt: {{ $user->getdoanhnghiep->tenviettat }}</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Loại hình hoạt động chính:
+                                    {{ $user->getdoanhnghiep->getloaihinh->tenloaihinh }}</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Ngày thành lập:
+                                    {{ Date::parse($user->getdoanhnghiep->ngaylap)->format('d/m/Y') }}</label>
 
-                                <div class="form-group">
-                                    <label>Số CCCD: {{ $user->getdoanhnghiep->getdaidien->cccd }}</label>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mã thuế: {{ $user->getdoanhnghiep->mathue }}</label>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Hình CCCD mặt trước:</label>
-                                            <br>
-                                            <img class="w-100 h-75"
-                                                src="{{ URL::to('/assets/backend/img/hoso/' . $user->getdoanhnghiep->getdaidien->img_mattruoc) }}"
-                                                alt="Hình">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Hình CCCD mặt sau:</label>
-                                            <br>
-                                            <img class="w-100 h-75"
-                                                src="{{ URL::to('/assets/backend/img/hoso/' . $user->getdoanhnghiep->getdaidien->img_matsau) }}"
-                                                alt="Hình">
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fax: {{ $user->getdoanhnghiep->fax }}</label>
+
+                            </div>
+                            <div class="form-group">
+                                <label>Nhân sự: {{ $user->getdoanhnghiep->soluongnhansu }} người</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại: {{ $user->getdoanhnghiep->sdt }}</label>
+                            </div>
+
+                            <div class="form-group">
+                                <p id="doanhnghiep_local_1_page">Địa chỉ: </p>
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->diachi }}"
+                                    id="doanhnghiep_local_1_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->thanhpho }}"
+                                    id="doanhnghiep_city_1_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->huyen }}"
+                                    id="doanhnghiep_district_1_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->xa }}" id="doanhnghiep_ward_1_db">
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả chi tiết doanh nghiệp: {{ $user->getdoanhnghiep->mota }} </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Thông tin đại diện doanh nghiệp</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <span>Tên người đại diện:
+                                    {{ $user->getdoanhnghiep->getdaidien->tendaidien }}</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Email:
+                                    {{ $user->getdoanhnghiep->getdaidien->email }}</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Chức vụ: {{ $user->getdoanhnghiep->getdaidien->chucvu }}</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Số điện thoại: {{ $user->getdoanhnghiep->getdaidien->sdt }}</label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Số CCCD: {{ $user->getdoanhnghiep->getdaidien->cccd }}</label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Hình CCCD mặt trước:</label>
+                                        <br>
+                                        <img class="w-100 h-75"
+                                            src="{{ URL::to('/assets/backend/img/hoso/' . $user->getdoanhnghiep->getdaidien->img_mattruoc) }}"
+                                            alt="Hình">
                                     </div>
                                 </div>
-
-                                <div class="form-group">
-                                    <p id="doanhnghiep_local_2_page">Địa chỉ: </p>
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->diachi }}"
-                                        id="doanhnghiep_local_2_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->thanhpho }}"
-                                        id="doanhnghiep_city_2_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->huyen }}"
-                                        id="doanhnghiep_district_2_db">
-                                    <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->xa }}"
-                                        id="doanhnghiep_ward_2_db">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Hình CCCD mặt sau:</label>
+                                        <br>
+                                        <img class="w-100 h-75"
+                                            src="{{ URL::to('/assets/backend/img/hoso/' . $user->getdoanhnghiep->getdaidien->img_matsau) }}"
+                                            alt="Hình">
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Mô tả chi tiết đại diện doanh nghiệp:
-                                        {{ $user->getdoanhnghiep->getdaidien->mota }} </label>
-                                </div>
+                            <div class="form-group">
+                                <p id="doanhnghiep_local_2_page">Địa chỉ: </p>
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->diachi }}"
+                                    id="doanhnghiep_local_2_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->thanhpho }}"
+                                    id="doanhnghiep_city_2_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->huyen }}"
+                                    id="doanhnghiep_district_2_db">
+                                <input type="hidden" value="{{ $user->getdoanhnghiep->getdaidien->xa }}"
+                                    id="doanhnghiep_ward_2_db">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Mô tả chi tiết đại diện doanh nghiệp:
+                                    {{ $user->getdoanhnghiep->getdaidien->mota }} </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Thông tin tài khoản</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <span>Email của doanh nghiệp:
+                                    {{ $user->email }}</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hình đại diện doanh nghiệp:</label>
+                                <br>
+                                <img class="w-100 h-50" src="{{ URL::to('/assets/backend/img/hoso/' . $user->image) }}"
+                                    alt="Hình">
                             </div>
 
                         </div>
+
                     </div>
-                    <div class="col-md-12 col-lg-6 col-xl-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Thông tin tài khoản</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <span>Email của doanh nghiệp:
-                                        {{ $user->email }}</span>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Hình đại diện doanh nghiệp:</label>
-                                    <br>
-                                    <img class="w-100 h-50" src="{{ URL::to('/assets/backend/img/hoso/' . $user->image) }}"
-                                        alt="Hình">
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                @endif
+                </div>
             </div>
         </div>
     </div>

@@ -19,15 +19,11 @@ class DoanhnghiepController extends Controller
         }
         return view('trangquanly.chuyengia.doanhnghiep.danhsach', compact('danhsach'));
     }
-    public function getxemdoanhnghiep()
+    public function getxemdoanhnghiep($id)
     {
-    }
-
-    public function getxemkhaosat()
-    {
-    }
-
-    public function getxemchienluoc()
-    {
+        $user = Doanhnghiep::find($id);
+        $user = $user->getuser;
+        $tendanhsach = 'Xem thông tin doanh nghiệp';
+        return view('trangquanly.chuyengia.doanhnghiep.xem', compact('user', 'tendanhsach'));
     }
 }
