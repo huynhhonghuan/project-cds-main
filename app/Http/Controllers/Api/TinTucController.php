@@ -42,7 +42,6 @@ class TinTucController extends Controller
      */
     public function show(Request $request)
     {
-        //
         $tintuc = Tintuc::with(['getLinhvuc', 'getUser'])->where('id', $request->input('id'))->first();
         $tintuc->luotxem += 1;
         $tintuc->save();
@@ -53,11 +52,16 @@ class TinTucController extends Controller
     {
         return SliderResource::collection(Slide::all());
     }
+
     public function thuvien(Request $request)
     {
-
-        $loai = $request->input('loai');
-        return ThuVienResource::collection(Thuvien::where('loai', $loai)->get());
+        if ($request->has('loai')) {
+            $loai = $request->input('loai');
+            return ThuVienResource::collection(Thuvien::where('loai', $loai)->get());
+        } else if ($request->has('id')) {
+            $id = $request->input('id');
+            return new ThuVienResource(Thuvien::find($id));
+        }
     }
 
     public function video()
