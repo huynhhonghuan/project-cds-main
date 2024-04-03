@@ -377,8 +377,8 @@
                                         <select
                                             class="floating-select bg-primary ps-2 text-light border-bottom border-light"
                                             onclick="this.setAttribute('value', this.value);" value=""
-                                            id="invalidCheck" required />
-                                        <option value=""></option>
+                                            id="invalidCheck" />
+                                        <option value="">123</option>
                                         </select>
                                         <label class="label-select form-label text-light">Nơi cấp</label>
                                         <div class="invalid-feedback text-warning">

@@ -49,15 +49,12 @@ use Livewire\Livewire;
 
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
+use App\Http\Controllers\Frontend\ThuvienController;
+use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
-<<<<<<< HEAD
 use App\Http\Controllers\Hiephoidoanhnghiep\Chienluoc\ChienluocController as ChienluocChienluocController;
 use App\Http\Controllers\Hiephoidoanhnghiep\Danhgia\DanhgiaController as HiephoidoanhnghiepDanhgiaDanhgiaController;
 use App\Http\Controllers\Hiephoidoanhnghiep\Khaosat\KhaosatController as KhaosatKhaosatController;
-=======
-use App\Http\Controllers\Frontend\VideoController;
-use App\Http\Controllers\Frontend\ThuvienController;
->>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
 function set_active($route)
 {
@@ -81,12 +78,9 @@ Route::get('/', function () {
     return view('trangchu.home');
 })->name('home');
 
-<<<<<<< HEAD
 // Route::get('/home', function () {
 //     return view('trangchu.home');
 // })->name('home');
-=======
->>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
 //Đăng kí Auth
 Auth::routes();
@@ -449,7 +443,8 @@ Route::get('/search', [TrangtinController::class, 'search'])->name('search');
 Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search');
 //Bình luận
 Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
-
+// Hiển thị doanh nghiệp
+Route::get('/Doanhnghiep', [TrangtinController::class, 'doanhnghiep'])->name('doanhnghiep');
 //Giao diện trang tin chuyển đổi số
 Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
 //Giao diện thư viện

@@ -663,10 +663,7 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'App\\Http\\Controllers\\Doanhnghiep\\DanhgiacController' => __DIR__ . '/../..' . '/app/Http/Controllers/Doanhnghiep/DanhgiacController.php',
         'App\\Http\\Controllers\\Doanhnghiep\\DoanhnghiepController' => __DIR__ . '/../..' . '/app/Http/Controllers/Doanhnghiep/DoanhnghiepController.php',
         'App\\Http\\Controllers\\Doanhnghiep\\KhaosatController' => __DIR__ . '/../..' . '/app/Http/Controllers/Doanhnghiep/KhaosatController.php',
-<<<<<<< HEAD
-=======
         'App\\Http\\Controllers\\Frontend\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/BannerController.php',
->>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
         'App\\Http\\Controllers\\Frontend\\ThongtinCDSController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ThongtinCDSController.php',
         'App\\Http\\Controllers\\Frontend\\TrangtinController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/TrangtinController.php',
         'App\\Http\\Controllers\\Frontend\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/VideoController.php',

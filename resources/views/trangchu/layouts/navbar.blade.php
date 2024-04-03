@@ -79,7 +79,7 @@
                             </ul>
                         </li>
                         <li class="nav-item mx-1">
-                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="#" role="button" data-bs-toggle="dropdown"
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('doanhnghiep') }}" role="button"
                                 aria-expanded="false">
                                 Doanh Nghiệp
                             </a>
