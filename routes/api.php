@@ -52,6 +52,7 @@ Route::group(['prefix' => 'thongke'], function () {
 
 // Private routes
 Route::group(['prefix' => 'doanhnghiep'], function () {
+    Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::post('register', [DoanhNghiepController::class, 'register']);
     Route::post("login", [DoanhNghiepController::class, 'login']);
     Route::post("loginemail", [DoanhNghiepController::class, 'loginemail']);
