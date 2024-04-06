@@ -10,8 +10,8 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="page-title mt-5">
-                            <a href="{{ route('admin.chienluoc.danhsach') }}" class="btn"><i
-                                    class="fa-solid fa-arrow-left"></i></a>
+                            {{-- <a href="{{ route('admin.chienluoc.danhsach') }}" class="btn"><i
+                                    class="fa-solid fa-arrow-left"></i></a> --}}
                             <span id="title-tendanhsach"> {{ $tendanhsach }} </span>
                         </h3>
                     </div>

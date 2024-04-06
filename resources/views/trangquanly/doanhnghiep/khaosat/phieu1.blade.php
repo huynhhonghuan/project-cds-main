@@ -30,7 +30,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="#" class="btn btn-primary float-right veiwbutton ">Lưu khảo sát 1</a>
+                            {{-- <a href="#" class="btn btn-primary float-right veiwbutton ">Lưu khảo sát 1</a> --}}
                         </div>
                     </div>
                 </div>

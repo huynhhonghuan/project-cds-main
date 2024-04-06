@@ -86,7 +86,7 @@
 
                                                 <td>
                                                     <a class="form-sua"
-                                                        href="{{ route('admin.chienluoc.sua', $value->id) }}">
+                                                        href="#">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
                                                     {{-- <input type="hidden" id="form-sua-value"
@@ -111,65 +111,10 @@
             </div>
         </div>
 
-        {{-- Model duyệt tài khoản --}}
-        {{-- <div id="sua_modal" class="modal fade delete-modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Chỉnh sửa vai trò</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
-                                aria-hidden="true">×</span> </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-8">
-
-                                    <input type="hidden" class="form-control" value="" id="sua_id">
-
-                                    <div class="form-group">
-                                        <label>Tên vai trò</label>
-                                        <input type="text" class="form-control" value="" id="sua_tenvaitro">
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <h6>Hình ảnh</h6>
-                                    <img class="img-vaitro" src="" alt="Hình" id="sua_hinhanh">
-                                </div>
-
-                                <div class="col-12 mt-3">
-                                    <h5 class="form-title"><span>Chọn hình ảnh mới</span></h5>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Lưu thay đổi</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- End Model duyệt tài khoản --}}
-
     </div>
 @endsection
 
 @section('script')
-    {{-- duyệt modal --}}
-    {{-- <script>
-        $(document).on('click', '.sua_modal', function() {
-            $('#sua_id').val($(this).data('id')); // gán id vào input (hidden)
-            $('#sua_tenvaitro').val($(this).data('tenvaitro')); // gán
-            $('#sua_hinhanh').attr('src', '{{ URL::to('/assets/backend/img/vaitro/') }}' + '/' + $(this).data(
-                'hinhanh'));
-        });
-    </script> --}}
 
     <script>
         $(document).ready(function() {

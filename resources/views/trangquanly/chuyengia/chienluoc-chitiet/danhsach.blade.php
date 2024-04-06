@@ -1,4 +1,4 @@
-@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -16,7 +16,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            {{-- <a href="{{ route('admin.chienluoc.them') }}"
+                            {{-- <a href="{{ route('chuyengia.chienluoc.them') }}"
                                 class="btn btn-primary float-right veiwbutton ">Thêm
                                 chiến lược</a> --}}
                         </div>
@@ -59,7 +59,7 @@
                                                         {{ $it->getmohinh->tenmohinh }}
                                                         <div class="material-switch float-right">
                                                             <a
-                                                                href="{{ route('admin.chienluocchitiet.xem', ['id' => $it->getmohinh->id]) }}">Xem
+                                                                href="{{ route('chuyengia.chienluocchitiet.xem', ['id' => $it->getmohinh->id]) }}">Xem
                                                                 chi tiết</a> |
                                                             <a href="#" class="text-warning modalSua"
                                                                 data-toggle="modal" data-target="#modal_sua"
@@ -105,7 +105,7 @@
     <div id="modal_them" class="modal fade delete-modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('admin.chienluocchitiet.them') }}" method="POST">
+                <form action="{{ route('chuyengia.chienluocchitiet.them') }}" method="POST">
                     @csrf
                     <div class="modal-body text-center">
                         <h3 class="delete_class">Thêm chiến lược cho <span class="text-info" id="delete_email"></span>
@@ -144,7 +144,7 @@
     <div id="modal_sua" class="modal fade delete-modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('admin.chienluocchitiet.sua') }}" method="POST">
+                <form action="{{ route('chuyengia.chienluocchitiet.sua') }}" method="POST">
                     @csrf
                     <div class="modal-body text-center">
                         <h3 class="delete_class">Thay thế chiến lược cho <span class="text-info" id="delete_email1"></span>

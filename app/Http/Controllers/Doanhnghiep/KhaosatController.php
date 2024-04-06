@@ -24,6 +24,7 @@ use App\Models\Traloiphieu1;
 use App\Models\Traloiphieu2;
 use App\Models\Traloiphieu3;
 use Brian2694\Toastr\Facades\Toastr;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -188,7 +189,7 @@ class KhaosatController extends Controller
 
             foreach ($this->ketqua as $key => $value) {
                 if ($value->phantram > $this->ketqua_item->phantram) {
-                    $ketqua_item = $value;
+                    $this->ketqua_item = $value;
                     unset($this->ketqua[$key]);
                 }
             }
@@ -208,7 +209,7 @@ class KhaosatController extends Controller
 
                 $khaosat = Khaosat::find($id);
                 $khaosat->update([
-                    'trangthai' => 2
+                    'trangthai' => 2 // đã đề xuất
                 ]);
 
                 return redirect()->route('doanhnghiep.chienluoc.xem', [$id]);
@@ -216,6 +217,24 @@ class KhaosatController extends Controller
                 $this->gethoanthanh($id);
         } else {
             return redirect()->refresh();
+        }
+    }
+
+    public function postxoa(Request $request)
+    {
+        try {
+            $request->validate([
+                'khaosat_id' => 'required|exists:khaosat,id'
+            ]);
+            Khaosat::destroy($request->khaosat_id);
+            Toastr::success('Xóa khảo sát thành công', 'success');
+            return redirect()->route('doanhnghiep.home');
+        } catch (Exception $e) {
+            dd($e);
+            Toastr::warning('Xóa khảo sát thất bại', 'warning');
+            $khaosat = Auth::user()->getdoanhnghiep->getkhaosat->last();
+            $solankhaosat = count(Auth::user()->getdoanhnghiep->getkhaosat);
+            return redirect()->route('doanhnghiep.khaosat.xem', ['id' => $khaosat->id, 'solankhaosat' => $solankhaosat]);
         }
     }
 }

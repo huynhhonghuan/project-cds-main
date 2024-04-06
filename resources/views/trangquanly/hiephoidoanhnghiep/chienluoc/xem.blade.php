@@ -8,8 +8,8 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h3 class="page-title mt-5">
-                            <a href="{{ route('hiephoidoanhnghiep.chienluoc.danhsach') }}" class="btn"><i
-                                    class="fa-solid fa-arrow-left"></i></a>
+                            {{-- <a href="{{ route('hiephoidoanhnghiep.chienluoc.danhsach') }}" class="btn"><i
+                                    class="fa-solid fa-arrow-left"></i></a> --}}
                             <span id="title-tendanhsach"> {{ $tendanhsach }} </span>
                         </h3>
                     </div>
@@ -34,7 +34,6 @@
                                         data-toggle="tab">Lộ trình</a></li>
                                 <li class="nav-item"><a class="nav-link tab-tab4" href="#solid-rounded-justified-tab4"
                                         data-toggle="tab">Lưu ý</a></li>
-
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane show active" id="solid-rounded-justified-tab1">
@@ -54,7 +53,7 @@
                                         <div class="col-6 mt-3 mx-auto">
                                             <h3 class="text-center text-info mt-3">{{ $danhsach->tenmohinh }}</h3>
                                             <hr>
-                                            <p class="fs-3">{{ $danhsach->noidung }}</p>
+                                            <p class="fs-3">{!! $danhsach->noidung !!}</p>
                                         </div>
                                     </div>
 
@@ -71,7 +70,7 @@
                                                 <hr class="bg-info">
 
                                                 <h3 class="text-center text-info mt-2">Dự tính
-                                                    {{ $danhsach->getlotrinh->thoigian }}</h3>
+                                                    {{ $danhsach->getlotrinh->thoigian }} năm</h3>
                                             </div>
 
                                             <div class="col-4 mt-3">
@@ -124,7 +123,7 @@
 
                                             @if ($danhsach->getlotrinh->noidung != null)
                                                 <div class="col-8 mx-auto my-auto">
-                                                    <div class="text-center">{{ $danhsach->getlotrinh->noidung }}</div>
+                                                    <div class="text-center">{!! $danhsach->getlotrinh->noidung !!}</div>
                                                 </div>
                                             @else
                                                 <div class="col-8 mx-auto my-auto">
@@ -154,7 +153,7 @@
                                             </div>
                                             @if ($danhsach->getlotrinh->luuy != null)
                                                 <div class="col-8 mx-auto my-auto">
-                                                    <div class="text-center">{{ $danhsach->getlotrinh->luuy }}</div>
+                                                    <div class="text-center">{!! $danhsach->getlotrinh->luuy !!}</div>
                                                 </div>
                                             @else
                                                 <div class="col-8 mx-auto my-auto">

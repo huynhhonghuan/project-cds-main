@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Chienluocchitiet;
+namespace App\Http\Controllers\Chuyengia\Chienluocchitiet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doanhnghiep_Loaihinh;
@@ -18,13 +18,13 @@ class ChienluocchitietController extends Controller
         $danhsach = Doanhnghiep_Loaihinh::all();
         $mohinh_trucot = Mohinh_Trucot::all();
         $mohinh = Mohinh::all();
-        return view('trangquanly.admin.chienluoc-chitiet.danhsach', compact('tendanhsach', 'danhsach', 'mohinh_trucot', 'mohinh'));
+        return view('trangquanly.chuyengia.chienluoc-chitiet.danhsach', compact('tendanhsach', 'danhsach', 'mohinh_trucot', 'mohinh'));
     }
     public function getxem($id)
     {
         $danhsach  = Mohinh::find($id);
         $tendanhsach = 'Xem chi tiết chiến lược chuyển đổi số';
-        return view('trangquanly.admin.chienluoc.xem', compact('danhsach', 'tendanhsach'));
+        return view('trangquanly.chuyengia.chienluoc.xem', compact('danhsach', 'tendanhsach'));
     }
     public function postthem(Request $request)
     {
@@ -40,7 +40,7 @@ class ChienluocchitietController extends Controller
             'mohinh_trucot_id' => $request->idmohinhtrucot
         ]);
         Toastr::success('Thêm mô hình cho loại hình doanh nghiệp thành công', 'success');
-        return redirect()->route('admin.chienluocchitiet.danhsach');
+        return redirect()->route('chuyengia.chienluocchitiet.danhsach');
     }
     public function postsua(Request $request)
     {
@@ -58,6 +58,6 @@ class ChienluocchitietController extends Controller
             // 'mohinh_trucot_id' => $request->idmohinhtrucot
         ]);
         Toastr::success('Thay thế mô hình cho loại hình doanh nghiệp thành công', 'success');
-        return redirect()->route('admin.chienluocchitiet.danhsach');
+        return redirect()->route('chuyengia.chienluocchitiet.danhsach');
     }
 }

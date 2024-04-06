@@ -28,12 +28,12 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-
-                            {{-- <a href="{{ route('admin.chienluoc.them') }}"
-                                class="btn btn-primary float-right veiwbutton ">Chưa có đánh giá và đề xuất</a>
-
-                            <a href="{{ route('admin.chienluoc.them') }}"
-                                class="btn btn-primary float-right veiwbutton mx-2">Chưa có chiến lược đề xuất</a> --}}
+                            @if ($khaosat->trangthai != 2)
+                                <a href="#" data-toggle="modal" data-target="#xoakhaosat_modal"
+                                    data-khaosat_id="{{ $khaosat->id }}"
+                                    class="btn btn-warning float-right veiwbutton mx-2 text-white xoakhaosat_modal">Xóa khảo
+                                    sát</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,8 @@
                         $khaosat->getdanhsachphieu1->trangthai == 1 &&
                             $khaosat->getdanhsachphieu2->trangthai == 1 &&
                             $khaosat->getdanhsachphieu3->trangthai == 1 &&
-                            $khaosat->getdanhsachphieu4->trangthai == 1)
+                            $khaosat->getdanhsachphieu4->trangthai == 1 &&
+                            $khaosat->trangthai != 2)
                         <div class="row mt-4">
                             <div class="col-2 mx-auto text-center">
                                 <a href="{{ route('doanhnghiep.khaosat.hoanthanh', [$khaosat->id]) }}"
@@ -207,11 +208,41 @@
                         </div>
                     @endif
 
+                    @if ($khaosat->trangthai == 2)
+                        <div class="row mt-4">
+                            <div class="col-2 mx-auto text-center">
+                                <a href="{{ route('doanhnghiep.chienluoc.xem', [$khaosat->id]) }}"
+                                    class="btn btn-success"><i class="fa-regular fa-circle-check"></i><span
+                                        class="px-2">Đã đề xuất chiến lược</span> </a>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
 
         </div>
 
+    </div>
+
+    {{-- Modal xóa khảo sát --}}
+    <div id="xoakhaosat_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('doanhnghiep.khaosat.xoa') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body text-center">
+                        <h3 class="delete_class">Xóa khảo sát!</h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="khaosat_id" id='khaosat_id'>
+                            <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -286,6 +317,13 @@
                     "search": "Tìm kiếm:",
                 }
             })
+        });
+    </script>
+
+    {{-- Modal xóa khảo sát --}}
+    <script>
+        $(document).on('click', '.xoakhaosat_modal', function() {
+            $('#khaosat_id').val($(this).data('khaosat_id')); // gán id vào input (hidden)
         });
     </script>
 @endsection

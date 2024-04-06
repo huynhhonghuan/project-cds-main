@@ -13,7 +13,9 @@
                 <li class="submenu"> <a href="#"><i class="fa-solid fa-list-ol"></i> <span> Khảo sát </span> <span
                             class="menu-arrow"></span></a>
                     <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('doanhnghiep.khaosat.khoitao') }}"> Khởi tạo khảo sát </a></li>
+                        {{-- <li><a href="{{ route('doanhnghiep.khaosat.khoitao') }}">  </a></li> --}}
+                        <li><a data-toggle="modal" data-target="#khoitaokhaosat_modal" href="#"> Khởi tạo khảo
+                                sát</a></li>
                         @foreach (Auth::user()->getdoanhnghiep->getkhaosat as $key => $item)
                             <li><a
                                     href="{{ route('doanhnghiep.khaosat.xem', ['id' => $item->id, 'solankhaosat' => $key + 1]) }}">
@@ -67,6 +69,25 @@
                 </li>
 
             </ul>
+        </div>
+    </div>
+</div>
+
+<div id="khoitaokhaosat_modal" class="modal fade delete-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form action="{{ route('doanhnghiep.khaosat.khoitao') }}" method="GET" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body text-center">
+                    <h3 class="delete_class">Khởi tạo khảo sát!</h3>
+                    <hr>
+                    <div class="m-t-20">
+                        {{-- <input class="form-control mb-3" type="file" name="excel_file"> --}}
+                        <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                        <button type="submit" class="btn btn-danger">Khởi tạo</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

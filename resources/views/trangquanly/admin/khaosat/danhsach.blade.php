@@ -64,12 +64,24 @@
                                                         dd($trangthai);
                                                     @endphp --}}
                                                     @if (count($value->getkhaosat) > 0)
-                                                        @if ($value->getkhaosat->last()->trangthai == 1)
-                                                            <div class="btn btn-sm bg-success-light mr-2"> Hoàn thành</div>
-                                                        @else
-                                                            <div class="btn btn-sm bg-warning-light mr-2">Chưa hoàn thành
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <div class="my-2">
+                                                                <span class="text-info"> Lần {{ $key + 1 }}:</span>
+                                                                @if ($item->trangthai == 1)
+                                                                    <div class="btn btn-sm bg-success-light mr-2"> Hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @elseif ($item->trangthai == 2)
+                                                                    <div class="btn btn-sm bg-success-light mr-2">Đã được đề
+                                                                        xuất
+                                                                    </div>
+                                                                @else
+                                                                    <div class="btn btn-sm bg-warning-light mr-2">Chưa hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @endif
                                                             </div>
-                                                        @endif
+                                                        @endforeach
                                                     @else
                                                         <div class="btn btn-sm bg-danger-light mr-2">Chưa khảo sát
                                                         </div>
