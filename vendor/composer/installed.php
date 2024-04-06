@@ -1,5 +1,5 @@
 <?php return array(
-    'root' => array(
+    'root' => array (
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',

@@ -13,6 +13,7 @@ use App\Models\Tintuc;
 use App\Models\Video;
 use App\Models\Thuvien;
 use App\Models\Binhluan;
+use App\Models\Doanhnghiep;
 
 class TrangtinController extends Controller
 {
@@ -170,5 +171,10 @@ class TrangtinController extends Controller
             $alert = " Bình luận không thành công";
         }
         return redirect()->back()->with('alert', $alert);
+    }
+
+    public function doanhnghiep(Request $request) {
+        $dnghiep = Doanhnghiep::all();
+        return view('trangchu.doanhnghiep', compact('dnghiep'));
     }
 }

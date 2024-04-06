@@ -31,9 +31,14 @@ use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
 use App\Http\Controllers\Doanhnghiep\DanhgiacController as DoanhnghiepDanhgiacController;
 use App\Http\Controllers\Doanhnghiep\KhaosatController as DoanhnghiepKhaosatController;
 
+
 //Chức năng dành cho hiệp hội doanh nghiệp
 use App\Http\Controllers\Hiephoidoanhnghiep\HiephoidoanhnghiepController;
 use App\Http\Controllers\Hiephoidoanhnghiep\Taikhoan\TaikhoanController as TaikhoanController_hhdn;
+use App\Http\Controllers\Hiephoidoanhnghiep\Chienluoc\ChienluocController as ChienluocChienluocController;
+use App\Http\Controllers\Hiephoidoanhnghiep\Chienluocchitiet\ChienluocchitietController as ChienluocchitietChienluocchitietController;
+use App\Http\Controllers\Hiephoidoanhnghiep\Danhgia\DanhgiaController as HiephoidoanhnghiepDanhgiaDanhgiaController;
+use App\Http\Controllers\Hiephoidoanhnghiep\Khaosat\KhaosatController as KhaosatKhaosatController;
 
 //Chức năng dành cho chuyên gia
 use App\Http\Controllers\Chuyengia\ChuyengiaController;
@@ -50,13 +55,12 @@ use Livewire\Livewire;
 
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
+use App\Http\Controllers\Frontend\ThuvienController;
+use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
 use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\ThuvienController;
-use App\Http\Controllers\Hiephoidoanhnghiep\Chienluoc\ChienluocController as ChienluocChienluocController;
-use App\Http\Controllers\Hiephoidoanhnghiep\Chienluocchitiet\ChienluocchitietController as ChienluocchitietChienluocchitietController;
-use App\Http\Controllers\Hiephoidoanhnghiep\Danhgia\DanhgiaController as HiephoidoanhnghiepDanhgiaDanhgiaController;
-use App\Http\Controllers\Hiephoidoanhnghiep\Khaosat\KhaosatController as KhaosatKhaosatController;
+
 
 function set_active($route)
 {
@@ -465,7 +469,8 @@ Route::get('/search', [TrangtinController::class, 'search'])->name('search');
 Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search');
 //Bình luận
 Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
-
+// Hiển thị doanh nghiệp
+Route::get('/Doanhnghiep', [TrangtinController::class, 'doanhnghiep'])->name('doanhnghiep');
 //Giao diện trang tin chuyển đổi số
 Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
 //Giao diện thư viện

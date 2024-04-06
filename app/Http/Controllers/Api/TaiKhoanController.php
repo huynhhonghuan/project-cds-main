@@ -32,6 +32,19 @@ class TaiKhoanController extends Controller
         return response()->json(['success' => 'Đổi mật khẩu thành công']);
     }
 
+    // Đổi tên hiển thị
+    public function changename(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string'
+        ]);
+        $user = auth()->user();
+
+        $user->name = $request->name;
+        $user->save();
+        return response()->json(['success' => 'Đổi tên hiển thị thành công']);
+    }
+
     // Đổi avatar
     public function avatar(Request $request)
     {

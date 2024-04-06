@@ -59,7 +59,6 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     // Authenticated routes
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('profile', [DoanhNghiepController::class, 'profile']);
-        Route::post('changepassword', [DoanhNghiepController::class, 'changepassword']);
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
     });
 });
@@ -68,6 +67,7 @@ Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function (
     Route::get('profile', [TaiKhoanController::class, 'profile']);
     Route::post('avatar', [TaiKhoanController::class, 'avatar']);
     Route::post('changepassword', [TaiKhoanController::class, 'changepassword']);
+    Route::post('changename', [TaiKhoanController::class, 'changename']);
 });
 
 Route::group(['prefix' => 'binhluan'], function () {

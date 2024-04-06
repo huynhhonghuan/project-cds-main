@@ -589,7 +589,7 @@ ul {
 }
 
 
-/* Thủ viện */
+/* Thư viện */
 .download-icon {
     color: #000;
     transition: all .2s;
@@ -597,7 +597,75 @@ ul {
 .download-icon:hover {
     color: #ffed00;
 }
+/* Doanh Nghiệp */
+.dn__title {
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 64px;
+}
+.dn__item {
+    margin: 16px 0;
+    margin-bottom: 0;
+    padding-bottom: 16px;
+    border-bottom: 2px dashed #000;
+}
 
+.item__dn--img img{
+    height: 120px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.dn__body--name {
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.dn__body--name a:hover {
+    color: #f7c51e;
+}
+.dn__body--name a {
+    color: #000;
+    text-decoration: none;
+    transition: all .5s;
+}
+.dn__body--add {
+    font-size: 16px;
+    font-weight: 500;
+}
+.dn__body--sdt span,
+.dn__body--tax span,
+.dn__body--add span {
+    font-weight: 600;
+}
+.dn__footer {
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dn__footer a {
+    text-decoration: none;
+}
+.dn__footer .footer_nor {
+    color: #000;
+    transition: all .5s;
+}
+.dn__footer .footer_nor:hover {
+    color: #f7c51e;
+}
+.footer__dis {
+    color: #8f8f8f;
+}
+.footer__dis:hover {
+    color: #8f8f8f;
+    cursor: not-allowed;
+}
 /* Mobile : Width < 740px */
 @media only screen and (max-width: 46.1875em) {
     .list-unstyled li span {

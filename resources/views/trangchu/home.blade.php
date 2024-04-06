@@ -74,22 +74,6 @@
                                     <div class="item-img">
                                         <img src="{{ asset('assets/frontend/img/trangtin/'.$news->hinhanh) }}" alt="">
                                     </div>
-<<<<<<< HEAD
-                                    <div class="item-header" style="display:flex;justify-content:space-between">
-                                        <div class="item-date">
-                                            <i class="fa-solid fa-calendar-days"></i>
-                                            {{$news->updated_at}}
-                                        </div>
-                                        <div class="item-field-all" style="padding-top: 10px;padding-right:10px">
-                                            {{-- <span>{{$news->tenlinhvuc}}</span> --}}
-                                            @if($news->tenlinhvuc == 'Nông nghiệp')
-                                                <span style="background-color: green;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Nông Nghiệp</span>
-                                            @elseif($news->tenlinhvuc == 'Công nghiệp')
-                                                <span style="background-color: blue;padding:4px 16px;border-radius:10px;color:#fff;font-weight:600">Công Nghiệp</span>
-                                            @elseif($news->tenlinhvuc == 'Thương mại và dịch vụ')
-                                                <span style="background-color: yellow;padding:4px 16px;border-radius:10px;font-weight:600">Thương mại - Dịch vụ</span>
-                                            @endif
-=======
                                     <div class="item-header row">
                                         <div class="col-xl-6" style="padding-top: 4px">
                                             @if($news->tenlinhvuc == 'Nông nghiệp') 
@@ -101,7 +85,6 @@
                                             @elseif($news->tenlinhvuc == 'Khác') 
                                                 <span style="background-color: rgb(9, 153, 243);padding:4px 6px;border-radius:10px;font-weight:600;font-size:14px">Chuyển đổi số</span>
                                             @endif    
->>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
                                         </div>
                                         <div class="col-xl-6" style="padding-top: 4px;display: flex;justify-content: end;
                                         align-items: center;font-size:16px;font-weight:700"><i class="fa-regular fa-clock" style="padding-right: 4px"></i>
