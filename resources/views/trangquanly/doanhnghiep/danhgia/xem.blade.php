@@ -30,21 +30,24 @@
                                                 </div>
                                                 <div class="activity-content">
                                                     <div class="timeline-content"> <a href="profile.html"
-                                                            class="name">{{ $item->getchuyengia->tenchuyengia }}</a> thuộc
+                                                            class="name">{{ $item->getuser->getchuyengia->tenchuyengia }}</a>
+                                                        thuộc
                                                         lĩnh vực
                                                         <a href="#"
-                                                            class="text-success">{{ $item->getchuyengia->getlinhvuc->tenlinhvuc }}</a>
+                                                            class="text-success">{{ $item->getuser->getchuyengia->getlinhvuc->tenlinhvuc }}</a>
                                                         <span class="time">
                                                             @if ($item->updated_at->diffInMinutes(date('Y-m-d H:i:s')) <= 60)
-                                                                $item->updated_at->diffInMinutes(date('Y-m-d H:i:s')) phút
+                                                                {{ $item->updated_at->diffInMinutes(date('Y-m-d H:i:s')) }}
+                                                                phút
                                                                 trước
                                                             @elseif(
                                                                 $item->updated_at->diffInHours(date('Y-m-d H:i:s')) >= 1 &&
                                                                     $item->updated_at->diffInHours(date('Y-m-d H:i:s')) <= 24)
-                                                                $item->updated_at->diffInHours(date('Y-m-d H:i:s')) giờ
+                                                                {{ $item->updated_at->diffInHours(date('Y-m-d H:i:s')) }}
+                                                                giờ
                                                                 trước
                                                             @else
-                                                                $item->updated_at
+                                                                {{ $item->updated_at }}
                                                             @endif
                                                         </span>
                                                     </div>

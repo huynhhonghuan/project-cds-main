@@ -27,4 +27,8 @@ class Doanhnghiep_Loaihinh extends Model
     {
         return $this->belongsTo(Linhvuc::class, 'linhvuc_id', 'id');
     }
+    public function getmohinh_doanhnghiep_trucot()
+    {
+        return $this->hasMany(Mohinh_Doanhnghiep_Trucot::class, 'doanhnghiep_loaihinh_id', 'id');
+    }
 }

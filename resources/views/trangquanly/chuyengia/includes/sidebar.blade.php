@@ -3,7 +3,8 @@
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
             <ul>
-                <li class="active"> <a href="{{route('chuyengia.home')}}"><i class="fas fa-tachometer-alt"></i> <span>Bảng điều
+                <li class="active"> <a href="{{ route('chuyengia.home') }}"><i class="fas fa-tachometer-alt"></i>
+                        <span>Bảng điều
                             khiển</span></a> </li>
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý đánh giá và đề xuất</span> </li>
@@ -13,6 +14,10 @@
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>
                 <li> <a href="{{ route('chuyengia.chienluoc.danhsach') }}"><i class="fa-solid fa-list"></i><span>Danh
                             sách chiến lược</span></a> </li>
+                <li> <a href="{{ route('chuyengia.chienluocchitiet.danhsach') }}"><i
+                            class="fa-solid fa-bars-staggered"></i>
+                        <span>Chiến
+                            lược chi tiết</span></a> </li>
                 <li> <a href="{{ route('chuyengia.chienluoc.danhsachdexuat') }}"><i
                             class="fa-solid fa-diagram-project"></i> <span>Chiến lược đề
                             xuất</span></a> </li>

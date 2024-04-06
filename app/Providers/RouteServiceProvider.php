@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider
     public const CONGTACVIEN = '/congtacvien';
     public const DOANHNHGIEP = '/doanhnghiep';
     public const CHUYENGIA = '/chuyengia';
-    public const HOIDOANHNGHIEP = '/hoidoanhnghiep';
+    public const HOIDOANHNGHIEP = '/hiephoidoanhnghiep';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -35,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('api')
-                // ->prefix('api')
+                ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')

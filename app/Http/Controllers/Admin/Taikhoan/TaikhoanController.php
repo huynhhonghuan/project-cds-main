@@ -24,9 +24,9 @@ use Brian2694\Toastr\Facades\Toastr;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Auth;
 use DateTime;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Maatwebsite\Excel\Facades\Excel;
 

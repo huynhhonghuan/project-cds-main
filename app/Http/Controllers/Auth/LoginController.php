@@ -6,10 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Auth;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {

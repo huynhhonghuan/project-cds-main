@@ -18,6 +18,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
+                            {{-- <a href="#" class="btn btn-primary float-right veiwbutton ">Lưu khảo sát 2</a> --}}
                         </div>
                     </div>
                 </div>
@@ -82,13 +83,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-center">
-                                    <a href="" class="btn btn-success">Lưu khảo sát 2</a>
                                 </div>
                             </div>
                         </div>

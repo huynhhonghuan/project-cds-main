@@ -26,9 +26,9 @@ class Chuyengia_Danhgia extends Model
         return $this->belongsTo(Khaosat::class, 'khaosat_id');
     }
 
-    public function getChuyengia()
+    public function getUser()
     {
-        return $this->belongsTo(Chuyengia::class, 'chuyengia_id');
+        return $this->belongsTo(User::class, 'chuyengia_id', 'id');
     }
 
     //Lấy thông tin doanh nghiệp từ bảng chuyengia_danhgia - khaosat - doanhnghiep

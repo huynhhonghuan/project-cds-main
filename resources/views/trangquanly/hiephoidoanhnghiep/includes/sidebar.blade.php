@@ -15,13 +15,14 @@
                 <li class="menu-title mt-3"> <span>Quản lý chuyên gia</span> </li>
                 <li> <a href="{{ route('hiephoidoanhnghiep.danhgia.danhsach') }}"><i
                             class="fa-regular fa-circle-check"></i> <span> Đánh giá - đề xuất</a></li>
-                {{-- <li> <a href=""><i class="fa-solid fa-recycle"></i></i><span>Chiến lược đề xuât</span></a> </li> --}}
 
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>
                 <li> <a href="{{ route('hiephoidoanhnghiep.chienluoc.danhsach') }}"><i class="fa-solid fa-list-ol"></i>
-                        <span>Danh
-                            sách chiến lược</span></a> </li>
+                        <span>Danh sách chiến lược</span></a> </li>
+                <li> <a href="{{ route('hiephoidoanhnghiep.chienluocchitiet.danhsach') }}"><i
+                            class="fa-solid fa-bars-staggered"></i>
+                        <span>Chiến lược chi tiết</span></a> </li>
 
                 <li> <a href="{{ route('chung.mucdo.danhsach') }}"><i class="fa-solid fa-list-ol"></i> <span>Mức độ
                             chuyển đổi số</span></a> </li>
