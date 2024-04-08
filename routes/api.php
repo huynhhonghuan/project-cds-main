@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\BinhLuanController;
 use App\Http\Controllers\Api\ChuyenGiaController;
+use App\Http\Controllers\Api\DanhMucController;
 use App\Http\Controllers\Api\DoanhNghiepController;
 use App\Http\Controllers\Api\HiepHoiDoanhNghiepController;
 use App\Http\Controllers\Api\HoiDapController;
@@ -30,6 +32,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+// Store image;
+// Route::group(['middleware' => ['auth:api']], function () {
+Route::post('store-image', function (Request $request) {
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $path = $request->path;
+        $fileName =  uniqid() . "."  . $file->getClientOriginalExtension();
+        $file->move($path, $fileName);
+        return $fileName;
+    }
+    return 'ko có ảnh';
+});
+// });
+
 // Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
 Route::apiResource("chuyengia", ChuyenGiaController::class);
@@ -44,6 +60,27 @@ Route::group(['prefix' => 'tintuc'], function () {
     Route::get('video', [TinTucController::class, 'video']);
     Route::get('thuvien', [TinTucController::class, 'thuvien']);
 });
+
+// Diễn đàn
+Route::group(['prefix' => 'baiviet'], function () {
+    Route::get('', [BaiVietController::class, 'index']);
+    Route::get('{id}', [BaiVietController::class, 'detail']);
+    Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('{id}/binhluan', [BaiVietController::class, 'createBinhLuan']);
+        Route::delete('{id}', [BaiVietController::class, 'deleteBaiViet']);
+        Route::post('{id}/edit', [BaiVietController::class, 'editBaiViet']);
+        Route::post('create', [BaiVietController::class, 'createBaiViet']);
+        Route::post('{id}/like', [BaiVietController::class, 'like']);
+    });
+});
+
+Route::group(['prefix' => 'danhmuc'], function () {
+    Route::get('', [DanhMucController::class, 'index']);
+    Route::get('{id}', [DanhMucController::class, 'detail']);
+    Route::get('{id}/baiviet', [DanhMucController::class, 'getBaiViets']);
+});
+
 
 Route::group(['prefix' => 'thongke'], function () {
     Route::get('mucdo', [ThongKeController::class, 'mucdo']);
