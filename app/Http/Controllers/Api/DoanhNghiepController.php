@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoanhNghiepPublicResource;
 use App\Http\Resources\DoanhNghiepResource;
 use App\Http\Resources\UserResource;
 use App\Models\Doanhnghiep;
@@ -19,6 +20,11 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DoanhNghiepController extends Controller
 {
+    public function index()
+    {
+        return DoanhNghiepResource::collection(Doanhnghiep::where('trangthai', 1)->get());
+    }
+
     public function register(Request $request)
     {
         $request->validate([
@@ -26,7 +32,7 @@ class DoanhNghiepController extends Controller
             'email' => ['required', 'string', 'email', 'unique:users'],
             'name' => ['required', 'string'],
             'password' => ['required', 'min:8'],
-            // 'doanhnghiep_img' => ['required', 'image'],
+            'doanhnghiep_logo' => ['required', 'image'],
 
             //thông tin doanh nghiệp
             'doanhnghiep_tentiengviet' => ['required', 'string'],
@@ -136,8 +142,13 @@ class DoanhNghiepController extends Controller
 
         $doanhnghiep_daidien = $this->them($model_doanhnghiep_daidien, $request, $doanhnghiep_daidien_namecolumn, $doanhnghiep_daidien_nameobject);
 
+
+
         $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_mt", "doanhnghiep_daidien_img_mattruoc", "img_mattruoc", "assets/backend/img/hoso/");
+
         $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_ms", "doanhnghiep_daidien_img_matsau", "img_matsau", "assets/backend/img/hoso/");
+
+        $this->luuhinhanh($request, $user, "image", "doanhnghiep_logo", "image", "assets/backend/img/hoso/");
 
         return response()->json(['success' => 'success'], 200);
     }

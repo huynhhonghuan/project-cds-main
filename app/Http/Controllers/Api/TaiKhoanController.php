@@ -55,7 +55,7 @@ class TaiKhoanController extends Controller
 
         $file = $request->file('avatar');
         $path = 'assets/backend/img/hoso';
-        $saveFileName = 'avatar-' . $file->getClientOriginalExtension();
+        $saveFileName = 'avatar-' . auth()->id() . '-' . $file->getClientOriginalExtension();
         $file->move($path, $saveFileName);
         $user->image = $saveFileName;
         $user->save();
