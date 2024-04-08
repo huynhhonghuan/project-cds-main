@@ -42,8 +42,11 @@
                 <li class="menu-title mt-3"> <span>Thông tin doanh nghiệp</span> </li>
                 <li> <a href="{{ route('chuyengia.doanhnghiep.danhsach') }}"><i class="fa-regular fa-building"></i>
                         <span>Danh sách doanh
-                            nghiệp</span></a> </li>
-
+                            nghiệp</span>
+                </a> </li>
+                <li> <a href="{{ route('chuyengia.hoithoai', Auth::user()->id) }}"><i class='bx bx-conversation'></i>
+                    <span>Hội thoại Doanh Nghiệp</span>
+                </a> </li>
             </ul>
         </div>
     </div>
