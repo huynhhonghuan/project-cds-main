@@ -1,14 +1,14 @@
 @extends('trangchu.layout')
 @section('content')
-    <section class="vh-100" style="margin-top: 90px">
+    <section class="vh-100" style="margin-top: 90px;background-image: url(../image/AnhNen/title-area-pattern.png);">
         <div class="container py-3 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col col-xl-10">
-                    <div class="card" style="border-radius: 1rem; background-color: #e5e7ef;">
+                <div class="col col-xl-9">
+                    <div class="card" style="box-shadow: 1px 1px 2px 1.5px #999">
                         <div class="row g-0">
-                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block" style="">
                                 <img src="{{ URL::to('assets/frontend/img/login/login.png') }}" alt="login form"
-                                    class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 98%;" />
+                                    class="img-fluid" style="height: 100%;border-radius: 4px 0 0px 4px;" />
                             </div>
                             <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                 <div class="card-body p-4 p-lg-5 text-black">
@@ -16,12 +16,12 @@
                                     {!! Toastr::message() !!}
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-                                        <h2 class="fw-normal mb-3 pb-3 text-uppercase fw-bold fs-4 text-secondary"
-                                            style="letter-spacing: 1px;">Đăng nhập
+                                        <h2 class="mb-3 pb-3 text-uppercase text-center fw-bolder text-warning"
+                                            style="letter-spacing: 1px;font-size: 28px">Đăng nhập
                                             vào tài khoản
                                         </h2>
 
-                                        <div class="form-floating mb-4">
+                                        <div class="form-floating mb-4 mt-4">
                                             <input type="text" id="floatingEmail" name="email"
                                                 class="form-control form-control-lg {{ $errors->has('email') || $errors->has('phone') ? 'is-invalid' : '' }}"
                                                 placeholder="Email" />
@@ -40,28 +40,44 @@
                                             <label class="form-label" for="floatingPassword">Password</label>
                                         </div>
 
-                                        <div class="form-check mb-4">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Nhớ đăng nhập
-                                            </label>
+                                        <div class="row mt-3">
+                                            <div class="col-6">
+                                                <div class="form-check mb-4">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Nhớ đăng nhập
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6" style="display:flex;justify-content:flex-end;">
+                                                <div class="mb-2">
+                                                    <a class="small text-muted" href="{{ route('password.request') }}">Quên mật
+                                                        khẩu?
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="pt-1 mb-4">
-                                            <button class="btn btn-dark btn-lg btn-block" type="submit">Đăng nhập</button>
+                                        <div class="pt-1 d-flex justify-content-center">
+                                            <button class="col-12 btn btn-dark btn-lg btn-block text-uppercase" type="submit">Đăng nhập</button>
                                         </div>
-
-                                        <div class="mb-2">
-                                            <a class="small text-muted" href="{{ route('password.request') }}">Quên mật
-                                                khẩu?</a>
+                                        <div class="col d-flex" style="justify-content: center">
+                                            <div class="mt-4 d-flex pe-3 fw-bold" style="align-items: center">Hoặc</div>
+                                            <div class="mt-4" style="display:flex;justify-content: center">
+                                                <a href="{{ route('auth.google') }}">
+                                                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png">
+                                                </a>
+                                            </div>
                                         </div>
+                                        
 
-                                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Không có tài khoản doanh nghiệp? <a
-                                                href="{{ route('registerdoanhnghiep') }}" style="color: #393f81;">Đăng kí
-                                                ngay</a></p>
+                                        <p class="mt-4 pb-lg-2 text-center" style="color: #000000;">Không có tài khoản doanh nghiệp ? 
+                                            <a class="fw-bold text-uppercase" href="{{ route('registerdoanhnghiep') }}" style="color: #ffc107;">Đăng kí
+                                                ngay
+                                            </a>
+                                        </p>
                                     </form>
-
+                                    
                                 </div>
                             </div>
                         </div>

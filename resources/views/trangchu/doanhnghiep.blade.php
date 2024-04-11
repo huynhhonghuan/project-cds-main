@@ -15,7 +15,7 @@
                         <div class="col" style="font-size: 22px;font-weight:700"><span style="padding: 0 12px;padding-bottom: 32px; border-right: 2px solid">{{ $loop->iteration }}</span></div>
                         <div class="col-2">
                             <div class="item__dn--img">
-                                <img src="{{ asset('assets/backend/img/logodoanhnghiep/'.$dn->logo) }}" alt="">
+                                <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
                             </div>
                         </div>
                         <div class="col-7">
@@ -27,11 +27,11 @@
                             </div>
                         </div>
                         <div class="col-2 dn__footer">
-                            @if($dn->trangthai == 1) 
-                                <a href="" class="footer__dis"><span>Xem Chi Tiết</span></a>
+                            @if($dn->trangthai == 0) 
+                                <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer__dis"><span>Xem Chi Tiết</span></a>
                             @else
-                            @if ($dn->trangthai == 0)
-                                <a href="" class="footer_nor"><span>Xem Chi Tiết</span></a>
+                            @if ($dn->trangthai == 1)
+                                <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer_nor"><span>Xem Chi Tiết</span></a>
                             @else @endif @endif
                         </div>
                     </div>

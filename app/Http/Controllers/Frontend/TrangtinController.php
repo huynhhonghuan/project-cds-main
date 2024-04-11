@@ -177,4 +177,18 @@ class TrangtinController extends Controller
         $dnghiep = Doanhnghiep::all();
         return view('trangchu.doanhnghiep', compact('dnghiep'));
     }
+    
+    public function doanhnghiepct($id){
+        $dnghiepct = DB::table('doanhnghiep')->where('doanhnghiep.id',$id)->first();
+        $dnghiepdd = DB::table('doanhnghiep_daidien')->where('doanhnghiep_daidien.id',$id)->first();
+        $dnghiepbd = DB::table('khaosat')->where('khaosat.doanhnghiep_id',$id)->select('tongdiem', 'thoigiantao')->get();
+        $data = "";
+        foreach($dnghiepbd as $val) {
+            $data.= "['".$val->thoigiantao."' , ".$val->tongdiem."], ";
+        }
+        $chartData = $data;
+        $dnghiepimg = Doanhnghiep::find($id)->getUser;
+        
+        return view('trangchu.doanhnghiepdetail')->with('dnghiepct', $dnghiepct)->with('dnghiepdd', $dnghiepdd)->with('dnghiepimg', $dnghiepimg)->with('chartData', $chartData);
+    }
 }

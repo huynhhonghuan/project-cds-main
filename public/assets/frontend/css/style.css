@@ -598,6 +598,7 @@ ul {
     color: #ffed00;
 }
 /* Doanh Nghiệp */
+/* Doanh Nghiệp */
 .dn__title {
     font-weight: 700;
     text-transform: uppercase;
@@ -610,12 +611,41 @@ ul {
     padding-bottom: 16px;
     border-bottom: 2px dashed #000;
 }
-
 .item__dn--img img{
     height: 120px;
     width: 100%;
     text-align: center;
     cursor: pointer;
+}
+.item__dn--img-det {
+    width: 300px;
+    height: 300px;
+}
+.item__dn--img-det img {
+    height: 100%;
+    width: 100%;
+}
+.dn__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dn__name span{
+    text-decoration: none;
+    color: #000;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.dntitle {
+    background-color: #fcffbf;
+    padding: 4px 28px;
+    padding-top: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 32px;
 }
 
 .dn__body--name {

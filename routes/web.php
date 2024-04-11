@@ -24,6 +24,8 @@ use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
 use App\Http\Controllers\Admin\Taikhoan\VaitroController;
 use App\Http\Controllers\Admin\Tintuc\TintucController;
 use App\Http\Controllers\Frontend\BannerController;
+use App\Http\Controllers\Frontend\GoogleController;
+use App\Http\Controllers\Frontend\HoidapController;
 
 
 //Chức năng dùng cho doanh nghiệp
@@ -55,10 +57,9 @@ use Livewire\Livewire;
 
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
+use App\Http\Controllers\Frontend\ThongtinCDSController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
-use App\Http\Controllers\Frontend\ThongtinCDSController;
-
 
 function set_active($route)
 {
@@ -93,12 +94,17 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 //-------------------------------------Logout--------------------------------------------//
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
 //-------------------------------------Đăng ký doanh nghiệp--------------------------------------------//
 Route::get('/registerdoanhnghiep', [RegisterController::class, 'registerdoanhnghiep'])->name('registerdoanhnghiep');
 //-------------------------------------Đăng ký doanh nghiệp xử lý--------------------------------------------//
 Route::post('/registerdoanhnghiep', [RegisterController::class, 'storeUserdoanhnghiep'])->name('registerdoanhnghiep');
 
-//-------------------------------------Chuyên gia--------------------------------------------//
+// //-------------------------------------Chuyên gia--------------------------------------------//
 Route::group(['prefix' => 'chung', 'middleware' => ['auth'], 'as' => 'chung.'], function () {
 
     //-------------------------------------Bộ câu chuyển đổi số--------------------------------------------//
@@ -243,7 +249,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('duyet', [LoaihinhdoanhnghiepController::class, 'postduyet'])->name('duyet');
     });
 
-    //-------------------------------------Danh sách chiến lược--------------------------------------------//
+//     //-------------------------------------Danh sách chiến lược--------------------------------------------//
     Route::group(['prefix' => 'chienluoc', 'as' => 'chienluoc.'], function () {
         Route::get('danhsach', [ChienluocController::class, 'getdanhsach'])->name('danhsach');
 
@@ -293,7 +299,12 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     Route::get('home', [DoanhnghiepController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [DoanhnghiepController::class, 'profile'])->name('profile');
-
+    //-------------------------------------Danh sách chuyên gia--------------------------------------------//
+    Route::get('hoithoai', [HoidapController::class, 'hoithoai'])->name('hoithoai');
+    //-------------------------------------Danh sách chuyên gia--------------------------------------------//
+    Route::get('tinnhan/{id}', [HoiDapController::class, 'tinnhan'])->name('tinnhan');
+    Route::post('tinnhan', [HoiDapController::class, 'themtinnhan'])->name('themtinnhan');
+    //-------------------------------------Đổi mặt khẩu--------------------------------------------//
     Route::post('doimatkhau/{id}', [DoanhnghiepController::class, 'doimatkhau'])->name('doimatkhau');
 
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
@@ -325,6 +336,11 @@ Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth', 'check_chuyengia
     Route::get('home', [ChuyengiaController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [ChuyengiaController::class, 'profile'])->name('profile');
+    //-------------------------------------Danh sách chuyên gia--------------------------------------------//
+    Route::get('hoithoai', [HoidapController::class, 'chuyengiahoithoai'])->name('hoithoai');
+    //-------------------------------------Danh sách chuyên gia--------------------------------------------//
+    Route::get('tinnhan/{id}', [HoiDapController::class, 'chuyengiatinnhan'])->name('tinnhan');
+    Route::post('themtinnhan', [HoiDapController::class, 'themtinnhanchuyengia'])->name('themtinnhan');
 
     Route::post('doimatkhau/{id}', [ChuyengiaController::class, 'doimatkhau'])->name('doimatkhau');
 
@@ -456,6 +472,7 @@ Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search')
 Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhluan');
 // Hiển thị doanh nghiệp
 Route::get('/Doanhnghiep', [TrangtinController::class, 'doanhnghiep'])->name('doanhnghiep');
+Route::get('/doanhnghiepct/{id}', [TrangtinController::class, 'doanhnghiepct'])->name('doanhnghiepct');
 //Giao diện trang tin chuyển đổi số
 Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
 //Giao diện thư viện
