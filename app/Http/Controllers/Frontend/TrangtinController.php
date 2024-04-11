@@ -161,7 +161,7 @@ class TrangtinController extends Controller
             $input['binhluan_id'] = $input['IdCon'];
         }
         $input['noidung'] = $input['message'];
-        $input['user_id'] = $input['vaitro'];
+        $input['user_id'] = auth()->user()->id;
         $input['tintuc_id'] = $input['IdNews'];
         $input['ngaydang'] = date('Y-m-d');
         $input['ten'] = $input['Name'];
