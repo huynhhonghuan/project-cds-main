@@ -209,7 +209,7 @@
                 <span class="news-heading-l">Chuyển đổi số</span>
             </span>
             <span class="news-heading" data-aos="fade-up" style="padding: 0; font-size:28px;">Mục tiêu chính đến năm 2025</span>
-            <div class="target__main" style="margin-top: 32px;margin-bottom: 48px;">
+            <div class="target__main" style="margin-top: 32px;">
                 <div class="container">
                     <div class="row" style="display: flex; justify-content:center">
                         <div class="col"></div>
@@ -240,6 +240,55 @@
                         <div class="col"></div>
                     </div>  
                 </div>
+            </div>
+        </div>
+        <div class="website" style="background-image: url(../image/AnhNen/title-area-pattern.png);">
+            <span class="news-heading" data-aos="fade-up" style="padding : 32px 0;padding-top: 60px">
+                <span class="news-heading-f">Liên Kết website</span>
+                <span class="news-heading-l">Chuyển đổi số</span>
+            </span>
+            <div class="container" style="margin-bottom: 64px;margin-top: 32px;" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
+                        <a href="https://mic.gov.vn/">
+                            <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-botttt.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
+                        <a href="https://langso.dx.gov.vn/">
+                            <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-langso1_0.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-4" style="background:#000;padding:16px;border:1px solid #f7c51e">
+                        <a href="https://digital.business.gov.vn/">
+                            <img class="image__bus" style="width:100%;height:100px;object-fit:contain" src="https://digital.business.gov.vn/wp-content/uploads/2021/11/logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
+                        <a href="https://dti.angiang.gov.vn/">
+                            <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/cdsag.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
+                        <a href="https://sotttt.angiang.gov.vn/">
+                            <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-sottttDTI.png" alt="">
+                        </a>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #111">
+                        <a href="https://dx.gov.vn/"> 
+                            <img class="image__bus" style="width:100%;height:100px" src="https://dx.gov.vn/img/logo-tet.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="business">
+            <span class="news-heading" data-aos="fade-up" style="padding : 32px 0;padding-top: 60px">
+                <span class="news-heading-f">Các Doanh nghiệp</span>
+                <span class="news-heading-l">Liên kết</span>
+            </span>
+            <div class="container">
+                
             </div>
         </div>
         @include('trangchu.layouts.script')

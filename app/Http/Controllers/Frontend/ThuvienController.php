@@ -38,6 +38,11 @@ class ThuvienController extends Controller
             $laycre = DB::table('thuvien')->select('thuvien.*')->where('thuvien.loai', '0')->paginate(1);
             return view('trangchu.thuvien')->with('thuviens', $thuviens)->with('laycre', $laycre);
         } 
+        if ($phanloai == 2) {
+            $thuviens = DB::table('thuvien')->select('thuvien.*')->where('thuvien.loai', '2')->paginate(50);
+            $laycre = DB::table('thuvien')->select('thuvien.*')->where('thuvien.loai', '2')->paginate(1);
+            return view('trangchu.thuvien')->with('thuviens', $thuviens)->with('laycre', $laycre);
+        } 
     }
 
     public function download(Request $request, $file) {
