@@ -94,9 +94,9 @@
                                                 </td>
 
                                                 <td class="text-right">
-                                                    <a class="dropdown-item bookingDelete" data-toggle="modal"
-                                                        data-target="#delete_asset" data-id="{{ $value->id }}"
-                                                        data-email="{{ $value->email }}">
+                                                    <a class="dropdown-item xoa_modal" data-toggle="modal"
+                                                        data-target="#xoa_modal" data-id="{{ $value->id }}"
+                                                        data-tenmohinh="{{ $value->tenmohinh }}">
                                                         <i class="fas fa-trash-alt m-r-5" style="color: limegreen;"></i>
                                                     </a>
                                                 </td>
@@ -111,65 +111,63 @@
             </div>
         </div>
 
-        {{-- Model duyệt tài khoản --}}
-        {{-- <div id="sua_modal" class="modal fade delete-modal" role="dialog">
+        {{-- Model xóa chiến lược --}}
+        {{-- <div id="xoa_modal" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Chỉnh sửa vai trò</h5>
+                        <h5 class="modal-title">Xóa chiến lược <span id="tenmohinh" class="text-info"></span></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
                                 aria-hidden="true">×</span> </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="{{ route('chuyengia.chienluoc.xoa') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="row form-row">
-                                <div class="col-12 col-sm-8">
-
-                                    <input type="hidden" class="form-control" value="" id="sua_id">
-
-                                    <div class="form-group">
-                                        <label>Tên vai trò</label>
-                                        <input type="text" class="form-control" value="" id="sua_tenvaitro">
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <h6>Hình ảnh</h6>
-                                    <img class="img-vaitro" src="" alt="Hình" id="sua_hinhanh">
-                                </div>
-
-                                <div class="col-12 mt-3">
-                                    <h5 class="form-title"><span>Chọn hình ảnh mới</span></h5>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control">
-                                    </div>
-                                </div>
-
+                                <input type="text" class="form-control" value="" id="xoa_id">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Lưu thay đổi</button>
+                            <button type="submit" class="btn btn-primary btn-block">Xóa chiến lược</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div> --}}
-        {{-- End Model duyệt tài khoản --}}
+
+        <div id="xoa_modal" class="modal fade delete-modal" role="dialog">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form action="{{ route('chuyengia.chienluoc.xoa') }}" method="POST">
+                        @csrf
+                        <div class="modal-body text-center">
+                            <h3 class="delete_class">Xóa chiến lược <span class="text-info" id="tenmohinh"></span>
+                            </h3>
+                            <hr>
+                            <input type="hidden" id="xoa_id" name="xoa_id">
+                            <div class="m-t-20">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Xóa chiến lược</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- End Model xóa chiến lược --}}
+
 
     </div>
 @endsection
 
 @section('script')
-    {{-- duyệt modal --}}
-    {{-- <script>
-        $(document).on('click', '.sua_modal', function() {
-            $('#sua_id').val($(this).data('id')); // gán id vào input (hidden)
-            $('#sua_tenvaitro').val($(this).data('tenvaitro')); // gán
-            $('#sua_hinhanh').attr('src', '{{ URL::to('/assets/backend/img/vaitro/') }}' + '/' + $(this).data(
-                'hinhanh'));
+    {{-- xóa modal --}}
+    <script>
+        $(document).on('click', '.xoa_modal', function() {
+            $('#xoa_id').val($(this).data('id')); // gán id vào input (hidden)
+            // $('#tenmohinh').val($(this).data('tenmohinh')); // gán
+            document.getElementById("tenmohinh").innerHTML = $(this).data('tenmohinh');
+
         });
-    </script> --}}
+    </script>
 
     <script>
         $(document).ready(function() {

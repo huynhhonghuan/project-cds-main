@@ -1,4 +1,4 @@
-@extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -30,7 +30,6 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="#" class="btn btn-primary float-right veiwbutton ">Lưu khảo sát 1</a>
                         </div>
                     </div>
                 </div>
@@ -38,12 +37,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card pt-1">
-                        {{-- <div class="card-header">
-                            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-light-1" style="width: 1%">0%</div>
-                            </div>
-                        </div> --}}
+
                         <div class="card-body">
                             <div class="tab-pane" id="solid-rounded-justified-tab2">
                                 <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded nav-justified">
@@ -147,7 +141,6 @@
                                                                                                             {!! $item_4->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            {{-- @livewire('clickphieu1', ['id' => $item_4->id, 'diem' => $item_4->diem, 'trangthai' => $item_4->trangthai]) --}}
                                                                                                             <span
                                                                                                                 class="btn bg-info-light">
                                                                                                                 {{ $item_4->diem }}
@@ -171,7 +164,6 @@
                                                                                                         <td>{!! $item_5->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            {{-- @livewire('clickphieu1-chienluoc', ['id' => $item_5->id, 'diem' => $item_5->diem, 'trangthai' => $item_5->trangthai]) --}}
                                                                                                             <span
                                                                                                                 class="btn bg-info-light">
                                                                                                                 {{ $item_5->diem }}

@@ -1,10 +1,8 @@
-@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
     <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
-
-    @livewireStyles
 @endsection
 
 @section('content')
@@ -23,17 +21,16 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 p-5 bg-light mx-auto">
-
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="">
                                     <div class="card-body p-3">
-                                        <div class="table-responsive border">
+                                        <div class="table-responsive">
                                             <table class="table table-bordered mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" width="60%" rowspan="2"
-                                                            class="pb-5 text-center">Câu
+                                                        <th scope="col" rowspan="2" class="pb-5">TT</th>
+                                                        <th scope="col" width="60%" rowspan="2" class="pb-5">Câu
                                                             hỏi</th>
                                                         <th scope="col" colspan="5">
                                                             Mức độ <br> (Đánh dấu X vào 1 trong 5 ô bên dưới)
@@ -60,37 +57,33 @@
                                                 <tbody>
                                                     @foreach ($danhsach as $item1)
                                                         <tr>
-                                                            @if ($item1->cauhoiphieu2_id == null)
-                                                                <td colspan="6"
-                                                                    style="background-color: rgb(236, 235, 235)">
-                                                                    {{ $item1->tencauhoi }}</td>
-                                                            @else
-                                                                @foreach ($phieu2 as $item2)
-                                                                    @if ($item1->id == $item2->cauhoiphieu2_id)
-                                                                        <td>{{ $item1->tencauhoi }}</td>
-                                                                        <td><input type="radio" name="{{ $item2->id }}"
-                                                                                disabled
-                                                                                {{ $item2->diem == 1 ? 'checked' : '' }}>
-                                                                        </td>
-                                                                        <td><input type="radio" name="{{ $item2->id }}"
-                                                                                disabled
-                                                                                {{ $item2->diem == 2 ? 'checked' : '' }}>
-                                                                        </td>
-                                                                        <td><input type="radio" name="{{ $item2->id }}"
-                                                                                disabled
-                                                                                {{ $item2->diem == 3 ? 'checked' : '' }}>
-                                                                        </td>
-                                                                        <td><input type="radio" name="{{ $item2->id }}"
-                                                                                disabled
-                                                                                {{ $item2->diem == 4 ? 'checked' : '' }}>
-                                                                        </td>
-                                                                        <td><input type="radio"
-                                                                                name="{{ $item2->id }}" disabled
-                                                                                {{ $item2->diem == 5 ? 'checked' : '' }}>
-                                                                        </td>
-                                                                    @endif
-                                                                @endforeach
-                                                            @endif
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            @foreach ($phieu3 as $item2)
+                                                                @if ($item1->id == $item2->cauhoiphieu3_id)
+                                                                    <td>{{ $item1->tencauhoi }}</td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 1 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 2 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 3 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 4 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 5 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                @endif
+                                                            @endforeach
+
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -109,6 +102,6 @@
 
     </div>
 @endsection
-@section('footer')
-    @livewireScripts
+
+@section('script')
 @endsection

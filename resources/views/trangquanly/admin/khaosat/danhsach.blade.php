@@ -42,27 +42,17 @@
                                             <th scope="col">Lĩnh vực</th>
                                             <th scope="col">Loại hình hoạt động</th>
                                             <th scope="col">Trạng thái khảo sát</th>
-                                            {{-- <th scope="col">Tên chiến lược</th> --}}
-                                            {{-- <th scope="col">Chiến lược đề xuât</th>
-                                            <th scope="col">Đánh giá và đề xuất</th> --}}
-                                            <th class="text-center" width="5%">Xem chi tiết</th>
-                                            {{-- <th class="text-center" width="5%">Sửa</th>
-                                            <th class="text-center" width="5%">Xóa</th> --}}
+                                            <th scope="col" class="text-center" width="10%">Xem khảo sát</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($danhsach as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-
                                                 <td>{{ $value->tentiengviet }}</td>
                                                 <td>{{ $value->getloaihinh->getlinhvuc->tenlinhvuc }}</td>
                                                 <td>{{ $value->getloaihinh->tenloaihinh }}</td>
                                                 <td>
-                                                    {{-- @php
-                                                        $trangthai = $value->getkhaosat;
-                                                        dd($trangthai);
-                                                    @endphp --}}
                                                     @if (count($value->getkhaosat) > 0)
                                                         @foreach ($value->getkhaosat as $key => $item)
                                                             <div class="my-2">
@@ -88,8 +78,19 @@
                                                     @endif
 
                                                 </td>
-
-                                                <td></td>
+                                                <td class="text-center">
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <a href="{{ route('admin.khaosat.xemkhaosat', ['id' => $item->id]) }}"
+                                                                class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
+                                                                    style="color:orange;"></i></a>
+                                                            <hr>
+                                                        @endforeach
+                                                    @else
+                                                        <a href="#" class="btn btn-sm mr-2"><i
+                                                                class="fa-regular fa-eye" style="color:orange;"></i></a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
 

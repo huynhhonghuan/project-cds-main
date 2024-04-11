@@ -1,4 +1,4 @@
-@extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -61,11 +61,26 @@
                                                             @foreach ($phieu3 as $item2)
                                                                 @if ($item1->id == $item2->cauhoiphieu3_id)
                                                                     <td>{{ $item1->tencauhoi }}</td>
-                                                                    <td>@livewire('clickphieu3', ['id' => $item2->id, 'giatri' => 1, 'diem' => $item2->diem, 'trangthai' => $item2->trangthai])</td>
-                                                                    <td>@livewire('clickphieu3', ['id' => $item2->id, 'giatri' => 2, 'diem' => $item2->diem, 'trangthai' => $item2->trangthai])</td>
-                                                                    <td>@livewire('clickphieu3', ['id' => $item2->id, 'giatri' => 3, 'diem' => $item2->diem, 'trangthai' => $item2->trangthai])</td>
-                                                                    <td>@livewire('clickphieu3', ['id' => $item2->id, 'giatri' => 4, 'diem' => $item2->diem, 'trangthai' => $item2->trangthai])</td>
-                                                                    <td>@livewire('clickphieu3', ['id' => $item2->id, 'giatri' => 5, 'diem' => $item2->diem, 'trangthai' => $item2->trangthai])</td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 1 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 2 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 3 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 4 ? 'checked' : '' }}>
+                                                                    </td>
+                                                                    <td><input type="radio" name="{{ $item2->id }}"
+                                                                            disabled
+                                                                            {{ $item2->diem == 5 ? 'checked' : '' }}>
+                                                                    </td>
                                                                 @endif
                                                             @endforeach
 
@@ -75,14 +90,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-center">
-                                    <a href="" class="btn btn-success">Lưu khảo sát 3</a>
                                 </div>
                             </div>
                         </div>

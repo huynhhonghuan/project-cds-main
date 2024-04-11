@@ -1,4 +1,8 @@
 @extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
+@section('style')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="../assets/mychart.js"></script>
+@endsection
 @section('content')
     {{-- thêm content vào form kế thừa chỗ @yield('content') --}}
     {{-- message --}}
@@ -21,8 +25,8 @@
                         <div class="card-body">
                             <div class="dash-widget-header">
                                 <div>
-                                    <h3 class="card_widget_header">236</h3>
-                                    <h6 class="text-muted">Total Booking</h6>
+                                    <h3 class="card_widget_header">{{ $taikhoan['soluong'] }}</h3>
+                                    <h6 class="text-muted">Tài khoản trong hệ thống</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -43,8 +47,8 @@
                         <div class="card-body">
                             <div class="dash-widget-header">
                                 <div>
-                                    <h3 class="card_widget_header">180</h3>
-                                    <h6 class="text-muted">Available Rooms</h6>
+                                    <h3 class="card_widget_header">{{ $chienluoc_soluong }}</h3>
+                                    <h6 class="text-muted">Chiến lược trong hệ thống</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -63,8 +67,8 @@
                         <div class="card-body">
                             <div class="dash-widget-header">
                                 <div>
-                                    <h3 class="card_widget_header">1538</h3>
-                                    <h6 class="text-muted">Enquiry</h6>
+                                    <h3 class="card_widget_header">{{$khaosat['soluong']}}</h3>
+                                    <h6 class="text-muted">Phiếu khảo sát</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -86,8 +90,8 @@
                         <div class="card-body">
                             <div class="dash-widget-header">
                                 <div>
-                                    <h3 class="card_widget_header">364</h3>
-                                    <h6 class="text-muted">Collections</h6>
+                                    <h3 class="card_widget_header">{{$danhgia_soluong}}</h3>
+                                    <h6 class="text-muted">Đánh giá và đề xuất</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -104,11 +108,37 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 col-lg-6">
-
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <div class="mx-auto" style="width: 500px; height: 500px;">
+                        <canvas id="myChart{{ $taikhoan['id'] }}" width="100" height="100"></canvas>
+                    </div>
+                    <script>
+                        // Lấy dữ liệu từ controller và chuyển đổi thành JavaScript
+                        var data = @json($taikhoan['taikhoan']);
+                        var labels = @json($taikhoan['labels']);
+                        var colors = @json($taikhoan['colors']);
+                        // Vẽ biểu đồ myChart
+                        var ctx = document.getElementById('myChart{{ $taikhoan['id'] }}').getContext('2d');
+                        if (data !== null)
+                            drawChart(ctx, labels, data, colors, 'doughnut', 'Sơ đồ số lượng tài khoản');
+                    </script>
                 </div>
 
+                <div class="col-md-6">
+                    <div class="mx-auto" style="width: 500px; height: 500px;">
+                        <canvas id="myChart1{{ $khaosat['id'] }}" width="100" height="100"></canvas>
+                    </div>
+                    <script>
+                        var data = @json($khaosat['khaosat']);
+                        var labels = @json($khaosat['labels']);
+                        var colors = @json($khaosat['colors']);
+
+                        var ctx1 = document.getElementById('myChart1{{ $khaosat['id'] }}').getContext('2d');
+                        if (data !== null)
+                            drawChart(ctx1, labels, data, colors, 'doughnut', 'Quy mô phiếu khảo sát của doanh nghiệp');
+                    </script>
+                </div>
             </div>
 
         </div>
