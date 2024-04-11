@@ -1,4 +1,4 @@
-@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -29,10 +29,10 @@
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
 
-                            {{-- <a href="{{ route('hiephoidoanhnghiep.chienluoc.them') }}"
+                            {{-- <a href="{{ route('admin.chienluoc.them') }}"
                                 class="btn btn-primary float-right veiwbutton ">Chưa có đánh giá và đề xuất</a>
 
-                            <a href="{{ route('hiephoidoanhnghiep.chienluoc.them') }}"
+                            <a href="{{ route('admin.chienluoc.them') }}"
                                 class="btn btn-primary float-right veiwbutton mx-2">Chưa có chiến lược đề xuất</a> --}}
                         </div>
                     </div>
@@ -87,7 +87,7 @@
 
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('hiephoidoanhnghiep.khaosat.phieu1', ['id' => $khaosat->id]) }}"
+                                        <a href="{{ route('admin.khaosat.phieu1', ['id' => $khaosat->id]) }}"
                                             class="btn"><i class="fa-solid fa-circle-right"
                                                 style="font-size: 40px; color: rgb(72, 72, 182);"></i></a>
                                     </div>
@@ -119,7 +119,7 @@
 
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('hiephoidoanhnghiep.khaosat.phieu2', ['id' => $khaosat->id]) }}"
+                                        <a href="{{ route('admin.khaosat.phieu2', ['id' => $khaosat->id]) }}"
                                             class="btn"><i class="fa-solid fa-circle-right"
                                                 style="font-size: 40px; color: rgb(72, 72, 182);"></i></a>
                                     </div>
@@ -151,7 +151,7 @@
 
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('hiephoidoanhnghiep.khaosat.phieu3', ['id' => $khaosat->id]) }}"
+                                        <a href="{{ route('admin.khaosat.phieu3', ['id' => $khaosat->id]) }}"
                                             class="btn"><i class="fa-solid fa-circle-right"
                                                 style="font-size: 40px; color: rgb(72, 72, 182);"></i></a>
                                     </div>
@@ -182,7 +182,7 @@
 
                                     </div>
                                     <div class="col-4">
-                                        <a href="{{ route('hiephoidoanhnghiep.khaosat.phieu4', ['id' => $khaosat->id]) }}"
+                                        <a href="{{ route('admin.khaosat.phieu4', ['id' => $khaosat->id]) }}"
                                             class="btn"><i class="fa-solid fa-circle-right"
                                                 style="font-size: 40px; color: rgb(72, 72, 182);"></i></a>
                                     </div>

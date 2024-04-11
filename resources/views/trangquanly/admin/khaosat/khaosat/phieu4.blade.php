@@ -1,4 +1,4 @@
-@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->

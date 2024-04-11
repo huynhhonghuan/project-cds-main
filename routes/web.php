@@ -58,8 +58,6 @@ use App\Http\Controllers\Frontend\TrangtinController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\ThongtinCDSController;
-use App\Http\Controllers\Frontend\VideoController;
-use App\Http\Controllers\Frontend\ThuvienController;
 
 
 function set_active($route)
@@ -274,30 +272,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
     //-------------------------------------Đánh giá của chuyên gia--------------------------------------------//
     Route::group(['prefix' => 'danhgia', 'as' => 'danhgia.'], function () {
         Route::get('danhsach', [DanhgiaController::class, 'getdanhsach'])->name('danhsach');
-        Route::get('danhsachnongnghiep', [DanhgiaController::class, 'getdanhsachnongnghiep'])->name('danhsachnongnghiep');
-        Route::get('danhsachcongnghiep', [DanhgiaController::class, 'getdanhsachcongnghiep'])->name('danhsachcongnghiep');
-        Route::get('danhsachthuongmaidichvu', [DanhgiaController::class, 'getdanhsachthuongmaidichvu'])->name('danhsachthuongmaidichvu');
-
-        Route::get('them', [DanhgiaController::class, 'getthem'])->name('them');
-        Route::post('them/{loai}', [DanhgiaController::class, 'postthem'])->name('them');
-        Route::get('sua/{id}', [DanhgiaController::class, 'getsua'])->name('sua');
-        Route::post('sua/{id}', [DanhgiaController::class, 'postsua'])->name('sua');
-        Route::post('xoa', [DanhgiaController::class, 'postxoa'])->name('xoa');
-        Route::post('duyet', [DanhgiaController::class, 'postduyet'])->name('duyet');
+        Route::get('xemdanhgia/{id}', [DanhgiaController::class, 'getxemdanhgia'])->name('xemdanhgia');
     });
 
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
     Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
         Route::get('danhsach', [KhaosatController::class, 'getdanhsach'])->name('danhsach');
         Route::post('nhap', [KhaosatController::class, 'postnhap'])->name('nhap');
-
-        Route::get('xem/{id}', [KhaosatController::class, 'getxem'])->name('xem');
-        Route::get('them', [KhaosatController::class, 'getthem'])->name('them');
-        Route::post('them', [KhaosatController::class, 'postthem'])->name('them');
-        Route::get('sua/{id}', [KhaosatController::class, 'getsua'])->name('sua');
-        Route::post('sua/{id}', [KhaosatController::class, 'postsua'])->name('sua');
-        Route::post('xoa', [KhaosatController::class, 'postxoa'])->name('xoa');
-        // Route::post('duyet', [DanhgiaController::class, 'postduyet'])->name('duyet');
+        Route::get('xemkhaosat/{id}', [KhaosatController::class, 'getxemkhaosat'])->name('xemkhaosat');
+        Route::get('phieu1/{id}', [KhaosatController::class, 'getphieu1'])->name('phieu1');
+        Route::get('phieu2/{id}', [KhaosatController::class, 'getphieu2'])->name('phieu2');
+        Route::get('phieu3/{id}', [KhaosatController::class, 'getphieu3'])->name('phieu3');
+        Route::get('phieu4/{id}', [KhaosatController::class, 'getphieu4'])->name('phieu4');
     });
 });
 
@@ -428,21 +414,20 @@ Route::group(['prefix' => 'hiephoidoanhnghiep', 'middleware' => ['auth', 'check_
         Route::get('xem/{id}', [ChienluocchitietChienluocchitietController::class, 'getxem'])->name('xem');
     });
 
+    //-------------------------------------Đánh giá của chuyên gia--------------------------------------------//
+    Route::group(['prefix' => 'danhgia', 'as' => 'danhgia.'], function () {
+        Route::get('danhsach', [HiephoidoanhnghiepDanhgiaDanhgiaController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('xemdanhgia/{id}', [HiephoidoanhnghiepDanhgiaDanhgiaController::class, 'getxemdanhgia'])->name('xemdanhgia');
+    });
+
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
     Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
         Route::get('danhsach', [KhaosatKhaosatController::class, 'getdanhsach'])->name('danhsach');
-
         Route::get('xemkhaosat/{id}', [KhaosatKhaosatController::class, 'getxemkhaosat'])->name('xemkhaosat');
         Route::get('phieu1/{id}', [KhaosatKhaosatController::class, 'getphieu1'])->name('phieu1');
         Route::get('phieu2/{id}', [KhaosatKhaosatController::class, 'getphieu2'])->name('phieu2');
         Route::get('phieu3/{id}', [KhaosatKhaosatController::class, 'getphieu3'])->name('phieu3');
         Route::get('phieu4/{id}', [KhaosatKhaosatController::class, 'getphieu4'])->name('phieu4');
-
-        Route::get('xemchienluoc/{id}', [KhaosatKhaosatController::class, 'getxemchienluoc'])->name('xemchienluoc');
-        Route::get('xemdanhgia/{id}', [KhaosatKhaosatController::class, 'getxemdanhgia'])->name('xemdanhgia');
-    });
-    Route::group(['prefix' => 'danhgia', 'as' => 'danhgia.'], function () {
-        Route::get('danhsach', [HiephoidoanhnghiepDanhgiaDanhgiaController::class, 'getdanhsach'])->name('danhsach');
     });
 });
 

@@ -29,8 +29,9 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" width="7%">STT</th>
-                                            <th scope="col">Tên chuyên gia</th>
                                             <th scope="col">Tên doanh nghiệp</th>
+                                            <th scope="col" class="text-center" width="10%">Lần khảo sát</th>
+                                            <th scope="col" class="text-center" width="10%">Trạng thái khảo sát</th>
                                             <th scope="col" class="text-center" width="5%">Xem đánh giá</th>
                                         </tr>
                                     </thead>
@@ -38,13 +39,57 @@
                                         @foreach ($danhsach as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $value->getchuyengia->tenchuyengia }}</td>
-                                                <td>{{ $value->getkhaosat->getdoanhnghiep->tentiengviet }}</td>
+                                                <td>{{ $value->tentiengviet }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('hiephoidoanhnghiep.khaosat.xemdanhgia', ['id' => $value->id]) }}"
-                                                        class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
-                                                            style="color:orange;"></i></a>
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <span
+                                                                class="btn btn-sm bg-info-light">{{ $key + 1 }}</span>
+                                                            <hr>
+                                                        @endforeach
+                                                    @endif
                                                 </td>
+                                                <td>
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <div class="my-2">
+                                                                @if ($item->trangthai == 1)
+                                                                    <div class="btn btn-sm bg-success-light mr-2"> Hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @elseif ($item->trangthai == 2)
+                                                                    <div class="btn btn-sm bg-success-light mr-2">Đã được đề
+                                                                        xuất
+                                                                    </div>
+                                                                @else
+                                                                    <div class="btn btn-sm bg-warning-light mr-2">Chưa hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @endif
+                                                                <hr>
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        <div class="btn btn-sm bg-danger-light mr-2">Chưa khảo sát
+                                                        </div>
+                                                    @endif
+                                                </td>
+
+                                                <td class="text-center">
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <a href="{{ route('hiephoidoanhnghiep.danhgia.xemdanhgia', ['id' => $item->id]) }}"
+                                                                class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
+                                                                    style="color:orange;"></i></a>
+                                                            <hr>
+                                                        @endforeach
+                                                    @else
+                                                        <a href="#" class="btn btn-sm mr-2"><i
+                                                                class="fa-regular fa-eye" style="color:orange;"></i></a>
+                                                    @endif
+
+                                                </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -55,7 +100,97 @@
                 </div>
             </div>
         </div>
+    </div>
+    {{-- Modal thêm đánh giá --}}
+    <div id="themdanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.themdanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <h3 class="delete_class text-center">Thêm đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="khaosat_id" id="khaosat_id">
+                            <div class="form-group">
+                                <label for="danhgia" class="form-label align-items-start">Đánh giá</label>
+                                <textarea class="form-control" type="text" name="danhgia" id="danhgia" rows="3"></textarea>
+                            </div>
 
+                            <div class="form-group">
+                                <label for="dexuat" class="form-label align-items-start">Đề xuất</label>
+                                <textarea class="form-control" type="text" name="dexuat" id="dexuat" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Thêm</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="suadanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.suadanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <h3 class="delete_class text-center">Sửa đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet_sua"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="chuyengia_danhgia_id_sua"
+                                id="chuyengia_danhgia_id_sua">
+                            <div class="form-group">
+                                <label for="danhgia" class="form-label align-items-start">Đánh giá</label>
+                                <textarea class="form-control" type="text" name="danhgia_sua" id="danhgia_sua" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dexuat" class="form-label align-items-start">Đề xuất</label>
+                                <textarea class="form-control" type="text" name="dexuat_sua" id="dexuat_sua" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Sửa</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="xoadanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.xoadanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <h3 class="delete_class text-center">Xóa đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet_xoa"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="chuyengia_danhgia_id_xoa"
+                                id="chuyengia_danhgia_id_xoa">
+                            <div class="text-center">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Xóa</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -91,6 +226,67 @@
                     "search": "Tìm kiếm:",
                 }
             })
+        });
+    </script>
+    {{-- Modal thêm đánh giá --}}
+    <script>
+        $(document).on('click', '.themdanhgia_modal', function() {
+            $('#khaosat_id').val($(this).data('khaosat_id')); // gán id vào input (hidden)
+            document.getElementById("tendoanhnghieptiengviet").innerHTML = $(this).data('tendoanhnghiep');
+        });
+    </script>
+    {{-- Modal sửa đánh giá --}}
+    <script>
+        $(document).on('click', '.suadanhgia_modal', function() {
+            document.getElementById("tendoanhnghieptiengviet_sua").innerHTML = $(this).data('tendoanhnghiep');
+
+            var khaosat_id = $(this).data('khaosat_id');
+            var chuyengia_id = $(this).data('chuyengia_id');
+            if (khaosat_id !== '') {
+                $.ajax({
+                    url: "{{ route('chuyengia.danhgia.laythongtindanhgia') }}", // Đường dẫn tới route hoặc controller xử lý yêu cầu
+                    method: 'GET',
+                    data: {
+                        khaosat_id: khaosat_id,
+                        chuyengia_id: chuyengia_id
+                    },
+                    success: function(response) {
+                        $('#chuyengia_danhgia_id_sua').val(response.id);
+                        $('#danhgia_sua').val(response.danhgia);
+                        $('#dexuat_sua').val(response.dexuat);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
+        });
+    </script>
+    {{-- Modal xóa đánh giá --}}
+    <script>
+        $(document).on('click', '.xoadanhgia_modal', function() {
+            document.getElementById("tendoanhnghieptiengviet_xoa").innerHTML = $(this).data('tendoanhnghiep');
+
+            var khaosat_id = $(this).data('khaosat_id');
+            var chuyengia_id = $(this).data('chuyengia_id');
+            if (khaosat_id !== '') {
+                $.ajax({
+                    url: "{{ route('chuyengia.danhgia.laythongtindanhgia') }}", // Đường dẫn tới route hoặc controller xử lý yêu cầu
+                    method: 'GET',
+                    data: {
+                        khaosat_id: khaosat_id,
+                        chuyengia_id: chuyengia_id
+                    },
+                    success: function(response) {
+                        $('#chuyengia_danhgia_id_xoa').val(response.id);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
         });
     </script>
 @endsection
