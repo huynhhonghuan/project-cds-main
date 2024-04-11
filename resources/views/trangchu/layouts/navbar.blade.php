@@ -76,6 +76,7 @@
                             <ul id="submenu">
                                 <li style="list-style:none"><a href="{{ URL::to('/thuvien/1') }}" style="text-decoration: none; text-transform: uppercase">Văn bản địa phương</a></li>
                                 <li style="list-style:none"><a href="{{ URL::to('/thuvien/0') }}" style="text-decoration: none; text-transform: uppercase">Văn bản Trung ương</a></li>
+                                <li style="list-style:none"><a href="{{ URL::to('/thuvien/2') }}" style="text-decoration: none; text-transform: uppercase">Văn bản tập huấn chuyển đổi số</a></li>
                             </ul>
                         </li>
                         <li class="nav-item mx-1">
@@ -85,9 +86,9 @@
                             </a>
                         </li>
                         <li class="nav-item mx-1">
-                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('tinCDS') }}" role="button"
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('diendan') }}" role="button"
                                 aria-expanded="false">
-                                Tin CĐS
+                                Diễn Đàn
                             </a>
                         </li>
                         <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">

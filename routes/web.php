@@ -57,7 +57,7 @@ use Livewire\Livewire;
 
 //Hiển thị lên giao diện màn hình chính
 use App\Http\Controllers\Frontend\TrangtinController;
-use App\Http\Controllers\Frontend\ThongtinCDSController;
+use App\Http\Controllers\Frontend\DiendanController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
 
@@ -486,7 +486,13 @@ Route::post('/BinhLuan', [TrangtinController::class, 'binhluan'])->name('binhlua
 // Hiển thị doanh nghiệp
 Route::get('/Doanhnghiep', [TrangtinController::class, 'doanhnghiep'])->name('doanhnghiep');
 Route::get('/doanhnghiepct/{id}', [TrangtinController::class, 'doanhnghiepct'])->name('doanhnghiepct');
-//Giao diện trang tin chuyển đổi số
-Route::get('/tinCDS', [ThongtinCDSController::class, 'Index'])->name('tinCDS');
+
+//Giao diện diễn đàn chuyển đổi số
+Route::get('/diendan', [DiendanController::class, 'Index'])->name('diendan');
+Route::post('/diendan/{id}/like', [DiendanController::class, 'like'])->name('like');
+Route::post('/diendan/{id}/unlike', [DiendanController::class, 'unlike'])->name('unlike');
+
+
+// ---------------------------------------------
 //Giao diện thư viện
 Route::get('/thuvien/{phanloai}', [ThuvienController::class, 'getloaithuvien'])->name('thuvien1');
