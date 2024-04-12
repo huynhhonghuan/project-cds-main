@@ -59,15 +59,15 @@ class DoanhnghiepController extends Controller
 
         foreach ($khaosat1 as $key => $it) {
             // lấy giá trị trụ cột
-            if ($it->getdanhsachphieu1->getketquaphieu1 != null)
-                $trucot = [
-                    $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[2]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[3]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[4]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[5]->phantram,
-                ];
+            // if ($it->getdanhsachphieu1->getketquaphieu1 != null)
+                // $trucot = [
+                //     $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
+                //     $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,
+                //     $it->getdanhsachphieu1->getketquaphieu1[2]->phantram,
+                //     $it->getdanhsachphieu1->getketquaphieu1[3]->phantram,
+                //     $it->getdanhsachphieu1->getketquaphieu1[4]->phantram,
+                //     $it->getdanhsachphieu1->getketquaphieu1[5]->phantram,
+                // ];
             //tính toán giá trị mức độ
             if ($it->trangthai != 0) {
                 $it->tongdiem == 0 ? $mucdo = [0] : '';
@@ -92,7 +92,6 @@ class DoanhnghiepController extends Controller
             $trucot = [];
             $mucdo = [];
         }
-        dd($khaosat);
         return view('trangquanly.doanhnghiep.home', compact('khaosat'));
     }
     //profile doanh nghiệp
