@@ -23,6 +23,6 @@ class DanhMucController extends Controller
 
     public function getBaiViets($id)
     {
-        return BaiVietResource::collection(DanhMuc::findOrFail($id)->getBaiViets);
+        return BaiVietResource::collection(DanhMuc::findOrFail($id)->getBaiViets->sortByDesc('created_at'));
     }
 }
