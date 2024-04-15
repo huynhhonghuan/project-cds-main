@@ -43,7 +43,7 @@ use App\Http\Controllers\Hiephoidoanhnghiep\Danhgia\DanhgiaController as Hiephoi
 use App\Http\Controllers\Hiephoidoanhnghiep\Khaosat\KhaosatController as KhaosatKhaosatController;
 
 //Chức năng dành cho chuyên gia
-use App\Http\Controllers\Chuyengia\ChuyengiaController;
+use App\Http\Controllers\Chuyengia\ChuyengiaController as ChuyengiaController_cg;
 use App\Http\Controllers\Chuyengia\Chienluoc\ChienluocController as ChienluocController_cg;
 use App\Http\Controllers\Chuyengia\Chienluocchitiet\ChienluocchitietController as ChienluocchitietController_cg;
 use App\Http\Controllers\Chuyengia\Danhgia\DanhgiaController as DanhgiaDanhgiaController;
@@ -333,16 +333,16 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
 //-------------------------------------Chuyên gia--------------------------------------------//
 Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth', 'check_chuyengia'], 'as' => 'chuyengia.'], function () {
     //-------------------------------------Home--------------------------------------------//
-    Route::get('home', [ChuyengiaController::class, 'home'])->name('home');
+    Route::get('home', [ChuyengiaController_cg::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
-    Route::get('profile', [ChuyengiaController::class, 'profile'])->name('profile');
+    Route::get('profile', [ChuyengiaController_cg::class, 'profile'])->name('profile');
     //-------------------------------------Danh sách chuyên gia--------------------------------------------//
     Route::get('hoithoai', [HoidapController::class, 'chuyengiahoithoai'])->name('hoithoai');
     //-------------------------------------Danh sách chuyên gia--------------------------------------------//
     Route::get('tinnhan/{id}', [HoiDapController::class, 'chuyengiatinnhan'])->name('tinnhan');
     Route::post('themtinnhan', [HoiDapController::class, 'themtinnhanchuyengia'])->name('themtinnhan');
 
-    Route::post('doimatkhau/{id}', [ChuyengiaController::class, 'doimatkhau'])->name('doimatkhau');
+    Route::post('doimatkhau/{id}', [ChuyengiaController_cg::class, 'doimatkhau'])->name('doimatkhau');
 
     //-------------------------------------Danh sách chiến lược--------------------------------------------//
     Route::group(['prefix' => 'chienluoc', 'as' => 'chienluoc.'], function () {

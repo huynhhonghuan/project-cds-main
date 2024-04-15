@@ -28,19 +28,10 @@ class BaiVietController extends Controller
 
     private function getLikedByAuthUserAttribute($baiviet)
     {
-        $userId = auth()->id() ?? 0;
+        $userId = auth('api')->id();
         return BaiViet_Thich::where('user_id', $userId)
             ->where('baiviet_id', $baiviet->id)
             ->exists();
-        $like = BaiViet_Thich::where('user_id', $userId)
-            ->where('baiviet_id', $baiviet->id)
-            ->first();
-
-        if ($like) {
-            return true;
-        }
-
-        return false;
     }
 
     public function detail($id)
@@ -79,8 +70,8 @@ class BaiVietController extends Controller
             $hinhAnhs = $request->file('hinhAnhs');
             if ($request->hasFile('hinhAnhs')) {
                 foreach ($hinhAnhs as $hinhanh) {
-                    $path = 'assets/backend/img/baiviet/';
-                    $fileName =  uniqid() . "."  . $hinhanh->getClientOriginalExtension();
+                    $path = 'assets/backend/img/baiviet';
+                    $fileName =  uniqid() . "-"  . $hinhanh->getClientOriginalExtension();
                     $hinhanh->move($path, $fileName);
                     if (env('APP_ENV') == 'production') {
                         $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());

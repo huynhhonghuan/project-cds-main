@@ -443,7 +443,11 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         array (
             0 => __DIR__ . '/..' . '/livewire/livewire/src',
         ),
-        'League\\MimeTypeDetection\\' =>
+        'League\\OAuth1\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth1-client/src',
+        ),
+        'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
         ),
@@ -479,7 +483,11 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
-        'Laravel\\SerializableClosure\\' =>
+        'Laravel\\Socialite\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/socialite/src',
+        ),
+        'Laravel\\SerializableClosure\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
         ),
@@ -636,8 +644,10 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'App\\Http\\Controllers\\Admin\\Taikhoan\\VaitroController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Taikhoan/VaitroController.php',
         'App\\Http\\Controllers\\Admin\\Tintuc\\TintucController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Tintuc/TintucController.php',
         'App\\Http\\Controllers\\Admin\\Trucot\\TrucotController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Trucot/TrucotController.php',
+        'App\\Http\\Controllers\\Api\\BaiVietController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BaiVietController.php',
         'App\\Http\\Controllers\\Api\\BinhLuanController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/BinhLuanController.php',
         'App\\Http\\Controllers\\Api\\ChuyenGiaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/ChuyenGiaController.php',
+        'App\\Http\\Controllers\\Api\\DanhMucController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/DanhMucController.php',
         'App\\Http\\Controllers\\Api\\DoanhNghiepController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/DoanhNghiepController.php',
         'App\\Http\\Controllers\\Api\\HiepHoiDoanhNghiepController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/HiepHoiDoanhNghiepController.php',
         'App\\Http\\Controllers\\Api\\HoiDapController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/HoiDapController.php',
@@ -669,8 +679,9 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'App\\Http\\Controllers\\Doanhnghiep\\DoanhnghiepController' => __DIR__ . '/../..' . '/app/Http/Controllers/Doanhnghiep/DoanhnghiepController.php',
         'App\\Http\\Controllers\\Doanhnghiep\\KhaosatController' => __DIR__ . '/../..' . '/app/Http/Controllers/Doanhnghiep/KhaosatController.php',
         'App\\Http\\Controllers\\Frontend\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/BannerController.php',
+        'App\\Http\\Controllers\\Frontend\\DiendanController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/DiendanController.php',
         'App\\Http\\Controllers\\Frontend\\GoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/GoogleController.php',
-        'App\\Http\\Controllers\\Frontend\\ThongtinCDSController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ThongtinCDSController.php',
+        'App\\Http\\Controllers\\Frontend\\HoidapController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/HoidapController.php',
         'App\\Http\\Controllers\\Frontend\\ThuvienController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/ThuvienController.php',
         'App\\Http\\Controllers\\Frontend\\TrangtinController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/TrangtinController.php',
         'App\\Http\\Controllers\\Frontend\\VideoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/VideoController.php',
@@ -695,10 +706,14 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Resources\\BaiVietResource' => __DIR__ . '/../..' . '/app/Http/Resources/BaiVietResource.php',
+        'App\\Http\\Resources\\BaiViet_AnhResource' => __DIR__ . '/../..' . '/app/Http/Resources/BaiViet_AnhResource.php',
+        'App\\Http\\Resources\\BinhLuanBaiVietResource' => __DIR__ . '/../..' . '/app/Http/Resources/BinhLuanBaiVietResource.php',
         'App\\Http\\Resources\\BinhLuanResource' => __DIR__ . '/../..' . '/app/Http/Resources/BinhLuanResource.php',
         'App\\Http\\Resources\\ChuyenGiaResource' => __DIR__ . '/../..' . '/app/Http/Resources/ChuyenGiaResource.php',
         'App\\Http\\Resources\\DaiDienDoanhNghiepResource' => __DIR__ . '/../..' . '/app/Http/Resources/DaiDienDoanhNghiepResource.php',
         'App\\Http\\Resources\\DaiDienHiepHoiResource' => __DIR__ . '/../..' . '/app/Http/Resources/DaiDienHiepHoiResource.php',
+        'App\\Http\\Resources\\DanhMucResource' => __DIR__ . '/../..' . '/app/Http/Resources/DanhMucResource.php',
         'App\\Http\\Resources\\DienThoaiResource' => __DIR__ . '/../..' . '/app/Http/Resources/DienThoaiResource.php',
         'App\\Http\\Resources\\DoanhNghiepResource' => __DIR__ . '/../..' . '/app/Http/Resources/DoanhNghiepResource.php',
         'App\\Http\\Resources\\HiepHoiDoanhNghiepResource' => __DIR__ . '/../..' . '/app/Http/Resources/HiepHoiDoanhNghiepResource.php',
@@ -727,12 +742,18 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'App\\Livewire\\Clickphieu2' => __DIR__ . '/../..' . '/app/Livewire/Clickphieu2.php',
         'App\\Livewire\\Clickphieu3' => __DIR__ . '/../..' . '/app/Livewire/Clickphieu3.php',
         'App\\Livewire\\Counter' => __DIR__ . '/../..' . '/app/Livewire/Counter.php',
+        'App\\Models\\BaiViet' => __DIR__ . '/../..' . '/app/Models/BaiViet.php',
+        'App\\Models\\BaiViet_Anh' => __DIR__ . '/../..' . '/app/Models/BaiViet_Anh.php',
+        'App\\Models\\BaiViet_BinhLuan' => __DIR__ . '/../..' . '/app/Models/BaiViet_BinhLuan.php',
+        'App\\Models\\BaiViet_DanhMuc' => __DIR__ . '/../..' . '/app/Models/BaiViet_DanhMuc.php',
+        'App\\Models\\BaiViet_Thich' => __DIR__ . '/../..' . '/app/Models/BaiViet_Thich.php',
         'App\\Models\\Binhluan' => __DIR__ . '/../..' . '/app/Models/Binhluan.php',
         'App\\Models\\Cauhoiphieu1' => __DIR__ . '/../..' . '/app/Models/Cauhoiphieu1.php',
         'App\\Models\\Cauhoiphieu2' => __DIR__ . '/../..' . '/app/Models/Cauhoiphieu2.php',
         'App\\Models\\Cauhoiphieu3' => __DIR__ . '/../..' . '/app/Models/Cauhoiphieu3.php',
         'App\\Models\\Chuyengia' => __DIR__ . '/../..' . '/app/Models/Chuyengia.php',
         'App\\Models\\Chuyengia_Danhgia' => __DIR__ . '/../..' . '/app/Models/Chuyengia_Danhgia.php',
+        'App\\Models\\DanhMuc' => __DIR__ . '/../..' . '/app/Models/DanhMuc.php',
         'App\\Models\\Danhgiaphieu1' => __DIR__ . '/../..' . '/app/Models/Danhgiaphieu1.php',
         'App\\Models\\Danhgiaphieu2' => __DIR__ . '/../..' . '/app/Models/Danhgiaphieu2.php',
         'App\\Models\\Danhgiaphieu3' => __DIR__ . '/../..' . '/app/Models/Danhgiaphieu3.php',
@@ -3282,6 +3303,7 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'Laravel\\Prompts\\Table' => __DIR__ . '/..' . '/laravel/prompts/src/Table.php',
         'Laravel\\Prompts\\Terminal' => __DIR__ . '/..' . '/laravel/prompts/src/Terminal.php',
         'Laravel\\Prompts\\TextPrompt' => __DIR__ . '/..' . '/laravel/prompts/src/TextPrompt.php',
+        'Laravel\\Prompts\\TextareaPrompt' => __DIR__ . '/..' . '/laravel/prompts/src/TextareaPrompt.php',
         'Laravel\\Prompts\\Themes\\Contracts\\Scrolling' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Contracts/Scrolling.php',
         'Laravel\\Prompts\\Themes\\Default\\Concerns\\DrawsBoxes' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/Concerns/DrawsBoxes.php',
         'Laravel\\Prompts\\Themes\\Default\\Concerns\\DrawsScrollbars' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/Concerns/DrawsScrollbars.php',
@@ -3299,6 +3321,7 @@ class ComposerStaticInitdaa8bbe8ff7c2179e2189b79a8ae3474
         'Laravel\\Prompts\\Themes\\Default\\SuggestPromptRenderer' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/SuggestPromptRenderer.php',
         'Laravel\\Prompts\\Themes\\Default\\TableRenderer' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/TableRenderer.php',
         'Laravel\\Prompts\\Themes\\Default\\TextPromptRenderer' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/TextPromptRenderer.php',
+        'Laravel\\Prompts\\Themes\\Default\\TextareaPromptRenderer' => __DIR__ . '/..' . '/laravel/prompts/src/Themes/Default/TextareaPromptRenderer.php',
         'Laravel\\Sail\\Console\\AddCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/AddCommand.php',
         'Laravel\\Sail\\Console\\Concerns\\InteractsWithDockerComposeServices' => __DIR__ . '/..' . '/laravel/sail/src/Console/Concerns/InteractsWithDockerComposeServices.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',

@@ -17,6 +17,7 @@ class BinhLuanBaiVietResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => new UserResource($this->getUser),
+            'baiVietId' => $this->baiviet_id,
             'noiDung' => $this->noidung,
             'phanHois' => BinhLuanBaiVietResource::collection($this->getPhanHois->sortByDesc('created_at')),
             'createdAt' => $this->created_at

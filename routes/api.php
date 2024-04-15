@@ -48,7 +48,7 @@ Route::post('store-image', function (Request $request) {
 
 // Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
-Route::apiResource("chuyengia", ChuyenGiaController::class);
+// Route::apiResource("chuyengia", ChuyenGiaController::class);
 Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
 Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);
@@ -63,9 +63,9 @@ Route::group(['prefix' => 'tintuc'], function () {
 
 // Diễn đàn
 Route::group(['prefix' => 'baiviet'], function () {
+    Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
     Route::get('', [BaiVietController::class, 'index']);
     Route::get('{id}', [BaiVietController::class, 'detail']);
-    Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('{id}/binhluan', [BaiVietController::class, 'createBinhLuan']);
         Route::delete('{id}', [BaiVietController::class, 'deleteBaiViet']);

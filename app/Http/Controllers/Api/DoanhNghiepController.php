@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\User_Vaitro;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Prompts\Output\ConsoleOutput;
 use Psy\Readline\Hoa\Console;
@@ -63,94 +64,94 @@ class DoanhNghiepController extends Controller
             'doanhnghiep_daidien_img_matsau' => ['required', 'image'],
             'doanhnghiep_daidien_mota'
         ]);
+        DB::transaction(function () use ($request) {
+            //Thêm tài khoản
+            $user_namecolumn = [
+                'name' => 'name',
+                'email' => 'email',
+                'password' => 'password',
+            ];
 
-        //Thêm tài khoản
-        $user_namecolumn = [
-            'name' => 'name',
-            'email' => 'email',
-            'password' => 'password',
-        ];
+            //định nghĩa các giá trị truyền vào nhưng không nhận từ Request
+            $user_nameobject = [
+                'status' => 'Active',
+            ];
+            $model_user = new User();
+            $user = $this->them($model_user, $request, $user_namecolumn, $user_nameobject);
 
-        //định nghĩa các giá trị truyền vào nhưng không nhận từ Request
-        $user_nameobject = [
-            'status' => 'Active',
-        ];
-        $model_user = new User();
-        $user = $this->them($model_user, $request, $user_namecolumn, $user_nameobject);
+            //Vai trò của tài khoản
+            $user_vaitro_nameobject = [
+                'user_id' => $user->id,
+                'vaitro_id' => 'dn',
+                'cap_vaitro_id' => 'ad',
+                'duyet_user_id' => 1,
+            ];
+            $model_user_vaitro = new User_Vaitro();
+            $this->them($model_user_vaitro, $request, null, $user_vaitro_nameobject);
 
-        //Vai trò của tài khoản
-        $user_vaitro_nameobject = [
-            'user_id' => $user->id,
-            'vaitro_id' => 'dn',
-            'cap_vaitro_id' => 'ad',
-            'duyet_user_id' => 1,
-        ];
-        $model_user_vaitro = new User_Vaitro();
-        $this->them($model_user_vaitro, $request, null, $user_vaitro_nameobject);
+            //Thông tin doanh nghiệp
+            $model_doanhnghiep = new Doanhnghiep();
+            $doanhnghiep_namecolumn = [
+                'doanhnghiep_loaihinh_id' => 'doanhnghiep_loaihinh_id',
+                'tentiengviet' => 'doanhnghiep_tentiengviet',
+                'tentienganh' => 'doanhnghiep_tentienganh',
+                'tenviettat' => 'doanhnghiep_tenviettat',
+                'thanhpho' => 'doanhnghiep_thanhpho',
+                'huyen' => 'doanhnghiep_huyen',
+                'xa' => 'doanhnghiep_xa',
+                'diachi' => 'doanhnghiep_diachi',
+                'mathue' => 'doanhnghiep_mathue',
+                'fax' => 'doanhnghiep_fax',
+                'website' => 'doanhnghiep_website',
+                'soluongnhansu' => 'doanhnghiep_soluongnhansu',
+                'mota' => 'doanhnghiep_mota',
+            ];
+            $dateString = $request->doanhnghiep_ngaylap;
+            $date = Carbon::createFromFormat('d/m/Y', $dateString);
+            $doanhnghiep_nameobject = [
+                'user_id' => $user->id,
+                'ngaylap' => $date->format('Y-m-d'),
+            ];
 
-        //Thông tin doanh nghiệp
-        $model_doanhnghiep = new Doanhnghiep();
-        $doanhnghiep_namecolumn = [
-            'doanhnghiep_loaihinh_id' => 'doanhnghiep_loaihinh_id',
-            'tentiengviet' => 'doanhnghiep_tentiengviet',
-            'tentienganh' => 'doanhnghiep_tentienganh',
-            'tenviettat' => 'doanhnghiep_tenviettat',
-            'thanhpho' => 'doanhnghiep_thanhpho',
-            'huyen' => 'doanhnghiep_huyen',
-            'xa' => 'doanhnghiep_xa',
-            'diachi' => 'doanhnghiep_diachi',
-            'mathue' => 'doanhnghiep_mathue',
-            'fax' => 'doanhnghiep_fax',
-            'soluongnhansu' => 'doanhnghiep_soluongnhansu',
-            'mota' => 'doanhnghiep_mota',
-        ];
-        $dateString = $request->doanhnghiep_ngaylap;
-        $date = Carbon::createFromFormat('d/m/Y', $dateString);
-        $doanhnghiep_nameobject = [
-            'user_id' => $user->id,
-            'ngaylap' => $date->format('Y-m-d'),
-        ];
+            $doanhnghiep = $this->them($model_doanhnghiep, $request, $doanhnghiep_namecolumn, $doanhnghiep_nameobject);
 
-        $doanhnghiep = $this->them($model_doanhnghiep, $request, $doanhnghiep_namecolumn, $doanhnghiep_nameobject);
+            //Thông tin số điện thoại doanh nghiệp
+            foreach ($request->doanhnghiep_sdt as $key => $value) {
+                $sdt_inp = collect(json_decode($value, true));
+                $model_doanhnghiep_sdt = new Doanhnghiep_Sdt();
+                $model_doanhnghiep_sdt->sdt = $sdt_inp['sdt'];
+                $model_doanhnghiep_sdt->loaisdt = $sdt_inp['loaiSdt'];
+                $model_doanhnghiep_sdt->doanhnghiep_id = $doanhnghiep->id;
+                $model_doanhnghiep_sdt->save();
+            }
 
-        //Thông tin số điện thoại doanh nghiệp
-        foreach ($request->doanhnghiep_sdt as $key => $value) {
-            $sdt_inp = collect(json_decode($value, true));
-            $model_doanhnghiep_sdt = new Doanhnghiep_Sdt();
-            $model_doanhnghiep_sdt->sdt = $sdt_inp['sdt'];
-            $model_doanhnghiep_sdt->loaisdt = $sdt_inp['loaiSdt'];
-            $model_doanhnghiep_sdt->doanhnghiep_id = $doanhnghiep->id;
-            $model_doanhnghiep_sdt->save();
-        }
+            //Thêm thông tin đại diện doanh nghiệp
+            $model_doanhnghiep_daidien = new Doanhnghiep_Daidien();
+            $doanhnghiep_daidien_namecolumn = [
+                'tendaidien' => 'doanhnghiep_daidien_tendaidien',
+                'email' => 'doanhnghiep_daidien_email',
+                'sdt' => 'doanhnghiep_daidien_sdt',
+                'cccd' => 'doanhnghiep_daidien_cccd',
+                'thanhpho' => 'doanhnghiep_daidien_thanhpho',
+                'huyen' => 'doanhnghiep_daidien_huyen',
+                'xa' => 'doanhnghiep_daidien_xa',
+                'diachi' => 'doanhnghiep_daidien_diachi',
+                'chucvu' => 'doanhnghiep_daidien_chucvu',
+            ];
+            $doanhnghiep_daidien_nameobject = [
+                'doanhnghiep_id' => $doanhnghiep->id,
+            ];
 
-        //Thêm thông tin đại diện doanh nghiệp
-        $model_doanhnghiep_daidien = new Doanhnghiep_Daidien();
-        $doanhnghiep_daidien_namecolumn = [
-            'tendaidien' => 'doanhnghiep_daidien_tendaidien',
-            'email' => 'doanhnghiep_daidien_email',
-            'sdt' => 'doanhnghiep_daidien_sdt',
-            'cccd' => 'doanhnghiep_daidien_cccd',
-            'thanhpho' => 'doanhnghiep_daidien_thanhpho',
-            'huyen' => 'doanhnghiep_daidien_huyen',
-            'xa' => 'doanhnghiep_daidien_xa',
-            'diachi' => 'doanhnghiep_daidien_diachi',
-            'chucvu' => 'doanhnghiep_daidien_chucvu',
-        ];
-        $doanhnghiep_daidien_nameobject = [
-            'doanhnghiep_id' => $doanhnghiep->id,
-        ];
+            $doanhnghiep_daidien = $this->them($model_doanhnghiep_daidien, $request, $doanhnghiep_daidien_namecolumn, $doanhnghiep_daidien_nameobject);
 
-        $doanhnghiep_daidien = $this->them($model_doanhnghiep_daidien, $request, $doanhnghiep_daidien_namecolumn, $doanhnghiep_daidien_nameobject);
+            $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_mt", "doanhnghiep_daidien_img_mattruoc", "img_mattruoc", "assets/backend/img/hoso/");
 
+            $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_ms", "doanhnghiep_daidien_img_matsau", "img_matsau", "assets/backend/img/hoso/");
 
+            $this->luuhinhanh($request, $user, "image", "doanhnghiep_logo", "image", "assets/backend/img/hoso/");
 
-        $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_mt", "doanhnghiep_daidien_img_mattruoc", "img_mattruoc", "assets/backend/img/hoso/");
-
-        $this->luuhinhanh($request, $doanhnghiep_daidien, "dndd_cccd_ms", "doanhnghiep_daidien_img_matsau", "img_matsau", "assets/backend/img/hoso/");
-
-        $this->luuhinhanh($request, $user, "image", "doanhnghiep_logo", "image", "assets/backend/img/hoso/");
-
-        return response()->json(['success' => 'success'], 200);
+            return response()->json(['success' => 'success'], 200);
+        });
     }
 
     private function log($message)

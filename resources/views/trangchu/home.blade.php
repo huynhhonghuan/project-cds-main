@@ -287,8 +287,130 @@
                 <span class="news-heading-f">Các Doanh nghiệp</span>
                 <span class="news-heading-l">Liên kết</span>
             </span>
-            <div class="container">
-                
+            <div class="container swiper mySwiper">
+                <div class="swiper-wrapper" style="margin-bottom: 20px">
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://www.loctroi.vn/">
+                                <img src="https://www.loctroi.vn/images/Logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Tập đoàn lộc trời an giang</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://antesco.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191009081058_5d9d33a2704ab.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">CÔNG TY CỔ PHẦN RAU QUẢ THỰC PHẨM AN GIANG</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="http://chieuuzu.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20190925100453_5d8ad955d64f4.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Tân châu long</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://socongthuong.angiang.gov.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20190930075845_5d915345be7d7.png" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Sở công thương tỉnh an giang</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://agifish.com.vn/vi/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008153113_5d9c49519b098.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty Cổ phần Xuất nhập khẩu Thủy sản An Giang</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="http://anmyfish.com.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191009073613_5d9d2b7dc8d46.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">AN MY FISH JOINT STOCK COMPANY</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://saomaigroup.com/">
+                                <img src="https://saomaigroup.com/vnt_upload/weblink/logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Tập đoàn sao mai</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="http://www.xaylapangiang.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008154138_5d9c4bc25506c.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty cổ phần xây lắp an giang</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://tvfood.com.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008153941_5d9c4b4de7005.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty TNHH TVFOOD</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://clfish.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008154615_5d9c4cd7c701f.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">CÔNG TY CP XUẤT NHẬP KHẨU THỦY SẢN CỬU LONG AN GIANG</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="http://www.pangamekong.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008155136_5d9c4e1854bac.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Bạn và tôi food corporation</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://afiex.com.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008155748_5d9c4f8c21443.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty cỏ phần xuất nhập khẩu afiex</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="http://ducthanhgarment.com/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008161453_5d9c538de1678.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty đức thành</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://angimex.com.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191010100305_5d9e9f69a6de0.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty CP Xuất nhập khẩu an giang</div>
+                    </div>
+                    <div class="swiper-slide card" style="display: flex;align-items:center">
+                        <div class="image">
+                            <a href="https://newcafe.com.vn/">
+                                <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191105084633_5dc0d4792930f.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="card__content">Công ty TNHH MTV Newcafe</div>
+                    </div>
+                </div>
+                <div class="swiper-pagination" style="margin-top: 16px"></div>
             </div>
         </div>
         @include('trangchu.layouts.script')

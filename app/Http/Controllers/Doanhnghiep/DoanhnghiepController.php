@@ -92,7 +92,6 @@ class DoanhnghiepController extends Controller
             $trucot = [];
             $mucdo = [];
         }
-        // dd($khaosat);
         return view('trangquanly.doanhnghiep.home', compact('khaosat'));
     }
     //profile doanh nghiệp
