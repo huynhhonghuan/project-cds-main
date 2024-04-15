@@ -59,7 +59,7 @@ class DoanhnghiepController extends Controller
 
         foreach ($khaosat1 as $key => $it) {
             // lấy giá trị trụ cột
-            if ($it->getdanhsachphieu1->getketquaphieu1 != null)
+            if ($it->getdanhsachphieu1->getketquaphieu1)
                 $trucot = [
                     $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
                     $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,

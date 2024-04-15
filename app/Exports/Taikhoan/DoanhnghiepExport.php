@@ -21,10 +21,10 @@ class DoanhnghiepExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
-            'Sheet1' => new Taikhoan(),
-            'Sheet2' => new Vaitro(),
-            'Sheet3' => new Doanhnghiep(),
-            'Sheet4' => new Daidien(),
+            'taikhoan' => new Taikhoan(),
+            'vaitro' => new Vaitro(),
+            'doanhnghiep' => new Doanhnghiep(),
+            'daidien' => new Daidien(),
         ];
     }
 }
@@ -71,7 +71,7 @@ class Taikhoan implements FromCollection, WithHeadings, WithCustomStartCell, Wit
     }
     public function title(): string
     {
-        return 'Thông tin tài khoản';
+        return 'taikhoan';
     }
 }
 class Vaitro implements FromCollection, WithHeadings, WithCustomStartCell, WithMapping, WithTitle
@@ -111,7 +111,7 @@ class Vaitro implements FromCollection, WithHeadings, WithCustomStartCell, WithM
     }
     public function title(): string
     {
-        return 'Thông tin vai trò tài khoản';
+        return 'vaitro';
     }
 }
 
@@ -168,7 +168,7 @@ class Doanhnghiep implements FromCollection, WithHeadings, WithCustomStartCell, 
     }
     public function title(): string
     {
-        return 'Thông tin doanh nghiệp';
+        return 'doanhnghiep';
     }
 }
 
@@ -220,6 +220,6 @@ class Daidien implements FromCollection, WithHeadings, WithCustomStartCell, With
     }
     public function title(): string
     {
-        return 'Thông tin đại diện doanh nghiệp';
+        return 'daidien';
     }
 }

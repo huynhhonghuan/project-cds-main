@@ -929,9 +929,12 @@ class TaikhoanController extends Controller
     public function postnhapdoanhnghiep(Request $request)
     {
         // try {
-        Excel::import(new DoanhnghiepImport, $request->file('excel_file'));
-        Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
-        return redirect()->route('admin.taikhoan.danhsach');
+            // dd($request->file('excel_file'));
+            foreach ($request->file('excel_file') as $item) {
+                Excel::import(new DoanhnghiepImport, $item);
+            }
+            Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
         // } catch (Exception $e) {
         //     Toastr::warning('Nhập dữ liệu excel tài khoản doanh nghiệp không thành công!', 'Warning');
         //     return redirect()->route('admin.taikhoan.danhsach');
