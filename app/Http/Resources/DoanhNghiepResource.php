@@ -25,6 +25,7 @@ class DoanhNghiepResource extends JsonResource
             'xa' => $this->xa,
             'diaChi' => $this->diachi,
             'maThue' => $this->mathue,
+            'website' => $this->website,
             'fax' => $this->fax,
             'soLuongNhanSu' => $this->soluongnhansu,
             'moTa' => $this->mota,

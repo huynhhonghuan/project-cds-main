@@ -19,6 +19,7 @@ class Doanhnghiep extends Model
         // 'email',
         'thanhpho',
         'huyen',
+        'website',
         'xa',
         'diachi',
         'sdt',

@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\KhaoSatController;
 use App\Http\Controllers\Api\LinhVucController;
 use App\Http\Controllers\Api\LoaiHinhDoanhNghiepController;
 use App\Http\Controllers\Api\MucDoController;
+use App\Http\Controllers\Api\SanPhamController;
 use App\Http\Controllers\Api\TaiKhoanController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
@@ -64,16 +65,18 @@ Route::group(['prefix' => 'tintuc'], function () {
 // Diễn đàn
 Route::group(['prefix' => 'baiviet'], function () {
     Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
-    Route::get('', [BaiVietController::class, 'index']);
     Route::get('{id}', [BaiVietController::class, 'detail']);
+    Route::get('', [BaiVietController::class, 'index']);
     Route::group(['middleware' => ['auth:api']], function () {
-        Route::post('{id}/binhluan', [BaiVietController::class, 'createBinhLuan']);
-        Route::delete('{id}', [BaiVietController::class, 'deleteBaiViet']);
-        Route::post('{id}/edit', [BaiVietController::class, 'editBaiViet']);
         Route::post('create', [BaiVietController::class, 'createBaiViet']);
+        Route::post('{id}/binhluan', [BaiVietController::class, 'createBinhLuan']);
+        Route::post('{id}/edit', [BaiVietController::class, 'editBaiViet']);
         Route::post('{id}/like', [BaiVietController::class, 'like']);
+        Route::delete('{id}', [BaiVietController::class, 'deleteBaiViet']);
     });
 });
+
+
 
 Route::group(['prefix' => 'danhmuc'], function () {
     Route::get('', [DanhMucController::class, 'index']);
@@ -87,18 +90,29 @@ Route::group(['prefix' => 'thongke'], function () {
 });
 
 
-// Private routes
-Route::group(['prefix' => 'doanhnghiep'], function () {
-    Route::get("index", [DoanhNghiepController::class, 'index']);
-    Route::post('register', [DoanhNghiepController::class, 'register']);
-    Route::post("login", [DoanhNghiepController::class, 'login']);
-    Route::post("loginemail", [DoanhNghiepController::class, 'loginemail']);
+Route::group(['prefix' => 'sanpham'], function () {
+    Route::get('{id}', [SanPhamController::class, 'detail']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('create', [SanPhamController::class, 'create']);
+        Route::delete('{id}', [SanPhamController::class, 'delete']);
+    });
+});
 
+
+Route::group(['prefix' => 'doanhnghiep'], function () {
     // Authenticated routes
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('profile', [DoanhNghiepController::class, 'profile']);
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
     });
+    Route::get("index", [DoanhNghiepController::class, 'index']);
+    Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
+    Route::get('{id}/sanpham', [SanPhamController::class, 'getSanPhamByDoanhNghiep']);
+    Route::get('{id}/baiviet', [BaiVietController::class, 'getBaiVietByDoanhNghiep']);
+    Route::get("{id}", [DoanhNghiepController::class, 'detail']);
+    Route::post('register', [DoanhNghiepController::class, 'register']);
+    Route::post("login", [DoanhNghiepController::class, 'login']);
+    Route::post("loginemail", [DoanhNghiepController::class, 'loginemail']);
 });
 
 Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function () {
