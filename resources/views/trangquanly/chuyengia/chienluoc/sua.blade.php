@@ -7,64 +7,115 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Sửa bài báo</h3>
+                        <h3 class="page-title mt-5">Lưu chiến lược</h3>
                     </div>
                 </div>
             </div>
-            <form action="{{ route('admin.tintuc.sua',$tintuc->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('chuyengia.chienluoc.sua', [$mohinh->id]) }}" method="POST" enctype="multipart/form-data"
+                class="needs-validation" novalidate>
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row formtype">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Lĩnh vực</label>
-                                    <select class="form-control @error('linhvuc_id') is-invalid @enderror" id="sel1"
-                                        name="linhvuc_id">
-                                        <option selected disabled> --Chọn-- </option>
-                                        @foreach ($linhvuc as $value)
-                                            <option {{ $tintuc->linhvuc_id== $value->id ? 'selected' : '' }} value="{{ $value->id }}">{{ $value->tenlinhvuc }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label>Tiêu đề</label>
+                                    <label>Tên mô hình</label>
                                     <input type="text"
-                                        class="form-control @error('tieude') is-invalid @enderror"name="tieude"
-                                        value="{{$tintuc->tieude}}">
+                                        class="form-control @error('tenmohinh') is-invalid @enderror"name="tenmohinh"
+                                        value="{{ $mohinh->tenmohinh }}" required>
+                                    @error('tenmohinh')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="col-md-12">
+
+                            <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Tóm tắt</label>
-                                    <textarea class="form-control @error('tomtat') is-invalid @enderror" rows="2" id="editor1" name="tomtat">{{$tintuc->tomtat}}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Nội dung</label>
-                                    <textarea class="form-control @error('noidung') is-invalid @enderror" rows="2" id="editor2" name="noidung">{{$tintuc->noidung}}</textarea>
+                                    <label>Chọn hình ảnh mô hình</label>
+                                    <div class="custom-file mb-3">
+                                        <input type="file"
+                                            class="custom-file-input @error('hinhanh') is-invalid @enderror" id="customFile"
+                                            name="hinhanh" value="{{ old('hinhanh') }}" required>
+                                        <label class="custom-file-label" for="customFile">Chọn hình ảnh</label>
+                                    </div>
+                                    @error('hinhanh')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Ảnh bìa</label>
-                                    <div class="custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="hinhanh">
-                                        <input type="hidden" class="form-control" name="hidden_hinhanh" value="{{ $tintuc->hinhanh }}">
-                                        <a href="#" class="avatar avatar-sm mr-2">
-                                            <img class="avatar-img rounded-circle" src="{{ URL::to('/assets/frontend/img/trangtin/'.$tintuc->hinhanh) }}" alt="{{ $tintuc->hinhanh }}">
-                                        </a>
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
+                                    <label>Thời gian (tính theo năm)</label>
+                                    <input type="number" min="1" step="0.5"
+                                        class="form-control @error('thoigian') is-invalid @enderror"name="thoigian"
+                                        value="{{ $mohinh->getlotrinh->thoigian ?? '' }}" required>
+                                    @error('thoigian')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Số lượng nhân sự / người</label>
+                                    <input type="number" min="1"
+                                        class="form-control @error('nhansu') is-invalid @enderror"name="nhansu"
+                                        value="{{ $mohinh->getlotrinh->nhansu ?? '' }}" required>
+                                    @error('nhansu')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Tài chính (VND)</label>
+                                    <input type="number" min="1"
+                                        class="form-control @error('taichinh') is-invalid @enderror"name="taichinh"
+                                        value="{{ $mohinh->getlotrinh->taichinh ?? '' }}" required>
+                                    @error('taichinh')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Nội dung mô tả mô hình</label>
+                                    <textarea class="form-control @error('noidung_mota') is-invalid @enderror" rows="5" id="editor1"
+                                        name="noidung_mota" required>{{ $mohinh->noidung ?? ''}}</textarea>
+                                    @error('noidung_mota')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Lộ trình chuyển đổi từng bước (Ghi rõ ràng từng bước chuyển đổi)</label>
+                                    <textarea class="form-control @error('noidung_lotrinh') is-invalid @enderror" rows="5" id="editor2"
+                                        name="noidung_lotrinh" required>{{ $mohinh->getlotrinh->noidung ?? '' }}</textarea>
+                                    @error('noidung_lotrinh')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Lưu ý cho lộ trình chuyển đổi (nếu không có hãy ghi: "Không")</label>
+                                    <textarea class="form-control @error('luuy') is-invalid @enderror" rows="5" id="editor3" name="luuy">{{ $mohinh->getlotrinh->luuy ?? ''}}</textarea>
+                                    @error('luuy')
+                                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                                    @enderror
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary buttonedit1">Sửa bài báo</button>
+                <button type="submit" class="btn btn-primary buttonedit1">Lưu chiến lược</button>
             </form>
         </div>
     </div>
@@ -82,6 +133,14 @@
         });
 
         ClassicEditor.create(document.querySelector('#editor2'), {
+            licenseKey: '',
+        }).then(editor => {
+            window.editor = editor;
+        }).catch(error => {
+            console.error(error);
+        });
+
+        ClassicEditor.create(document.querySelector('#editor3'), {
             licenseKey: '',
         }).then(editor => {
             window.editor = editor;

@@ -91,7 +91,6 @@
         let mi = t.getMinutes();
         let s = t.getSeconds();
 
-<<<<<<< HEAD
         mi = dinhdang(mi);
         s = dinhdang(s);
         switch (day) {
@@ -111,37 +110,11 @@
                 day = "Thứ năm";
                 break;
             case 5:
-                day = "Thứ sau";
+                day = "Thứ sáu";
                 break;
             case 6:
                 day = "Thứ bảy";
         }
-=======
-    mi = dinhdang(mi);
-    s = dinhdang(s);
-    switch (day) {
-    case 0:
-        day = "Chủ nhật";
-        break;
-    case 1:
-        day = "Thứ hai";
-        break;
-    case 2:
-        day = "Thứ ba";
-        break;
-    case 3:
-        day = "Thứ tư";
-        break;
-    case 4:
-        day = "Thứ năm";
-        break;
-    case 5:
-        day = "Thứ sáu";
-        break;
-    case 6:
-        day = "Thứ bảy";
-    }
->>>>>>> aa49540b3911815a4ac1735022d3619cf234157f
 
         document.getElementById("day").innerHTML = day + ", " + d + "/" + m + "/" + y;
         document.getElementById("time").innerHTML = h + ": " + mi + ": " + s;
@@ -157,15 +130,22 @@
 <script>
     AOS.init();
 </script>
-{{-- <script>
-    const navLinks = document.querySelectorAll('.nav-link');
-    const windowPathname = window.location.pathname;
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    navLinks.forEach(navLink => {
-        const navLinkPathname = new URL(navLink.href).pathname;
-        if((windowPathname === navLinkPathname) || windowPathname === '/'){
-            navLink.classList.add('active');
-            console.log(navLinkPathname);
-        }
-    });
-</script> --}}
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 6,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>

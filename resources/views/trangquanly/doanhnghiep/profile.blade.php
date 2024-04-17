@@ -23,18 +23,17 @@
                                         src="assets/img/profiles/avatar-02.jpg"> </a>
                             </div>
                             <div class="col ml-md-n2 profile-user-info">
-                                <h4 class="user-name mb-3">{{ Auth::user()->name }}</h4>
-                                <h6 class="text-muted mt-1">Manager</h6>
-                                <div class="user-Location mt-1"><i class="fas fa-map-marker-alt"></i> Florida, United States
-                                </div>
-                                <div class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                    eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                                <h4 class="user-name mb-3">{{ Auth::user()->name ?? Auth::user()->getdoanhnghiep->tentiengviet}}</h4>
+                                <h6 class="text-muted mt-1">Mô tả</h6>
+                                {{-- <div class="user-Location mt-1"><i class="fas fa-map-marker-alt"></i> Florida, United States
+                                </div> --}}
+                                <div class="about-text">{{Auth::user()->getdoanhnghiep->mota}}</div>
                             </div>
-                            <div class="col-auto profile-btn"> <a href="" class="btn btn-primary">
+                            {{-- <div class="col-auto profile-btn"> <a href="" class="btn btn-primary">
                                     Message
                                 </a> <a href="edit-profile.html" class="btn btn-primary">
                                     Edit
-                                </a> </div>
+                                </a> </div> --}}
                         </div>
                     </div>
                     <div class="profile-menu">
@@ -54,30 +53,50 @@
                                             <h5 class="card-title d-flex justify-content-between">
                                                 <span>Thông tin doanh nghiệp</span>
                                                 <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i
-                                                        class="fa fa-edit mr-1"></i>Edit</a>
+                                                        class="fa fa-edit mr-1"></i>Sửa</a>
                                             </h5>
                                             <div class="row mt-5">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Name</p>
-                                                <p class="col-sm-9">David Alvarez</p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Tên doanh nghiệp tiếng việt</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->tentiengviet}}</p>
                                             </div>
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                                <p class="col-sm-9">24 Jul 1983</p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Tên doanh nghiệp tiếng anh</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->tentienganh}}</p>
                                             </div>
                                             <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Tên doanh nghiệp viết tắt</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->tenviettat}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Loại hình hoạt động</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getloaihinh->tenloaihinh}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mã thuế</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->mathue}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Fax</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->fax}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Số lượng nhân sự</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->soluongnhansu}}</p>
+                                            </div>
+                                            {{-- <div class="row">
                                                 <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email ID </p>
                                                 <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection"
                                                         class="__cf_email__"
                                                         data-cfemail="caaeabbca3aeaba6bcabb8afb08aafb2aba7baa6afe4a9a5a7">[email&#160;protected]</a>
                                                 </p>
-                                            </div>
-                                            <div class="row">
+                                            </div> --}}
+                                            {{-- <div class="row">
                                                 <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mobile</p>
                                                 <p class="col-sm-9">305-310-5857</p>
-                                            </div>
+                                            </div> --}}
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0">Address</p>
-                                                <p class="col-sm-9 mb-0">4663 Agriculture Lane,
+                                                <p class="col-sm-3 text-sm-right mb-0">Địa chỉ</p>
+                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->diachi}},
                                                     <br> Miami,
                                                     <br> Florida - 33165,
                                                     <br> United States.
@@ -187,34 +206,43 @@
                                             <h5 class="card-title d-flex justify-content-between">
                                                 <span>Thông tin đại diện</span>
                                                 <a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i
-                                                        class="fa fa-edit mr-1"></i>Edit</a>
+                                                        class="fa fa-edit mr-1"></i>Sửa</a>
                                             </h5>
                                             <div class="row mt-5">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Name</p>
-                                                <p class="col-sm-9">David Alvarez</p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Tên người đại diện</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->tendaidien}}</p>
                                             </div>
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Date of Birth</p>
-                                                <p class="col-sm-9">24 Jul 1983</p>
-                                            </div>
-                                            <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email ID </p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email</p>
                                                 <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection"
                                                         class="__cf_email__"
-                                                        data-cfemail="385c594e515c59544e594a5d42785d40595548545d165b5755">[email&#160;protected]</a>
+                                                        data-cfemail="385c594e515c59544e594a5d42785d40595548545d165b5755">[{{Auth::user()->getdoanhnghiep->getdaidien->email}}]</a>
                                                 </p>
                                             </div>
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                                <p class="col-sm-9">305-310-5857</p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Chức vụ</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->chucvu}}</p>
                                             </div>
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0">Address</p>
-                                                <p class="col-sm-9 mb-0">4663 Agriculture Lane,
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Số điện thoại</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->sdt}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">CCCD</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->cccd}}</p>
+                                            </div>
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0">Địa chỉ</p>
+                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->getdaidien->diachi}},
                                                     <br> Miami,
                                                     <br> Florida - 33165,
                                                     <br> United States.
                                                 </p>
+                                            </div>
+
+                                            <div class="row">
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mô tả chi tiết đại diện doanh nghiệp</p>
+                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->mota}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -328,6 +356,7 @@
                                                 novalidate>
                                                 @csrf
                                                 <div class="form-group">
+                                                    <label for="">Mật khẩu cũ</label>
                                                     <input type="password"
                                                         class="form-control @error('password_old') is-invalid @enderror"
                                                         id="password_old" name="password_old" required />
@@ -337,6 +366,8 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="">Mật khẩu mới</label>
+
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         id="password" name="password" required />
@@ -346,6 +377,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group">
+                                                    <label for="">Xác nhận mật khẩu mới</label>
                                                     <input type="password"
                                                         class="form-control @error('password_confirmation') is-invalid @enderror"
                                                         id="password_confirmation" name="password_confirmation"

@@ -1,4 +1,4 @@
-@extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label>1. Nhu cầu về dịch vụ Công nghệ thông tin/Chuyển đổi số (nếu không có hãy nhập:
                                     "Không").</label>
-                                <textarea class="form-control @error('tomtat') is-invalid @enderror" rows="4" id="editor1" name="noidungnhucau"
+                                <textarea class="form-control @error('tomtat') is-invalid @enderror" rows="4" id="editor1" name="noidungnhucau" readonly
                                     required>{{ old('noidungnhucau') }} {{ $phieu4->noidungnhucau }}</textarea>
                                 <div class="invalid-feedback">
                                     Hãy nhập nhu cầu!
@@ -37,15 +37,11 @@
 
                             <div class="form-group">
                                 <label>2. Hỏi/ đáp hoặc đề xuất (nếu không có hãy nhập: "Không").</label>
-                                <textarea class="form-control @error('tomtat') is-invalid @enderror" rows="4" id="editor1" name="noidungdexuat"
+                                <textarea class="form-control @error('tomtat') is-invalid @enderror" rows="4" id="editor1" name="noidungdexuat" readonly
                                     required>{{ old('noidungdexuat') }} {{ $phieu4->noidungdexuat }}</textarea>
                                 <div class="invalid-feedback">
                                     Hãy nhập hỏi/đáp hoặc đề xuất!
                                 </div>
-                            </div>
-
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Lưu khảo sát 4</button>
                             </div>
                         </form>
                     </div>

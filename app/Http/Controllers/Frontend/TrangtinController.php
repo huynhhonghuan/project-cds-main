@@ -161,7 +161,7 @@ class TrangtinController extends Controller
             $input['binhluan_id'] = $input['IdCon'];
         }
         $input['noidung'] = $input['message'];
-        $input['user_id'] = $input['vaitro'];
+        $input['user_id'] = auth()->user()->id;
         $input['tintuc_id'] = $input['IdNews'];
         $input['ngaydang'] = date('Y-m-d');
         $input['ten'] = $input['Name'];
@@ -176,5 +176,19 @@ class TrangtinController extends Controller
     public function doanhnghiep(Request $request) {
         $dnghiep = Doanhnghiep::all();
         return view('trangchu.doanhnghiep', compact('dnghiep'));
+    }
+    
+    public function doanhnghiepct($id){
+        $dnghiepct = DB::table('doanhnghiep')->where('doanhnghiep.id',$id)->first();
+        $dnghiepdd = DB::table('doanhnghiep_daidien')->where('doanhnghiep_daidien.id',$id)->first();
+        $dnghiepbd = DB::table('khaosat')->where('khaosat.doanhnghiep_id',$id)->select('tongdiem', 'thoigiantao')->get();
+        $data = "";
+        foreach($dnghiepbd as $val) {
+            $data.= "['".$val->thoigiantao."' , ".$val->tongdiem."], ";
+        }
+        $chartData = $data;
+        $dnghiepimg = Doanhnghiep::find($id)->getUser;
+        
+        return view('trangchu.doanhnghiepdetail')->with('dnghiepct', $dnghiepct)->with('dnghiepdd', $dnghiepdd)->with('dnghiepimg', $dnghiepimg)->with('chartData', $chartData);
     }
 }

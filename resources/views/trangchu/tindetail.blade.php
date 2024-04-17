@@ -395,38 +395,23 @@
                                     value="{{ $TinTuc->id }}" id="contact-name">
                                 @if (Auth::user()!= null)
                                     @if (Auth::user()->getVaiTro[0]->id == "ad")
-                                        <input type="hidden" class="form-control"
-                                        name="vaitro" id="contact-name" value="1"
-                                        placeholder="Nhập họ tên ">
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "ctv")
-                                        <input type="text" class="form-control"
-                                        name="vaitro" value=4 id="contact-name"
-                                        placeholder="Cộng tác viên" @disabled(true)>
                                         <input type="hidden" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "dn")
-                                        <input type="hidden" class="form-control" 
-                                        name="vaitro" value=5 id="contact-name"
-                                        placeholder="Doanh Nghiệp" @disabled(true)> 
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">
                                     @elseif(Auth::user()->getVaiTro[0]->id == "hhdn")
-                                        <input type="hidden" class="form-control"
-                                        name="vaitro" id="contact-name" value="2"
-                                        placeholder="Nhập họ tên ">
                                         <input type="text" class="form-control"
                                         name="Name" id="contact-name"
                                         placeholder="Nhập họ tên ">   
                                     @endif 
                                 @else
-                                    <input type="hidden" class="form-control"
-                                    name="vaitro" id="contact-name" value=""
-                                    placeholder="Nhập họ tên ">
                                     <input type="text" class="form-control"
                                     name="Name" id="contact-name"
                                     placeholder="Nhập họ tên ">

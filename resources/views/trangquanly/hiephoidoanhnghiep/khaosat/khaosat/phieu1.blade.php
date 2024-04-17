@@ -1,4 +1,4 @@
-@extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.hiephoidoanhnghiep.layout'){{-- kế thừa form layout --}}
 
 @section('head')
     <!-- Data Table CSS -->
@@ -30,7 +30,6 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="#" class="btn btn-primary float-right veiwbutton ">Lưu khảo sát 1</a>
                         </div>
                     </div>
                 </div>
@@ -38,12 +37,7 @@
             <div class="row">
                 <div class="col">
                     <div class="card pt-1">
-                        {{-- <div class="card-header">
-                            <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar bg-light-1" style="width: 1%">0%</div>
-                            </div>
-                        </div> --}}
+
                         <div class="card-body">
                             <div class="tab-pane" id="solid-rounded-justified-tab2">
                                 <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded nav-justified">
@@ -147,7 +141,10 @@
                                                                                                             {!! $item_4->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            @livewire('clickphieu1', ['id' => $item_4->id, 'diem' => $item_4->diem, 'trangthai' => $item_4->trangthai])
+                                                                                                            <span
+                                                                                                                class="btn bg-info-light">
+                                                                                                                {{ $item_4->diem }}
+                                                                                                            </span>
                                                                                                         </td>
                                                                                                     </tr>
 
@@ -167,7 +164,10 @@
                                                                                                         <td>{!! $item_5->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            @livewire('clickphieu1-chienluoc', ['id' => $item_5->id, 'diem' => $item_5->diem, 'trangthai' => $item_5->trangthai])
+                                                                                                            <span
+                                                                                                                class="btn bg-info-light">
+                                                                                                                {{ $item_5->diem }}
+                                                                                                            </span>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 @endif
@@ -203,51 +203,6 @@
             </div>
         </div>
 
-
-        {{-- Model xem nội dung bao gồm tóm tắt và nội dung chi tiết --}}
-        <div id="xem_noidung" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tóm tắt</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="" id="xemtomtat"></div>
-                    </div>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nội dung</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-noidung" id="xemnoidung"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Kết thúc xem nội dung --}}
-
-        {{-- Model delete xóa 1 bài báo --}}
-        <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="{{ route('admin.tintuc.xoa') }}" method="POST">
-                        @csrf
-                        <div class="modal-body text-center"> <img src="{{ URL::to('assets/img/sent.png') }}" alt=""
-                                width="50" height="46">
-                            <h3 class="delete_class">Bạn thật sự muốn xóa tin tức này?</h3>
-                            <div class="m-t-20">
-                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
-                                <input class="form-control" type="hidden" id="e_id" name="id"
-                                    value="">
-                                <input class="form-control" type="hidden" id="e_fileupload" name="hinhanh"
-                                    value="">
-                                <button type="submit" class="btn btn-danger">Xóa</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        {{-- End Model delete --}}
     </div>
 @endsection
 

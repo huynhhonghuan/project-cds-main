@@ -317,7 +317,7 @@
                             <h3 class="delete_class">Chọn file excel thông tin doanh nghiệp!</h3>
                             <hr>
                             <div class="m-t-20">
-                                <input class="form-control mb-3" type="file" name="excel_file">
+                                <input class="form-control mb-3" type="file" name="excel_file[]" multiple>
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
                                 <button type="submit" class="btn btn-danger">Thêm doanh nghiệp</button>
                             </div>

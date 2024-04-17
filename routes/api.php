@@ -49,7 +49,7 @@ Route::post('store-image', function (Request $request) {
 
 // Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
-Route::apiResource("chuyengia", ChuyenGiaController::class);
+// Route::apiResource("chuyengia", ChuyenGiaController::class);
 Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
 Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);

@@ -67,7 +67,8 @@
                         @endforeach
                     </ul>
                 </li>
-
+                <li class=""> <a href="{{ route('doanhnghiep.hoithoai', Auth::user()->id) }}"><i class='bx bx-conversation'></i>
+                    <span>Hỏi Đáp Chuyên Gia</span></a> </li>
             </ul>
         </div>
     </div>

@@ -147,7 +147,11 @@
                                                                                                             {!! $item_4->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            @livewire('clickphieu1', ['id' => $item_4->id, 'diem' => $item_4->diem, 'trangthai' => $item_4->trangthai])
+                                                                                                            {{-- @livewire('clickphieu1', ['id' => $item_4->id, 'diem' => $item_4->diem, 'trangthai' => $item_4->trangthai]) --}}
+                                                                                                            <span
+                                                                                                                class="btn bg-info-light">
+                                                                                                                {{ $item_4->diem }}
+                                                                                                            </span>
                                                                                                         </td>
                                                                                                     </tr>
 
@@ -167,7 +171,11 @@
                                                                                                         <td>{!! $item_5->getcauhoiphieu1->noidung !!}
                                                                                                         </td>
                                                                                                         <td>
-                                                                                                            @livewire('clickphieu1-chienluoc', ['id' => $item_5->id, 'diem' => $item_5->diem, 'trangthai' => $item_5->trangthai])
+                                                                                                            {{-- @livewire('clickphieu1-chienluoc', ['id' => $item_5->id, 'diem' => $item_5->diem, 'trangthai' => $item_5->trangthai]) --}}
+                                                                                                            <span
+                                                                                                                class="btn bg-info-light">
+                                                                                                                {{ $item_5->diem }}
+                                                                                                            </span>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 @endif

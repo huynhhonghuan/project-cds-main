@@ -16,8 +16,6 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                            <a href="{{ route('admin.taikhoan.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
-                                tài khoản</a>
                         </div>
                     </div>
                 </div>
@@ -30,95 +28,70 @@
                                 <table id="table-custom" class="table table-stripped table table-hover table-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th scope="col">STT</th>
-                                            <th scope="col">Id khảo sát</th>
-                                            <th scope="col">Tên chuyên gia</th>
-                                            <th scope="col">Ngày đánh giá</th>
-                                            <th scope="col">Nội dung đánh giá</th>
-                                            <th scope="col">Đề xuất</th>
-                                            {{-- <th scope="col" class="text-center" width="5%">Khóa đánh giá</th> --}}
+                                            <th scope="col" width="7%">STT</th>
+                                            <th scope="col">Tên doanh nghiệp</th>
+                                            <th scope="col" class="text-center" width="10%">Lần khảo sát</th>
+                                            <th scope="col" class="text-center" width="10%">Trạng thái khảo sát</th>
+                                            <th scope="col" class="text-center" width="5%">Xem đánh giá</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($danhsach as $value)
+                                        @foreach ($danhsach as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $value->email }}</td>
-
-                                                <td>
-                                                    <div
-                                                        style="max-width: 75px; text-overflow: ellipsis; overflow: hidden;">
-                                                        {{ $value->password }}
-                                                    </div>
+                                                <td>{{ $value->tentiengviet }}</td>
+                                                <td class="text-center">
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <span
+                                                                class="btn btn-sm bg-info-light">{{ $key + 1 }}</span>
+                                                            <hr>
+                                                        @endforeach
+                                                    @endif
                                                 </td>
-
                                                 <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="#" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle"
-                                                                src="{{ URL::to('/assets/backend/img/user/' . $value->hinhanh) }}"
-                                                                alt="{{ $value->hinhanh }}">
-                                                        </a>
-                                                    </h2>
-                                                </td>
-
-                                                <td>
-                                                    @if ($value->getVaiTro[0]->id == 'ad')
-                                                        <div class="btn btn-sm bg-primary-light mr-2"> Quản trị viên</div>
-                                                    @elseif ($value->getVaiTro[0]->id == 'dn')
-                                                        <div class="btn btn-sm bg-info-light mr-2"> Doanh nghiệp</div>
-                                                    @elseif ($value->getVaiTro[0]->id == 'cg')
-                                                        <div class="btn btn-sm bg-warning-light mr-2"> Chuyên gia</div>
-                                                    @elseif ($value->getVaiTro[0]->id == 'hhdn')
-                                                        <div class="btn btn-sm bg-success-light mr-2"> Hiệp hội doanh nghiệp
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <div class="my-2">
+                                                                @if ($item->trangthai == 1)
+                                                                    <div class="btn btn-sm bg-success-light mr-2"> Hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @elseif ($item->trangthai == 2)
+                                                                    <div class="btn btn-sm bg-success-light mr-2">Đã được đề
+                                                                        xuất
+                                                                    </div>
+                                                                @else
+                                                                    <div class="btn btn-sm bg-warning-light mr-2">Chưa hoàn
+                                                                        thành
+                                                                    </div>
+                                                                @endif
+                                                                <hr>
+                                                            </div>
+                                                        @endforeach
+                                                    @else
+                                                        <div class="btn btn-sm bg-danger-light mr-2">Chưa khảo sát
                                                         </div>
-                                                    @elseif ($value->getVaiTro[0]->id == 'ctv')
-                                                        <div class="btn btn-sm bg-danger-light mr-2"> Cộng tác viên</div>
                                                     @endif
                                                 </td>
 
-                                                <td>
-                                                    <div class="actions">
-                                                        <a data-toggle="modal" data-target="#cap_modal"
-                                                            data-id="{{ $value->id }}" data-status="{{ $value->status }}"
-                                                            data-email="{{ $value->email }}"
-                                                            class="btn btn-sm mr-2 {{ $value->getCapVaitro[0]->id == 'dn' ? 'bg-info-light' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'bg-success-light' : 'bg-danger-light') }} duyet_modal">{{ $value->getCapVaitro[0]->id == 'dn' ? 'Doanh nghiệp đăng ký' : ($value->getCapVaitro[0]->id == 'hhdn' ? 'Hiệp hội doanh nghiệp' : 'Quản trị viên') }}</a>
-                                                    </div>
+                                                <td class="text-center">
+                                                    @if (count($value->getkhaosat) > 0)
+                                                        @foreach ($value->getkhaosat as $key => $item)
+                                                            <a href="{{ route('admin.danhgia.xemdanhgia', ['id' => $item->id]) }}"
+                                                                class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
+                                                                    style="color:orange;"></i></a>
+                                                            <hr>
+                                                        @endforeach
+                                                    @else
+                                                        <a href="#" class="btn btn-sm mr-2"><i
+                                                                class="fa-regular fa-eye" style="color:orange;"></i></a>
+                                                    @endif
+
                                                 </td>
 
-                                                <td>
-                                                    <div class="actions">
-                                                        <a data-toggle="modal" data-target="#duyet_modal"
-                                                            data-id="{{ $value->id }}" data-email="{{ $value->email }}"
-                                                            class="btn btn-sm {{ $value->getDuyet[0]->duyet_user_id == 1 ? 'bg-danger-light' : 'bg-success-light' }} mr-2 duyet_modal">{{ $value->getDuyet[0]->duyet_user_id == 1 ? 'Quản trị viên' : 'Hiệp hội doanh nghiệp' }}</a>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <div class="actions">
-                                                        <a data-toggle="modal" data-target="#trangthai_modal"
-                                                            data-id="{{ $value->id }}"
-                                                            data-status="{{ $value->status }}"
-                                                            data-email="{{ $value->email }}"
-                                                            class="btn btn-sm {{ $value->status == 'Active' ? 'bg-success-light' : 'bg-danger-light' }} mr-2 duyet_modal">{{ $value->status == 'Active' ? 'Hoạt động' : 'Không hoạt động' }}</a>
-                                                    </div>
-                                                </td>
-
-                                                <td>
-                                                    <a class="" href="{{ route('admin.taikhoan.sua', $value->id) }}">
-                                                        <i class="fas fa-pencil-alt m-r-5"></i>
-                                                    </a>
-                                                </td>
-
-                                                <td class="text-right">
-                                                    <a class="dropdown-item bookingDelete" data-toggle="modal"
-                                                        data-target="#delete_asset" data-id="{{ $value->id }}"
-                                                        data-email="{{ $value->email }}">
-                                                        <i class="fas fa-trash-alt m-r-5"></i>
-                                                    </a>
-                                                </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -127,106 +100,108 @@
                 </div>
             </div>
         </div>
-
-        {{-- Modal sửa thông tin tài khoản --}}
-        {{-- <div id="xem_noidung" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tóm tắt</h1>
-                    </div>
+    </div>
+    {{-- Modal thêm đánh giá --}}
+    <div id="themdanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.themdanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="modal-body">
-                        <div class="" id="xemtomtat"></div>
-                    </div>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nội dung</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-noidung" id="xemnoidung"></div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- Kết thúc xem nội dung --}}
+                        <h3 class="delete_class text-center">Thêm đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="khaosat_id" id="khaosat_id">
+                            <div class="form-group">
+                                <label for="danhgia" class="form-label align-items-start">Đánh giá</label>
+                                <textarea class="form-control" type="text" name="danhgia" id="danhgia" rows="3"></textarea>
+                            </div>
 
-        {{-- Model delete xóa 1 bài báo --}}
-        {{-- <div id="delete_asset" class="modal fade delete-modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="{{ route('admin.taikhoan.xoa') }}" method="POST">
-                        @csrf
-                        <div class="modal-body text-center">
-                            <h3 class="delete_class">Bạn thật sự muốn xóa tài khoản <span class="text-warning"
-                                    id="delete_email"></span> này?</h3>
-                            <div class="m-t-20">
+                            <div class="form-group">
+                                <label for="dexuat" class="form-label align-items-start">Đề xuất</label>
+                                <textarea class="form-control" type="text" name="dexuat" id="dexuat" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-center">
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
-                                <input class="form-control" type="hidden" id="e_id" name="id" value="">
+                                <button type="submit" class="btn btn-danger">Thêm</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="suadanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.suadanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <h3 class="delete_class text-center">Sửa đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet_sua"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="chuyengia_danhgia_id_sua"
+                                id="chuyengia_danhgia_id_sua">
+                            <div class="form-group">
+                                <label for="danhgia" class="form-label align-items-start">Đánh giá</label>
+                                <textarea class="form-control" type="text" name="danhgia_sua" id="danhgia_sua" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dexuat" class="form-label align-items-start">Đề xuất</label>
+                                <textarea class="form-control" type="text" name="dexuat_sua" id="dexuat_sua" rows="3"></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                                <button type="submit" class="btn btn-danger">Sửa</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="xoadanhgia_modal" class="modal fade delete-modal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="{{ route('chuyengia.danhgia.xoadanhgia') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <h3 class="delete_class text-center">Xóa đánh giá cho <br><span class="text-info"
+                                id="tendoanhnghieptiengviet_xoa"></span></h3>
+                        <hr>
+                        <div class="m-t-20">
+                            <input class="form-control mb-3" type="hidden" name="chuyengia_danhgia_id_xoa"
+                                id="chuyengia_danhgia_id_xoa">
+                            <div class="text-center">
+                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
                                 <button type="submit" class="btn btn-danger">Xóa</button>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
-        {{-- End Model delete --}}
 
-        {{-- Model duyệt tài khoản --}}
-        {{-- <div id="trangthai_modal" class="modal fade delete-modal" role="dialog">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <form action="{{ route('admin.taikhoan.duyet') }}" method="POST">
-                        @csrf
-                        <div class="modal-body text-center">
-                            <h3 class="delete_class">Bạn thật sự muốn cập nhật trạng thái tài khoản <span
-                                    class="text-warning" id="duyet_email"></span> này?</h3>
-                            <div class="m-t-20">
-                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
-                                <input class="form-control" type="hidden" id="duyet_id" name="id" value="">
-                                <input class="form-control" type="hidden" id="duyet_status" name="status" value="">
-                                <button type="submit" class="btn btn-danger">Duyệt</button>
-                            </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-        </div> --}}
-        {{-- End Model duyệt tài khoản --}}
+        </div>
     </div>
 @endsection
 
 @section('script')
-    {{-- xem nội dung --}}
-    <script>
-        $(document).on('click', '.xem_noidung', function() {
-            document.getElementById("xemtomtat").innerHTML = $(this).data('tomtat');
-            document.getElementById("xemnoidung").innerHTML = $(this).data('noidung');
-        });
-    </script>
-
-    {{-- delete modal --}}
-    <script>
-        $(document).on('click', '.bookingDelete', function() {
-            $('#e_id').val($(this).data('id')); // gán id vào input (hidden)
-            document.getElementById("delete_email").innerHTML = $(this).data('email');
-        });
-    </script>
-
-    {{-- duyệt modal --}}
-    <script>
-        $(document).on('click', '.duyet_modal', function() {
-            $('#duyet_id').val($(this).data('id')); // gán id vào input (hidden)
-            $('#duyet_status').val($(this).data('status')); // gán id vào input (hidden)
-            document.getElementById("duyet_email").innerHTML = $(this).data('email');
-        });
-    </script>
-
     <script>
         $(document).ready(function() {
             $('#table-custom').DataTable({
                 //disable sorting on last column
                 "columnDefs": [{
                     "orderable": false,
-                    "targets": 5
+                    "targets": 2
                 }],
                 language: {
                     //customize pagination prev and next buttons: use arrows instead of words
@@ -251,6 +226,67 @@
                     "search": "Tìm kiếm:",
                 }
             })
+        });
+    </script>
+    {{-- Modal thêm đánh giá --}}
+    <script>
+        $(document).on('click', '.themdanhgia_modal', function() {
+            $('#khaosat_id').val($(this).data('khaosat_id')); // gán id vào input (hidden)
+            document.getElementById("tendoanhnghieptiengviet").innerHTML = $(this).data('tendoanhnghiep');
+        });
+    </script>
+    {{-- Modal sửa đánh giá --}}
+    <script>
+        $(document).on('click', '.suadanhgia_modal', function() {
+            document.getElementById("tendoanhnghieptiengviet_sua").innerHTML = $(this).data('tendoanhnghiep');
+
+            var khaosat_id = $(this).data('khaosat_id');
+            var chuyengia_id = $(this).data('chuyengia_id');
+            if (khaosat_id !== '') {
+                $.ajax({
+                    url: "{{ route('chuyengia.danhgia.laythongtindanhgia') }}", // Đường dẫn tới route hoặc controller xử lý yêu cầu
+                    method: 'GET',
+                    data: {
+                        khaosat_id: khaosat_id,
+                        chuyengia_id: chuyengia_id
+                    },
+                    success: function(response) {
+                        $('#chuyengia_danhgia_id_sua').val(response.id);
+                        $('#danhgia_sua').val(response.danhgia);
+                        $('#dexuat_sua').val(response.dexuat);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
+        });
+    </script>
+    {{-- Modal xóa đánh giá --}}
+    <script>
+        $(document).on('click', '.xoadanhgia_modal', function() {
+            document.getElementById("tendoanhnghieptiengviet_xoa").innerHTML = $(this).data('tendoanhnghiep');
+
+            var khaosat_id = $(this).data('khaosat_id');
+            var chuyengia_id = $(this).data('chuyengia_id');
+            if (khaosat_id !== '') {
+                $.ajax({
+                    url: "{{ route('chuyengia.danhgia.laythongtindanhgia') }}", // Đường dẫn tới route hoặc controller xử lý yêu cầu
+                    method: 'GET',
+                    data: {
+                        khaosat_id: khaosat_id,
+                        chuyengia_id: chuyengia_id
+                    },
+                    success: function(response) {
+                        $('#chuyengia_danhgia_id_xoa').val(response.id);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                        // Xử lý lỗi nếu có
+                    }
+                });
+            }
         });
     </script>
 @endsection

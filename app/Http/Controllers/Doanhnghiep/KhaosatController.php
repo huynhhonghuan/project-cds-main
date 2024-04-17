@@ -187,17 +187,23 @@ class KhaosatController extends Controller
         }
         if (count($this->ketqua) > 0) {
 
-            foreach ($this->ketqua as $key => $value) {
-                if ($value->phantram > $this->ketqua_item->phantram) {
-                    $this->ketqua_item = $value;
-                    unset($this->ketqua[$key]);
-                }
-            }
+            // Sử dụng hàm min của Laravel Collection để tìm phần tử có giá trị nhỏ nhất
+            $minPhanTram = $this->ketqua->min('phantram');
+
+            // Tìm phần tử có giá trị phantram bằng giá trị nhỏ nhất
+            $this->ketqua_item = $this->ketqua->firstWhere('phantram', $minPhanTram);
+
+            // Xóa phần tử có giá trị phantram bằng giá trị nhỏ nhất ra khỏi mảng
+            $this->ketqua = $this->ketqua->reject(function ($item) use ($minPhanTram) {
+                $item->phantram === $minPhanTram;
+            });
 
             $mohinh = Mohinh_Doanhnghiep_Trucot::whereRaw(
                 'mohinh_trucot_id = ? AND doanhnghiep_loaihinh_id = ?',
                 [$this->ketqua_item->mohinh_trucot_id, $this->doanhnghiep_loaihinh_id]
             )->first();
+
+            // dump($mohinh);
 
             if ($mohinh != null) {
                 $chienluoc = Khaosat_Chienluoc::insert([

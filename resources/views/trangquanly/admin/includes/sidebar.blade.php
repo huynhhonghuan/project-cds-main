@@ -7,28 +7,9 @@
                             điều khiển</span></a> </li>
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý doanh nghiệp</span> </li>
-                <li class="submenu"> <a href="#"><i class="fa-regular fa-building"></i> <span> Khảo sát </span>
-                        <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('admin.khaosat.danhsach') }}"> Danh sách khảo sát tổng</a></li>
-                        {{-- <li><a href=""> Khảo sát - nông nghiệp</a></li>
-                        <li><a href=""> Khảo sát - công nghiệp</a></li>
-                        <li><a href=""> Khảo sát - thương mại và dịch vụ</a></li>
-                        <li><a href=""> Khảo sát - khác</a></li> --}}
-                    </ul>
+                <li> <a href="{{ route('admin.khaosat.danhsach') }}"><i class="fa-regular fa-building"></i> <span> Khảo
+                            sát </span></a>
                 </li>
-
-                {{-- <li class="submenu"> <a href="#"><i class="fa-solid fa-bullseye"></i> <span> Chiến lược </span>
-                        <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href=""> Danh sách chiến lược tổng</a></li>
-                        <li><a href=""> Chiến lược - nông nghiệp</a></li>
-                        <li><a href=""> Chiến lược - công nghiệp</a></li>
-                        <li><a href=""> Chiến lược - thương mại và dịch vụ</a></li>
-                        <li><a href=""> Chiến lược - khác</a></li>
-                    </ul>
-                </li> --}}
-
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>
 
@@ -57,20 +38,11 @@
 
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chuyên gia</span> </li>
-                <li class="submenu"> <a href="#"><i class="fa-regular fa-circle-check"></i> <span> Đánh giá - đề
-                            xuất
-                        </span> <span class="menu-arrow"></span></a>
-                    <ul class="submenu_class" style="display: none;">
-                        <li><a href="{{ route('admin.danhgia.danhsach') }}"> Danh sách tổng</a>
-                        </li>
-                        <li><a href=""> Đánh giá của chuyên gia - nông nghiệp</a></li>
-                        <li><a href=""> Đánh giá của chuyên gia - công nghiệp</a></li>
-                        <li><a href=""> Đánh giá của chuyên gia - thương mại và dịch vụ</a></li>
-                        <li><a href=""> Đánh giá của chuyên gia - khác</a></li>
-                    </ul>
+                <li> <a href="{{ route('admin.danhgia.danhsach') }}"><i class="fa-regular fa-circle-check"></i> <span>
+                            Đánh giá - đề xuất</span></a>
                 </li>
 
-                <li> <a href=""><i class="fa-solid fa-recycle"></i></i><span>Chiến lược đề xuât</span></a> </li>
+                {{-- <li> <a href="#"><i class="fa-solid fa-recycle"></i></i><span>Chiến lược đề xuât</span></a> </li> --}}
 
                 <li class="list-divider"></li>
 
@@ -101,19 +73,19 @@
 
                 <li class="menu-title mt-3"> <span>Quản lý cổng thông tin</span> </li>
                 <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class="fa-regular fa-newspaper"></i>
-                    <span>Danh sách tin tức</span></a> 
+                        <span>Danh sách tin tức</span></a>
                 </li>
                 <li><a href="{{ route('admin.banner.danhsach') }}"><i class='bx bxs-carousel'></i>
-                    <span>Quản lý banner</span></a> 
+                        <span>Quản lý banner</span></a>
                 </li>
                 <li><a href="{{ route('admin.video.danhsach') }}"><i class='bx bxs-videos'></i>
-                    <span>Quản lý video</span></a> 
+                        <span>Quản lý video</span></a>
                 </li>
                 <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class='bx bx-message-square-dots'></i>
-                    <span>Quản lý Bình luận</span></a> 
+                        <span>Quản lý Bình luận</span></a>
                 </li>
                 <li><a href="{{ route('admin.thuvien.danhsach') }}"><i class='bx bx-library'></i>
-                    <span>Quản lý Thư Viện</span></a> 
+                        <span>Quản lý Thư Viện</span></a>
                 </li>
 
                 {{-- <li class="submenu"> <a href="#"><i class="fa-regular fa-newspaper"></i> <span> Tin tức </span>
