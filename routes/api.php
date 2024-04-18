@@ -76,8 +76,6 @@ Route::group(['prefix' => 'baiviet'], function () {
     });
 });
 
-
-
 Route::group(['prefix' => 'danhmuc'], function () {
     Route::get('', [DanhMucController::class, 'index']);
     Route::get('{id}', [DanhMucController::class, 'detail']);
@@ -104,6 +102,7 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('profile', [DoanhNghiepController::class, 'profile']);
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
+        Route::post('edit', [DoanhNghiepController::class, 'edit']);
     });
     Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);

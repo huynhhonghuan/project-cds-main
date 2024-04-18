@@ -24,10 +24,15 @@ class Doanhnghiep extends Model
         'diachi',
         'sdt',
         'mathue',
+        'sdt',
         'fax',
         'soluongnhansu',
         'ngaylap',
         'mota',
+    ];
+
+    protected $casts = [
+        'ngaylap' => 'date',
     ];
 
     public function getUser()
