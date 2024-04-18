@@ -167,6 +167,15 @@ class BaiVietController extends Controller
         // return response()->json(['message' => 'success']);
     }
 
+    public function searchBaiViet(Request $request)
+    {
+        $baiviets = BaiViet::where('trangthai', 1)->where('noidung', 'like', '%' . $request->search . '%')->orderByDesc('created_at')->get();
+        foreach ($baiviets as $baiviet) {
+            $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
+        }
+        return BaiVietResource::collection($baiviets);
+    }
+
     public function deleteBaiViet($id)
     {
         $baiviet = BaiViet::where('id', $id)->where('user_id', auth()->id())->firstOrFail();

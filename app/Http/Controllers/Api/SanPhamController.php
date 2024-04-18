@@ -56,20 +56,60 @@ class SanPhamController extends Controller
             $sanpham->mota = $request->moTa;
             $sanpham->save();
 
-            $hinhAnhs = $request->file('hinhAnhs');
-            if ($request->hasFile('hinhAnhs')) {
-                foreach ($hinhAnhs as $hinhanh) {
-                    $path = 'assets/backend/img/sanpham';
-                    $fileName =  uniqid() . "."  . $hinhanh->getClientOriginalExtension();
-                    $hinhanh->move($path, $fileName);
-                    if (env('APP_ENV') == 'production') {
-                        $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
-                    }
-                    $hinhanhModel = new SanPhamAnh();
-                    $hinhanhModel->sanpham_id = $sanpham->id;
-                    $hinhanhModel->hinhanh = $fileName;
-                    $hinhanhModel->save();
+            $hinhAnh = $request->file('hinhAnh');
+            if ($request->hasFile('hinhAnh')) {
+                $path = 'assets/backend/img/sanpham';
+                $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
+                $hinhAnh->move($path, $fileName);
+                if (env('APP_ENV') == 'production') {
+                    $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
                 }
+                $hinhanhModel = new SanPhamAnh();
+                $hinhanhModel->sanpham_id = $sanpham->id;
+                $hinhanhModel->hinhanh = $fileName;
+                $hinhanhModel->save();
+            }
+            return response()->json(['message' => 'success']);
+        });
+    }
+
+    public function edit(Request $request)
+    {
+        $request->validate([
+            'tenSanPham' => ['required', 'string'],
+            'gia' => ['required', 'string'],
+            'moTa' => ['required', 'string'],
+        ]);
+        DB::transaction(function () use ($request) {
+            $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
+            $sanpham = SanPham::where('id', $request->id)->where('doanhnghiep_id', $doanhnghiep->id)->firstOrFail();
+
+            $sanpham->tensanpham = $request->tenSanPham;
+            $sanpham->gia = $request->gia;
+            $sanpham->mota = $request->moTa;
+            $sanpham->save();
+
+
+
+            $hinhAnh = $request->file('hinhAnh');
+            if ($request->hasFile('hinhAnh')) {
+                $anh = SanPhamAnh::where('sanpham_id', $sanpham->id)->first();
+                if ($anh)
+                    $anh->delete();
+                $path = 'assets/backend/img/sanpham';
+                $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
+                $hinhAnh->move($path, $fileName);
+                if (env('APP_ENV') == 'production') {
+                    $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+                }
+                $hinhanhModel = new SanPhamAnh();
+                $hinhanhModel->sanpham_id = $sanpham->id;
+                $hinhanhModel->hinhanh = $fileName;
+                $hinhanhModel->save();
+            } else if ($request->removeImage == 'true') {
+                $hinhAnh = SanPhamAnh::where('sanpham_id', $sanpham->id)->first();
+                if ($hinhAnh)
+                    $hinhAnh->delete();
             }
             return response()->json(['message' => 'success']);
         });

@@ -214,6 +214,23 @@ class DoanhNghiepController extends Controller
         return response()->json(['success' => true, 'message' => 'success'], 200);
     }
 
+    public function editDaiDien(Request $request)
+    {
+        $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
+        $daidien = $doanhnghiep->getDaiDien;
+
+        $daidien->tendaidien = $request->tenDaiDien;
+        $daidien->email = $request->email;
+        $daidien->sdt = $request->sdt;
+        $daidien->diachi = $request->diaChi;
+        $daidien->cccd = $request->cccd;
+        $daidien->chucvu = $request->chucVu;
+        $daidien->mota = $request->moTa;
+
+        $daidien->save();
+        return response()->json(['success' => true, 'message' => 'success'], 200);
+    }
+
     public function detail($id)
     {
         $doanhnghiep = Doanhnghiep::where('id', $id)->firstOrFail();

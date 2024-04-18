@@ -49,7 +49,7 @@ Route::post('store-image', function (Request $request) {
 
 // Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
-// Route::apiResource("chuyengia", ChuyenGiaController::class);
+Route::apiResource("chuyengia", ChuyenGiaController::class);
 Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
 Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);
@@ -64,6 +64,7 @@ Route::group(['prefix' => 'tintuc'], function () {
 
 // Diễn đàn
 Route::group(['prefix' => 'baiviet'], function () {
+    Route::get('search', [BaiVietController::class, 'searchBaiViet']);
     Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
     Route::get('{id}', [BaiVietController::class, 'detail']);
     Route::get('', [BaiVietController::class, 'index']);
@@ -92,6 +93,7 @@ Route::group(['prefix' => 'sanpham'], function () {
     Route::get('{id}', [SanPhamController::class, 'detail']);
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('create', [SanPhamController::class, 'create']);
+        Route::post('{id}/edit', [SanPhamController::class, 'edit']);
         Route::delete('{id}', [SanPhamController::class, 'delete']);
     });
 });
@@ -103,6 +105,7 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
         Route::get('profile', [DoanhNghiepController::class, 'profile']);
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
         Route::post('edit', [DoanhNghiepController::class, 'edit']);
+        Route::post('editDaiDien', [DoanhNghiepController::class, 'editDaiDien']);
     });
     Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
