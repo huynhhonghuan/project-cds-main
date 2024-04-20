@@ -20,7 +20,7 @@ class MucdoController extends Controller
         if (Auth::user()->getvaitro[0]->id == 'dn') {
             $layout = 'trangquanly.doanhnghiep.layout';
         }
-        if (Auth::user()->getvaitro[0]->id == 'cg') {
+        if (Auth::user()->getvaitro[0]->id == 'cg') {   
             $layout = 'trangquanly.chuyengia.layout';
         }
         if (Auth::user()->getvaitro[0]->id == 'hhdn') {

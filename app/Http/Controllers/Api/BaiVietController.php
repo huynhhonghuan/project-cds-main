@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exports\Taikhoan\Doanhnghiep;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BaiVietResource;
 use App\Http\Resources\BinhLuanBaiVietResource;
+use App\Http\Resources\SanPhamResource;
 use App\Models\BaiViet;
 use App\Models\BaiViet_Anh;
 use App\Models\BaiViet_BinhLuan;
 use App\Models\BaiViet_DanhMuc;
 use App\Models\BaiViet_Thich;
+use App\Models\Doanhnghiep as ModelsDoanhnghiep;
+use App\Models\SanPham;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -20,6 +24,15 @@ class BaiVietController extends Controller
     public function index()
     {
         $baiviets = BaiViet::where('trangthai', 1)->orderByDesc('created_at')->get();
+        foreach ($baiviets as $baiviet) {
+            $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
+        }
+        return BaiVietResource::collection($baiviets);
+    }
+    public function getBaiVietByDoanhNghiep($id)
+    {
+        $user_id = ModelsDoanhnghiep::findOrFail($id)->user_id;
+        $baiviets = BaiViet::where('user_id', $user_id)->where('trangthai', 1)->orderByDesc('created_at')->get();
         foreach ($baiviets as $baiviet) {
             $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
         }
@@ -71,7 +84,7 @@ class BaiVietController extends Controller
             if ($request->hasFile('hinhAnhs')) {
                 foreach ($hinhAnhs as $hinhanh) {
                     $path = 'assets/backend/img/baiviet';
-                    $fileName =  uniqid() . "-"  . $hinhanh->getClientOriginalExtension();
+                    $fileName =  uniqid() . "."  . $hinhanh->getClientOriginalExtension();
                     $hinhanh->move($path, $fileName);
                     if (env('APP_ENV') == 'production') {
                         $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
@@ -152,6 +165,15 @@ class BaiVietController extends Controller
         // $baiviet->noidung = "Nội dung mới";
         // $baiviet->save();
         // return response()->json(['message' => 'success']);
+    }
+
+    public function searchBaiViet(Request $request)
+    {
+        $baiviets = BaiViet::where('trangthai', 1)->where('noidung', 'like', '%' . $request->search . '%')->orderByDesc('created_at')->get();
+        foreach ($baiviets as $baiviet) {
+            $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
+        }
+        return BaiVietResource::collection($baiviets);
     }
 
     public function deleteBaiViet($id)

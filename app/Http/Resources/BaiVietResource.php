@@ -23,6 +23,7 @@ class BaiVietResource extends JsonResource
             'hinhAnhs' => BaiViet_AnhResource::collection($this->getHinhAnhs),
             'luotThich' => $this->luotthich,
             'isLike' => $this->liked,
+            'doanhNghiep' => new DoanhNghiepResource($this->getUser?->getDoanhNghiep),
             'danhMucs' => DanhMucResource::collection($this->getDanhMucs),
             'createdAt' => $this->created_at
         ];

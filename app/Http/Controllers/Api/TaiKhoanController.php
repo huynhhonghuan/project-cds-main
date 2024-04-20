@@ -20,8 +20,8 @@ class TaiKhoanController extends Controller
     public function changepassword(Request $request)
     {
         $request->validate([
-            'currentPassword' => 'required|string|min:8',
-            'newPassword' => 'required|string|min:8'
+            'currentPassword' => 'required|string',
+            'newPassword' => 'required|string'
         ]);
         $user = auth()->user();
         if (!Hash::check($request->currentPassword, $user->password)) {
