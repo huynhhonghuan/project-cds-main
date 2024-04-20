@@ -2,10 +2,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
-<title>Chuyển đổi số</title>
+<title>Chuyển đổi số Doanh Nghiệp An Giang</title>
 
  <!-- Hình ảnh logo con trên tab-->
- <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo.png">
+ <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}/assets/frontend/img/logo/logo.jpg">
 
  <!--Bootstrap CSS file nhớ cài npm i bootstrap@5.3.1 phiên bản tùy theo lấy file json-->
  <link rel="stylesheet" href="{{ env('APP_URL')}}/assets/bootstrap-5.0.2/dist/css/bootstrap.min.css">

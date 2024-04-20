@@ -17,16 +17,21 @@ class Binhluan extends Model
         'ten',
         'noidung',
         'ngaydang',
-        'binhluan_id',
+        'binhluan_id',  
     ];
 
     public function getUser()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function getPhanHois()
     {
         return $this->hasMany(Binhluan::class);
     }
+    public function getTintuc()
+    {
+        return $this->belongsTo(Tintuc::class, 'tintuc_id', 'id');
+    }
+
 }

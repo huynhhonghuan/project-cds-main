@@ -1,4 +1,4 @@
-@extends('trangquanly.admin.layout'){{-- kế thừa form layout --}}
+@extends('trangquanly.doanhnghiep.layout'){{-- kế thừa form layout --}}
 @section('head')
     <!-- Data Table CSS -->
     <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
@@ -22,7 +22,7 @@
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
                             <a href="{{ route('admin.video.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
-                                Video</a>
+                                Sản phẩm</a>
                         </div>
                     </div>
                 </div>
@@ -36,28 +36,27 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" width="10%">STT</th>
-                                            <th scope="col" width="40%">Tiêu Đề Video</th>
-                                            <th scope="col" width="35%">Đường dẫn Video</th>
-                                            <th scope="col" width="5%">Duyệt</th>
+                                            <th scope="col" width="20%">Tên sản phẩm</th>
+                                            <th scope="col" width="35%">Hình ảnh</th>
+                                            <th scope="col" width="15%">Giá sản phẩm</th>
+                                            <th scope="col" width="15%">Mô tả</th>
                                             <th scope="col" width="5%">Sửa</th>
                                             <th scope="col" class="text-center" width="5%">Xóa</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($videos as $value)
+                                        @foreach ($sanpham as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="font-size:16px">{{ $value->tieude }}</td>
-                                                <td style="font-size:16px">{{ $value->file }}</td>
-                                                <td>
-                                                    <div class="actions">
-                                                        <a href="{{ route('admin.video.duyet', $value->id) }}"
-                                                            class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
-                                                    </div>
+                                                <td style="font-size:16px">{{ $value->tensanpham }}</td>
+                                                <td style="font-size:16px">
+                                                    <img style="height: 200px; width:200px;object-fit:cover" src="{{ asset('assets/backend/img/sanpham/'.$value->getAnh->hinhanh) }}" class="card-img-top" alt="...">
                                                 </td>
+                                                <td style="font-size:16px">{{ $value->gia }}</td>
+                                                <td style="font-size:16px">{{ $value->mota }}</td>
                                                 <td>
                                                     <a class="form-sua"
-                                                        href="{{ route('admin.video.sua', $value->id) }}">
+                                                        href="{{ route('doanhnghiep.sanpham.sua', $value->id) }}">
                                                         <i class="fas fa-pencil-alt m-r-5"></i>
                                                     </a>
                                                 </td>
@@ -81,35 +80,14 @@
         </div>
 
 
-        {{-- Model xem nội dung bao gồm tóm tắt và nội dung chi tiết --}}
-        {{-- <div id="xem_noidung" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tóm tắt</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="" id="xemtomtat"></div>
-                    </div>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nội dung</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-noidung" id="xemnoidung"></div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        {{-- Kết thúc xem nội dung --}}
-
         {{-- Model delete xóa 1 bài báo --}}
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.video.xoa' , $value->id) }}" method="POST">
+                    <form action="{{ route('doanhnghiep.sanpham.xoa' ) }}" method="POST">
                         @csrf
                         <div class="modal-body text-center">
-                            <h3 class="delete_class">Bạn thật sự muốn xóa video này?</h3>
+                            <h3 class="delete_class">Bạn thật sự muốn xóa sản phẩm này?</h3>
                             <div class="m-t-20">
                                 <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
                                 <input class="form-control" type="hidden" id="e_id" name="id" value="">

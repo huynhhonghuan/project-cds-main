@@ -10,7 +10,7 @@
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto">
                     <!-- Content -->
                     <h6 class="text-uppercase fw-bold mb-2 mb-2 text-dark" style="display:flex;justify-content-center">
-                        <img src="{{ env('APP_URL') }}/assets/frontend/img/logo/footer_logo-1.png" alt="logo"
+                        <img src="{{ env('APP_URL') }}/assets/frontend/img/logo/logox.png" alt="logo"
                             class="me-2" style="width: 42px">
                             <span style="font-size: 24px; font-family: monospace; font-weight: bolder">Chuyển đổi số</span>
                     </h6>

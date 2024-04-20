@@ -25,5 +25,4 @@
 <script src="{{ env('APP_URL')}}/assets/backend/js/toastr_jquery.min.js"></script>
 <script src="{{ env('APP_URL')}}/assets/backend/js/toastr.min.js"></script>
 
-
 @yield('head'){{-- nhúng header động từ form kế thừa --}}

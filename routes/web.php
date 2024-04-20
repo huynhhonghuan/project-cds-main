@@ -32,6 +32,7 @@ use App\Http\Controllers\Frontend\HoidapController;
 use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
 use App\Http\Controllers\Doanhnghiep\DanhgiacController as DoanhnghiepDanhgiacController;
 use App\Http\Controllers\Doanhnghiep\KhaosatController as DoanhnghiepKhaosatController;
+use App\Http\Controllers\Doanhnghiep\SanphamController;
 
 
 //Chức năng dành cho hiệp hội doanh nghiệp
@@ -52,6 +53,8 @@ use App\Http\Controllers\Chuyengia\Thongtin\DoanhnghiepController as ThongtinDoa
 //Chức năng dành cho cộng tác viên
 use App\Http\Controllers\Congtacvien\CongtacvienController;
 use App\Http\Controllers\Doanhnghiep\ChienluocController as DoanhnghiepChienluocController;
+use App\Http\Controllers\Congtacvien\Tintuc\TintucControllerCTV;
+
 use Livewire\Livewire;
 
 
@@ -60,6 +63,7 @@ use App\Http\Controllers\Frontend\TrangtinController;
 use App\Http\Controllers\Frontend\DiendanController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
+use App\Http\Controllers\Frontend\BinhluanController;
 
 function set_active($route)
 {
@@ -184,7 +188,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         // Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
         Route::get('/download/{file}', [ThuvienController::class, 'download']);
     });
-
+    //------------------------------------- Bình Luận ----------------------------------------------//
+    Route::group(['prefix' => 'binhluan', 'as' => 'binhluan.'], function () {
+        Route::get('danhsach', [BinhluanController::class, 'getdanhsach'])->name('danhsach');
+        Route::post('xoa', [BinhluanController::class, 'postxoa'])->name('xoa');
+    });
 
     //------------------------------------------------------------------------------------------//
     //-------------------------------------Tài khoản--------------------------------------------//
@@ -299,6 +307,10 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     Route::get('home', [DoanhnghiepController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [DoanhnghiepController::class, 'profile'])->name('profile');
+    //-------------------------------------Profile--------------------------------------------//
+    Route::get('duyet/{id}', [DoanhnghiepController::class, 'getduyet'])->name('duyet');
+    //-------------------------------------Danh sách sản phẩm--------------------------------------------//
+    Route::get('sanpham', [DoanhnghiepController::class, 'sanpham'])->name('sanpham');
     //-------------------------------------Danh sách chuyên gia--------------------------------------------//
     Route::get('hoithoai', [HoidapController::class, 'hoithoai'])->name('hoithoai');
     //-------------------------------------Danh sách chuyên gia--------------------------------------------//
@@ -306,6 +318,17 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     Route::post('tinnhan', [HoiDapController::class, 'themtinnhan'])->name('themtinnhan');
     //-------------------------------------Đổi mặt khẩu--------------------------------------------//
     Route::post('doimatkhau/{id}', [DoanhnghiepController::class, 'doimatkhau'])->name('doimatkhau');
+
+    //-------------------------------------Sản phẩm--------------------------------------------//
+    Route::group(['prefix' => 'sanpham', 'as' => 'sanpham.'], function () {
+        Route::get('danhsach', [SanphamController::class, 'sanpham'])->name('danhsach');
+        
+        Route::get('them', [SanphamController::class, 'getthem'])->name('them');
+        Route::post('them', [SanphamController::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [SanphamController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [SanphamController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [SanphamController::class, 'postxoa'])->name('xoa');
+    });
 
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
     Route::group(['prefix' => 'khaosat', 'as' => 'khaosat.'], function () {
@@ -455,6 +478,27 @@ Route::group(['prefix' => 'congtacvien', 'middleware' => ['auth', 'check_congtac
     Route::get('profile', [CongtacvienController::class, 'profile'])->name('profile');
 
     Route::post('doimatkhau/{id}', [CongtacvienController::class, 'doimatkhau'])->name('doimatkhau');
+    //-------------------------------------Tin tức--------------------------------------------//
+    Route::group(['prefix' => 'tintuc', 'as' => 'tintuc.'], function () {
+        Route::get('danhsach', [TintucControllerCTV::class, 'getdanhsach'])->name('danhsach');
+
+        Route::get('them', [TintucControllerCTV::class, 'getthem'])->name('them');
+        Route::post('them', [TintucControllerCTV::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [TintucControllerCTV::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [TintucControllerCTV::class, 'postsua'])->name('sua');
+        Route::post('xoa', [TintucControllerCTV::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [TintucControllerCTV::class, 'getduyet'])->name('duyet');
+    });
+    Route::group(['prefix' => 'tintuccd', 'as' => 'tintuccd.'], function () {
+        Route::get('danhsach', [TintucControllerCTV::class, 'getdanhsach'])->name('danhsach');
+
+        Route::get('them', [TintucControllerCTV::class, 'getthem'])->name('them');
+        Route::post('them', [TintucControllerCTV::class, 'postthem'])->name('them');
+        Route::get('sua/{id}', [TintucControllerCTV::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [TintucControllerCTV::class, 'postsua'])->name('sua');
+        Route::post('xoa', [TintucControllerCTV::class, 'postxoa'])->name('xoa');
+        Route::get('duyet/{id}', [TintucControllerCTV::class, 'getduyet'])->name('duyet');
+    });
 });
 
 // Giao diện chính

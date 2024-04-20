@@ -69,6 +69,8 @@
                 </li>
                 <li class=""> <a href="{{ route('doanhnghiep.hoithoai', Auth::user()->id) }}"><i class='bx bx-conversation'></i>
                     <span>Hỏi Đáp Chuyên Gia</span></a> </li>
+                <li class=""> <a href="{{ route('doanhnghiep.sanpham.danhsach')}}"><i class='bx bx-package' ></i>
+                    <span>Danh sách sản phẩm</span></a> </li>
             </ul>
         </div>
     </div>
