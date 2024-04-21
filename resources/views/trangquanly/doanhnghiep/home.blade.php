@@ -10,13 +10,20 @@
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
-                <div class="row">
-                    <div class="col-sm-12 mt-5">
-                        <h3 class="page-title mt-3">Xin chào <span class="text-info">
-                                {{ Auth::user()->name ?? Auth::user()->getdoanhnghiep->tentiengviet }}!</span></h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Bảng điều khiển</li>
-                        </ul>
+                <div class="row" style="border-bottom : 2px solid #009688">
+                    <div class="col-sm-12 mt-5 d-flex align-items-center">
+                        <h3 class="page-title mt-3">Xin chào <span class="text-uppercase" style="color:#1460f7;font-weight: 600">
+                                {{ Auth::user()->name ?? Auth::user()->getdoanhnghiep->tentiengviet }}
+                        </span></h3>
+                        <div class="mt-3 col d-flex" style="justify-content: end;margin-bottom:5px">
+                            <div class="actions">
+                                <span style="padding-right: 12px;font-size:16px;font-weight:600;text-transform:uppercase">Công Khai Thông Tin : </span>
+                                <a href="{{ route('doanhnghiep.duyet', Auth::user()->getDoanhNghiep->id) }}"
+                                    class="btn btn-sm mr-2 {{ Auth::user()->getDoanhNghiep->trangthai == 1 ?'bg-success-light':'bg-danger-light'}}">
+                                    {{ Auth::user()->getDoanhNghiep->trangthai == 1 ? 'Công Khai' : 'Không Công Khai' }}
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

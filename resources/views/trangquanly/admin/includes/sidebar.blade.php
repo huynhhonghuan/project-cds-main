@@ -81,7 +81,7 @@
                 <li><a href="{{ route('admin.video.danhsach') }}"><i class='bx bxs-videos'></i>
                         <span>Quản lý video</span></a>
                 </li>
-                <li><a href="{{ route('admin.tintuc.danhsach') }}"><i class='bx bx-message-square-dots'></i>
+                <li><a href="{{ route('admin.binhluan.danhsach') }}"><i class='bx bx-message-square-dots'></i>
                         <span>Quản lý Bình luận</span></a>
                 </li>
                 <li><a href="{{ route('admin.thuvien.danhsach') }}"><i class='bx bx-library'></i>

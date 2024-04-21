@@ -39,7 +39,7 @@
                 </div>
                 <div class="list-field row-cols-1 row-cols-xl-3 row-cols-md-3">
                     <div class="item-field col" data-aos="fade-up" data-aos-duration="1500">
-                        <a href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
+                        <a target="_blank" href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
                             <img src="assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Nông Nghiệp</h3></div>
                         </a>
@@ -250,32 +250,32 @@
             <div class="container" style="margin-bottom: 64px;margin-top: 32px;" data-aos="fade-up">
                 <div class="row">
                     <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
-                        <a href="https://mic.gov.vn/">
+                        <a target="_blank" href="https://mic.gov.vn/">
                             <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-botttt.png" alt="">
                         </a>
                     </div>
                     <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
-                        <a href="https://langso.dx.gov.vn/">
+                        <a target="_blank" href="https://langso.dx.gov.vn/">
                             <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-langso1_0.png" alt="">
                         </a>
                     </div>
                     <div class="col-4" style="background:#000;padding:16px;border:1px solid #f7c51e">
-                        <a href="https://digital.business.gov.vn/">
+                        <a target="_blank" href="https://digital.business.gov.vn/">
                             <img class="image__bus" style="width:100%;height:100px;object-fit:contain" src="https://digital.business.gov.vn/wp-content/uploads/2021/11/logo.png" alt="">
                         </a>
                     </div>
                     <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
-                        <a href="https://dti.angiang.gov.vn/">
+                        <a target="_blank" href="https://dti.angiang.gov.vn/">
                             <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/cdsag.png" alt="">
                         </a>
                     </div>
                     <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #f7c51e">
-                        <a href="https://sotttt.angiang.gov.vn/">
+                        <a target="_blank" href="https://sotttt.angiang.gov.vn/">
                             <img class="image__bus" src="https://dti.angiang.gov.vn/sites/default/files/2024-01/banner-sottttDTI.png" alt="">
                         </a>
                     </div>
                     <div class="col-4 d-flex justify-content-center" style="padding:16px;border:1px solid #111">
-                        <a href="https://dx.gov.vn/"> 
+                        <a target="_blank" href="https://dx.gov.vn/"> 
                             <img class="image__bus" style="width:100%;height:100px" src="https://dx.gov.vn/img/logo-tet.png" alt="">
                         </a>
                     </div>
@@ -291,7 +291,7 @@
                 <div class="swiper-wrapper" style="margin-bottom: 20px">
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://www.loctroi.vn/">
+                            <a target="_blank" href="https://www.loctroi.vn/">
                                 <img src="https://www.loctroi.vn/images/Logo.png" alt="">
                             </a>
                         </div>
@@ -299,7 +299,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://antesco.com/">
+                            <a target="_blank" href="https://antesco.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191009081058_5d9d33a2704ab.jpg" alt="">
                             </a>
                         </div>
@@ -307,7 +307,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="http://chieuuzu.com/">
+                            <a target="_blank" href="http://chieuuzu.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20190925100453_5d8ad955d64f4.jpg" alt="">
                             </a>
                         </div>
@@ -315,7 +315,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://socongthuong.angiang.gov.vn/">
+                            <a target="_blank" href="https://socongthuong.angiang.gov.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20190930075845_5d915345be7d7.png" alt="">
                             </a>
                         </div>
@@ -323,7 +323,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://agifish.com.vn/vi/">
+                            <a target="_blank" href="https://agifish.com.vn/vi/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008153113_5d9c49519b098.jpg" alt="">
                             </a>
                         </div>
@@ -331,7 +331,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="http://anmyfish.com.vn/">
+                            <a target="_blank" href="http://anmyfish.com.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191009073613_5d9d2b7dc8d46.jpg" alt="">
                             </a>
                         </div>
@@ -339,7 +339,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://saomaigroup.com/">
+                            <a target="_blank" href="https://saomaigroup.com/">
                                 <img src="https://saomaigroup.com/vnt_upload/weblink/logo.png" alt="">
                             </a>
                         </div>
@@ -347,7 +347,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="http://www.xaylapangiang.com/">
+                            <a target="_blank" href="http://www.xaylapangiang.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008154138_5d9c4bc25506c.jpg" alt="">
                             </a>
                         </div>
@@ -355,7 +355,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://tvfood.com.vn/">
+                            <a target="_blank" href="https://tvfood.com.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008153941_5d9c4b4de7005.jpg" alt="">
                             </a>
                         </div>
@@ -363,7 +363,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://clfish.com/">
+                            <a target="_blank" href="https://clfish.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008154615_5d9c4cd7c701f.jpg" alt="">
                             </a>
                         </div>
@@ -371,7 +371,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="http://www.pangamekong.com/">
+                            <a target="_blank" href="http://www.pangamekong.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008155136_5d9c4e1854bac.jpg" alt="">
                             </a>
                         </div>
@@ -379,7 +379,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://afiex.com.vn/">
+                            <a target="_blank" href="https://afiex.com.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008155748_5d9c4f8c21443.jpg" alt="">
                             </a>
                         </div>
@@ -387,7 +387,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="http://ducthanhgarment.com/">
+                            <a target="_blank" href="http://ducthanhgarment.com/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191008161453_5d9c538de1678.jpg" alt="">
                             </a>
                         </div>
@@ -395,7 +395,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://angimex.com.vn/">
+                            <a target="_blank" href="https://angimex.com.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191010100305_5d9e9f69a6de0.jpg" alt="">
                             </a>
                         </div>
@@ -403,7 +403,7 @@
                     </div>
                     <div class="swiper-slide card" style="display: flex;align-items:center">
                         <div class="image">
-                            <a href="https://newcafe.com.vn/">
+                            <a target="_blank" href="https://newcafe.com.vn/">
                                 <img src="https://dacsan.cdsdnag.com/storage/images/thumb_800x800/20191105084633_5dc0d4792930f.jpg" alt="">
                             </a>
                         </div>

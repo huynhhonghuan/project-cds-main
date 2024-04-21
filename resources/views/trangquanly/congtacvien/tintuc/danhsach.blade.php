@@ -8,7 +8,7 @@
                 <div class="col">
                     <div class="mt-5">
                         <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
-                        <a href="{{ route('admin.tintuc.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
+                        <a href="{{ route('congtacvien.tintuc.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
                             tin tức</a>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
 
                                             <td>
                                                 <div class="actions">
-                                                    <a href="{{ route('admin.tintuc.duyet', $value->id) }}"
+                                                    <a href="{{ route('congtacvien.tintuc.duyet', $value->id) }}"
                                                         class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
                                                 </div>
                                             </td>
@@ -80,7 +80,7 @@
                                             </td>
                                             <td>
                                                 <a class="form-sua"
-                                                    href="{{ route('admin.tintuc.sua', $value->id) }}">
+                                                    href="{{ route('congtacvien.tintuc.sua', $value->id) }}">
                                                     <i class="fas fa-pencil-alt m-r-5"></i>
                                                 </a>
                                             </td>
@@ -129,7 +129,7 @@
     <div id="delete_asset" class="modal fade delete-modal" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('admin.tintuc.xoa') }}" method="POST">
+                <form action="{{ route('congtacvien.tintuc.xoa', $value->id) }}" method="POST">
                     @csrf
                     <div class="modal-body text-center"> <img alt="Hình ảnh" width="30%" height="25%"
                             id="e_hinhanh">
@@ -147,5 +147,14 @@
         </div>
     </div>
     {{-- End Model delete --}}
+    {{-- delete model --}}
+    <script>
+        $(document).on('click', '.bookingDelete', function() {
+            $('#e_id').val($(this).data('id'));
+            $('#e_fileupload').val($(this).data('fileupload'));
+            $('#e_hinhanh').attr('src', '{{ URL::to('/assets/frontend/img/trangtin/') }}' + '/' + $(this).data(
+                'fileupload'));
+        });
+    </script>
 </div>
 @endsection
