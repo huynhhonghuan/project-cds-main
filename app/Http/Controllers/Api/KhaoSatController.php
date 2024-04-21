@@ -20,7 +20,7 @@ class KhaoSatController extends Controller
         $type = $request->input('type');
 
         if ($type == 'all') {
-            $khaoSat = Khaosat::with(['getChuyenGia', 'getChuyenGia.getUser', 'getMoHinh', 'getMucDo'])
+            $khaoSat = Khaosat::with(['getChuyenGia', 'getChuyenGia.getUser', 'getMoHinh', 'getMucDo', 'getKetQuaPhieu1'])
                 ->where('doanhnghiep_id', $doanhNghiep->id)
                 ->orderByDesc('created_at')
                 ->get();

@@ -113,8 +113,8 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::get('{id}/baiviet', [BaiVietController::class, 'getBaiVietByDoanhNghiep']);
     Route::get("{id}", [DoanhNghiepController::class, 'detail']);
     Route::post('register', [DoanhNghiepController::class, 'register']);
-    Route::post("login", [DoanhNghiepController::class, 'login']);
     Route::post("loginemail", [DoanhNghiepController::class, 'loginemail']);
+    Route::post("login", [DoanhNghiepController::class, 'login']);
 });
 
 Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function () {
