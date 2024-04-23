@@ -71,7 +71,7 @@
                                                 <td>{{ $value->getLinhvuc->tenlinhvuc }}</td>
                                                 <td>{{ $value->getUser->name }}</td>
                                                 <td>
-                                                    <div
+                                                    <div title="{{$value->tieude}}"
                                                         style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
                                                         {{ $value->tieude }}
                                                     </div>
@@ -87,11 +87,16 @@
                                                 </td>
 
                                                 <td class="text-center">
-                                                    <div class="actions">
+                                                    {{-- <div class="actions">
                                                         <a class="btn xem_noidung" data-toggle="modal"
                                                             data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
                                                             data-noidung="{{ $value->noidung }}">
                                                             <i class="fa-regular fa-eye" style="color:orange;"></i></a> </a>
+                                                    </div> --}}
+                                                    <div class="actions">
+                                                        <a href="{{ URL::to('/tin/'. $value->id) }}">
+                                                            <i class="fa-regular fa-eye" style="color:orange;"></i>
+                                                        </a>
                                                     </div>
                                                 </td>
                                                 <td>

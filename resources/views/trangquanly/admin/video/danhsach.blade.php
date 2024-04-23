@@ -47,8 +47,18 @@
                                         @foreach ($videos as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="font-size:16px">{{ $value->tieude }}</td>
-                                                <td style="font-size:16px">{{ $value->file }}</td>
+                                                <td style="font-size:16px">
+                                                    <div
+                                                        style="max-width: 400px; text-overflow: ellipsis; overflow: hidden;">
+                                                        {{ $value->tieude }}
+                                                    </div>
+                                                </td>
+                                                <td style="font-size:16px">
+                                                    <div
+                                                        style="max-width: 400px; text-overflow: ellipsis; overflow: hidden;">
+                                                        {{ $value->file }}
+                                                    </div>
+                                                </td>
                                                 <td>
                                                     <div class="actions">
                                                         <a href="{{ route('admin.video.duyet', $value->id) }}"
@@ -139,4 +149,36 @@
     <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
     <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
     <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#huan').DataTable({
+                //disable sorting on last column
+                language: {
+                    //customize pagination prev and next buttons: use arrows instead of words
+                    'paginate': {
+                        'previous': '<span class="fa fa-chevron-left"></span>',
+                        'next': '<span class="fa fa-chevron-right"></span>'
+                    },
+                    //customize number of elements to be displayed
+                    "lengthMenu": 'Hiển thị <select class="form-control input-sm">' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="30">30</option>' +
+                        '<option value="40">40</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="100">100</option>' +
+                        '<option value="-1">All</option>' +
+                        '</select> số lượng',
+
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
+                    "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
+                    "search": "Tìm kiếm:",
+                }
+            })
+        });
+    </script>
 @endsection

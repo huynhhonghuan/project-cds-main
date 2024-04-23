@@ -37,6 +37,7 @@
                                         <tr>
                                             <th scope="col" width="10%" class="text-center">STT</th>
                                             <th scope="col" width="20%" class="text-center">Ký Hiệu</th>
+                                            <th scope="col" width="20%" class="text-center">Loại Văn Bản</th>
                                             <th scope="col" width="45%" class="text-center" style="text-align: center">Trích Yếu</th>
                                             <th scope="col" width="15%" class="text-center">Ngày Ban Hành</th>
                                             <th scope="col" width="5%">Sửa</th>
@@ -49,11 +50,34 @@
                                                 <tr>
                                                     <td style="text-align: center; font-size:16px">{{ $loop->iteration }}</td>
                                                     <td style="text-align: center; font-size:16px">{{ $tv->kyhieu }}</td>
-                                                    <td style="text-align: center; font-size:16px">{{ $tv->tieude }}</td>
+                                                    <td style="font-size:16px">
+                                                        @if($tv->loai == 0)
+                                                            <div
+                                                                style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
+                                                                <span>Văn Bản Trung Ương</span>
+                                                            </div>
+                                                        @else @if($tv->loai == 1) 
+                                                            <div
+                                                                style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
+                                                                <span>Văn Bản Địa Phương</span>
+                                                            </div>
+                                                        @else
+                                                            <div
+                                                                style="max-width: 200px; text-overflow: ellipsis; overflow: hidden;">
+                                                                <span>Văn Bản Tập huấn Chuyển đổi số</span>
+                                                            </div>
+                                                        @endif @endif
+                                                    </td>
+                                                    <td style="font-size:16px">
+                                                        <div title="{{$tv->tieude}}"
+                                                            style="max-width: 400px; text-overflow: ellipsis; overflow: hidden;">
+                                                            {{ $tv->tieude }}
+                                                        </div>
+                                                    </td>
                                                     <td class="date" style="text-align: center; font-size:16px">{{ date('d/m/Y', strtotime($tv->namphathanh))}}</td>
                                                     <td>
                                                         <a class="form-sua"
-                                                            href="{{ route('admin.banner.sua', $tv->id) }}">
+                                                            href="{{ route('admin.thuvien.sua', $tv->id) }}">
                                                             <i class="fas fa-pencil-alt m-r-5"></i>
                                                         </a>
                                                     </td>
@@ -61,7 +85,7 @@
                                                     <td class="text-right">
                                                         <a class="btn dropdown-item bookingDelete" data-toggle="modal"
                                                             data-target="#delete_asset" data-id="{{ $tv->id }}"
-                                                            data-fileupload="{{ $tv->hinhanh }}">
+                                                            data-fileupload="{{ $tv->file }}">
                                                             <i class="fas fa-trash-alt m-r-5" style="color: limegreen;"></i>
                                                         </a>
                                                     </td>
@@ -79,43 +103,19 @@
         </div>
 
 
-        {{-- Model xem nội dung bao gồm tóm tắt và nội dung chi tiết --}}
-        <div id="xem_noidung" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tóm tắt</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="" id="xemtomtat"></div>
-                    </div>
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nội dung</h1>
-                    </div>
-                    <div class="modal-body">
-                        <div class="modal-noidung" id="xemnoidung"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Kết thúc xem nội dung --}}
-
         {{-- Model delete xóa 1 bài báo --}}
         <div id="delete_asset" class="modal fade delete-modal" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form action="{{ route('admin.banner.xoa') }}" method="POST">
+                    <form action="{{ route('admin.thuvien.xoa')}}" method="POST">
                         @csrf
-                        <div class="modal-body text-center"><img alt="Hình ảnh" width="30%" height="25%"
-                                id="e_hinhanh">
-                            <h3 class="delete_class">Bạn thật sự muốn xóa banner này?</h3>
-                            <div class="m-t-20">
-                                <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
-                                <input class="form-control" type="hidden" id="e_id" name="id" value="">
-                                <input class="form-control" type="hidden" id="e_fileupload" name="hinhanh"
-                                    value="">
-                                <button type="submit" class="btn btn-danger">Xóa</button>
-                            </div>
+                        <h3 class="delete_class">Bạn thật sự muốn xóa văn bản này?</h3>
+                        <div class="m-t-20">
+                            <a href="#" class="btn btn-white" data-dismiss="modal">Đóng</a>
+                            <input class="form-control" type="hidden" id="e_id" name="id" value="">
+                            <input class="form-control" type="hidden" id="e_fileupload" name="file"
+                                value="">
+                            <button type="submit" class="btn btn-danger">Xóa</button>
                         </div>
                     </form>
                 </div>
@@ -150,7 +150,7 @@
                 'fileupload'));
         });
     </script>
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             $('#huan').DataTable({
                 //disable sorting on last column
@@ -178,5 +178,5 @@
                 }
             })
         });
-    </script> --}}
+    </script>
 @endsection

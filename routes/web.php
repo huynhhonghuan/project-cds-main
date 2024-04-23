@@ -183,9 +183,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::get('danhsach', [ThuvienController::class, 'getdanhsach'])->name('danhsach');
         Route::get('them', [ThuvienController::class, 'getthem'])->name('them');
         Route::post('them', [ThuvienController::class, 'postthem'])->name('them');
-        // Route::get('sua/{id}', [VideoController::class, 'getsua'])->name('sua');
-        // Route::post('sua/{id}', [VideoController::class, 'postsua'])->name('sua');
-        // Route::post('xoa', [VideoController::class, 'postxoa'])->name('xoa');
+        Route::get('sua/{id}', [ThuvienController::class, 'getsua'])->name('sua');
+        Route::post('sua/{id}', [ThuvienController::class, 'postsua'])->name('sua');
+        Route::post('xoa', [ThuvienController::class, 'postxoa'])->name('xoa');
         Route::get('/download/{file}', [ThuvienController::class, 'download']);
     });
     //------------------------------------- Bình Luận ----------------------------------------------//
