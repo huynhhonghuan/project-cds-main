@@ -123,6 +123,13 @@
             </div>
         </div>
         {{-- End Model delete --}}
+
+        {{-- delete model --}}
+    <script>
+        $(document).on('click', '.bookingDelete', function() {
+            $('#e_id').val($(this).data('id'));
+        });
+    </script>
     </div>
 @endsection
 

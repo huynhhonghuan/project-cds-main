@@ -66,12 +66,9 @@
             animation: inputHighlighter 0.3s ease;
         }
 
-        /*thay đổi thuộc tính input kiểu file*/
+        /* thay đổi thuộc tính input kiểu file */
 
         input[type="file"] {
-            margin-left: -2px !important;
-            background-color: var(bg-primary) !important;
-
             &::-webkit-file-upload-button {
                 display: none;
             }
@@ -83,24 +80,24 @@
 
         &:hover {
             label {
-                background-color: #dde0e3;
+                /* background-color: #dde0e3; */
                 cursor: pointer;
             }
         }
     </style>
 @endsection
 @section('content')
-    <section class="" style="background-color: rgb(192, 241, 241);">
-        <div class="container py-3">
+    <section class="">
+        <div class="container" style="padding-top: 150px;">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-12">
                     <form action="#" method="post" class="needs-validation" novalidate>
-                        <div class="row g-3">
+                        <div class="row" style="box-shadow: 1px 1px 4px 1px #999;border-radius:10px">
                             <div class="col-12 col-sm-12 col-md-12 col-xl-6"
                                 style="border-top-left-radius: 10px; border-end-start-radius: 10px; background-color: #fff">
                                 <div class="row g-0 mx-4 my-5">
-                                    <h2 class="fw-normal text-left text-primary">Thông tin doanh nghiệp
-                                    </h2>
+                                    <h3 class="fw-bold text-left text-primary text-uppercase">Thông tin doanh nghiệp
+                                    </h3>
                                 </div>
                                 <div class="row g-0 mx-5 my-3">
                                     <div class="form-floating">
@@ -153,11 +150,10 @@
                                             onclick="this.setAttribute('value', this.value);" value="" name="city"
                                             id="invalidCheck" required>
                                             <option value=""></option>
-                                            <option value="1">An Giang</option>
-                                            <option value="2">Item2</option>
-                                            <option value="3">Item3</option>
-                                            <option value="4">Item4</option>
-                                            <option value="5">Item5</option>
+                                            @foreach ($linhvuc as $value)
+                                                <option value="{{ $value->id }}">{{ $value->tenlinhvuc }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                         <label class="label-select form-label text-primary">Lĩnh vực hoạt động</label>
                                         <div class="invalid-feedback">
@@ -169,11 +165,10 @@
                                             onclick="this.setAttribute('value', this.value);" value=""
                                             id="invalidCheck" required>
                                             <option value=""></option>
-                                            <option value="1">An Giang</option>
-                                            <option value="2">Item2</option>
-                                            <option value="3">Item3</option>
-                                            <option value="4">Item4</option>
-                                            <option value="5">Item5</option>
+                                            @foreach ($loaihinh as $value)
+                                                <option value="{{ $value->id }}">{{ $value->tenloaihinh }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                         <label class="label-select form-label text-primary">Loại hình kinh doanh
                                             chính</label>
@@ -280,8 +275,8 @@
                             <div class="col-12 col-sm-12 col-md-12 col-xl-6 bg-primary"
                                 style="border-top-right-radius: 10px; border-end-end-radius: 10px">
                                 <div class="row g-0 mx-4 my-5">
-                                    <h2 class="fw-normal text-left text-light">Đại diện doanh nghiệp
-                                    </h2>
+                                    <h3 class="fw-bold text-left text-light text-uppercase">Đại diện doanh nghiệp
+                                    </h3>
                                 </div>
                                 <div class="row g-0 mx-5 my-3">
                                     <div class="form-floating">
@@ -302,11 +297,11 @@
                                             onclick="this.setAttribute('value', this.value);" value=""
                                             id="invalidCheck" required>
                                             <option value=""></option>
-                                            <option value="1">An Giang</option>
-                                            <option value="2">Item2</option>
-                                            <option value="3">Item3</option>
-                                            <option value="4">Item4</option>
-                                            <option value="5">Item5</option>
+                                            <option value="Chủ tịch">Chủ tịch</option>
+                                            <option value="Giám đốc">Giám đốc</option>
+                                            <option value="Quản lý">Quản lý</option>
+                                            <option value="Trưởng phòng">Trưởng phòng</option>
+                                            <option value="Khác">Khác</option>
                                         </select>
                                         <label class="label-select form-label text-light">Chức vụ</label>
                                         <div class="invalid-feedback text-warning">
@@ -367,30 +362,16 @@
                                         <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
                                             class="form-control form-control-lg border-bottom border-light bg-primary text-light"
                                             placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">CCCD</label>
+                                        <label class="form-label text-light" for="tendoanhnghiep">Số CCCD</label>
                                         <div class="invalid-feedback text-warning">
                                             Nhập số CCCD!
                                         </div>
                                     </div>
-
-                                    <div class="floating-label col-12 col-sm-4 pt-1">
-                                        <select
-                                            class="floating-select bg-primary ps-2 text-light border-bottom border-light"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="invalidCheck" />
-                                        <option value="">123</option>
-                                        </select>
-                                        <label class="label-select form-label text-light">Nơi cấp</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn nơi cấp!
-                                        </div>
-
-                                    </div>
                                 </div>
 
-                                <div class="row g-0 mx-5 ">
+                                <div class="row g-0 mx-5 my-3">
                                     <div class="form-floating col-12 col-sm-5 input_file me-auto w-45">
-                                        <label class="form-label text-light pt-1 label_file" for="inputGroupFile04">CCCD
+                                        <label class="form-label text-light pt-2 label_file" for="inputGroupFile04">CCCD
                                             mặt trước</label>
                                         <input type="file"
                                             class="form-control bg-primary border-bottom border-light text-light mt-2"
@@ -400,7 +381,7 @@
                                         </div>
                                     </div>
                                     <div class="form-floating col-12 col-sm-5 input_file w-45">
-                                        <label class="form-label text-light pt-1 label_file" for="inputGroupFile04">CCCD
+                                        <label class="form-label text-light pt-2 label_file" for="inputGroupFile04">CCCD
                                             mặt sau</label>
                                         <input type="file"
                                             class="form-control bg-primary border-bottom border-light text-light mt-2"

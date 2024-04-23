@@ -1,7 +1,7 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
     <div class="doanhnghiep"  style="margin-top : 130px;padding-bottom:32px;background-image: url(../image/AnhNen/title-area-pattern.png);background-color:rgb(250, 249, 232)">
-        <div class="container" style="padding-top: 16px;padding-left: 70px;margin: 0 200px">
+        {{-- <div class="container" style="padding-top: 16px;padding-left: 70px;margin: 0 200px">
             <div class="countdn">
                 <span>Số Doanh Nghiệp</span>
                 {{$dnghiep->count()}}
@@ -14,7 +14,7 @@
                 <span>Số Doanh Nghiệp</span>
                 {{$dnghiep->count()}}
             </div>
-        </div>
+        </div> --}}
         <div class="image-heading-tt" style="padding : 32px 0;padding-top: 48px;">
             <span class="news-heading"style="padding:0 20px;border-left: 10px solid #043359;border-right: 10px solid #043359;">
                 <span class="news-heading-f">danh sách doanh nghiệp</span>
@@ -34,7 +34,7 @@
                         </div>
                         <div class="col-7">
                             <div class="item__dn--body">
-                                <div class="dn__body--name"><a href="">{{$dn->tentiengviet}}</a></div>
+                                <div class="dn__body--name">{{$dn->tentiengviet}}</div>
                                 <div class="dn__body--add"><span>Địa Chỉ : </span>{{$dn->diachi}}</div>
                                 <div class="dn__body--tax"><span>Mã Số Thuế : </span>{{$dn->mathue}}</div>
                                 <div class="dn__body--sdt"><span>Số Điện Thoại : </span>{{$dn->sdt}}</div>

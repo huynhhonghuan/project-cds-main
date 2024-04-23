@@ -14,6 +14,8 @@ use App\Models\Video;
 use App\Models\Thuvien;
 use App\Models\Binhluan;
 use App\Models\Doanhnghiep;
+use App\Models\Sanpham;
+use App\Models\Sanpham_Anh;
 
 class TrangtinController extends Controller
 {
@@ -161,12 +163,16 @@ class TrangtinController extends Controller
             $input['binhluan_id'] = $input['IdCon'];
         }
         $input['noidung'] = $input['message'];
-        $input['user_id'] = auth()->user()->id;
+        if(isset(auth()->user()->id))
+            $input['user_id'] = auth()->user()->id;
+        else
+            $input['user_id'] = null;
+
         $input['tintuc_id'] = $input['IdNews'];
         $input['ngaydang'] = date('Y-m-d');
         $input['ten'] = $input['Name'];
         if (Binhluan::create($input)) {
-            $alert = "đã thêm bình luận";
+            $alert = "đã thêm bình luận, chờ duyệt";
         } else {
             $alert = " Bình luận không thành công";
         }
@@ -188,7 +194,8 @@ class TrangtinController extends Controller
         }
         $chartData = $data;
         $dnghiepimg = Doanhnghiep::find($id)->getUser;
-        
-        return view('trangchu.doanhnghiepdetail')->with('dnghiepct', $dnghiepct)->with('dnghiepdd', $dnghiepdd)->with('dnghiepimg', $dnghiepimg)->with('chartData', $chartData);
+        $sanphamdn = Sanpham::with(['getAnh'])->where('doanhnghiep_id', $id)->get();
+        // dd($sanphamdn);
+        return view('trangchu.doanhnghiepdetail')->with('dnghiepct', $dnghiepct)->with('dnghiepdd', $dnghiepdd)->with('dnghiepimg', $dnghiepimg)->with('chartData', $chartData)->with('sanphamdn', $sanphamdn);
     }
 }

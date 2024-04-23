@@ -81,6 +81,36 @@
                     <span>Số điện thoại liên hệ : </span>{{$dnghiepdd->sdt}}
                 </div>
             </div>
+            {{-- Thông tin sản phẩm nổi bật --}}
+            <div class="row">
+                <span class="dntitle">
+                    Thông tin sản phẩm của doanh nghiệp
+                </span>
+                <div class="container" style="padding-top: 32px ">
+                    @if($sanphamdn->count() == 0)
+                        <span style="font-size:20px;text-transform:uppercase;color:red">Doanh nghiệp chưa đăng sản phẩm</span>
+                    @else
+                    <div class="row">
+                        @foreach ($sanphamdn as $item)
+                            <div class="col-4">
+                                <div class="card card-product" style="">
+                                    <img src="{{ asset('assets/backend/img/sanpham/'.$item->getAnh->hinhanh) }}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text detail">{{$item->tensanpham}}</p>
+                                        <div class="money">Giá : {{$item->gia}} VND</div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-center" style="background: #fff;border:none">
+                                        <a href="">
+                                            <div class="btn btn-primary">Chi tiết</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif    
+                </div>
+            </div>
             {{-- Thông tin chuyển đổi số --}}
             <div class="row">
                 <span class="dntitle">

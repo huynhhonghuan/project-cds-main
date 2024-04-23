@@ -671,15 +671,11 @@ ul {
     font-size: 22px;
     font-weight: 700;
     text-transform: uppercase;
+    transition: all .5s;
     cursor: pointer;
 }
-.dn__body--name a:hover {
+.dn__body--name:hover {
     color: #f7c51e;
-}
-.dn__body--name a {
-    color: #000;
-    text-decoration: none;
-    transition: all .5s;
 }
 .dn__body--add {
     font-size: 16px;
@@ -828,9 +824,12 @@ ul {
     width: 100%;
     object-fit: fill;
     border-radius: 50%;
+    transition: all .4s;
     border: 1px solid #fff;  
 }
-
+.card .image:hover img {
+    transform: scale(1.1);
+}
 .card .card__content {
     color: #000;
     font-size: 16px;
@@ -838,6 +837,39 @@ ul {
     text-transform: uppercase;
     padding-top: 4px;
 }
+
+/* Chi tiết doanh nghiệp */
+.card-product {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.card-product img{
+    width: 100%; 
+    height: 200px;
+    object-fit:contain;
+    transition: all .3s;
+}
+.card-product img:hover {
+    transform: scale(1.1);
+}
+
+.detail,
+.money {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: monospace;
+    margin: 0;
+}
+.detail {
+    font-size: 24px;
+    text-transform: uppercase;
+}
+.detail:hover {
+    color: #1460f7;
+}
+
 /* Mobile : Width < 740px */
 @media only screen and (max-width: 46.1875em) {
     .list-unstyled li span {

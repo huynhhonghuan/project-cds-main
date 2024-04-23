@@ -90,12 +90,12 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/backend/img/profiles/user-profile.png') }}"
+                        class="rounded-circle" src="{{ URL::to('assets/backend/img/hoso/user-profile.png') }}"
                         width="31" alt="Soeng Souy"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm"> <img
-                        src="{{ env('APP_URL') }}/assets/backend/img/hoso/user-profile.png') }}" alt="User Image"
+                        src="{{ env('APP_URL') }}/assets/backend/img/hoso/user-profile.png" alt="User Image"
                             class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
                         <h6>{{ Auth::user()->name }}</h6>

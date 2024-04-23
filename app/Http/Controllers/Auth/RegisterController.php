@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Imports\Loaihinhdoanhnghiep as ImportsLoaihinhdoanhnghiep;
+use App\Models\Doanhnghiep_Loaihinh;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Linhvuc;
+use App\Models\Loaihinhdoanhnghiep;
 use Brian2694\Toastr\Facades\Toastr;
 use Hash;
 use DB;
@@ -45,7 +49,10 @@ class RegisterController extends Controller
 
     //Đăng kí tài khoản cho doanh nghiệp
     public function registerdoanhnghiep(){
-        return view('trangquanly.doanhnghiep.register.registerdoanhnghiep');
+        $linhvuc = Linhvuc::all();
+        $loaihinh = Doanhnghiep_Loaihinh::all();
+
+        return view('trangquanly.doanhnghiep.register.registerdoanhnghiep', compact('linhvuc', 'loaihinh'));
     }
 
     // use RegistersUsers;

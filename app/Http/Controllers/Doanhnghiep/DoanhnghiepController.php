@@ -8,6 +8,8 @@ use App\Models\Khaosat;
 use App\Models\Mohinh_Trucot;
 use App\Models\Mucdo;
 use App\Models\User;
+use App\Models\Doanhnghiep;
+use App\Models\Sanpham;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +94,8 @@ class DoanhnghiepController extends Controller
             $trucot = [];
             $mucdo = [];
         }
+
+        
         return view('trangquanly.doanhnghiep.home', compact('khaosat'));
     }
     //profile doanh nghiệp
@@ -99,6 +103,25 @@ class DoanhnghiepController extends Controller
     {
         return view('trangquanly.doanhnghiep.profile');
     }
+
+    //duyệt bài báo
+    public function getduyet($id)
+    {
+        $doanhnghiep = Doanhnghiep::find($id);
+        // dd($doanhnghiep);
+
+        //nếu 1 thì set = 0 và ngược lại
+        $doanhnghiep->trangthai == 1 ? $input['trangthai'] = 0 : $input['trangthai'] = 1;
+
+        $doanhnghiep->trangthai = $input['trangthai'];
+
+        //Tintuc::where('id',$id)->update($tintuc);
+        $doanhnghiep->save();
+
+        Toastr::success('Duyệt thành công:)', 'Success');
+        return redirect()->route('doanhnghiep.home');
+    }
+
     public function doimatkhau(Request $request, $id)
     {
         $request->validate([

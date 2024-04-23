@@ -28,7 +28,7 @@ class HiephoidoanhnghiepController extends Controller
     //home page
     public function home()
     {
-        return view('trangquanly.hiephoidoanhnghiep.home');
+        return view('trangquanly.hiephoidoanhnghiep.layout');
     }
     //profile
     public function profile()

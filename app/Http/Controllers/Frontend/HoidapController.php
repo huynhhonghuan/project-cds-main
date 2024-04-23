@@ -35,8 +35,9 @@ class HoidapController extends Controller
         $hoiThoaiId = $id;
         $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', $hoiThoaiId)->get();
         $hoithoai = DB::table('hoithoai')->where('id', $hoiThoaiId)->first();
-        // dd($tinnhans);
-        return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans','hoithoai'));
+        $laychuyengia = HoiThoai::with('getChuyenGia', 'getChuyenGiaUser','getChuyenGia')->where('id', $hoiThoaiId)->first();
+        // dd($laychuyengia);
+        return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans','hoithoai','laychuyengia'));
     }
 
 
@@ -54,8 +55,9 @@ class HoidapController extends Controller
         $hoiThoaiId = $id;
         $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', $hoiThoaiId)->get();
         $hoithoai = DB::table('hoithoai')->where('id', $hoiThoaiId)->first();
-        // dd($hoithoai);
-        return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai'));
+        $laydoanhnghiep = HoiThoai::with('getChuyenGia', 'getDoanhNghiepUser','getDoanhNghiep')->where('id', $hoiThoaiId)->first();
+        // dd($laydoanhnghiep);
+        return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai','laydoanhnghiep'));
     }
 
     public function themtinnhan(Request $request)
@@ -73,11 +75,10 @@ class HoidapController extends Controller
             'noidung' => request()->message
         ]);
         $model->save();
-        $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', request()->hoiThoaiId)->get();
-        $hoithoai = DB::table('hoithoai')->where('id', request()->hoiThoaiId)->first();
 
         // return response()->json(['message' => "Lưu thành công"]);
-        return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans', 'hoithoai'));
+        // return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans', 'hoithoai'));
+        return redirect()->route('doanhnghiep.tinnhan', request()->hoiThoaiId);
     }
 
     public function themtinnhanchuyengia(Request $request)
@@ -94,11 +95,11 @@ class HoidapController extends Controller
             'noidung' => request()->message
         ]);
         $model->save();
-        $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', request()->hoiThoaiId)->get();
-        $hoithoai = DB::table('hoithoai')->where('id', request()->hoiThoaiId)->first();
 
         // return response()->json(['message' => "Lưu thành công"]);
-        return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai'));
+        // return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai'));
+        return redirect()->route('chuyengia.tinnhan', request()->hoiThoaiId);
+
     }
 
 }

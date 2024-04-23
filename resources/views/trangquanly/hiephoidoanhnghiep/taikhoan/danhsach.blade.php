@@ -61,7 +61,7 @@
                                                     <h2 class="table-avatar">
                                                         <a href="#" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle"
-                                                                src="{{ URL::to('/assets/backend/img/hoso/' . $value->image) }}"
+                                                                src="{{ URL::to('/assets/backend/img/hoso/'.$value->image) }}"
                                                                 alt="Hình ảnh">
                                                         </a>
                                                     </h2>

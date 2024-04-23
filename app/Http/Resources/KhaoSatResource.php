@@ -23,6 +23,7 @@ class KhaoSatResource extends JsonResource
             'chuyenGiaDeXuat' => $this->getChuyenGiaDanhGia?->dexuat,
             'chuyenGiaDanhGiaAt' => $this->getChuyenGiaDanhGia?->created_at,
             'tongDiem' => $this?->tongdiem,
+            'ketQuaTruCots' => KetQuaPhieu1Resource::collection($this->getKetQuaPhieu1),
             'createdAt' => $this?->created_at,
         ];
     }

@@ -19,14 +19,20 @@ class Doanhnghiep extends Model
         // 'email',
         'thanhpho',
         'huyen',
+        'website',
         'xa',
         'diachi',
         'sdt',
         'mathue',
+        'sdt',
         'fax',
         'soluongnhansu',
         'ngaylap',
         'mota',
+    ];
+
+    protected $casts = [
+        'ngaylap' => 'date',
     ];
 
     public function getUser()
