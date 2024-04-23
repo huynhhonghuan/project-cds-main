@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                             <label>Tên doanh nghiệp tiếng việt</label>
                                             <input type="text" class="form-control" name="doanhnghiep_tentiengviet"
-                                                required value="Công ty TNHH 3H">
+                                                required value="">
                                             <div class="invalid-feedback">
                                                 Nhập tên doanh nghiệp!
                                             </div>
@@ -48,7 +48,7 @@
                                         <div class="form-group">
                                             <label>Tên doanh nghiệp tiếng anh</label>
                                             <input type="text" class="form-control" name="doanhnghiep_tentienganh"
-                                                required value="3H Company Limited">
+                                                value="">
                                             <div class="invalid-feedback">
                                                 Nhập tên doanh nghiệp!
                                             </div>
@@ -126,7 +126,7 @@
                                                 <div class="form-group">
                                                     <label>Số điện thoại</label>
                                                     <input type="text" class="form-control" name="doanhnghiep_sdt"
-                                                        value="0123456789" required>
+                                                        value="">
                                                     <div class="invalid-feedback">
                                                         Nhập số điện thoại của doanh nghiệp!
                                                     </div>
@@ -192,8 +192,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
-                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="doanhnghiep_diachi"
-                                                required></textarea>
+                                            <textarea rows="4" cols="5" class="form-control" placeholder="Enter message" name="doanhnghiep_diachi"></textarea>
                                             <div class="invalid-feedback">
                                                 Nhập địa chỉ chi tiết của doanh nghiệp!
                                             </div>
@@ -211,7 +210,7 @@
                                         <div class="form-group">
                                             <label>Tên người đại diện</label>
                                             <input type="text" class="form-control"
-                                                name="doanhnghiep_daidien_tendaidien" required value="Huỳnh Hồng Huân">
+                                                name="doanhnghiep_daidien_tendaidien" required value="">
                                             <div class="invalid-feedback">
                                                 Nhập tên người đại diện doanh nghiệp!
                                             </div>
@@ -219,9 +218,9 @@
                                         <div class="row">
                                             <div class="col-md-7">
                                                 <div class="form-group">
-                                                    <label>Số điện thoại</label>
+                                                    <label>Email</label>
                                                     <input type="email" class="form-control"
-                                                        name="doanhnghiep_daidien_email" value="huan1@gmail.com" required>
+                                                        name="doanhnghiep_daidien_email" value="">
                                                     <div class="invalid-feedback">
                                                         Nhập email của người đại diện!
                                                     </div>
@@ -231,7 +230,7 @@
                                                 <div class="form-group">
                                                     <label>Số điện thoại</label>
                                                     <input type="text" class="form-control"
-                                                        name="doanhnghiep_daidien_sdt" value="0398521471" required>
+                                                        name="doanhnghiep_daidien_sdt" value="">
                                                     <div class="invalid-feedback">
                                                         Nhập số điện thoại của người đại diện!
                                                     </div>
@@ -286,7 +285,7 @@
                                         <div class="form-group">
                                             <label>Địa chỉ</label>
                                             <textarea rows="4" cols="5" class="form-control" placeholder="Enter message"
-                                                name="doanhnghiep_daidien_diachi" required></textarea>
+                                                name="doanhnghiep_daidien_diachi" required>Không</textarea>
                                             <div class="invalid-feedback">
                                                 Nhập địa chỉ chi tiết của người đại diện doanh nghiệp!
                                             </div>
@@ -326,7 +325,7 @@
                                         <div class="form-group">
                                             <label>Ảnh mặt trước CCCD</label>
                                             <input type="file" class="form-control"
-                                                name="doanhnghiep_daidien_img_mattruoc" required>
+                                                name="doanhnghiep_daidien_img_mattruoc">
 
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt trước!
@@ -335,7 +334,7 @@
                                         <div class="form-group">
                                             <label>Ảnh mặt sau CCCD</label>
                                             <input type="file" class="form-control"
-                                                name="doanhnghiep_daidien_img_matsau" required>
+                                                name="doanhnghiep_daidien_img_matsau">
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh CCCD mặt sau!
                                             </div>
@@ -383,7 +382,7 @@
 
                                         <div class="form-group">
                                             <label>Hình đại diện doanh nghiệp</label>
-                                            <input type="file" class="form-control" name="doanhnghiep_img" required>
+                                            <input type="file" class="form-control" name="doanhnghiep_img">
                                             <div class="invalid-feedback">
                                                 Chọn hình ảnh đại diện!
                                             </div>

@@ -42,7 +42,7 @@ return new class extends Migration
 
             //doanh nghiệp thực tế của thầy
             //nông nghiệp
-            ['id' => 12, 'linhvuc_id' => 'nn', 'tenloaihinh' => 'Du lịch sinh thái vườn', 'mota' => null, 'hinhanh' => null],
+            // ['id' => 12, 'linhvuc_id' => 'nn', 'tenloaihinh' => 'Du lịch sinh thái vườn', 'mota' => null, 'hinhanh' => null],
             //công nghiệp
             //thương mại - dịch vụ
         ]);
