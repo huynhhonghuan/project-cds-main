@@ -76,4 +76,9 @@ class Khaosat extends Model
     {
         return $this->hasOneThrough(Mucdo::class, Khaosat_Chienluoc::class, 'khaosat_id', 'id', 'id', 'mucdo_id');
     }
+
+    public function getKetQuaPhieu1()
+    {
+        return $this->hasManyThrough(Ketquaphieu1::class, Danhsachphieu1::class);
+    }
 }

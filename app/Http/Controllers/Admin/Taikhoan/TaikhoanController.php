@@ -129,37 +129,37 @@ class TaikhoanController extends Controller
                 //thông tin tài khoản
                 'email' => ['required', 'string', 'email', 'unique:users'],
                 'password' => ['required', 'min:8', 'confirmed'],
-                'doanhnghiep_img' => ['required', 'image'],
+                'doanhnghiep_img' => ['image'],
 
                 //thông tin doanh nghiệp
                 'doanhnghiep_tentiengviet' => ['required', 'string'],
-                'doanhnghiep_tentienganh' => ['required', 'string'],
-                'doanhnghiep_tenviettat',
+                'doanhnghiep_tentienganh' => ['nullable'],
+                'doanhnghiep_tenviettat' => ['nullable'],
                 'doanhnghiep_loaihinh_id' => ['required', 'int'],
-                'doanhnghiep_ngaylap' => ['required', 'string'],
-                'doanhnghiep_mathue' => ['required', 'string'],
-                'doanhnghiep_fax' => ['string'],
+                'doanhnghiep_ngaylap' => ['string', 'nullable'],
+                'doanhnghiep_mathue' => ['string', 'nullable'],
+                'doanhnghiep_fax' => ['string', 'nullable'],
                 'doanhnghiep_soluongnhansu' => ['required', 'int'],
-                'doanhnghiep_sdt' => ['required', 'string'],
+                'doanhnghiep_sdt' => ['string', 'nullable'],
                 'doanhnghiep_thanhpho' => ['required', 'string'],
                 'doanhnghiep_huyen' => ['required', 'string'],
                 'doanhnghiep_xa' => ['required', 'string'],
-                'doanhnghiep_diachi' => ['required', 'string'],
-                'doanhnghiep_mota',
+                'doanhnghiep_diachi' => ['string'],
+                'doanhnghiep_mota' => ['nullable'],
 
                 //thông tin đại diện doanh nghiệp
                 'doanhnghiep_daidien_tendaidien' => ['required', 'string'],
-                'doanhnghiep_daidien_email' => ['required', 'string', 'email'],
-                'doanhnghiep_daidien_sdt' => ['required', 'string'],
+                'doanhnghiep_daidien_email' => ['string', 'email', 'nullable'],
+                'doanhnghiep_daidien_sdt' => ['string', 'nullable'],
                 'doanhnghiep_daidien_chucvu' => ['required', 'string'],
-                'doanhnghiep_daidien_cccd' => ['required', 'string'],
+                'doanhnghiep_daidien_cccd' => ['string'],
                 'doanhnghiep_daidien_thanhpho' => ['required', 'string'],
                 'doanhnghiep_daidien_huyen' => ['required', 'string'],
                 'doanhnghiep_daidien_xa' => ['required', 'string'],
-                'doanhnghiep_daidien_diachi' => ['string'],
-                'doanhnghiep_daidien_img_mattruoc' => ['required', 'image'],
-                'doanhnghiep_daidien_img_matsau' => ['required', 'image'],
-                'doanhnghiep_daidien_mota'
+                'doanhnghiep_daidien_diachi' => ['nullable'],
+                'doanhnghiep_daidien_img_mattruoc' => ['image', 'nullable'],
+                'doanhnghiep_daidien_img_matsau' => ['image', 'nullable'],
+                'doanhnghiep_daidien_mota' => ['nullable'],
             ]);
 
             //Thêm tài khoản
@@ -306,6 +306,9 @@ class TaikhoanController extends Controller
             $chuyengia_namecolumn = [
                 'linhvuc_id' => 'chuyengia_linhvuc_id',
                 'tenchuyengia' => 'chuyengia_tendaidien',
+                'thanhpho' => 'chuyengia_thanhpho',
+                'huyen' => 'chuyengia_huyen',
+                'xa' => 'chuyengia_xa',
                 'sdt' => 'chuyengia_sdt',
                 'cccd' => 'chuyengia_cccd',
                 'mota' => 'chuyengia_mota',
@@ -508,21 +511,34 @@ class TaikhoanController extends Controller
             $request->validate([
                 //thông tin doanh nghiệp
                 'doanhnghiep_tentiengviet' => ['required', 'string'],
-                'doanhnghiep_tentienganh' => ['required', 'string'],
+                'doanhnghiep_tentienganh',
                 'doanhnghiep_tenviettat',
                 'doanhnghiep_loaihinh_id' => ['required', 'int'],
-                'doanhnghiep_ngaylap' => ['required', 'string'],
-                'doanhnghiep_mathue' => ['required', 'string'],
+                'doanhnghiep_ngaylap' => ['string'],
+                'doanhnghiep_mathue' => ['string'],
                 'doanhnghiep_fax' => ['string'],
-                'doanhnghiep_soluongnhansu' => ['required', 'int'],
-                'doanhnghiep_sdt' => ['required', 'string'],
-                'doanhnghiep_loai_sdt' => ['required', 'string'],
+                'doanhnghiep_soluongnhansu' => ['int'],
+                'doanhnghiep_sdt',
                 'doanhnghiep_thanhpho' => ['required', 'string'],
                 'doanhnghiep_huyen' => ['required', 'string'],
                 'doanhnghiep_xa' => ['required', 'string'],
-                'doanhnghiep_diachi' => ['required', 'string'],
+                'doanhnghiep_diachi' => ['string'],
                 'doanhnghiep_mota',
             ]);
+            //         "doanhnghiep_tentiengviet" => "CÔNG TY CP SẢN XUẤT-XUẤT NHẬP KHẨU ÁNH LỬA VIỆT"
+            //   "doanhnghiep_tentienganh" => null
+            //   "doanhnghiep_tenviettat" => null
+            //   "doanhnghiep_loaihinh_id" => "17"
+            //   "doanhnghiep_ngaylap" => "20/04/2024"
+            //   "doanhnghiep_mathue" => "810000"
+            //   "doanhnghiep_fax" => "0321456789"
+            //   "doanhnghiep_soluongnhansu" => "100"
+            //   "doanhnghiep_sdt" => null
+            //   "doanhnghiep_thanhpho" => "89"
+            //   "doanhnghiep_huyen" => "893"
+            //   "doanhnghiep_xa" => "30655"
+            //   "doanhnghiep_diachi" => "Số 581, Khóm Vĩnh Tây, Phường Núi Sam, Thành phố Châu Đốc, Tỉnh An Giang, Việt Nam"
+            //   "doanhnghiep_mota" => null
 
             //Thông thông tin doanh nghiệp
             $model_doanhnghiep = $user->getdoanhnghiep;
@@ -929,12 +945,12 @@ class TaikhoanController extends Controller
     public function postnhapdoanhnghiep(Request $request)
     {
         // try {
-            // dd($request->file('excel_file'));
-            foreach ($request->file('excel_file') as $item) {
-                Excel::import(new DoanhnghiepImport, $item);
-            }
-            Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
-            return redirect()->route('admin.taikhoan.danhsach');
+        // dd($request->file('excel_file'));
+        foreach ($request->file('excel_file') as $item) {
+            Excel::import(new DoanhnghiepImport, $item);
+        }
+        Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
+        return redirect()->route('admin.taikhoan.danhsach');
         // } catch (Exception $e) {
         //     Toastr::warning('Nhập dữ liệu excel tài khoản doanh nghiệp không thành công!', 'Warning');
         //     return redirect()->route('admin.taikhoan.danhsach');

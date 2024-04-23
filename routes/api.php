@@ -49,8 +49,8 @@ Route::post('store-image', function (Request $request) {
 
 // Public routes
 Route::apiResource("linhvuc", LinhVucController::class);
-// Route::apiResource("chuyengia", ChuyenGiaController::class);
-// Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
+Route::apiResource("chuyengia", ChuyenGiaController::class);
+Route::apiResource("hiephoidoanhnghiep", HiepHoiDoanhNghiepController::class);
 Route::apiResource("loaihinhdoanhnghiep", LoaiHinhDoanhNghiepController::class);
 Route::apiResource("mucdo", MucDoController::class);
 
@@ -113,8 +113,8 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::get('{id}/baiviet', [BaiVietController::class, 'getBaiVietByDoanhNghiep']);
     Route::get("{id}", [DoanhNghiepController::class, 'detail']);
     Route::post('register', [DoanhNghiepController::class, 'register']);
-    Route::post("login", [DoanhNghiepController::class, 'login']);
     Route::post("loginemail", [DoanhNghiepController::class, 'loginemail']);
+    Route::post("login", [DoanhNghiepController::class, 'login']);
 });
 
 Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function () {

@@ -68,7 +68,7 @@
                                                     <div class="form-group">
                                                         <label>Tên doanh nghiệp tiếng anh</label>
                                                         <input type="text" class="form-control"
-                                                            name="doanhnghiep_tentienganh" required
+                                                            name="doanhnghiep_tentienganh"
                                                             value="{{ $user->getdoanhnghiep->tentienganh }}">
                                                         <div class="invalid-feedback">
                                                             Nhập tên doanh nghiệp!
@@ -158,8 +158,7 @@
                                                                 <label>Số điện thoại</label>
                                                                 <input type="text" class="form-control"
                                                                     name="doanhnghiep_sdt"
-                                                                    value="{{ $user->getdoanhnghiep->sdt }}"
-                                                                    required>
+                                                                    value="{{ $user->getdoanhnghiep->sdt }}">
                                                                 <div class="invalid-feedback">
                                                                     Nhập số điện thoại của doanh nghiệp!
                                                                 </div>

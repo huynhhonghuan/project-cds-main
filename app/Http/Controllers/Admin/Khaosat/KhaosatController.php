@@ -69,7 +69,9 @@ class KhaosatController extends Controller
     public function postnhap(Request $request)
     {
         try {
-            Excel::import(new KhaosatImport, $request->file('khaosat_excel'));
+            foreach ($request->file('khaosat_excel') as $item) {
+                Excel::import(new KhaosatImport, $item);
+            }
             Toastr::success('Thêm khảo sát của doanh nghiệp thành công', 'Success');
             return redirect()->route('admin.khaosat.danhsach');
         } catch (Exception $e) {

@@ -178,33 +178,27 @@ class KhaosatController extends Controller
 
     public final function gethoanthanh($id)
     {
-        // dd('huan');
         if ($this->i == 0) {
             $this->ketqua = Khaosat::find($id)->getdanhsachphieu1->getketquaphieu1;
             $this->doanhnghiep_loaihinh_id = Khaosat::find($id)->getdoanhnghiep->doanhnghiep_loaihinh_id;
-            $this->ketqua_item = $this->ketqua[0];
             $this->i = 1;
         }
         if (count($this->ketqua) > 0) {
-
             // Sử dụng hàm min của Laravel Collection để tìm phần tử có giá trị nhỏ nhất
             $minPhanTram = $this->ketqua->min('phantram');
-
             // Tìm phần tử có giá trị phantram bằng giá trị nhỏ nhất
-            $this->ketqua_item = $this->ketqua->firstWhere('phantram', $minPhanTram);
-
-            // Xóa phần tử có giá trị phantram bằng giá trị nhỏ nhất ra khỏi mảng
-            $this->ketqua = $this->ketqua->reject(function ($item) use ($minPhanTram) {
-                $item->phantram === $minPhanTram;
-            });
-
+            foreach ($this->ketqua as $key => $kt) {
+                if ($kt->phantram == $minPhanTram) {
+                    $this->ketqua_item = $kt;
+                    unset($this->ketqua[$key]);
+                    // dump('ketquaketqua_item:' . $this->ketqua_item);
+                    break;
+                }
+            }
             $mohinh = Mohinh_Doanhnghiep_Trucot::whereRaw(
                 'mohinh_trucot_id = ? AND doanhnghiep_loaihinh_id = ?',
                 [$this->ketqua_item->mohinh_trucot_id, $this->doanhnghiep_loaihinh_id]
             )->first();
-
-            // dump($mohinh);
-
             if ($mohinh != null) {
                 $chienluoc = Khaosat_Chienluoc::insert([
                     'khaosat_id' => $id,
@@ -217,13 +211,14 @@ class KhaosatController extends Controller
                 $khaosat->update([
                     'trangthai' => 2 // đã đề xuất
                 ]);
-
                 return redirect()->route('doanhnghiep.chienluoc.xem', [$id]);
-            } else
+            } else {
                 $this->gethoanthanh($id);
+            }
         } else {
-            return redirect()->refresh();
+            Toastr::warning('Chưa có chiến lược đề xuất được cho doanh nghiệp của bạn!', 'warning');
         }
+        return redirect()->route('doanhnghiep.home');
     }
 
     public function postxoa(Request $request)
