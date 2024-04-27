@@ -7,7 +7,7 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title mt-5">Thêm Banner</h3>
+                        <h3 class="page-title mt-5">Sửa Banner</h3>
                     </div>
                 </div>
             </div>

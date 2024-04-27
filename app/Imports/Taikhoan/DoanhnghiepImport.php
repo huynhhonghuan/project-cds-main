@@ -29,6 +29,8 @@ class Taikhoan implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
+        if (!$row['id'])
+            return null;
         return new User([
             'id' => $row['id'],
             'name' => $row['name'],
@@ -44,6 +46,8 @@ class Vaitro implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
+        if (!$row['user_id'])
+            return null;
         return new User_Vaitro([
             // 'id' => $row['id'],
             'user_id' => $row['user_id'],
@@ -59,8 +63,11 @@ class Vaitro implements ToModel, WithHeadingRow
 }
 class Doanhnghiep implements ToModel, WithHeadingRow
 {
+
     public function model(array $row)
     {
+        if (!$row['id'])
+            return null;
         return new ModelsDoanhnghiep([
             'id' => $row['id'],
             'user_id' => $row['user_id'],
@@ -88,6 +95,8 @@ class Daidien implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
+        if (!$row['id'])
+            return null;
         return new Doanhnghiep_Daidien([
             'id' => $row['id'],
             'doanhnghiep_id' => $row['doanhnghiep_id'],

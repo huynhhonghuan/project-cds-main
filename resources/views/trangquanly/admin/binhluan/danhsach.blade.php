@@ -45,7 +45,12 @@
                                         @foreach ($binhluan as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="text-align: center; font-size:16px">{{ $value->getTintuc->tieude }}</td>
+                                                <td style="text-align: center; font-size:16px">
+                                                    <div
+                                                        style="max-width: 500px; text-overflow: ellipsis; overflow: hidden;">
+                                                        {{ $value->getTintuc->tieude }}
+                                                    </div>
+                                                </td>
                                                 <td style="text-align: center; font-size:16px">{{ $value->noidung }}</td>
                                                 @if(!isset($value->getUser->name))
                                                     <td style="text-align: center; font-size:16px">{{$value->ten}}</td>
@@ -54,7 +59,7 @@
                                                 @endif
                                                 <td>
                                                     <div class="actions">
-                                                        <a href="{{ URL::to('/tin/'. $value->id) }}">Chi tiết</a>
+                                                        <a href="{{ URL::to('/tin/'. $value->tintuc_id) }}">Chi tiết</a>
                                                     </div>
                                                 </td>
 

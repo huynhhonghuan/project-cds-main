@@ -21,8 +21,11 @@
                             @else    
                             @if($cre->loai == 0)
                                 <li class="breadcrumb-item active" style="cursor: pointer;">Văn bản Trung Ương</li>
-                            @else    
-                            @endif @endif       
+                            @else   
+                            @if($cre->loai == 2)
+                                <li class="breadcrumb-item active" style="cursor: pointer;">Văn bản Tập Huấn Chuyển đổi số</li>
+                            @else   
+                            @endif @endif @endif   
                         @endforeach
                     </ol>
                 </nav>
