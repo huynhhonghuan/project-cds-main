@@ -14,6 +14,8 @@ class ChuyenGiaController extends Controller
         $chuyenGias = [];
         if ($linhvucid = $request->input('linhvucid')) {
             $chuyenGias = Chuyengia::with(['getUser', 'getLinhVuc'])->where('linhvuc_id', $linhvucid)->get();
+        } else {
+            $chuyenGias = Chuyengia::with(['getUser', 'getLinhVuc'])->get();
         }
         return ChuyenGiaResource::collection($chuyenGias);
     }

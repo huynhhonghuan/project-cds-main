@@ -20,7 +20,7 @@ class ChuyenGiaResource extends JsonResource
             'hinhAnh' => $this->getUser?->image ? env('APP_IMAGE_URL') . '/assets/backend/img/hoso/' . $this->getUser->image . '?' . rand(0, 99999) : "",
             'email' => $this->getUser->email,
             'sdt' => $this->sdt,
-            'diaChi' => $this->diachi . ', ' . $this->xa . ', ' . $this->huyen . ', ' . $this->thanhpho,
+            'diaChi' => $this->diachi,
             'moTa' => $this->mota,
             'linhVuc' => new LinhVucResource($this->getLinhVuc)
         ];

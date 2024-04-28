@@ -19,8 +19,9 @@ class HiepHoiDoanhNghiepResource extends JsonResource
             'tenTiengViet' => $this->tentiengviet,
             'tenTiengAnh' => $this->tentienganh,
             'sdt' => $this->sdt,
-            'diaChi' => $this->diachi . ', ' . $this->xa . ', ' . $this->huyen . ', ' . $this->thanhpho,
+            'diaChi' => $this->diachi,
             'moTa' => $this->mota,
+            'hinhAnh' => $this->getUser ? env('APP_IMAGE_URL') .  '/assets/backend/img/hoso/' . $this->getUser->image . '?' . rand(0, 99999) : "",
             'daiDien' => new DaiDienHiepHoiResource($this->getDaiDien)
         ];
     }

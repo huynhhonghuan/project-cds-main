@@ -118,6 +118,7 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
         Route::post('edit', [DoanhNghiepController::class, 'edit']);
         Route::post('editDaiDien', [DoanhNghiepController::class, 'editDaiDien']);
+        Route::post('nhucau', [DoanhNghiepController::class, 'postNhuCau']);
     });
     Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
@@ -142,11 +143,12 @@ Route::group(['prefix' => 'binhluan'], function () {
     Route::post('', [BinhLuanController::class, 'store']);
 });
 
-Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () {
-    Route::get('', [KhaoSatController::class, 'index']);
+Route::group(['prefix' => 'khaosat'], function () {
+    Route::get('doanhnghiep/{id}', [KhaoSatController::class, 'getKhaoSatDoanhNghiep']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::get('', [KhaoSatController::class, 'index']);
+    });
 });
-
-
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
