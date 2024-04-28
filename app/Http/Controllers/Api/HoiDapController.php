@@ -6,6 +6,7 @@ use App\Exports\Taikhoan\Chuyengia;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HoiThoaiResource;
 use App\Http\Resources\TinNhanResource;
+use App\Http\Services\NotificationService;
 use App\Models\Chuyengia as ModelsChuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\HoiThoai;
@@ -84,14 +85,35 @@ class HoiDapController extends Controller
             'hoiThoaiId' => 'required|exists:hoithoai,id',
         ]);
 
-        $userId = auth()->id();
+        $user = User::find(auth()->id());
+        $hoiThoai = HoiThoai::find(request()->hoiThoaiId);
 
+        // Lưu tin nhắn
         $model = new TinNhan([
-            'user_id' => $userId,
-            'hoithoai_id' => request()->hoiThoaiId,
+            'user_id' => $user->id,
+            'hoithoai_id' => $hoiThoai->id,
             'noidung' => request()->message
         ]);
         $model->save();
+
+        // Gửi thông báo
+
+        if ($user->Check_Chuyengia()) {
+            $to = $hoiThoai->doanhnghiep_id;
+            $message = [
+                'tieude' => 'Chuyên gia ' . $user->name . ' đã trả lời bạn',
+                'noidung' => request()->message
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        } else if ($user->Check_Doanhnghiep()) {
+            $to = $hoiThoai->chuyengia_id;
+            $message = [
+                'tieude' => 'Doanh nghiệp ' . $user->getDoanhNghiep->tentiengviet,
+                'noidung' => request()->message
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        }
+
         return response()->json(['message' => "Lưu thành công"]);
     }
 }

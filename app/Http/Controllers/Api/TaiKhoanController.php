@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,6 +31,18 @@ class TaiKhoanController extends Controller
         $user->password = Hash::make($request->newPassword);
         $user->save();
         return response()->json(['success' => 'Đổi mật khẩu thành công']);
+    }
+
+    // Đổi mật khẩu
+    public function savedevicetoken(Request $request)
+    {
+        $request->validate([
+            'deviceToken' => 'required|string',
+        ]);
+        $user = auth()->user();
+        $user->device_token =  $request->deviceToken;
+        $user->save();
+        return response()->json(['success' => 'Luu device token thanh cong']);
     }
 
     // Đổi tên hiển thị
