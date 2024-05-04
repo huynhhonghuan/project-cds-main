@@ -87,16 +87,131 @@
     </style>
 @endsection
 @section('content')
-    <section class="">
-        <div class="container" style="padding-top: 150px;">
+<section class="vh-100" style="margin-top: 70px;background-image: url(../image/AnhNen/title-area-pattern.png);">
+    <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-9">
+                <div class="card" style="box-shadow: 1px 1px 2px 1.5px #999">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block" style="">
+                            <img src="{{ URL::to('assets/frontend/img/login/login.png') }}" alt="login form"
+                                class="img-fluid" style="height: 100%;border-radius: 4px 0 0px 4px;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 text-black">
+                                {{-- message --}}
+                                {!! Toastr::message() !!}
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <h2 class="mb-3 pb-3 text-uppercase text-center fw-bolder text-primary"
+                                        style="letter-spacing: 1px;font-size: 24px">Đăng kí tài khoản doanh nghiệp
+                                    </h2>
+
+                                    <div class="form-floating mb-2">
+                                        <input type="text" id="floatingTenDN" name="tendn"
+                                            class="form-control form-control-lg {{ $errors->has('tentiengviet') || $errors->has('tentiengviet') ? 'is-invalid' : '' }}"
+                                            placeholder="Tên Doanh Nghiệp" />
+                                        <label class="form-label" for="floatingTenDN">Đơn vị</label>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                        <input type="text" id="floatingTenDN" name="tendn"
+                                            class="form-control form-control-lg {{ $errors->has('tentiengviet') || $errors->has('tentiengviet') ? 'is-invalid' : '' }}"
+                                            placeholder="Tên Doanh Nghiệp" />
+                                        <label class="form-label" for="floatingTenDN">Họ và Tên</label>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                        <input type="text" id="floatingEmail" name="email"
+                                            class="form-control form-control-lg {{ $errors->has('email') || $errors->has('phone') ? 'is-invalid' : '' }}"
+                                            placeholder="Email" />
+                                        <label class="form-label" for="floatingEmail">Email</label>
+                                    </div>
+
+                                    <div class="form-floating mb-2">
+                                        <input type="password" id="floatingPassword" name="password"
+                                            class="form-control form-control-lg" placeholder="Password" />
+                                        <label class="form-label" for="floatingPassword">Mật khẩu</label>
+                                    </div>
+                                    <div class="form-floating mb-2">
+                                        <input type="password" id="floatingrepassword" name="repassword"
+                                            class="form-control form-control-lg" placeholder="Password" />
+                                        <label class="form-label" for="floatingrepassword">Nhập lại Mật khẩu</label>
+                                    </div>
+                                    <div class="pt-1 d-flex justify-content-center">
+                                        <button class="col-12 btn btn-primary btn-lg btn-block text-uppercase" type="submit">Đăng Ký</button>
+                                    </div>
+                                    
+
+                                    <p class="mt-4 pb-lg-2 text-center" style="color: #000000;">Bạn đã có tài khoản ?
+                                        <a class="fw-bold text-uppercase" href="{{ route('registerdoanhnghiep') }}" style="color: #ffc107;">Đăng nhập
+                                            ngay
+                                        </a>
+                                    </p>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    {{-- <section class="vh-100 bg-image" style="padding-top: 150px;background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h3 class="fw-bold text-center text-primary text-uppercase">Đăng kí Tài khoản doanh nghiệp</h3>
+                                    <form>
+                                        <div class="form-outline" data-mdb-input-init>
+                                            <input type="text" id="form12" class="form-control" />
+                                            <label class="form-label" for="form12">Example label</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example1cg">Họ Tên</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example3cg">Email(Tên đăng Nhập)</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cg">Mật Khẩu</label>
+                                        </div>
+                                        <div data-mdb-input-init class="form-outline">
+                                            <input type="password" id="form3Example4cdg" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cdg">Nhập lại mật khẩu</label>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button"
+                                            data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block btn-lg gradient-custom-4 text-white text-uppercase">Đăng Ký</button>
+                                        </div>
+                                        <p class="text-center text-muted mt-5 mb-0">Bạn đã có tài khoản ? <a href="{{ route('login') }}"
+                                            class="fw-bold text-body text-uppercase"><u> Đăng Kí ngay</u></a></p>
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>     --}}
+
+
+    {{-- <section class="">
+        <div class="container" style="padding-top: 150px">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col col-xl-12">
                     <form action="#" method="post" class="needs-validation" novalidate>
                         <div class="row" style="box-shadow: 1px 1px 4px 1px #999;border-radius:10px">
-                            <div class="col-12 col-sm-12 col-md-12 col-xl-6"
+                            <div class="col-12 col-sm-12 col-md-12"
                                 style="border-top-left-radius: 10px; border-end-start-radius: 10px; background-color: #fff">
                                 <div class="row g-0 mx-4 my-5">
-                                    <h3 class="fw-bold text-left text-primary text-uppercase">Thông tin doanh nghiệp
+                                    <h3 class="fw-bold text-center text-primary text-uppercase">Đăng Ký Tài Khoản Doanh Nghiệp
                                     </h3>
                                 </div>
                                 <div class="row g-0 mx-5 my-3">
@@ -108,126 +223,6 @@
                                             việt</label>
                                         <div class="invalid-feedback">
                                             Nhập tên doanh nghiệp!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating">
-                                        <input type="text" id="tendoanhnghiep" name="txttendoanhnghieptienganh"
-                                            class="form-control form-control-lg border-bottom border-primary text-primary"
-                                            placeholder="Tên doanh nghiệp tiếng anh" id="invalidCheck" required />
-                                        <label class="form-label text-primary" for="tendoanhnghiep">Tên doanh nghiệp tiếng
-                                            anh</label>
-                                        <div class="invalid-feedback">
-                                            Nhập tên doanh nghiệp bằng tiếng anh!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5 my-3 d-flex">
-                                    <div class="form-floating col-12 col-sm-6 me-auto">
-                                        <input type="text" id="tendoanhnghiep" name="txttendoanhnghieptienganh"
-                                            class="form-control form-control-lg border-bottom border-primary text-primary"
-                                            placeholder="Tên doanh nghiệp tiếng anh" id="invalidCheck" required />
-                                        <label class="form-label text-primary" for="tendoanhnghiep">Tên viết tắt</label>
-                                        <div class="invalid-feedback">
-                                            Nhập tên doanh nghiệp viết tắt!
-                                        </div>
-                                    </div>
-                                    <div class="form-floating col-12 col-sm-5">
-                                        <input type="text" class="form-control border-bottom border-primary text-primary"
-                                            id="datepicker1" placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-primary" for="datepicker1">Ngày hoạt động</label>
-                                        <div class="invalid-feedback">
-                                            Chọn ngày hoạt động doanh nghiệp!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5 mt-4 mb-3 d-flex">
-                                    <div class="floating-label col-sm-5 me-auto">
-                                        <select class="floating-select ps-2 text-primary border-bottom border-primary"
-                                            onclick="this.setAttribute('value', this.value);" value="" name="city"
-                                            id="invalidCheck" required>
-                                            <option value=""></option>
-                                            @foreach ($linhvuc as $value)
-                                                <option value="{{ $value->id }}">{{ $value->tenlinhvuc }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <label class="label-select form-label text-primary">Lĩnh vực hoạt động</label>
-                                        <div class="invalid-feedback">
-                                            Chọn lĩnh vực hoạt động!
-                                        </div>
-                                    </div>
-                                    <div class="floating-label col-sm-6">
-                                        <select class="floating-select ps-2 text-primary border-bottom border-primary"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="invalidCheck" required>
-                                            <option value=""></option>
-                                            @foreach ($loaihinh as $value)
-                                                <option value="{{ $value->id }}">{{ $value->tenloaihinh }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <label class="label-select form-label text-primary">Loại hình kinh doanh
-                                            chính</label>
-                                        <div class="invalid-feedback">
-                                            Chọn loại hình kinh doanh chính!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5 justify-content-between">
-                                    <div class="floating-label col-12 col-sm-3 me-4 ">
-                                        <select class="floating-select ps-2 text-primary border-bottom border-primary"
-                                            onclick="this.setAttribute('value', this.value);" value="" id="city"
-                                            required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-primary">Tỉnh/Thành phố</label>
-                                        <div class="invalid-feedback">
-                                            Chọn tỉnh/thành phố!
-                                        </div>
-                                    </div>
-                                    <div class="floating-label col-12 col-sm-3 me-4">
-                                        <select class="floating-select ps-2 text-primary border-bottom border-primary"
-                                            onclick="this.setAttribute('value', this.value);" value="" id="district"
-                                            required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-primary">Quận/Huyện</label>
-                                        <div class="invalid-feedback">
-                                            Chọn quận/huyện!
-                                        </div>
-                                    </div>
-                                    <div class="floating-label col-12 col-sm-4">
-                                        <select class="floating-select ps-2 text-primary border-bottom border-primary"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="ward" required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-primary">Phường/Xã</label>
-                                        <div class="invalid-feedback">
-                                            Chọn phường/xã!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5 mb-3">
-                                    <div class="form-floating col-12 col-sm-7 me-auto">
-                                        <input type="text" id="tendoanhnghiep" name="txttendoanhnghieptienganh"
-                                            class="form-control form-control-lg border-bottom border-primary text-primary"
-                                            placeholder="Tên doanh nghiệp tiếng anh" />
-                                        <label class="form-label text-primary" for="tendoanhnghiep">Email</label>
-                                    </div>
-                                    <div class="form-floating col-12 col-sm-4">
-                                        <input type="text" id="tendoanhnghiep" name="txttendoanhnghieptienganh"
-                                            class="form-control form-control-lg border-bottom border-primary text-primary"
-                                            placeholder="Tên doanh nghiệp tiếng anh" id="invalidCheck" required />
-                                        <label class="form-label text-primary" for="tendoanhnghiep">Quy mô nhân sự</label>
-                                        <div class="invalid-feedback">
-                                            Nhập quy mô nhân sự!
                                         </div>
                                     </div>
                                 </div>
@@ -258,164 +253,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating">
-                                        <input type="text" id="tendoanhnghiep" name="txttendoanhnghieptiengviet"
-                                            class="form-control form-control-lg border-bottom border-primary text-primary"
-                                            placeholder="Tên doanh nghiệp tiếng việt" id="invalidCheck" required />
-                                        <label class="form-label text-primary" for="tendoanhnghiep">Website doanh
-                                            nghiệp</label>
-                                        <div class="invalid-feedback">
-                                            Nhập Website doanh nghiệp!
-                                        </div>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-12 col-xl-6 bg-primary"
-                                style="border-top-right-radius: 10px; border-end-end-radius: 10px">
-                                <div class="row g-0 mx-4 my-5">
-                                    <h3 class="fw-bold text-left text-light text-uppercase">Đại diện doanh nghiệp
-                                    </h3>
-                                </div>
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Họ và tên người đại
-                                            diện</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Nhập họ và tên dại diện doanh nghiệp doanh nghiệp!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-0 mx-5 ">
-                                    <div class="floating-label col-12 col-sm-6 pt-1 me-auto">
-                                        <select
-                                            class="floating-select bg-primary ps-2 text-light border-bottom border-light"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="invalidCheck" required>
-                                            <option value=""></option>
-                                            <option value="Chủ tịch">Chủ tịch</option>
-                                            <option value="Giám đốc">Giám đốc</option>
-                                            <option value="Quản lý">Quản lý</option>
-                                            <option value="Trưởng phòng">Trưởng phòng</option>
-                                            <option value="Khác">Khác</option>
-                                        </select>
-                                        <label class="label-select form-label text-light">Chức vụ</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn chức vụ!
-                                        </div>
-                                    </div>
-                                    <div class="form-floating col-12 col-sm-5">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Số điện thoại</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Nhập số điện thoại!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-0 mx-5 justify-content-between">
-                                    <div class="floating-label col-12 col-sm-3 me-4 ">
-                                        <select
-                                            class="floating-select bg-primary ps-2 text-light border-bottom border-light"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="city1" required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-light">Tỉnh/Thành phố</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn tỉnh/thành phố!
-                                        </div>
-                                    </div>
-                                    <div class="floating-label col-12 col-sm-3 me-4">
-                                        <select
-                                            class="floating-select bg-primary ps-2 text-light border-bottom border-light"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="district1" required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-light">Quận/Huyện</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn quận/huyện!
-                                        </div>
-                                    </div>
-                                    <div class="floating-label col-12 col-sm-4">
-                                        <select
-                                            class="floating-select bg-primary ps-2 text-light border-bottom border-light"
-                                            onclick="this.setAttribute('value', this.value);" value=""
-                                            id="ward1" required>
-                                            <option value=""></option>
-                                        </select>
-                                        <label class="label-select form-label text-light">Phường/Xã</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn phường/xã!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5">
-                                    <div class="form-floating col-12 col-sm-7 me-auto">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Số CCCD</label>
-                                        <div class="invalid-feedback text-warning">
-                                            Nhập số CCCD!
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating col-12 col-sm-5 input_file me-auto w-45">
-                                        <label class="form-label text-light pt-2 label_file" for="inputGroupFile04">CCCD
-                                            mặt trước</label>
-                                        <input type="file"
-                                            class="form-control bg-primary border-bottom border-light text-light mt-2"
-                                            id="inputGroupFile04" id="invalidCheck" required>
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn hình CCCD mặt trước!
-                                        </div>
-                                    </div>
-                                    <div class="form-floating col-12 col-sm-5 input_file w-45">
-                                        <label class="form-label text-light pt-2 label_file" for="inputGroupFile04">CCCD
-                                            mặt sau</label>
-                                        <input type="file"
-                                            class="form-control bg-primary border-bottom border-light text-light mt-2"
-                                            id="inputGroupFile04" id="invalidCheck" required />
-                                        <div class="invalid-feedback text-warning">
-                                            Chọn hình CCCD mặt sau!
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Email</label>
-                                    </div>
-                                </div>
-                                <div class="row g-0 mx-5 my-3">
-                                    <div class="form-floating col-12 col-sm-5 me-auto">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Mật khẩu</label>
-                                        <div class="invalid-feedback text-warning">
-                                        </div>
-                                    </div>
-                                    <div class="form-floating col-12 col-sm-5">
-                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep"
-                                            class="form-control form-control-lg border-bottom border-light bg-primary text-light"
-                                            placeholder="" id="invalidCheck" required />
-                                        <label class="form-label text-light" for="tendoanhnghiep">Xác nhận mật
-                                            khẩu</label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="row g-3">
@@ -433,9 +271,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection
-@section('script')
+{{-- @section('script')
     <script>
         $(function() {
             $('#datepicker1').datepicker();
@@ -462,8 +300,6 @@
             })
         })()
     </script>
-
-    //chọn tỉnh huyện xã
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
         var citis = document.getElementById("city");
@@ -525,4 +361,4 @@
             };
         }
     </script>
-@endsection
+@endsection --}}

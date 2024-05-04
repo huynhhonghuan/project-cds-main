@@ -64,6 +64,7 @@ use App\Http\Controllers\Frontend\DiendanController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\BinhluanController;
+use App\Http\Controllers\Frontend\ThongbaoController;
 
 function set_active($route)
 {
@@ -522,7 +523,6 @@ Route::get('/doanhnghiepct/{id}', [TrangtinController::class, 'doanhnghiepct'])-
 Route::get('/diendan', [DiendanController::class, 'Index'])->name('diendan');
 Route::post('/diendan/{id}/like', [DiendanController::class, 'like'])->name('like');
 Route::post('/diendan/{id}/unlike', [DiendanController::class, 'unlike'])->name('unlike');
-
 
 // ---------------------------------------------
 //Giao diện thư viện

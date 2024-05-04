@@ -7,11 +7,7 @@
                 <li class="list-divider"></li>
 
                 <li class="menu-title mt-3"> <span>Quản lý tin tức</span> </li>
-                <li> <a href="{{ route('congtacvien.tintuc.danhsach') }}"><i class="fa-solid fa-list-ol"></i> <span>Danh sách tất cả tin đã đăng</span></a> </li>
-
-                <li> <a href="{{ route('congtacvien.tintuccd.danhsach') }}"><i class="fa-solid fa-check-double"></i> <span>Danh sách tin được duyệt</span></a> </li>
-
-                <li> <a href="pricing.html"><i class="fa-solid fa-clock-rotate-left"></i><span>Danh sách tin chờ duyệt</span></a> </li>
+                <li> <a href="{{ route('congtacvien.tintuc.danhsach') }}"><i class="fa-solid fa-list-ol"></i> <span>Danh sách tất cả tin tức</span></a> </li>
 
             </ul>
         </div>
