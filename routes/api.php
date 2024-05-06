@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\LoaiHinhDoanhNghiepController;
 use App\Http\Controllers\Api\MucDoController;
 use App\Http\Controllers\Api\SanPhamController;
 use App\Http\Controllers\Api\TaiKhoanController;
+use App\Http\Controllers\Api\ThongBaoController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
 use Illuminate\Http\Request;
@@ -62,9 +63,20 @@ Route::group(['prefix' => 'tintuc'], function () {
     Route::get('thuvien', [TinTucController::class, 'thuvien']);
 });
 
+// Thông báo
+Route::group(['prefix' => 'thongbao'], function () {
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::get('', [ThongBaoController::class, 'getThongBaoUser']);
+        Route::put('{id}/read', [ThongBaoController::class, 'readThongBao']);
+        Route::delete('{id}', [ThongBaoController::class, 'deleteThongBao']);
+    });
+    Route::get('push-noti', [ThongBaoController::class, 'pushNotiPhone']);
+});
+
 // Diễn đàn
 Route::group(['prefix' => 'baiviet'], function () {
     Route::get('search', [BaiVietController::class, 'searchBaiViet']);
+    Route::get('user/{id}', [BaiVietController::class, 'getBaiVietsByUser']);
     Route::get('{id}/binhluan', [BaiVietController::class, 'getBinhLuans']);
     Route::get('{id}', [BaiVietController::class, 'detail']);
     Route::get('', [BaiVietController::class, 'index']);
@@ -106,6 +118,7 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
         Route::post('logout', [DoanhNghiepController::class, 'logout']);
         Route::post('edit', [DoanhNghiepController::class, 'edit']);
         Route::post('editDaiDien', [DoanhNghiepController::class, 'editDaiDien']);
+        Route::post('nhucau', [DoanhNghiepController::class, 'postNhuCau']);
     });
     Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
@@ -122,6 +135,7 @@ Route::group(['prefix' => 'taikhoan',  'middleware' => ['auth:api']], function (
     Route::post('avatar', [TaiKhoanController::class, 'avatar']);
     Route::post('changepassword', [TaiKhoanController::class, 'changepassword']);
     Route::post('changename', [TaiKhoanController::class, 'changename']);
+    Route::post('savedevicetoken', [TaiKhoanController::class, 'savedevicetoken']);
 });
 
 Route::group(['prefix' => 'binhluan'], function () {
@@ -129,11 +143,12 @@ Route::group(['prefix' => 'binhluan'], function () {
     Route::post('', [BinhLuanController::class, 'store']);
 });
 
-Route::group(['prefix' => 'khaosat', 'middleware' => ['auth:api']], function () {
-    Route::get('', [KhaoSatController::class, 'index']);
+Route::group(['prefix' => 'khaosat'], function () {
+    Route::get('doanhnghiep/{id}', [KhaoSatController::class, 'getKhaoSatDoanhNghiep']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::get('', [KhaoSatController::class, 'index']);
+    });
 });
-
-
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
@@ -141,5 +156,4 @@ Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
     Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
     Route::get('tinnhanchuyengia', [HoiDapController::class, 'tinnhanchuyengia']);
     Route::post('tinnhan', [HoiDapController::class, 'themtinnhan']);
-    Route::get('test', [HoiDapController::class, 'test']);
 });

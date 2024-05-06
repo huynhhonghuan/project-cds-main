@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Exports\Taikhoan\Chuyengia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,8 @@ use App\Models\Chuyengia as ModelsChuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\Tintuc;
 use Exception;
+use App\Http\Services\NotificationService;
+use App\Models\ThongBao;
 
 class HoidapController extends Controller
 {
@@ -26,18 +29,31 @@ class HoidapController extends Controller
         $userId = auth()->id();
         $hoiThoais = HoiThoai::with(['getChuyenGia',  'getDoanhNghiep', 'getDoanhNghiep.getUser'])
             ->where('doanhnghiep_id', $userId)->get();
+        $thongbaos = ThongBao::where("user_id" , $userId)->orderBy('created_at', 'desc')->get();
+        // $chuyengia = ModelsChuyengia::all();    
         // dd($hoiThoais); 
-        return view('trangquanly.doanhnghiep.chat', compact('hoiThoais'));
+        return view('trangquanly.doanhnghiep.chat', compact('hoiThoais','thongbaos'));
     }
 
     public function tinnhan($id)
     {
         $hoiThoaiId = $id;
+        $userId = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $userId)->orderBy('created_at', 'desc')->get();
         $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', $hoiThoaiId)->get();
         $hoithoai = DB::table('hoithoai')->where('id', $hoiThoaiId)->first();
-        $laychuyengia = HoiThoai::with('getChuyenGia', 'getChuyenGiaUser','getChuyenGia')->where('id', $hoiThoaiId)->first();
+        $laychuyengia = HoiThoai::with('getChuyenGia', 'getChuyenGiaUser','getChuyenGia')
+            ->where('id', $hoiThoaiId)->first();
+
+        if (!$hoithoai) {
+            $hoithoai = new HoiThoai([
+                'chuyengia_id' => 1,
+                'doanhnghiep_id' => $userId,
+            ]);
+            $hoithoai->save();
+        }
         // dd($laychuyengia);
-        return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans','hoithoai','laychuyengia'));
+        return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans','hoithoai','laychuyengia','thongbaos'));
     }
 
 
@@ -47,6 +63,7 @@ class HoidapController extends Controller
         $userId = auth()->id();
         $hoiThoais = HoiThoai::with(['getChuyenGia', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])
             ->where('chuyengia_id', $userId)->get();
+            
         return view('trangquanly.chuyengia.chat', compact('hoiThoais'));
     }
 
@@ -56,8 +73,10 @@ class HoidapController extends Controller
         $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', $hoiThoaiId)->get();
         $hoithoai = DB::table('hoithoai')->where('id', $hoiThoaiId)->first();
         $laydoanhnghiep = HoiThoai::with('getChuyenGia', 'getDoanhNghiepUser','getDoanhNghiep')->where('id', $hoiThoaiId)->first();
+        $user_id = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
         // dd($laydoanhnghiep);
-        return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai','laydoanhnghiep'));
+        return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai','laydoanhnghiep','thongbaos'));
     }
 
     public function themtinnhan(Request $request)
@@ -75,6 +94,23 @@ class HoidapController extends Controller
             'noidung' => request()->message
         ]);
         $model->save();
+        $user = User::find(Auth::user()->id);
+        $hoiThoai = HoiThoai::find($request->hoiThoaiId);
+        if($user->Check_Chuyengia()) {
+            $to = $hoiThoai->doanhnghiep_id;
+            $message = [
+                'tieude' => 'Chuyên gia ' .$user->name. ' đã phản hồi bạn',
+                'noidung' => $request->message 
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        } else if($user->Check_DoanhNghiep()) {
+            $to = $hoiThoai->chuyengia_id;
+            $message = [
+                'tieude' => 'Doanh nghiệp ' .$user->getDoanhNghiep->tentiengviet. ' có câu hỏi cho bạn',
+                'noidung' => $request->message 
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        }
 
         // return response()->json(['message' => "Lưu thành công"]);
         // return view('trangquanly.doanhnghiep.tinnhan', compact('tinnhans', 'hoithoai'));
@@ -95,11 +131,29 @@ class HoidapController extends Controller
             'noidung' => request()->message
         ]);
         $model->save();
-
+        $user = User::find(Auth::user()->id);
+        $hoiThoai = HoiThoai::find($request->hoiThoaiId);
+        if($user->Check_Chuyengia()) {
+            $to = $hoiThoai->doanhnghiep_id;
+            $message = [
+                'tieude' => 'Chuyên gia ' .$user->getChuyenGia->tenchuyengia. ' đã phản hồi bạn',
+                'noidung' => $request->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $request->hoiThoaiId  
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        } else if($user->Check_DoanhNghiep()) {
+            $to = $hoiThoai->chuyengia_id;
+            $message = [
+                'tieude' => 'Doanh nghiệp ' .$user->getDoanhNghiep->tentiengviet. ' có câu hỏi cho bạn',
+                'noidung' => $request->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $request->hoiThoaiId 
+            ];
+            (new NotificationService())->sendNotification($message, $to);
+        }
         // return response()->json(['message' => "Lưu thành công"]);
         // return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai'));
         return redirect()->route('chuyengia.tinnhan', request()->hoiThoaiId);
-
     }
-
 }

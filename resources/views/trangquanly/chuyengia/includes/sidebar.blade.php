@@ -44,9 +44,6 @@
                         <span>Danh sách doanh
                             nghiệp</span>
                 </a> </li>
-                <li> <a href="{{ route('chuyengia.hoithoai', Auth::user()->id) }}"><i class='bx bx-conversation'></i>
-                    <span>Hội thoại Doanh Nghiệp</span>
-                </a> </li>
             </ul>
         </div>
     </div>

@@ -12,78 +12,29 @@
     <ul class="nav user-menu">
         <li class="nav-item dropdown noti-dropdown">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span
-                    class="badge badge-pill">3</span> </a>
+                    class="badge badge-pill">{{$thongbaos->count()}}</span> </a>
             <div class="dropdown-menu notifications">
-                <div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span> <a
-                        href="javascript:void(0)" class="clear-noti"> Clear All </a> </div>
+                <div class="topnav-dropdown-header"> <span class="notification-title">Thông Báo</span></div>
                 <div class="noti-content">
                     <ul class="notification-list">
+                        @foreach($thongbaos as $tb)
                         <li class="notification-message">
-                            <a href="#">
+                            <a href="{{ route('doanhnghiep.tinnhan', $tb->loai_id) }}">
                                 <div class="media"> <span class="avatar avatar-sm">
                                         <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-02.jpg') }}">
+                                            src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png">
                                     </span>
                                     <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Carlson Tech</span> has
-                                            approved <span class="noti-title">your estimate</span></p>
-                                        <p class="noti-time"><span class="notification-time">4 mins ago</span>
+                                        <p class="noti-details"><span class="noti-title">{{$tb->tieude}}</span></p>
+                                        <p class="noti-time"><span class="notification-time"></span>
                                         </p>
                                     </div>
                                 </div>
                             </a>
-                        </li>
-                        <li class="notification-message">
-                            <a href="#">
-                                <div class="media"> <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-11.jpg') }}">
-                                    </span>
-                                    <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">International Software
-                                                Inc</span> has sent you a invoice in the amount of <span
-                                                class="noti-title">$218</span></p>
-                                        <p class="noti-time"><span class="notification-time">6 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="notification-message">
-                            <a href="#">
-                                <div class="media"> <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('assets/img/profiles/avatar-17.jpg') }}">
-                                    </span>
-                                    <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">John Hendry</span> sent
-                                            a cancellation request <span class="noti-title">Apple iPhone
-                                                XR</span></p>
-                                        <p class="noti-time"><span class="notification-time">8 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="notification-message">
-                            <a href="#">
-                                <div class="media"> <span class="avatar avatar-sm">
-                                        <img class="avatar-img rounded-circle" alt="User Image"
-                                            src="{{ URL::to('') }}assets/img/profiles/avatar-13.jpg">
-                                    </span>
-                                    <div class="media-body">
-                                        <p class="noti-details"><span class="noti-title">Mercury Software
-                                                Inc</span> added a new product <span class="noti-title">Apple
-                                                MacBook Pro</span></p>
-                                        <p class="noti-time"><span class="notification-time">12 mins ago</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                        </li> 
+                        @endforeach 
                     </ul>
                 </div>
-                <div class="topnav-dropdown-footer"> <a href="#">View all Notifications</a> </div>
             </div>
         </li>
         <li class="nav-item dropdown has-arrow">

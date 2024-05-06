@@ -19,21 +19,14 @@
                     <div class="profile-header">
                         <div class="row align-items-center">
                             <div class="col-auto profile-image">
-                                <a href="#"> <img class="rounded-circle" alt="User Image"
-                                        src="assets/img/profiles/avatar-02.jpg"> </a>
+                                <a href="#">
+                                    <img src="{{ asset('assets/backend/img/hoso/'. Auth::user()->image) }}" alt="">    
+                                </a>
                             </div>
                             <div class="col ml-md-n2 profile-user-info">
-                                <h4 class="user-name mb-3">{{ Auth::user()->name ?? Auth::user()->getdoanhnghiep->tentiengviet}}</h4>
-                                <h6 class="text-muted mt-1">Mô tả</h6>
-                                {{-- <div class="user-Location mt-1"><i class="fas fa-map-marker-alt"></i> Florida, United States
-                                </div> --}}
-                                <div class="about-text">{{Auth::user()->getdoanhnghiep->mota}}</div>
+                                <h4 class="user-name mb-3">{{Auth::user()->getdoanhnghiep->tentiengviet}}</h4>
+                                <div class="about-text"><span style="font-weight: 600">Mô tả : </span>{{Auth::user()->getdoanhnghiep->mota}}</div>
                             </div>
-                            {{-- <div class="col-auto profile-btn"> <a href="" class="btn btn-primary">
-                                    Message
-                                </a> <a href="edit-profile.html" class="btn btn-primary">
-                                    Edit
-                                </a> </div> --}}
                         </div>
                     </div>
                     <div class="profile-menu">
@@ -83,24 +76,9 @@
                                                 <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Số lượng nhân sự</p>
                                                 <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->soluongnhansu}}</p>
                                             </div>
-                                            {{-- <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Email ID </p>
-                                                <p class="col-sm-9"><a href="/cdn-cgi/l/email-protection"
-                                                        class="__cf_email__"
-                                                        data-cfemail="caaeabbca3aeaba6bcabb8afb08aafb2aba7baa6afe4a9a5a7">[email&#160;protected]</a>
-                                                </p>
-                                            </div> --}}
-                                            {{-- <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mobile</p>
-                                                <p class="col-sm-9">305-310-5857</p>
-                                            </div> --}}
                                             <div class="row">
                                                 <p class="col-sm-3 text-sm-right mb-0">Địa chỉ</p>
-                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->diachi}},
-                                                    <br> Miami,
-                                                    <br> Florida - 33165,
-                                                    <br> United States.
-                                                </p>
+                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->diachi}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -233,16 +211,16 @@
                                             </div>
                                             <div class="row">
                                                 <p class="col-sm-3 text-sm-right mb-0">Địa chỉ</p>
-                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->getdaidien->diachi}},
-                                                    <br> Miami,
-                                                    <br> Florida - 33165,
-                                                    <br> United States.
-                                                </p>
+                                                <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->getdaidien->diachi}}</p>
                                             </div>
 
                                             <div class="row">
-                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mô tả chi tiết đại diện doanh nghiệp</p>
-                                                <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->mota}}</p>
+                                                <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Mô tả</p>
+                                                @if(Auth::user()->getdoanhnghiep->getdaidien->mota == null)
+                                                    <p class="col-sm-9">Đang cập nhật...</p>
+                                                @else 
+                                                    <p class="col-sm-9">{{Auth::user()->getdoanhnghiep->getdaidien->mota}}</p>
+                                                @endif    
                                             </div>
                                         </div>
                                     </div>

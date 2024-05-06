@@ -10,6 +10,7 @@ use App\Models\Mucdo;
 use App\Models\User;
 use App\Models\Doanhnghiep;
 use App\Models\Sanpham;
+use App\Models\ThongBao;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,6 +37,9 @@ class DoanhnghiepController extends Controller
     //home doanh nghiệp
     public function home()
     {
+        $user_id = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+
         $khaosat1 = Auth::user()->getdoanhnghiep->getkhaosat;
         //Biểu đồ tròn
         $trucot1 = Mohinh_Trucot::all();
@@ -61,15 +65,15 @@ class DoanhnghiepController extends Controller
 
         foreach ($khaosat1 as $key => $it) {
             // lấy giá trị trụ cột
-            if ($it->getdanhsachphieu1->getketquaphieu1)
-                $trucot = [
-                    $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[2]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[3]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[4]->phantram,
-                    $it->getdanhsachphieu1->getketquaphieu1[5]->phantram,
-                ];
+            // if ($it->getdanhsachphieu1->getketquaphieu1)
+            //     $trucot = [
+            //         $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
+            //         $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,
+            //         $it->getdanhsachphieu1->getketquaphieu1[2]->phantram,
+            //         $it->getdanhsachphieu1->getketquaphieu1[3]->phantram,
+            //         $it->getdanhsachphieu1->getketquaphieu1[4]->phantram,
+            //         $it->getdanhsachphieu1->getketquaphieu1[5]->phantram,
+            //     ];
             //tính toán giá trị mức độ
             if ($it->trangthai != 0) {
                 $it->tongdiem == 0 ? $mucdo = [0] : '';
@@ -94,12 +98,16 @@ class DoanhnghiepController extends Controller
             $trucot = [];
             $mucdo = [];
         }
-        return view('trangquanly.doanhnghiep.home', compact('khaosat'));
+
+
+        return view('trangquanly.doanhnghiep.home', compact('khaosat', 'thongbaos'));
     }
     //profile doanh nghiệp
     public function profile()
     {
-        return view('trangquanly.doanhnghiep.profile');
+        $user_id = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+        return view('trangquanly.doanhnghiep.profile', compact('thongbaos'));
     }
 
     //duyệt bài báo

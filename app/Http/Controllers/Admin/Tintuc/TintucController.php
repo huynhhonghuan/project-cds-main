@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Tintuc;
 
+use App\Exports\Taikhoan\Doanhnghiep;
 use App\Http\Controllers\Controller;
 use App\Models\Tintuc;
 use App\Models\User;
@@ -9,6 +10,11 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewsNoti;
+use App\Http\Services\NotificationService;
+use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class TintucController extends Controller
 {
@@ -84,7 +90,7 @@ class TintucController extends Controller
 
         //Thêm dữ liệu vào csdl
         Tintuc::create($input);
-
+        
         Toastr::success('Thêm thành công:)', 'Success');
         return redirect()->route('admin.tintuc.danhsach');
     }
@@ -92,9 +98,11 @@ class TintucController extends Controller
     //duyệt bài báo
     public function getduyet($id)
     {
+        $user = User::all();
+        // dd($user);
         //tìm tin tức theo id
         $tintuc = Tintuc::find($id);
-
+        // dd($tintuc);
         //nếu 1 thì set = 0 và ngược lại
         $tintuc->duyet == 1 ? $input['duyet'] = 0 : $input['duyet'] = 1;
 
@@ -102,7 +110,24 @@ class TintucController extends Controller
 
         //Tintuc::where('id',$id)->update($tintuc);
         $tintuc->save();
+        $message = [
+            'greeting' => 'Xin chào !',
+            'body' => 'Có tin tức mới liên quan đến lĩnh vực của doanh nghiệp.', 
+            'actionText' => 'Bấm vào đây để xem tin !',
+            'actionUrl' => 'http://127.0.0.1:8000/tin/'.$id,
+            'lastline' => 'Cảm ơn!'
+        ];
 
+        // $tinnhan = [
+        //     'tieude' => 'Có tin tức mới !',
+        //     'noidung' => $tintuc->tieude,
+        //     'loai' => 'tin',
+        //     'loai_id' => $id
+        // ];
+        // $user_id = 11;
+        // dd($user_id);
+        // (new NotificationService())->sendNotification($tinnhan, $user_id);
+        Notification::send($user, new NewsNoti($message));
         Toastr::success('Duyệt thành công:)', 'Success');
         return redirect()->route('admin.tintuc.danhsach');
     }

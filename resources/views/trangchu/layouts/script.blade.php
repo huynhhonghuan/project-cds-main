@@ -149,3 +149,10 @@
     },
   });
 </script>
+
+<script>
+    window.setInterval(function() {
+    var elem = document.getElementById('tnscroll');
+    elem.scrollTop = elem.scrollHeight;
+    }, 1000);
+</script>

@@ -8,7 +8,7 @@
         margin-top: 0;
     }
 </style>
-<div class="news-background" style="margin-top: 132px;">
+<div class="news-background" style="margin-top: 126px;">
     <div class="image-heading">
         @foreach($laybanner as $bn)
             @if($bn->linhvuc_id == 'nn')

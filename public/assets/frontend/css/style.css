@@ -712,6 +712,11 @@ ul {
     cursor: not-allowed;
 }
 
+/* Chuyên gia trong doanh nghiệp */
+.bh:hover {
+    background-color: #000;
+}
+
 
 /* Forum */
 .forum__item {

@@ -31,6 +31,7 @@ class User extends Authenticatable  implements JWTSubject
         'password',
         'image',
         'status',
+        'device_token'
     ];
 
     /**
@@ -101,6 +102,10 @@ class User extends Authenticatable  implements JWTSubject
     public function getHiepHoiDoanhNghiep()
     {
         return $this->hasOne(Hiephoidoanhnghiep::class);
+    }
+    public function getThongBaos()
+    {
+        return $this->hasMany(ThongBao::class);
     }
 
     //Kiểm tra tài khoản đăng nhập

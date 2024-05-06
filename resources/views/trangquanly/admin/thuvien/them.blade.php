@@ -40,6 +40,7 @@
                                         <option selected disabled> --Chọn-- </option>
                                         <option value="1">Văn bản địa phương</option>
                                         <option value="0">Văn bản trung ương</option>
+                                        <option value="2">Văn bản tập huấn chuyển đổi số</option>
                                     </select>
                                 </div>
                             </div>

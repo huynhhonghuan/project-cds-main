@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Daidien;
 use App\Models\Doanhnghiep_Sdt;
+use App\Models\NhuCau;
 use App\Models\User;
 use App\Models\User_Vaitro;
 use Carbon\Carbon;
@@ -24,6 +25,21 @@ class DoanhNghiepController extends Controller
     public function index()
     {
         return DoanhNghiepResource::collection(Doanhnghiep::where('trangthai', 1)->get());
+    }
+
+    public function postNhuCau(Request $request)
+    {
+        $request->validate([
+            'nhuCau' => 'required',
+            'caiThien' => 'required',
+        ]);
+        $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->first();
+        $nhucau = new NhuCau();
+        $nhucau->doanhnghiep_id = $doanhnghiep->id;
+        $nhucau->caithien = request()->caiThien;
+        $nhucau->nhucau = request()->nhuCau;
+        $nhucau->save();
+        return response()->json(['success' => true], 200);
     }
 
     // public function register(Request $request)

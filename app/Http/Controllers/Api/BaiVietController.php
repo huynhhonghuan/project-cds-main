@@ -13,7 +13,8 @@ use App\Models\BaiViet_BinhLuan;
 use App\Models\BaiViet_DanhMuc;
 use App\Models\BaiViet_Thich;
 use App\Models\Doanhnghiep as ModelsDoanhnghiep;
-use App\Models\SanPham;
+use App\Models\Sanpham;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -33,6 +34,15 @@ class BaiVietController extends Controller
     {
         $user_id = ModelsDoanhnghiep::findOrFail($id)->user_id;
         $baiviets = BaiViet::where('user_id', $user_id)->where('trangthai', 1)->orderByDesc('created_at')->get();
+        foreach ($baiviets as $baiviet) {
+            $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
+        }
+        return BaiVietResource::collection($baiviets);
+    }
+
+    public function getBaiVietsByUser($id)
+    {
+        $baiviets = BaiViet::where('user_id', $id)->where('trangthai', 1)->orderByDesc('created_at')->get();
         foreach ($baiviets as $baiviet) {
             $baiviet->liked = $this->getLikedByAuthUserAttribute($baiviet);
         }

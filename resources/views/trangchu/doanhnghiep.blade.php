@@ -29,7 +29,11 @@
                         <div class="col" style="font-size: 22px;font-weight:700"><span style="padding: 0 12px;padding-bottom: 32px; border-right: 2px solid">{{ $loop->iteration }}</span></div>
                         <div class="col-2">
                             <div class="item__dn--img">
-                                <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
+                                @if($dn->getUser->image == null)
+                                    <img src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png" alt="">
+                                @else  
+                                    <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
+                                @endif
                             </div>
                         </div>
                         <div class="col-7">

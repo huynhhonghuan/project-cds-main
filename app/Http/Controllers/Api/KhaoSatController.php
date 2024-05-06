@@ -39,4 +39,25 @@ class KhaoSatController extends Controller
 
         return response()->json($result);
     }
+
+    public function getKhaoSatDoanhNghiep(Request $request, $id)
+    {
+        $type = $request->input('type');
+        $doanhNghiep = Doanhnghiep::findOrFail($id);
+        if ($type == 'all') {
+            $khaoSats = Khaosat::where('doanhnghiep_id', $doanhNghiep->id)
+                ->orderByDesc('created_at')
+                ->get();
+            $result = KhaoSatResource::collection($khaoSats);
+        } else if ($type == 'newest') {
+            $khaoSat = Khaosat::where('doanhnghiep_id', $doanhNghiep->id)
+                ->orderByDesc('created_at')
+                ->firstOrFail();
+            $result = new KhaoSatResource($khaoSat);
+        } else {
+            return response()->json(['error' => 'Thiếu tham số']);
+        }
+
+        return response()->json($result);
+    }
 }

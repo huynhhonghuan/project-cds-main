@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page-header" style="margin-top: 16px;padding:16px;height:400px;overflow-y:scroll">
+            <div class="page-header" style="margin-top: 16px;padding:16px;height:400px;overflow-y:scroll" id="tnscroll">
                 <div class="row align-items-center">
                     <div class="col" >
                         @foreach($tinnhans as $tn)
@@ -41,6 +41,9 @@
                     </div>
                 </div>
             </div>
+            <script>
+                $("#tnscroll").scrollTop($("#tnscroll")[0].scrollHeight);
+            </script>
             <div class="container" style="position:fixed;bottom:5%;margin-left:32px">
                 <form action="{{ route('chuyengia.themtinnhan') }}"  style="display:flex" method="post"> @csrf
                     <input type="hidden" name="hoiThoaiId" value="{{$hoithoai->id}}">

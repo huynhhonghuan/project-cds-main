@@ -45,6 +45,11 @@ class Doanhnghiep extends Model
         return $this->belongsTo(Doanhnghiep_Loaihinh::class, 'doanhnghiep_loaihinh_id', 'id');
     }
 
+    public function getLinhVuc()
+    {
+        return $this->hasOneThrough(Linhvuc::class, Doanhnghiep_Loaihinh::class, 'id', 'id', 'doanhnghiep_loaihinh_id', 'linhvuc_id');
+    }
+
     public function getDaiDien()
     {
         return $this->hasOne(Doanhnghiep_Daidien::class);
@@ -61,5 +66,10 @@ class Doanhnghiep extends Model
     public function getSdts()
     {
         return $this->hasMany(Doanhnghiep_Sdt::class);
+    }
+
+    public function getNhuCau()
+    {
+        return $this->hasMany(NhuCau::class);
     }
 }
