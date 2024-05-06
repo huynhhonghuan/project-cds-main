@@ -126,7 +126,7 @@
 
                                             @if ($danhsach->getlotrinh->noidung != null)
                                                 <div class="col-8 mx-auto my-auto">
-                                                    <div class="text-center">{{ $danhsach->getlotrinh->noidung }}</div>
+                                                    <div class="text-center">{!! $danhsach->getlotrinh->noidung !!}</div>
                                                 </div>
                                             @else
                                                 <div class="col-8 mx-auto my-auto">
@@ -156,7 +156,7 @@
                                             </div>
                                             @if ($danhsach->getlotrinh->luuy != null)
                                                 <div class="col-8 mx-auto my-auto">
-                                                    <div class="text-center">{{ $danhsach->getlotrinh->luuy }}</div>
+                                                    <div class="text-center">{!! $danhsach->getlotrinh->luuy !!}</div>
                                                 </div>
                                             @else
                                                 <div class="col-8 mx-auto my-auto">

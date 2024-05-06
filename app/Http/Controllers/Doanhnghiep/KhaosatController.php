@@ -200,8 +200,20 @@ class KhaosatController extends Controller
                 [$this->ketqua_item->mohinh_trucot_id, $this->doanhnghiep_loaihinh_id]
             )->first();
             if ($mohinh != null) {
+                $khaosat = Khaosat::find($id);
+                $mucdo = 1;
+                if ($khaosat) {
+                    ($khaosat->tongdiem >= 0 && $khaosat->tongdiem <= 20) ? $mucdo = 1 : '';
+                    ($khaosat->tongdiem > 20 && $khaosat->tongdiem <= 64) ? $mucdo = 2 : '';
+                    ($khaosat->tongdiem > 64 && $khaosat->tongdiem <= 128) ? $mucdo = 3 : '';
+                    ($khaosat->tongdiem > 128 && $khaosat->tongdiem <= 192) ? $mucdo = 4 : '';
+                    ($khaosat->tongdiem > 192 && $khaosat->tongdiem <= 256) ? $mucdo = 5 : '';
+                    ($khaosat->tongdiem == 320) ? $mucdo = 6 : '';
+                }
+
                 $chienluoc = Khaosat_Chienluoc::insert([
                     'khaosat_id' => $id,
+                    'mucdo_id' => $mucdo,
                     'mohinh_id' => $mohinh->mohinh_id,
                     'user_id' => null,
                     'trangthai' => 1,

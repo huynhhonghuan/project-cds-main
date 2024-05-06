@@ -132,7 +132,7 @@ class Ketqua implements ToModel, WithHeadingRow
             ModelsKetquaphieu1::create([
                 'danhsachphieu1_id' => $row['danhsachphieu1_id_1'],
                 'mohinh_trucot_id' => $row['mohinh_trucot_id'],
-                'phantram' => $row['phantram'],
+                'phantram' => $row['phantram'] ?? 0,
             ]);
         }
         //phiếu 2

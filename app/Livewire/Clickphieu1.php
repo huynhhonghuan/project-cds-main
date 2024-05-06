@@ -64,7 +64,7 @@ class Clickphieu1 extends Component
                 }
             }
             $item1->update([
-                'phantram' => round(($diem / ($soluongcauhoi * 5)) / 6, 2),
+                'phantram' => round(($diem / ($soluongcauhoi * 5)) / 6 * 100, 2),
             ]);
         }
         // dump($ketquaphieu1);

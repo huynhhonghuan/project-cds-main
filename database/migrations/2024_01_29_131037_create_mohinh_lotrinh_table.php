@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('nhansu')->default(0);
             $table->integer('taichinh')->default(0);
             $table->longText('noidung');
-            $table->string('luuy')->nullable();
+            $table->longText('luuy')->nullable();
 
             $table->timestamps();
             $table->engine = 'InnoDB';

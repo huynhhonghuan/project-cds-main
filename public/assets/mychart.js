@@ -1,15 +1,15 @@
-function drawChart(ctx, labels, data, colors, type, title) {
+function drawChart11(ctx, labels, data, colors, type, title) {
     if (data !== null) {
         var myChart = new Chart(ctx, {
             type: type,
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Biểu đồ dữ liệu',
+                    label: labels,
                     data: data,
                     backgroundColor: colors.map(color => color),
                     borderColor: colors.map(color => color.replace('0.2', '1')),
-                    borderWidth: 2
+                    borderWidth: 2,
                 }]
             },
             options: {
@@ -25,4 +25,32 @@ function drawChart(ctx, labels, data, colors, type, title) {
             }
         });
     }
+}
+
+function pieChart1(ctx, labels, datasets, title) {
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: datasets,
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                }],
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: title,
+                },
+            },
+        },
+    });
 }
