@@ -22,6 +22,7 @@ class ThuVienResource extends JsonResource
             'loai' => $this->loai,
             'url' => $this->file ? env('APP_IMAGE_URL') . '/assets/frontend/file' . '/' . $this->file . '?' . rand(0, 99999) : "",
             'file' => $this->file,
+            'hinhAnh' =>  $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/thuvien' . '/' . $this->hinhanh . '?' . rand(0, 99999) : "",
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
         ];

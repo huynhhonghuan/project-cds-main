@@ -36,6 +36,7 @@ class DoanhNghiepResource extends JsonResource
             'user' => new UserResource($this->getUser),
             'nhuCau' =>  NhuCauResource::collection($this->getNhuCau),
             'linhVuc' => new LinhVucResource($this->getLinhVuc),
+            'khaoSat' => KhaoSatResource::collection($this->getKhaoSat->sortByDesc('id')),
         ];
     }
 }

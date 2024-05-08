@@ -20,14 +20,12 @@ class KhaoSatController extends Controller
         $type = $request->input('type');
 
         if ($type == 'all') {
-            $khaoSat = Khaosat::with(['getChuyenGia', 'getChuyenGia.getUser', 'getMoHinh', 'getMucDo', 'getKetQuaPhieu1'])
-                ->where('doanhnghiep_id', $doanhNghiep->id)
+            $khaoSat = Khaosat::where('doanhnghiep_id', $doanhNghiep->id)
                 ->orderByDesc('created_at')
                 ->get();
             $result = KhaoSatResource::collection($khaoSat);
         } else if ($type == 'newest') {
-            $khaoSat = Khaosat::with(['getChuyenGia', 'getChuyenGia.getUser', 'getMoHinh', 'getMucDo'])
-                ->where('doanhnghiep_id', $doanhNghiep->id)
+            $khaoSat = Khaosat::where('doanhnghiep_id', $doanhNghiep->id)
                 ->orderByDesc('created_at')
                 ->first();
             $khaoSatCount = Khaosat::where('doanhnghiep_id', $doanhNghiep->id)->count();

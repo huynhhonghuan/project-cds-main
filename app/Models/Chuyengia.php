@@ -25,6 +25,9 @@ class Chuyengia extends Model
         'img_mattruoc',
         'img_matsau',
         'mota',
+        'chucvu',
+        'namkinhnghiem',
+        'trinhdo'
     ];
 
     public function getUser()

@@ -47,7 +47,7 @@ class Doanhnghiep extends Model
 
     public function getLinhVuc()
     {
-        return $this->hasOneThrough(Linhvuc::class, Doanhnghiep_Loaihinh::class, 'id', 'id', 'doanhnghiep_loaihinh_id', 'linhvuc_id');
+        return $this?->hasOneThrough(Linhvuc::class, Doanhnghiep_Loaihinh::class, 'id', 'id', 'doanhnghiep_loaihinh_id', 'linhvuc_id');
     }
 
     public function getDaiDien()

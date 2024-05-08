@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DoanhNghiepPublicResource;
 use App\Http\Resources\DoanhNghiepResource;
 use App\Http\Resources\UserResource;
+use App\Http\Services\NotificationService;
+use App\Models\Chuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Daidien;
 use App\Models\Doanhnghiep_Sdt;
@@ -33,12 +35,29 @@ class DoanhNghiepController extends Controller
             'nhuCau' => 'required',
             'caiThien' => 'required',
         ]);
-        $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->first();
+        $user = User::findOrFail(auth('api')->id());
+        $doanhnghiep = Doanhnghiep::where('user_id', $user->id)->first();
         $nhucau = new NhuCau();
         $nhucau->doanhnghiep_id = $doanhnghiep->id;
         $nhucau->caithien = request()->caiThien;
         $nhucau->nhucau = request()->nhuCau;
         $nhucau->save();
+
+        // Gửi thông báo
+        $linhvuc_id = $doanhnghiep?->getLinhVuc?->id;
+        if ($linhvuc_id) {
+            $chuyengias = Chuyengia::where('linhvuc_id', $linhvuc_id)->get();
+            foreach ($chuyengias as $chuyengia) {
+                $to = $chuyengia->user_id;
+                $message = [
+                    'tieude' => 'Doanh nghiệp ' . $doanhnghiep->tentiengviet . ' đã gửi một nhu cầu mới',
+                    'noidung' => '',
+                    'loai' => 'nhucau',
+                    'loai_id' => $doanhnghiep->id,
+                ];
+                (new NotificationService())->sendNotification($message, $to);
+            }
+        }
         return response()->json(['success' => true], 200);
     }
 
@@ -218,6 +237,9 @@ class DoanhNghiepController extends Controller
         $doanhnghiep->tentienganh = $request->tenTiengAnh;
         $doanhnghiep->tenviettat = $request->tenVietTat;
         $doanhnghiep->ngaylap = $request->ngayLap;
+        $doanhnghiep->thanhpho = $request->tinh;
+        $doanhnghiep->huyen = $request->huyen;
+        $doanhnghiep->xa = $request->xa;
         $doanhnghiep->diachi = $request->diaChi;
         $doanhnghiep->website = $request->website;
         $doanhnghiep->mathue = $request->maThue;
@@ -227,7 +249,7 @@ class DoanhNghiepController extends Controller
         $doanhnghiep->doanhnghiep_loaihinh_id = $request->loaiHinh;
         $doanhnghiep->sdt = $request->sdt;
         $doanhnghiep->save();
-        return response()->json(['success' => true, 'message' => 'success'], 200);
+        return new DoanhNghiepResource($doanhnghiep);
     }
 
     public function editDaiDien(Request $request)
@@ -238,13 +260,16 @@ class DoanhNghiepController extends Controller
         $daidien->tendaidien = $request->tenDaiDien;
         $daidien->email = $request->email;
         $daidien->sdt = $request->sdt;
+        $doanhnghiep->thanhpho = $request->tinh;
+        $doanhnghiep->huyen = $request->huyen;
+        $doanhnghiep->xa = $request->xa;
         $daidien->diachi = $request->diaChi;
         $daidien->cccd = $request->cccd;
         $daidien->chucvu = $request->chucVu;
         $daidien->mota = $request->moTa;
 
         $daidien->save();
-        return response()->json(['success' => true, 'message' => 'success'], 200);
+        return new DoanhNghiepResource($doanhnghiep);
     }
 
     public function detail($id)
@@ -319,8 +344,7 @@ class DoanhNghiepController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $doanhnghiep = Doanhnghiep::with(['getUser', 'getLoaiHinh', 'getDaiDien', 'getSdts'])
-            ->where('user_id', $user->id)->first();
+        $doanhnghiep = Doanhnghiep::where('user_id', $user->id)->first();
 
         if (!$doanhnghiep)
             return response()->json(['error' => 'Không tìm thấy thông tin doanh nghiệp'], 404);

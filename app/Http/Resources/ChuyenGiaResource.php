@@ -22,7 +22,11 @@ class ChuyenGiaResource extends JsonResource
             'sdt' => $this->sdt,
             'diaChi' => $this->diachi,
             'moTa' => $this->mota,
-            'linhVuc' => new LinhVucResource($this->getLinhVuc)
+            'chucVu' => $this->chucvu,
+            'namKinhNghiem' => $this->namkinhnghiem,
+            'trinhDo' => $this->trinhdo,
+            'linhVuc' => new LinhVucResource($this->getLinhVuc),
+            'user' => new UserResource($this->getUser),
         ];
     }
 }
