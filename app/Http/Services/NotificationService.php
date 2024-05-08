@@ -10,6 +10,7 @@ class NotificationService
     public function sendNotification($message, $to_user_id)
     {
         $user = User::find($to_user_id);
+        // dd($user);
         $noti = new ThongBao();
 
         $noti->user_id = $user->id;

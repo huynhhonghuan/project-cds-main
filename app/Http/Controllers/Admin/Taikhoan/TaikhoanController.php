@@ -515,8 +515,8 @@ class TaikhoanController extends Controller
                 'doanhnghiep_tenviettat',
                 'doanhnghiep_loaihinh_id' => ['required', 'int'],
                 'doanhnghiep_ngaylap' => ['string'],
-                'doanhnghiep_mathue' => ['string'],
-                'doanhnghiep_fax' => ['string'],
+                'doanhnghiep_mathue',
+                'doanhnghiep_fax',
                 'doanhnghiep_soluongnhansu' => ['int'],
                 'doanhnghiep_sdt',
                 'doanhnghiep_thanhpho' => ['required', 'string'],
@@ -551,6 +551,7 @@ class TaikhoanController extends Controller
                 'huyen' => 'doanhnghiep_huyen',
                 'xa' => 'doanhnghiep_xa',
                 'diachi' => 'doanhnghiep_diachi',
+                "sdt" => 'doanhnghiep_sdt',
                 'mathue' => 'doanhnghiep_mathue',
                 'fax' => 'doanhnghiep_fax',
                 'soluongnhansu' => 'doanhnghiep_soluongnhansu',
@@ -944,17 +945,18 @@ class TaikhoanController extends Controller
     }
     public function postnhapdoanhnghiep(Request $request)
     {
-        // try {
-        // dd($request->file('excel_file'));
-        foreach ($request->file('excel_file') as $item) {
-            Excel::import(new DoanhnghiepImport, $item);
+        try {
+            // dd($request->file('excel_file'));
+            foreach ($request->file('excel_file') as $item) {
+                Excel::import(new DoanhnghiepImport, $item);
+            }
+            Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
+            return redirect()->route('admin.taikhoan.danhsach');
+        } catch (Exception $e) {
+            dd($e);
+            Toastr::warning('Nhập dữ liệu excel tài khoản doanh nghiệp không thành công!', 'Warning');
+            return redirect()->route('admin.taikhoan.danhsach');
         }
-        Toastr::success('Nhập dữ liệu excel tài khoản doanh nghiệp', 'Success');
-        return redirect()->route('admin.taikhoan.danhsach');
-        // } catch (Exception $e) {
-        //     Toastr::warning('Nhập dữ liệu excel tài khoản doanh nghiệp không thành công!', 'Warning');
-        //     return redirect()->route('admin.taikhoan.danhsach');
-        // }
     }
     public function postnhapchuyengia(Request $request)
     {

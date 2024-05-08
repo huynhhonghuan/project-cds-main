@@ -1,16 +1,42 @@
 @extends('trangquanly.chuyengia.layout'){{-- kế thừa form layout --}}
 @section('content'){{-- thêm content vào form kế thừa chỗ @yield('content') --}}
-@section('content')
+    @section('content')
     <div class="page-wrapper">
         <div class="content container-fluid">
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12 mt-5">
-                        <h3 class="page-title mt-3">Good Morning {{ Auth::user()->id }}!</h3>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ul>
+                        <h3 class="page-title mt-3">Chào {{ Auth::user()->getChuyengia->tenchuyengia }}</h3>
                     </div>
+                    {{-- <li class="nav-item dropdown noti-dropdown">
+                        <a href="" class="dropdown-toggle nav-link" data-toggle="dropdown"> <i class="fe fe-bell"></i> <span
+                                class="badge badge-pill">4</span> </a>
+                        <div class="dropdown-menu notifications">
+                            <div class="topnav-dropdown-header"> <span class="notification-title">Notifications</span> <a
+                                    href="javascript:void(0)" class="clear-noti"> Clear All </a> </div>
+                            <div class="noti-content">
+                                <ul class="notification-list">
+                                    @foreach($thongbaos as $tb)
+                                    <li class="notification-message">
+                                        <a href="#">
+                                            <div class="media"> <span class="avatar avatar-sm">
+                                                    <img class="avatar-img rounded-circle" alt="User Image"
+                                                        src="{{ env('APP_URL') }}/assets/img/profiles/avatar-02.jpg">
+                                                </span>
+                                                <div class="media-body">
+                                                    <p>{{$tb->tieude}}</p>
+                                                    <p class="noti-time"><span class="notification-time">{{$tb->noidung}}</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li> 
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="topnav-dropdown-footer"> <a href="#">View all Notifications</a> </div>
+                        </div>
+                    </li> --}}
                 </div>
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 col-12">
@@ -76,9 +102,9 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
+    </div>
     @endsection
+@endsection    

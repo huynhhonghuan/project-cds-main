@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\Linhvuc\LinhvucController;
 use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController;
 use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
 use App\Http\Controllers\Admin\Taikhoan\VaitroController;
+use App\Http\Controllers\Admin\ThongkechungController;
+use App\Http\Controllers\Admin\ThongkeController;
 use App\Http\Controllers\Admin\Tintuc\TintucController;
 use App\Http\Controllers\Frontend\BannerController;
 use App\Http\Controllers\Frontend\GoogleController;
@@ -64,6 +66,7 @@ use App\Http\Controllers\Frontend\DiendanController;
 use App\Http\Controllers\Frontend\ThuvienController;
 use App\Http\Controllers\Frontend\VideoController;
 use App\Http\Controllers\Frontend\BinhluanController;
+use App\Http\Controllers\Frontend\ThongbaoController;
 
 function set_active($route)
 {
@@ -195,6 +198,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
     });
 
     //------------------------------------------------------------------------------------------//
+    Route::group(['prefix' => 'thongke', 'as' => 'thongke.'], function () {
+
+        Route::get('mucdobieudocot', [ThongkeController::class, 'mucdobieudo'])->name('mucdo.bieudo');
+        Route::post('luubieudocot', [ThongkeController::class, 'luubieudocot'])->name('luubieudocot');
+        Route::get('xuatbieudocot', [ThongkeController::class, 'xuatbieudocot'])->name('xuatbieudocot');
+
+
+        Route::get('doanhnghiep', [ThongkeController::class, 'doanhnghiep'])->name('doanhnghiep');
+        Route::get('doanhnghiepbieudo', [ThongkeController::class, 'doanhnghiep_bieudo'])->name('doanhnghiep.bieudo');
+        Route::get('doanhnghiepxuatbieudo', [ThongkeController::class, 'doanhnghiepxuatbieudo'])->name('doanhnghiepxuatbieudo');
+
+        Route::get('test', [ThongkeController::class, 'test'])->name('test');
+    });
+
+    Route::group(['prefix' => 'thongkechung', 'as' => 'thongkechung.'], function () {
+        Route::get('danhsach', [ThongkechungController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('thongke', [ThongkechungController::class, 'thongke'])->name('thongke');
+    });
+
     //-------------------------------------Tài khoản--------------------------------------------//
     Route::group(['prefix' => 'taikhoan', 'as' => 'taikhoan.'], function () {
         Route::get('danhsach', [TaikhoanController::class, 'getdanhsach'])->name('danhsach');
@@ -322,7 +344,7 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     //-------------------------------------Sản phẩm--------------------------------------------//
     Route::group(['prefix' => 'sanpham', 'as' => 'sanpham.'], function () {
         Route::get('danhsach', [SanphamController::class, 'sanpham'])->name('danhsach');
-        
+
         Route::get('them', [SanphamController::class, 'getthem'])->name('them');
         Route::post('them', [SanphamController::class, 'postthem'])->name('them');
         Route::get('sua/{id}', [SanphamController::class, 'getsua'])->name('sua');
@@ -522,7 +544,6 @@ Route::get('/doanhnghiepct/{id}', [TrangtinController::class, 'doanhnghiepct'])-
 Route::get('/diendan', [DiendanController::class, 'Index'])->name('diendan');
 Route::post('/diendan/{id}/like', [DiendanController::class, 'like'])->name('like');
 Route::post('/diendan/{id}/unlike', [DiendanController::class, 'unlike'])->name('unlike');
-
 
 // ---------------------------------------------
 //Giao diện thư viện

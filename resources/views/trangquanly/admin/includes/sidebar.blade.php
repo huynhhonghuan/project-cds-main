@@ -5,6 +5,16 @@
             <ul>
                 <li class="active"> <a href="{{ route('admin.home') }}"><i class="fas fa-tachometer-alt"></i> <span>Bảng
                             điều khiển</span></a> </li>
+
+                <li class="list-divider"></li>
+                <li class="menu-title mt-3"> <span>Quản lý thống kê</span> </li>
+                <li> <a href="{{ route('admin.thongkechung.danhsach') }}"><i class="fa-regular fa-building"></i> <span>
+                            Chung</span></a>
+                </li>
+                <li> <a href="{{ route('admin.thongke.doanhnghiep') }}"><i class="fa-regular fa-building"></i> <span> Doanh
+                            nghiệp</span></a>
+                </li>
+
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý doanh nghiệp</span> </li>
                 <li> <a href="{{ route('admin.khaosat.danhsach') }}"><i class="fa-regular fa-building"></i> <span> Khảo
@@ -42,7 +52,8 @@
                             Đánh giá - đề xuất</span></a>
                 </li>
 
-                {{-- <li> <a href="#"><i class="fa-solid fa-recycle"></i></i><span>Chiến lược đề xuât</span></a> </li> --}}
+                {{-- <li> <a href="#"><i class="fa-solid fa-recycle"></i></i><span>Chiến lược đề xuât</span></a> </li>
+                --}}
 
                 <li class="list-divider"></li>
 

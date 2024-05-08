@@ -28,7 +28,7 @@
                                         <th scope="col">Tên người đăng</th>
                                         <th scope="col" width="20%">Tiêu đề</th>
                                         <th scope="col">Lượt xem</th>
-                                        <th scope="col">Duyệt</th>
+                                        <th scope="col">Trạng Thái</th>
                                         <th scope="col" class="text-center">Xem chi tiết</th>
                                         <th scope="col" width="5%">Sửa</th>
                                         <th scope="col" class="text-center" width="5%">Xóa</th>
@@ -64,18 +64,18 @@
                                             <td>{{ $value->luotxem }}</td>
 
                                             <td>
-                                                <div class="actions">
-                                                    <a href="{{ route('congtacvien.tintuc.duyet', $value->id) }}"
-                                                        class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</a>
+                                                <div class="">
+                                                    <div class="btn btn-sm mr-2 {{ $value->duyet == 1 ? 'bg-success-light' : 'bg-danger-light' }}">{{ $value->duyet == 1 ? 'Duyệt' : 'Chưa' }}</div>
                                                 </div>
                                             </td>
 
                                             <td class="text-center">
                                                 <div class="actions">
-                                                    <a class="btn xem_noidung" data-toggle="modal"
-                                                        data-target="#xem_noidung" data-tomtat="{{ $value->tomtat }}"
-                                                        data-noidung="{{ $value->noidung }}">
-                                                        <i class="fa-regular fa-eye" style="color:orange;"></i></a> </a>
+                                                    @if($value->duyet == 1)
+                                                        <a href="{{ URL::to('/tin/'. $value->id) }}">Chi tiết</a>
+                                                    @else @if($value->duyet == 0)   
+                                                        <a style="cursor: not-allowed;" href="#">Chi tiết</a>
+                                                    @else @endif @endif    
                                                 </div>
                                             </td>
                                             <td>

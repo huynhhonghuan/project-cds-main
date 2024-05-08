@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Chuyengia;
 
 use App\Http\Controllers\Controller;
+use Auth;
 use App\Models\User;
+use App\Models\ThongBao;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -28,12 +30,17 @@ class ChuyengiaController extends Controller
     //home page
     public function home()
     {
-        return view('trangquanly.chuyengia.home');
+        $user_id = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+        // dd($thongbaos);
+        return view('trangquanly.chuyengia.home', compact('thongbaos'));
     }
     //profile
     public function profile()
     {
-        return view('trangquanly.chuyengia.profile');
+        $user_id = Auth::user()->id;
+        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+        return view('trangquanly.chuyengia.profile', compact('thongbaos'));
     }
     public function doimatkhau(Request $request, $id)
     {

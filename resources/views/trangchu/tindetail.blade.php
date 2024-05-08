@@ -213,7 +213,7 @@
                                                 <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $cmt->id }}">Phản hồi</a>
                                                 <form action="{{ URL::to('/BinhLuan') }}" method="post"
                                                     id="{{ $cmt->id }}" style="display: none;"
-                                                    target="hidden-form" enctype="multipart/form-data">
+                                                    enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="row">
                                                         <div class="col-12 col-md-4" style="padding-left: 12px;padding-right: 4px;">
@@ -305,7 +305,7 @@
                                                                 <p style="background: #e7e7e7; border-radius: 8px;padding:6px;margin:4px 0 0">{{ $chill->noidung }}</p>
                                                                 <a class="active replybtn" style="cursor: pointer;text-decoration:none;;padding-left:10px;font-size: 14px;color:#727272;font-weight:600" data-id="{{ $chill->id }}">Phản hồi</a>
                                                                 <form action="{{ URL::to('/BinhLuan') }}" method="post"
-                                                                    id="{{ $chill->id }}" style="display: none;"
+                                                                    style="display: none;"
                                                                     target="hidden-form" enctype="multipart/form-data">
                                                                     @csrf
                                                                     <div class="row">
@@ -385,7 +385,7 @@
             <div class="col-xl-4">
                 <form action="{{ URL::to('/BinhLuan') }}" method="post"
                     id="" style="padding: 8px; border: 2px solid #009688;border-radius: 4px"
-                    target="hidden-form" enctype="multipart/form-data">
+                    enctype="multipart/form-data">
                     @csrf
                     <h5 style="color: #009688; padding-left: 4px;user-select: none;">Bình Luận :</h5>
                     <div class="row">

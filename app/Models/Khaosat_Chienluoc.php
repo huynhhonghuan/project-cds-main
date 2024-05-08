@@ -14,6 +14,7 @@ class Khaosat_Chienluoc extends Model
         'id',
         'khaosat_id',
         'mohinh_id',
+        'mucdo_id',
         'user_id',
         'trangthai'
     ];

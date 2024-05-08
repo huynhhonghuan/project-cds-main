@@ -156,6 +156,7 @@ class ChienluocController extends Controller
             Toastr::success('Sửa chiến lược thành công', 'success');
             return redirect()->route('chuyengia.chienluoc.danhsachdexuat');
         } catch (Exception $e) {
+            dd($e);
             Toastr::warning('Lỗi khi sửa chiến lược', 'warning');
             return redirect()->route('chuyengia.chienluoc.danhsachdexuat');
         }

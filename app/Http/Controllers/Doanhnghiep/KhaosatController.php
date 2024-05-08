@@ -183,9 +183,11 @@ class KhaosatController extends Controller
             $this->doanhnghiep_loaihinh_id = Khaosat::find($id)->getdoanhnghiep->doanhnghiep_loaihinh_id;
             $this->i = 1;
         }
+
         if (count($this->ketqua) > 0) {
             // Sử dụng hàm min của Laravel Collection để tìm phần tử có giá trị nhỏ nhất
             $minPhanTram = $this->ketqua->min('phantram');
+
             // Tìm phần tử có giá trị phantram bằng giá trị nhỏ nhất
             foreach ($this->ketqua as $key => $kt) {
                 if ($kt->phantram == $minPhanTram) {
@@ -195,14 +197,29 @@ class KhaosatController extends Controller
                     break;
                 }
             }
+
             $mohinh = Mohinh_Doanhnghiep_Trucot::whereRaw(
                 'mohinh_trucot_id = ? AND doanhnghiep_loaihinh_id = ?',
                 [$this->ketqua_item->mohinh_trucot_id, $this->doanhnghiep_loaihinh_id]
             )->first();
+
             if ($mohinh != null) {
+                $khaosat = Khaosat::find($id);
+                $mucdo = 1;
+                if ($khaosat) {
+                    ($khaosat->tongdiem >= 0 && $khaosat->tongdiem <= 20) ? $mucdo = 1 : '';
+                    ($khaosat->tongdiem > 20 && $khaosat->tongdiem <= 64) ? $mucdo = 2 : '';
+                    ($khaosat->tongdiem > 64 && $khaosat->tongdiem <= 128) ? $mucdo = 3 : '';
+                    ($khaosat->tongdiem > 128 && $khaosat->tongdiem <= 192) ? $mucdo = 4 : '';
+                    ($khaosat->tongdiem > 192 && $khaosat->tongdiem <= 256) ? $mucdo = 5 : '';
+                    ($khaosat->tongdiem == 320) ? $mucdo = 6 : '';
+                }
+
                 $chienluoc = Khaosat_Chienluoc::insert([
                     'khaosat_id' => $id,
+                    'mucdo_id' => $mucdo,
                     'mohinh_id' => $mohinh->mohinh_id,
+                    'mucdo_id' => $mucdo,
                     'user_id' => null,
                     'trangthai' => 1,
                 ]);
@@ -211,6 +228,7 @@ class KhaosatController extends Controller
                 $khaosat->update([
                     'trangthai' => 2 // đã đề xuất
                 ]);
+
                 return redirect()->route('doanhnghiep.chienluoc.xem', [$id]);
             } else {
                 $this->gethoanthanh($id);

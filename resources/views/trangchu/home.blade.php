@@ -39,7 +39,7 @@
                 </div>
                 <div class="list-field row-cols-1 row-cols-xl-3 row-cols-md-3">
                     <div class="item-field col" data-aos="fade-up" data-aos-duration="1500">
-                        <a target="_blank" href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
+                        <a href="{{ URL::to('/tintuc/NongNghiep') }}" style="text-decoration: none">
                             <img src="assets/backend/img/linhvuc/nongnghiep.jpg" alt="Hình ảnh">
                             <div class="content"><h3>Nông Nghiệp</h3></div>
                         </a>
