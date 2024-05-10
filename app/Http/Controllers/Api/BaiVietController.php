@@ -6,18 +6,17 @@ use App\Exports\Taikhoan\Doanhnghiep;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BaiVietResource;
 use App\Http\Resources\BinhLuanBaiVietResource;
-use App\Http\Resources\SanPhamResource;
+use App\Http\Services\NotificationService;
+use App\Http\Services\WitService;
 use App\Models\BaiViet;
 use App\Models\BaiViet_Anh;
 use App\Models\BaiViet_BinhLuan;
 use App\Models\BaiViet_DanhMuc;
 use App\Models\BaiViet_Thich;
 use App\Models\Doanhnghiep as ModelsDoanhnghiep;
-use App\Models\Sanpham;
-use App\Models\User;
+use App\Models\Doanhnghiep_Loaihinh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 
 class BaiVietController extends Controller
 {
@@ -81,14 +80,39 @@ class BaiVietController extends Controller
 
             $baiviet->noidung = $request->noiDung;
             $baiviet->user_id = $user_id;
+            $baiviet->trangthai = 1;
             $baiviet->save();
 
-            foreach ($request->danhMucs as $danhmuc_id) {
-                $model = new BaiViet_DanhMuc();
-                $model->baiviet_id = $baiviet->id;
-                $model->danhmuc_id = $danhmuc_id;
-                $model->save();
+            $message = $request->noiDung;
+            if (strlen($message) > 280) {
+                $message = substr($message, 0, 280);
             }
+
+            // New
+            $intent = (new WitService())->getIntentByMessage($message);
+            $id = strstr($intent, "_", true);
+            if ($id != '') {
+                $loaihinh = Doanhnghiep_Loaihinh::find($id);
+                $doanhnghieps = ModelsDoanhnghiep::where("doanhnghiep_loaihinh_id", $id)->get();
+                foreach ($doanhnghieps as $dn) {
+                    $to = $dn->user_id;
+                    $message = [
+                        'tieude' => 'Doanh nghiệp ' . $dn->tentiengviet . ' có một nhu cầu mới',
+                        'noidung' =>  $request->noiDung,
+                        'loai' => 'nhucau',
+                        'loai_id' => $baiviet->id
+                    ];
+                    (new NotificationService())->sendNotification($message, $to);
+                }
+            }
+
+
+            // foreach ($request->danhMucs as $danhmuc_id) {
+            //     $model = new BaiViet_DanhMuc();
+            //     $model->baiviet_id = $baiviet->id;
+            //     $model->danhmuc_id = $danhmuc_id;
+            //     $model->save();
+            // }
 
             $hinhAnhs = $request->file('hinhAnhs');
             if ($request->hasFile('hinhAnhs')) {

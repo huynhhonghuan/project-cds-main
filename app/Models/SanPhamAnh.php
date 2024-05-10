@@ -17,6 +17,6 @@ class SanPhamAnh extends Model
 
     public function getSanPham()
     {
-        return $this->belongsTo(SanPham::class, 'san_pham_id');
+        return $this->belongsTo(Sanpham::class, 'san_pham_id');
     }
 }

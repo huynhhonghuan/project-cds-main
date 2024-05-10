@@ -16,7 +16,7 @@ class SanPhamAnhResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/sanpham/' . $this->hinhanh . '?' . rand(0, 99999) : "",
+            'hinhAnh' => $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/sanpham/' . $this->hinhanh  : "",
         ];
     }
 }

@@ -17,6 +17,7 @@ class KetQuaPhieu1Resource extends JsonResource
         return [
             'id' => $this->id,
             'truCotId' => $this->mohinh_trucot_id,
+            'tenTruCot' => $this->getTruCot?->tentrucot,
             'phanTram' => $this->phantram
         ];
     }

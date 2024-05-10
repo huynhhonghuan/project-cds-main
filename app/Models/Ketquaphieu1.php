@@ -16,4 +16,9 @@ class Ketquaphieu1 extends Model
         'mohinh_trucot_id',
         'phantram',
     ];
+
+    public function getTruCot()
+    {
+        return $this->belongsTo(Mohinh_Trucot::class, 'mohinh_trucot_id', 'id');
+    }
 }

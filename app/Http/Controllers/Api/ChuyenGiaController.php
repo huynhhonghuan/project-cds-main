@@ -13,16 +13,16 @@ class ChuyenGiaController extends Controller
     {
         $chuyenGias = [];
         if ($linhvucid = $request->input('linhvucid')) {
-            $chuyenGias = Chuyengia::with(['getUser', 'getLinhVuc'])->where('linhvuc_id', $linhvucid)->get();
+            $chuyenGias = Chuyengia::where('linhvuc_id', $linhvucid)->get();
         } else {
-            $chuyenGias = Chuyengia::with(['getUser', 'getLinhVuc'])->get();
+            $chuyenGias = Chuyengia::all();
         }
         return ChuyenGiaResource::collection($chuyenGias);
     }
 
     public function show(string $id)
     {
-        $chuyenGia = Chuyengia::with(['getUser', 'getLinhVuc'])->find($id);
+        $chuyenGia = Chuyengia::find($id);
         return new ChuyenGiaResource($chuyenGia);
     }
 }

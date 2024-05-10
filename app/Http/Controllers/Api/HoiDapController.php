@@ -2,82 +2,86 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Exports\Taikhoan\Chuyengia;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DoanhNghiepResource;
 use App\Http\Resources\HoiThoaiResource;
 use App\Http\Resources\TinNhanResource;
 use App\Http\Services\NotificationService;
-use App\Models\Chuyengia as ModelsChuyengia;
+use App\Http\Services\WitService;
 use App\Models\Doanhnghiep;
+use App\Models\Doanhnghiep_Loaihinh;
 use App\Models\HoiThoai;
+use App\Models\Mohinh;
+use App\Models\Mohinh_Doanhnghiep_Trucot;
 use App\Models\TinNhan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HoiDapController extends Controller
 {
+    // lấy danh sách hội thoại
     public function hoithoai()
     {
-        $userId = auth()->id();
-        $hoiThoais = HoiThoai::with(['getChuyenGia',  'getDoanhNghiep', 'getDoanhNghiep.getUser'])
-            ->where('doanhnghiep_id', $userId)->get();
+        $user = User::findOrFail(auth()->id());
+        $isDoanhNghiep = $user->Check_Doanhnghiep();
+        $isChuyenGia = $user->Check_Chuyengia();
+        if ($isDoanhNghiep) {
+            $hoiThoais = HoiThoai::where('doanhnghiep_id', $user->id)->get();
+        } else if ($isChuyenGia) {
+            $hoiThoais = HoiThoai::where('chuyengia_id', $user->id)->get();
+        }
         return HoiThoaiResource::collection($hoiThoais);
     }
 
-    public function chuyengiahoithoai()
-    {
-        // Userid  =  chuyengiaId
-        $userId = auth()->id();
-        $hoiThoais = HoiThoai::with(['getChuyenGia', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])
-            ->where('chuyengia_id', $userId)->get();
-        // $hoiThoais = HoiThoai::all();
-        return HoiThoaiResource::collection($hoiThoais);
-    }
-
+    // lấy message của hội thoại
     public function tinnhan(Request $request)
     {
         $request->validate([
-            'chuyenGiaId' => 'required|exists:chuyengia,id',
+            'toUserId' => 'required',
         ]);
-        $userId = auth()->id();
-        $chuyenGiaId = request()->chuyenGiaId;
+        $user = User::findOrFail(auth()->id());
+        $toUser = User::findOrFail(request()->toUserId);
 
-        $chuyenGiaUser = ModelsChuyengia::where('id', $chuyenGiaId)->firstOrFail();
+        $doanhnghiep_id = null;
+        $chuyengia_id = null;
 
-        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getDoanhNghiep.getUser', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
-            ->where('chuyengia_id', $chuyenGiaUser->user_id)
-            ->where('doanhnghiep_id', $userId)
-            ->first();
-
-        if (!$hoiThoai) {
-            $hoiThoai = new HoiThoai([
-                'chuyengia_id' => $chuyenGiaUser->user_id,
-                'doanhnghiep_id' => $userId,
-            ]);
-            $hoiThoai->save();
+        if ($user->Check_Doanhnghiep() && $toUser->Check_Chuyengia()) {
+            $doanhnghiep_id = $user->id;
+            $chuyengia_id = $toUser->id;
+        } else if ($user->Check_Chuyengia() && $toUser->Check_Doanhnghiep()) {
+            $doanhnghiep_id = $toUser->id;
+            $chuyengia_id = $user->id;
         }
 
-        return new HoiThoaiResource($hoiThoai);
+        if ($doanhnghiep_id && $chuyengia_id) {
+            $hoiThoai = HoiThoai::where('chuyengia_id', $chuyengia_id)
+                ->where('doanhnghiep_id', $doanhnghiep_id)
+                ->first();
+
+            if (!$hoiThoai) {
+                $hoiThoai = new HoiThoai([
+                    'chuyengia_id' => $chuyengia_id,
+                    'doanhnghiep_id' => $doanhnghiep_id,
+                ]);
+                $hoiThoai->save();
+            }
+
+            return new HoiThoaiResource($hoiThoai);
+        }
     }
 
-    public function tinnhanchuyengia(Request $request)
+    public function gettinnhanbyhoithoai()
     {
-        $request->validate([
-            'doanhNghiepId' => 'required|exists:doanhnghiep,id',
-        ]);
-        $userId = auth()->id(); // user_id của chuyên gia
-        $doanhNghiepId = request()->doanhNghiepId; // doanhnghiep_id
-
-        $doanhnghiep = Doanhnghiep::where('id', $doanhNghiepId)->firstOrFail();
-
-        $hoiThoai = HoiThoai::with('getDoanhNghiep', 'getDoanhNghiep.getUser', 'getChuyenGia', 'getTinNhans', 'getTinNhans.getUser')
-            ->where('chuyengia_id', $userId)
-            ->where('doanhnghiep_id', $doanhnghiep->user_id)
-            ->firstOrFail();
-
+        $hoiThoaiId = request()->hoiThoaiId;
+        $user = User::findOrFail(auth()->id());
+        if ($user->Check_Doanhnghiep()) {
+            $hoiThoai = HoiThoai::where('id', $hoiThoaiId)->where('doanhnghiep_id', $user->id)->first();
+        } else if ($user->Check_Chuyengia()) {
+            $hoiThoai = HoiThoai::where('id', $hoiThoaiId)->where('chuyengia_id', $user->id)->first();
+        }
         return new HoiThoaiResource($hoiThoai);
     }
-
     public function themtinnhan(Request $request)
     {
         $request->validate([
@@ -102,18 +106,62 @@ class HoiDapController extends Controller
             $to = $hoiThoai->doanhnghiep_id;
             $message = [
                 'tieude' => 'Chuyên gia ' . $user->name . ' đã trả lời bạn',
-                'noidung' => request()->message
+                'noidung' => request()->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $hoiThoai->id
             ];
             (new NotificationService())->sendNotification($message, $to);
         } else if ($user->Check_Doanhnghiep()) {
             $to = $hoiThoai->chuyengia_id;
             $message = [
                 'tieude' => 'Doanh nghiệp ' . $user->getDoanhNghiep->tentiengviet,
-                'noidung' => request()->message
+                'noidung' => request()->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $hoiThoai->id
             ];
             (new NotificationService())->sendNotification($message, $to);
         }
 
-        return response()->json(['message' => "Lưu thành công"]);
+        return new TinNhanResource($model);
+    }
+
+    public function deletehoithoai($id)
+    {
+        $hoiThoai = HoiThoai::findOrFail($id);
+        $hoiThoai->delete();
+        return response()->json(['message' => "Xóa thành công"]);
+    }
+
+    // Chuyên gia tìm kiếm doanh nghiệp để tư vấn
+    // ĐK: Doanh nghiệp có nhu cầu hoặc đã thực hiện khảo sát
+    public function timkiem()
+    {
+        $user = User::findOrFail(auth()->id());
+        $doanhNghieps = Doanhnghiep::select('doanhnghiep.*')
+            ->whereIn('id', function ($query) {
+                $query->select(DB::raw('doanhnghiep_id'))
+                    ->from('khaosat')
+                    ->groupBy('doanhnghiep_id');
+            })->orWhereIn('id', function ($query) {
+                $query->select(DB::raw('doanhnghiep_id'))
+                    ->from('khaosat')
+                    ->groupBy('doanhnghiep_id');
+            })
+            ->get();
+
+        return DoanhNghiepResource::collection($doanhNghieps);
+    }
+
+    public function test()
+    {
+        $intent = (new WitService())->getIntentByMessage(request()->message);
+        $intent = strstr($intent, "_", true);
+        return $intent;
+    }
+
+    public function testAuth()
+    {
+        $dn  = Doanhnghiep::where('user_id', auth()->id())->firstOrFail();
+        return new DoanhNghiepResource($dn);
     }
 }

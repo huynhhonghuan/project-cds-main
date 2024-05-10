@@ -24,7 +24,7 @@ class BaiVietResource extends JsonResource
             'luotThich' => $this->luotthich,
             'isLike' => $this->liked,
             'doanhNghiep' => new DoanhNghiepResource($this->getUser?->getDoanhNghiep),
-            'danhMucs' => DanhMucResource::collection($this->getDanhMucs),
+            // 'danhMucs' => DanhMucResource::collection($this->getDanhMucs),
             'createdAt' => $this->created_at
         ];
     }
