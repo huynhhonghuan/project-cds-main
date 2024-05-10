@@ -91,7 +91,7 @@
                 </div> --}}
             </div>
 
-            <div class="row mt-2">
+            <div class="row mt-2" id ="rowchart">
                 <div class="col-md-6 mb-5 mx-auto">
                     <div class="" style="width: 550px; height: 550px;" id="divmyChart">
                         {{-- <canvas id="myChart" width="100" height="100"></canvas> --}}
@@ -144,7 +144,7 @@
 
                 <div class="text-center" id="btn-chart-1">
 
-               </div>
+                </div>
 
             </div>
 
@@ -181,8 +181,14 @@
             success: function(response){
                 // Handle successful response from server
                 console.log(response);
-                $('#myNewCanvas').remove();
+                $('#canvas2').remove();
+                $('#canvas3').remove();
+                $('#canvas4').remove();
                 $('#canvas5').remove();
+                $('#canvas6').remove();
+                $('#canvas7').remove();
+                $('#canvas8').remove();
+                $('#canvas10').remove();
                 $('#btn-chart-1').empty();
 
                 // Lấy phần tử cha mà bạn muốn thêm canvas vào (ví dụ: body)
@@ -190,33 +196,95 @@
 
                 var newCanvas = document.createElement('canvas');
                 // Đặt id cho canvas mới (nếu cần thiết)
-                newCanvas.id = 'myNewCanvas';
+                newCanvas.id = 'canvas2';
 
                 // Đặt các thuộc tính khác cho canvas mới nếu cần thiết
                 newCanvas.width = 500; // Đặt chiều rộng của canvas
                 newCanvas.height = 500; // Đặt chiều cao của canvas
-
                 // Thêm canvas mới vào trong DOM
                 const bieudo2 = newCanvas.getContext('2d');
                 // You can update the UI with the response data here
                 drawChart11(bieudo2, response.bieudo2.labels, response.bieudo2.data, response.bieudo2.colors, 'pie', response.bieudo2.title);
-
                 parentElement.appendChild(newCanvas);
 
-                var parentElement5 = document.getElementById('divmyChart5');
 
+                var parentElement3 = document.getElementById('divmyChart3');
+                var newCanvas3 = document.createElement('canvas');
+                newCanvas3.id = 'canvas3';
+                newCanvas3.width = 500; // Đặt chiều rộng của canvas
+                newCanvas3.height = 500; // Đặt chiều cao của canvas
+                const bieudo3 = newCanvas3.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                drawChart10(bieudo3, response.bieudo3.labels, response.bieudo3.data, response.bieudo3.colors, 'bar', response.bieudo3.title);
+                parentElement3.appendChild(newCanvas3);
+
+
+                var parentElement4 = document.getElementById('divmyChart4');
+                var newCanvas4 = document.createElement('canvas');
+                newCanvas4.id = 'canvas4';
+                newCanvas4.width = 500; // Đặt chiều rộng của canvas
+                newCanvas4.height = 500; // Đặt chiều cao của canvas
+                const bieudo4 = newCanvas4.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                // console.log(response.bieudo4.data);
+                drawChart4(bieudo4, response.bieudo4.labels, response.bieudo4.data,response.bieudo4.colors, 'bar', response.bieudo4.title);
+                parentElement4.appendChild(newCanvas4);
+
+
+                var parentElement5 = document.getElementById('divmyChart5');
                 var newCanvas5 = document.createElement('canvas');
                 newCanvas5.id = 'canvas5';
                 newCanvas5.width = 500; // Đặt chiều rộng của canvas
                 newCanvas5.height = 500; // Đặt chiều cao của canvas
-
                 const bieudo5 = newCanvas5.getContext('2d');
-
                 // Thêm canvas mới vào trong DOM
                 console.log(response.bieudo5.data);
                 pieChart1(bieudo5, response.bieudo5.labels, response.bieudo5.data,response.bieudo5.colors, response.bieudo5.title);
 
                 parentElement5.appendChild(newCanvas5);
+
+                var parentElement6 = document.getElementById('divmyChart6');
+                var newCanvas6 = document.createElement('canvas');
+                newCanvas6.id = 'canvas6';
+                newCanvas6.width = 500; // Đặt chiều rộng của canvas
+                newCanvas6.height = 500; // Đặt chiều cao của canvas
+                const bieudo6 = newCanvas6.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                drawChart10(bieudo6, response.bieudo6.labels, response.bieudo6.data, response.bieudo6.colors, 'bar', response.bieudo6.title);
+                parentElement6.appendChild(newCanvas6);
+
+                var parentElement7 = document.getElementById('divmyChart7');
+                var newCanvas7 = document.createElement('canvas');
+                newCanvas7.id = 'canvas7';
+                newCanvas7.width = 500; // Đặt chiều rộng của canvas
+                newCanvas7.height = 500; // Đặt chiều cao của canvas
+                const bieudo7 = newCanvas7.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                drawChart7(bieudo7, response.bieudo7.labels, response.bieudo7.data, response.bieudo7.colors, 'radar', response.bieudo7.title);
+                parentElement7.appendChild(newCanvas7);
+
+
+                var parentElement8 = document.getElementById('divmyChart8');
+                var newCanvas8 = document.createElement('canvas');
+                newCanvas8.id = 'canvas8';
+                newCanvas8.width = 500; // Đặt chiều rộng của canvas
+                newCanvas8.height = 500; // Đặt chiều cao của canvas
+                const bieudo8 = newCanvas8.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                // console.log(response.bieudo8.data);
+                drawChart4(bieudo8, response.bieudo8.labels, response.bieudo8.data,response.bieudo8.colors, 'bar', response.bieudo8.title);
+                parentElement8.appendChild(newCanvas8);
+
+
+                var parentElement10 = document.getElementById('divmyChart10');
+                var newCanvas10 = document.createElement('canvas');
+                newCanvas10.id = 'canvas10';
+                newCanvas10.width = 500; // Đặt chiều rộng của canvas
+                newCanvas10.height = 500; // Đặt chiều cao của canvas
+                const bieudo10 = newCanvas10.getContext('2d');
+                // Thêm canvas mới vào trong DOM
+                drawChart10(bieudo10, response.bieudo10.labels, response.bieudo10.data, response.bieudo10.colors, 'bar', response.bieudo10.title);
+                parentElement10.appendChild(newCanvas10);
 
                 // $('#btn-chart-1').empty();
                 // // Create a new button
@@ -324,6 +392,92 @@
                 },
             },
         });
+    }
+    function drawChart4(ctx, labels, data, colors, type, title) {
+        if (data !== null) {
+            var myChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: labels,
+                        data: data,
+                        backgroundColor: colors.map(color => color),
+                        borderColor: colors.map(color => color.replace('0.2', '1')),
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Trục x là trục ngang
+                    plugins: {
+                        legend: {
+                            display: false, // Hides the legend
+                        },
+                        title: {
+                            display: true,
+                            text: title,
+                        },
+                    },
+                }
+            });
+        }
+    }
+    function drawChart7(ctx, labels, data, colors, type, title) {
+        if (data !== null) {
+            var myChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: labels,
+                        data: data,
+                        backgroundColor: colors.map(color => color),
+                        borderColor: colors.map(color => color.replace('0.2', '1')),
+                        borderWidth: 2,
+                        fill: false, // Do not fill the area underneath
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false, // Hides the legend
+                        },
+                        title: {
+                            display: true,
+                            text: title,
+                        },
+                    },
+                }
+            });
+        }
+    }
+    function drawChart10(ctx, labels, data, colors, type, title) {
+        if (data !== null) {
+            var myChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: labels,
+                        data: data,
+                        backgroundColor: colors.map(color => color),
+                        borderColor: colors.map(color => color.replace('0.2', '1')),
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false, // Hides the legend
+                        },
+                        title: {
+                            display: true,
+                            text: title,
+                        },
+                    },
+                }
+            });
+        }
     }
 </script>
 @endsection
