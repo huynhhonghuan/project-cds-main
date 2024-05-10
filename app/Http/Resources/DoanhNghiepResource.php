@@ -31,12 +31,17 @@ class DoanhNghiepResource extends JsonResource
             'sdt' => $this->sdt,
             'moTa' => $this->mota,
             'loaiHinh' => new LoaiHinhDoanhNghiepResource($this->getLoaiHinh),
+            'nganhNghe' => new NganhNgheResource($this->getNganhNghe),
+            'linhVuc' => new LinhVucResource($this->getLinhVuc),
             'daiDien' => new DaiDienDoanhNghiepResource($this->getDaiDien),
             'sdts' => DienThoaiResource::collection($this->getSdts),
             'user' => new UserResource($this->getUser),
             'nhuCau' =>  NhuCauResource::collection($this->getNhuCau),
-            'linhVuc' => new LinhVucResource($this->getLinhVuc),
             'khaoSat' => KhaoSatResource::collection($this->getKhaoSat->sortByDesc('id')),
+            'thanhTich' => ThanhTichResource::collection($this->getThanhTich),
+            'hoiVien' => $this->hoivien,
+            'hoSoNangLuc' => $this->hosonangluc,
+            'namGiaNhap' => $this->namgianhap,
         ];
     }
 }

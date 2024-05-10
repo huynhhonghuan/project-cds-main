@@ -26,6 +26,11 @@ class WitService
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $reqsonse = curl_exec($ch);
         curl_close($ch);
-        return json_decode($reqsonse);
+        $response = json_decode($reqsonse);
+        $intents = $response->intents;
+        if (count($intents) != 0) {
+            return $intents[0]->name;
+        }
+        return "";
     }
 }

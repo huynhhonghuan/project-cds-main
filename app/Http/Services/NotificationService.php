@@ -14,8 +14,8 @@ class NotificationService
         $noti = new ThongBao();
 
         $noti->user_id = $user->id;
-        $noti->tieude = $message['tieude'];
-        $noti->noidung = $message['noidung'];
+        $noti->tieude = $message['tieude'] ?? "";
+        $noti->noidung = $message['noidung'] ?? "";
         $noti->loai = $message['loai'] ?? null;
         $noti->loai_id = $message['loai_id'] ?? null;
         $noti->save();

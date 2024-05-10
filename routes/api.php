@@ -166,5 +166,8 @@ Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
 });
 
 Route::group(['prefix' => 'test'], function () {
-    Route::get('run', [HoiDapController::class, 'test']);
+    Route::post('run', [HoiDapController::class, 'test']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('runAuth', [HoiDapController::class, 'testAuth']);
+    });
 });

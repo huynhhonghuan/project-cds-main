@@ -154,6 +154,14 @@ class HoiDapController extends Controller
 
     public function test()
     {
-        return (new WitService())->getIntentByMessage('cần mua 3 ký lúa');
+        $intent = (new WitService())->getIntentByMessage(request()->message);
+        $intent = strstr($intent, "_", true);
+        return $intent;
+    }
+
+    public function testAuth()
+    {
+        $dn  = Doanhnghiep::where('user_id', auth()->id())->firstOrFail();
+        return new DoanhNghiepResource($dn);
     }
 }
