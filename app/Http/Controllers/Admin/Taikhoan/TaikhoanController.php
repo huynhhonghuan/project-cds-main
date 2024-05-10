@@ -17,6 +17,7 @@ use App\Models\Doanhnghiep_Sdt;
 use App\Models\Hiephoidoanhnghiep;
 use App\Models\Hiephoidoanhnghiep_Daidien;
 use App\Models\Linhvuc;
+use App\Models\NganhNghe;
 use App\Models\User;
 use App\Models\User_Vaitro;
 use App\Models\Vaitro;
@@ -73,9 +74,9 @@ class TaikhoanController extends Controller
     public function getthem()
     {
         $vaitro = Vaitro::all();
-        $loaihinh = Doanhnghiep_Loaihinh::all();
+        $nganhnghe = NganhNghe::all();
         $linhvuc = Linhvuc::all();
-        return view('trangquanly.admin.taikhoan.them', compact('vaitro', 'loaihinh', 'linhvuc'));
+        return view('trangquanly.admin.taikhoan.them', compact('vaitro', 'nganhnghe', 'linhvuc'));
     }
     public function postthem(Request $request, $loai)
     {
@@ -135,16 +136,16 @@ class TaikhoanController extends Controller
                 'doanhnghiep_tentiengviet' => ['required', 'string'],
                 'doanhnghiep_tentienganh' => ['nullable'],
                 'doanhnghiep_tenviettat' => ['nullable'],
-                'doanhnghiep_loaihinh_id' => ['required', 'int'],
+                'doanhnghiep_nganhnghe_id' => ['required'],
                 'doanhnghiep_ngaylap' => ['string', 'nullable'],
                 'doanhnghiep_mathue' => ['string', 'nullable'],
                 'doanhnghiep_fax' => ['string', 'nullable'],
-                'doanhnghiep_soluongnhansu' => ['required', 'int'],
+                'doanhnghiep_soluongnhansu' => ['required'],
                 'doanhnghiep_sdt' => ['string', 'nullable'],
                 'doanhnghiep_thanhpho' => ['required', 'string'],
                 'doanhnghiep_huyen' => ['required', 'string'],
                 'doanhnghiep_xa' => ['required', 'string'],
-                'doanhnghiep_diachi' => ['string'],
+                'doanhnghiep_diachi' => ['nullable'],
                 'doanhnghiep_mota' => ['nullable'],
 
                 //thông tin đại diện doanh nghiệp
@@ -160,6 +161,7 @@ class TaikhoanController extends Controller
                 'doanhnghiep_daidien_img_mattruoc' => ['image', 'nullable'],
                 'doanhnghiep_daidien_img_matsau' => ['image', 'nullable'],
                 'doanhnghiep_daidien_mota' => ['nullable'],
+
             ]);
 
             //Thêm tài khoản
@@ -191,7 +193,7 @@ class TaikhoanController extends Controller
             //Thông thông tin doanh nghiệp
             $model_doanhnghiep = new Doanhnghiep();
             $doanhnghiep_namecolumn = [
-                'doanhnghiep_loaihinh_id' => 'doanhnghiep_loaihinh_id',
+                'nganhnghe_id' => 'doanhnghiep_nganhnghe_id',
                 'tentiengviet' => 'doanhnghiep_tentiengviet',
                 'tentienganh' => 'doanhnghiep_tentienganh',
                 'tenviettat' => 'doanhnghiep_tenviettat',
@@ -212,17 +214,6 @@ class TaikhoanController extends Controller
                 'ngaylap' => $date->format('Y-m-d'),
             ];
             $doanhnghiep = $tk->them($model_doanhnghiep, $request, $doanhnghiep_namecolumn, $doanhnghiep_nameobject);
-
-            //Thông tin số điện thoại doanh nghiệp
-            // $model_doanhnghiep_sdt = new Doanhnghiep_Sdt();
-            // $doanhnghiep_sdt_namecolumn = [
-            //     'sdt' => 'doanhnghiep_sdt',
-            //     'loaisdt' => 'doanhnghiep_loai_sdt',
-            // ];
-            // $doanhnghiep_sdt_nameobject = [
-            //     'doanhnghiep_id' => $doanhnghiep->id,
-            // ];
-            // $tk->them($model_doanhnghiep_sdt, $request, $doanhnghiep_sdt_namecolumn, $doanhnghiep_sdt_nameobject);
 
             //Thêm thông tin đại diện doanh nghiệp
             $model_doanhnghiep_daidien = new Doanhnghiep_Daidien();

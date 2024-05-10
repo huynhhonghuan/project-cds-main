@@ -32,20 +32,20 @@ return new class extends Migration
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-        DB::table('doanhnghiep_daidien')->insert([
-            [
-                'doanhnghiep_id' => 1,
-                'tendaidien' => 'Đại diện doanh nghiệp',
-                'email' => 'doanhghiepdaidien1@gmail.com',
-                'sdt' => '0124536987',
-                'thanhpho' => '01',
-                'huyen' => '001',
-                'xa' => '00001',
-                'diachi' => '20 Hà Hoàng Hổ',
-                'cccd' => '036985214747',
-                'mota' => 'Mô tả đại diện'
-            ],
-        ]);
+        // DB::table('doanhnghiep_daidien')->insert([
+        //     [
+        //         'doanhnghiep_id' => 1,
+        //         'tendaidien' => 'Đại diện doanh nghiệp',
+        //         'email' => 'doanhghiepdaidien1@gmail.com',
+        //         'sdt' => '0124536987',
+        //         'thanhpho' => '01',
+        //         'huyen' => '001',
+        //         'xa' => '00001',
+        //         'diachi' => '20 Hà Hoàng Hổ',
+        //         'cccd' => '036985214747',
+        //         'mota' => 'Mô tả đại diện'
+        //     ],
+        // ]);
     }
 
     /**
