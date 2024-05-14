@@ -13,10 +13,9 @@ class Doanhnghiep extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'doanhnghiep_loaihinh_id',
+        'nganhnghe_id',
         'tentiengviet',
         'tentienganh',
-        // 'email',
         'thanhpho',
         'huyen',
         'website',
@@ -29,6 +28,9 @@ class Doanhnghiep extends Model
         'soluongnhansu',
         'ngaylap',
         'mota',
+        'hoivien',
+        'namgianhap',
+        'hosonangluc',
     ];
 
     protected $casts = [
@@ -40,9 +42,14 @@ class Doanhnghiep extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function getNganhNghe()
+    {
+        return $this->belongsTo(NganhNghe::class, 'nganhnghe_id', 'id');
+    }
+
     public function getLoaiHinh()
     {
-        return $this->belongsTo(Doanhnghiep_Loaihinh::class, 'doanhnghiep_loaihinh_id', 'id');
+        return $this->getNganhNghe->getLoaiHinh();
     }
 
     // public function getLinhVuc()

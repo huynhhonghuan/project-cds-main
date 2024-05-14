@@ -19,7 +19,7 @@
                             <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
                             <a href="{{ route('admin.loaihinhdoanhnghiep.them') }}"
                                 class="btn btn-primary float-right veiwbutton ">Thêm
-                                loại hình hoạt động</a>
+                                ngành nghề</a>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,7 @@
                                         <tr>
                                             <th scope="col" width="8%">STT</th>
                                             <th scope="col">ID</th>
-                                            <th scope="col">Tên loại hình hoạt động</th>
-                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Tên ngành nghề</th>
                                             <th scope="col">Lĩnh vực</th>
                                             <th class="text-center" width="5%">Sửa</th>
                                             <th class="text-center" width="5%">Xóa</th>
@@ -49,28 +48,8 @@
                                                 <td>{{ $value->id }}</td>
                                                 <td>{{ $value->tenloaihinh }}</td>
                                                 <td>
-                                                    @if ($value->hinhanh != null)
-                                                        <h2 class="table-avatar">
-                                                            <a href="#" class="avatar avatar-sm mr-2">
-                                                                <img class="avatar-img rounded-circle" {{-- src="{{ URL::to('/assets/backend/img/loaihinhdoanhnghiep/' . $value->hinhanh) }}" --}}
-                                                                    src="{{ env('APP_URL') }}/assets/backend/img/loaihinhdoanhnghiep/{{ $value->hinhanh }}"
-                                                                    alt="{{ $value->hinhanh }}">
-                                                            </a>
-                                                        </h2>
-                                                    @else
-                                                        <span class="btn bg-danger-light text-danger">Không!</span>
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     {{ $value->getlinhvuc->tenlinhvuc }}
                                                 </td>
-
-
-                                                {{-- <td class="text-center">
-                                                    <a href="{{ route('admin.chienluoc.xem', ['id' => $value->id]) }}"
-                                                        class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
-                                                            style="color:orange;"></i></a>
-                                                </td> --}}
 
                                                 <td class="text-center">
                                                     <a class="form-sua"

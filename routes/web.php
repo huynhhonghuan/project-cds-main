@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\Danhgia\DanhgiaController;
 use App\Http\Controllers\Admin\Khaosat\KhaosatController;
 use App\Http\Controllers\Admin\Linhvuc\LinhvucController;
 use App\Http\Controllers\Admin\Loaihinhdoanhnghiep\LoaihinhdoanhnghiepController;
+use App\Http\Controllers\Admin\Nganhnghe\NganhngheController;
 use App\Http\Controllers\Admin\Taikhoan\TaikhoanController;
 use App\Http\Controllers\Admin\Taikhoan\VaitroController;
 use App\Http\Controllers\Admin\ThongkechungController;
@@ -101,7 +102,7 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 //-------------------------------------Logout--------------------------------------------//
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::controller(GoogleController::class)->group(function(){
+Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
@@ -279,7 +280,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
         Route::post('duyet', [LoaihinhdoanhnghiepController::class, 'postduyet'])->name('duyet');
     });
 
-//     //-------------------------------------Danh sách chiến lược--------------------------------------------//
+    //-------------------------------------Ngành nghề doanh nghiệp--------------------------------------------//
+    Route::group(['prefix' => 'nganhnghe', 'as' => 'nganhnghe.'], function () {
+        Route::get('danhsach', [NganhngheController::class, 'getdanhsach'])->name('danhsach');
+
+        // Route::get('them', [NganhngheController::class, 'getthem'])->name('them');
+        // Route::post('them', [NganhngheController::class, 'postthem'])->name('them');
+        // Route::get('sua/{id}', [NganhngheController::class, 'getsua'])->name('sua');
+        // Route::post('sua/{id}', [NganhngheController::class, 'postsua'])->name('sua');
+        // Route::post('xoa', [NganhngheController::class, 'postxoa'])->name('xoa');
+    });
+
+    //-------------------------------------Danh sách chiến lược--------------------------------------------//
     Route::group(['prefix' => 'chienluoc', 'as' => 'chienluoc.'], function () {
         Route::get('danhsach', [ChienluocController::class, 'getdanhsach'])->name('danhsach');
 

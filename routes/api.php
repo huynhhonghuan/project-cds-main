@@ -98,6 +98,8 @@ Route::group(['prefix' => 'danhmuc'], function () {
 
 Route::group(['prefix' => 'thongke'], function () {
     Route::get('mucdo', [ThongKeController::class, 'mucdo']);
+    Route::get('soluongdoanhnghiep', [ThongKeController::class, 'soluongdoanhnghiep']);
+    Route::get('mucdotheohuyen', [ThongKeController::class, 'mucdotheohuyen']);
 });
 
 
@@ -106,7 +108,9 @@ Route::group(['prefix' => 'sanpham'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('create', [SanPhamController::class, 'create']);
         Route::post('{id}/edit', [SanPhamController::class, 'edit']);
+        Route::post('hinhanh/create', [SanPhamController::class, 'createanhsanpham']);
         Route::delete('{id}', [SanPhamController::class, 'delete']);
+        Route::delete('hinhanh/{id}', [SanPhamController::class, 'deleteanhsanpham']);
     });
 });
 
@@ -151,9 +155,19 @@ Route::group(['prefix' => 'khaosat'], function () {
 });
 
 Route::group(['prefix' => 'hoidap', 'middleware' => ['auth:api']], function () {
+    Route::get('timkiem', [HoiDapController::class, 'timkiem']);
+
     Route::get('hoithoai', [HoiDapController::class, 'hoithoai']);
-    Route::get('chuyengiahoithoai', [HoiDapController::class, 'chuyengiahoithoai']);
     Route::get('tinnhan', [HoiDapController::class, 'tinnhan']);
-    Route::get('tinnhanchuyengia', [HoiDapController::class, 'tinnhanchuyengia']);
+    Route::get('gettinnhanbyhoithoai', [HoiDapController::class, 'gettinnhanbyhoithoai']);
     Route::post('tinnhan', [HoiDapController::class, 'themtinnhan']);
+
+    Route::delete('hoithoai/{id}', [HoiDapController::class, 'deletehoithoai']);
+});
+
+Route::group(['prefix' => 'test'], function () {
+    Route::post('run', [HoiDapController::class, 'test']);
+    Route::group(['middleware' => ['auth:api']], function () {
+        Route::post('runAuth', [HoiDapController::class, 'testAuth']);
+    });
 });

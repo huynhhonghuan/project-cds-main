@@ -3,16 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BaiVietResource;
-use App\Http\Resources\BinhLuanBaiVietResource;
+use App\Http\Resources\SanPhamAnhResource;
 use App\Http\Resources\SanPhamResource;
-use App\Models\BaiViet;
-use App\Models\BaiViet_Anh;
-use App\Models\BaiViet_BinhLuan;
-use App\Models\BaiViet_DanhMuc;
-use App\Models\BaiViet_Thich;
 use App\Models\Doanhnghiep;
-use App\Models\SanPham;
+use App\Models\Sanpham;
 use App\Models\SanPhamAnh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -22,20 +16,20 @@ class SanPhamController extends Controller
     //
     public function index()
     {
-        $sanPhams = SanPham::all()->orderByDesc('created_at')->get();
+        $sanPhams = Sanpham::all()->orderByDesc('created_at')->get();
 
         return SanPhamResource::collection($sanPhams);
     }
 
     public function getSanPhamByDoanhNghiep($id)
     {
-        $sanPhams = SanPham::where('doanhnghiep_id', $id)->orderByDesc('created_at')->get();
+        $sanPhams = Sanpham::where('doanhnghiep_id', $id)->orderByDesc('created_at')->get();
         return SanPhamResource::collection($sanPhams);
     }
 
     public function detail($id)
     {
-        return new SanPhamResource(SanPham::findOrFail($id));
+        return new SanPhamResource(Sanpham::findOrFail($id));
     }
 
     public function create(Request $request)
@@ -45,32 +39,34 @@ class SanPhamController extends Controller
             'gia' => ['required', 'string'],
             'moTa' => ['required', 'string'],
         ]);
-        DB::transaction(function () use ($request) {
-            $sanpham = new SanPham();
-            $user_id = auth()->id();
-            $doanhnghiep_id = Doanhnghiep::where('user_id', $user_id)->firstOrFail()->id;
+        $sanpham = new Sanpham();
+        $user_id = auth()->id();
+        $doanhnghiep_id = Doanhnghiep::where('user_id', $user_id)->firstOrFail()->id;
 
+        DB::transaction(function () use ($request, $doanhnghiep_id, $sanpham) {
             $sanpham->doanhnghiep_id = $doanhnghiep_id;
             $sanpham->tensanpham = $request->tenSanPham;
             $sanpham->gia = $request->gia;
             $sanpham->mota = $request->moTa;
             $sanpham->save();
 
-            $hinhAnh = $request->file('hinhAnh');
-            if ($request->hasFile('hinhAnh')) {
-                $path = 'assets/backend/img/sanpham';
-                $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
-                $hinhAnh->move($path, $fileName);
-                if (env('APP_ENV') == 'production') {
-                    $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+            if ($request->hasFile('hinhAnhs')) {
+                foreach ($request->file('hinhAnhs') as $hinhAnh) {
+                    $path = 'assets/backend/img/sanpham';
+                    $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
+                    $hinhAnh->move($path, $fileName);
+                    if (env('APP_ENV') == 'production') {
+                        $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+                    }
+                    $hinhanhModel = new SanPhamAnh();
+                    $hinhanhModel->sanpham_id = $sanpham->id;
+                    $hinhanhModel->hinhanh = $fileName;
+                    $hinhanhModel->save();
                 }
-                $hinhanhModel = new SanPhamAnh();
-                $hinhanhModel->sanpham_id = $sanpham->id;
-                $hinhanhModel->hinhanh = $fileName;
-                $hinhanhModel->save();
             }
-            return response()->json(['message' => 'success']);
         });
+        $sanPhams = Sanpham::where('doanhnghiep_id', $doanhnghiep_id)->orderByDesc('created_at')->get();
+        return SanPhamResource::collection($sanPhams);
     }
 
     public function edit(Request $request)
@@ -80,39 +76,14 @@ class SanPhamController extends Controller
             'gia' => ['required', 'string'],
             'moTa' => ['required', 'string'],
         ]);
-        DB::transaction(function () use ($request) {
-            $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
-            $sanpham = SanPham::where('id', $request->id)->where('doanhnghiep_id', $doanhnghiep->id)->firstOrFail();
-
-            $sanpham->tensanpham = $request->tenSanPham;
-            $sanpham->gia = $request->gia;
-            $sanpham->mota = $request->moTa;
-            $sanpham->save();
-
-
-
-            $hinhAnh = $request->file('hinhAnh');
-            if ($request->hasFile('hinhAnh')) {
-                $anh = SanPhamAnh::where('sanpham_id', $sanpham->id)->first();
-                if ($anh)
-                    $anh->delete();
-                $path = 'assets/backend/img/sanpham';
-                $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
-                $hinhAnh->move($path, $fileName);
-                if (env('APP_ENV') == 'production') {
-                    $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
-                }
-                $hinhanhModel = new SanPhamAnh();
-                $hinhanhModel->sanpham_id = $sanpham->id;
-                $hinhanhModel->hinhanh = $fileName;
-                $hinhanhModel->save();
-            } else if ($request->removeImage == 'true') {
-                $hinhAnh = SanPhamAnh::where('sanpham_id', $sanpham->id)->first();
-                if ($hinhAnh)
-                    $hinhAnh->delete();
-            }
-            return response()->json(['message' => 'success']);
-        });
+        $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
+        $sanpham = Sanpham::where('id', $request->id)->where('doanhnghiep_id', $doanhnghiep->id)->firstOrFail();
+        $sanpham->tensanpham = $request->tenSanPham;
+        $sanpham->gia = $request->gia;
+        $sanpham->mota = $request->moTa;
+        $sanpham->save();
+        $sanPhams = Sanpham::where('doanhnghiep_id',  $doanhnghiep->id)->orderByDesc('created_at')->get();
+        return SanPhamResource::collection($sanPhams);
     }
 
     private function saveImageToHost($path, $filePath, $token)
@@ -150,8 +121,35 @@ class SanPhamController extends Controller
     {
         $user_id = auth()->id();
         $doanhnghiep_id = Doanhnghiep::where('user_id', $user_id)->firstOrFail()->id;
-        $sanpham = SanPham::where('id', $id)->where('doanhnghiep_id', $doanhnghiep_id)->firstOrFail();
+        $sanpham = Sanpham::where('id', $id)->where('doanhnghiep_id', $doanhnghiep_id)->firstOrFail();
         $sanpham->delete();
+        $sanPhams = Sanpham::where('doanhnghiep_id',  $doanhnghiep_id)->orderByDesc('created_at')->get();
+        return SanPhamResource::collection($sanPhams);
+    }
+
+    public function deleteanhsanpham($id)
+    {
+        $anhsp = SanPhamAnh::findOrFail($id);
+        $anhsp->delete();
         return response()->json(['message' => 'success']);
+    }
+
+    public function createanhsanpham(Request $request)
+    {
+        $sanpham = Sanpham::findOrFail($request->id);
+        $hinhAnh = $request->file('hinhAnh');
+        if ($request->hasFile('hinhAnh')) {
+            $path = 'assets/backend/img/sanpham';
+            $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
+            $hinhAnh->move($path, $fileName);
+            if (env('APP_ENV') == 'production') {
+                $fileName = $this->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+            }
+            $hinhanhModel = new SanPhamAnh();
+            $hinhanhModel->sanpham_id = $sanpham->id;
+            $hinhanhModel->hinhanh = $fileName;
+            $hinhanhModel->save();
+        }
+        return new SanPhamAnhResource($hinhanhModel);
     }
 }

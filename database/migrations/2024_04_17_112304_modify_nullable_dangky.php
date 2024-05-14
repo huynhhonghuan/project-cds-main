@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::table('doanhnghiep', function (Blueprint $table) {
-            $table->unsignedBigInteger('doanhnghiep_loaihinh_id')->nullable()->change();
+            // $table->unsignedBigInteger('nganhnghe_id')->nullable()->change();
 
             $table->string('tentienganh')->nullable()->change();
             $table->integer('soluongnhansu')->nullable()->change();
@@ -44,7 +44,6 @@ return new class extends Migration
     {
         //
         Schema::table('doanhnghiep', function (Blueprint $table) {
-            $table->unsignedBigInteger('doanhnghiep_loaihinh_id')->nullable(false)->change();
             $table->string('thanhpho')->nullable(false)->change();
             $table->string('huyen')->nullable(false)->change();
             $table->string('xa')->nullable(false)->change();

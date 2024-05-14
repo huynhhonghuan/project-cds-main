@@ -15,5 +15,6 @@ class Thuvien extends Model
         'namphathanh',
         'loai',
         'file',
+        'hinhanh'
     ];
 }

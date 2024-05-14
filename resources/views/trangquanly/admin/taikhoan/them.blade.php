@@ -63,12 +63,12 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Loại hình hoạt động chính</label>
+                                                    <label>Ngành nghề hoạt động chính</label>
                                                     <select class="form-control" id="sel1"
-                                                        name="doanhnghiep_loaihinh_id" required>
+                                                        name="doanhnghiep_nganhnghe_id" required>
                                                         <option value="">--Loại hình hoạt động--</option>
-                                                        @foreach ($loaihinh as $value)
-                                                            <option value="{{ $value->id }}">{{ $value->tenloaihinh }}
+                                                        @foreach ($nganhnghe as $value)
+                                                            <option value="{{ $value->id }}">{{ $value->tennganhnghe }}
                                                             </option>
                                                         @endforeach
                                                     </select>
