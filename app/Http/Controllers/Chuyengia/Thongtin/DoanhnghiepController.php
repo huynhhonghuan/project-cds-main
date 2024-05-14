@@ -18,6 +18,7 @@ class DoanhnghiepController extends Controller
                 unset($value);
             }
         }
+        // dd($danhsach);
         $user_id = Auth::user()->id;
         $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
         return view('trangquanly.chuyengia.doanhnghiep.danhsach', compact('danhsach', 'thongbaos'));

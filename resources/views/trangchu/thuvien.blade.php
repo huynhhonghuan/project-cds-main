@@ -1,7 +1,5 @@
 @extends('trangchu.layout'){{--kế thừa từ layout--}}
 @section('content'){{--nhúng nội dung content vào layout--}}
-    @foreach ($thuviens as $tv)
-    @endforeach
     <div class="image-heading" style="margin-top: 126px">
         <img src="../image/AnhNen/banner-02.jpg" alt="">
         <h2 class="news-heading row" style="padding:0 24px;border-left: 10px solid #ecdd0b;border-right: 10px solid #ecdd0b;">Văn bản Chuyển đổi số</h2>
@@ -37,34 +35,31 @@
                 </form>
             </div>
         </div>
-        <div class="lib-content" style="margin-bottom: 64px">
-            <table class="table table-stripped table table-hover table-center mb-3">
-                <thead>
-                    <tr>
-                        <th scope="col" width="10%" class="text-center" style="text-transform: uppercase">STT</th>
-                        <th scope="col" width="20%" class="text-center" style="text-transform: uppercase">Ký Hiệu</th>
-                        <th scope="col" width="45%" class="text-center" style="text-transform: uppercase" style="text-align: center">Trích Yếu</th>
-                        <th scope="col" width="15%" class="text-center" style="text-transform: uppercase">Ngày Ban Hành</th>
-                        <th scope="col" class="text-center" style="text-transform: uppercase" width="10%">Tải Xuống</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($thuviens as $tv)
-                        <div class="lib-content-body">
-                            <tr>
-                                <td style="text-align: center;vertical-align:middle ;font-size:16px">{{ $loop->iteration }}</td>
-                                <td style="text-align: center;vertical-align:middle ;font-size:16px">{{ $tv->kyhieu }}</td>
-                                <td style="text-align: justify; font-size:16px">{{ $tv->tieude }}</td>
-                                <td class="date" style="text-align: center;vertical-align:middle ;font-size:16px">{{ date('d/m/Y', strtotime($tv->namphathanh))}}</td>
-                                <td style="text-align: center;vertical-align:middle ;font-size:16px"><a href="{{asset('assets/frontend/file/'.$tv->file)}}">
-                                    <i class="fa-solid fa-download download-icon"></i>
-                                </a></td>
-                            </tr>
+        <div class="container" style="margin-bottom: 32px">
+            <div class="row">
+            @foreach ($thuviens as $item)
+            <div class="col-5" style="display:flex;box-shadow: 1px 1px 1px 1px #999;margin: 12px 54px;padding: 12px">
+                <div class="col-4">
+                    <div class="item-img-2">
+                        <img class="img-fluid rounded mx-auto" style="height: 150px" src="https://cdn.tgdd.vn/2020/10/content/cach-chen-hinh-anh-vao-file-pdf-bang-foxit-reader-de-dang-THUMB-800x450.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-7" style="margin: 0 32px">
+                    <div class="item-content">
+                        <div title="{{$item->tieude}}" class="item-content--main" style="user-select:none;font-weight:600;width:100%;color:#deb10c;height: 66px">{{$item->tieude}}</div>
+                    </div>
+                    <div class="item-content d-flex" style="padding-top: 12px;justify-content: space-between">
+                        <div style="font-size: 16px;font-family:'Franklin Gothic Medium'">{{ date('d - m - Y', strtotime($item->namphathanh))}}</div>
+                        <div class="d-flex" style="font-size: 16px" style="justify-content: end">
+                            <a class="text-decoration-none" style="list-style: none;color: black" href="{{asset('assets/frontend/file/'.$item->file)}}">
+                                <i class="fa-solid fa-download download-icon" style="color: blue"></i> Tải xuống
+                            </a>
                         </div>
-                    @endforeach
-                </tbody>
-            </table>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
         </div>
     </div>
-    
 @endsection

@@ -17,6 +17,19 @@
                         </span></h3>
                         <div class="mt-3 col d-flex" style="justify-content: end;margin-bottom:5px">
                             <div class="actions">
+                                <span style="padding-right: 12px;font-size:16px;font-weight:600;text-transform:uppercase">Website của doanh nghiệp </span>
+                                @if(Auth::user()->getdoanhnghiep->website == null)
+                                <a class="btn btn-sm mr-2 bg-warning" href="{{ route('doanhnghiep.profile') }}">Chưa cập nhật
+                                </a>
+                                @else
+                                <a target="_blank" href="{{Auth::user()->getdoanhnghiep->website}}">
+                                    <button class="btn btn-primary">Đến website</button>
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mt-3 col d-flex" style="justify-content: center;margin-bottom:5px">
+                            <div class="actions">
                                 <span style="padding-right: 12px;font-size:16px;font-weight:600;text-transform:uppercase">Công Khai Thông Tin : </span>
                                 <a href="{{ route('doanhnghiep.duyet', Auth::user()->getDoanhNghiep->id) }}"
                                     class="btn btn-sm mr-2 {{ Auth::user()->getDoanhNghiep->trangthai == 1 ?'bg-success-light':'bg-danger-light'}}">

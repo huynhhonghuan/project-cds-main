@@ -1,4 +1,4 @@
-function drawChart11(ctx, labels, data, colors, type, title) {
+function drawChart(ctx, labels, data, colors, type, title) {
     if (data !== null) {
         var myChart = new Chart(ctx, {
             type: type,

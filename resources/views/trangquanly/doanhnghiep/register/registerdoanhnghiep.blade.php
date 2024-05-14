@@ -103,7 +103,7 @@
                                 {!! Toastr::message() !!}
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
-                                    <h2 class="mb-3 pb-3 text-uppercase text-center fw-bolder text-primary"
+                                    <h2 class="mb-3 pb-3 text-uppercase text-center fw-bolder text-uppercase"
                                         style="letter-spacing: 1px;font-size: 24px">Đăng kí tài khoản doanh nghiệp
                                     </h2>
 
@@ -142,7 +142,7 @@
                                     
 
                                     <p class="mt-4 pb-lg-2 text-center" style="color: #000000;">Bạn đã có tài khoản ?
-                                        <a class="fw-bold text-uppercase" href="{{ route('registerdoanhnghiep') }}" style="color: #ffc107;">Đăng nhập
+                                        <a class="fw-bold text-uppercase" href="{{ route('login') }}" style="color: #ffc107;">Đăng nhập
                                             ngay
                                         </a>
                                     </p>

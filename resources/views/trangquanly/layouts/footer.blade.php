@@ -18,4 +18,6 @@
 
 <script src="//cdn.datatables.net/plug-ins/1.10.13/i18n/Vietnamese.json"></script>
 
+<script src="{{ env('APP_URL') }}/vendor/livewire/livewire.js"></script>
+
 @yield('footer'){{-- nhúng động footer --}}
