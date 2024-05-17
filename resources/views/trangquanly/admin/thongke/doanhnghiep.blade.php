@@ -74,7 +74,7 @@
                                         <td class="text-center">
                                             @if (count($value->getkhaosat) > 0)
                                             @foreach ($value->getkhaosat as $key => $item)
-                                            @if ($item->trangthai == 2)
+                                            @if ($item->trangthai == 2 || $item->trangthai == 1)
                                             <a href="#" class="btn btn-sm mr-2 search_button_1"
                                                 id="{{$value->getuser->id}}"><i class="fa-regular fa-eye"
                                                     style="color:orange;"></i></a>
@@ -82,6 +82,7 @@
                                             @else
                                             <a href="#" class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
                                                     style="color:orange;"></i></a>
+                                            <hr>
                                             @endif
                                             @endforeach
                                             @else
