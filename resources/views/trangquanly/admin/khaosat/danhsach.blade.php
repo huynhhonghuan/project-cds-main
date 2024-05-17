@@ -23,12 +23,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-3 mb-3">
                     <a data-toggle="modal" data-target="#khaosat_modal"
                         href="#"class="btn btn-success search_button mt-2"> Nhập khảo sát - excel</a>
                 </div>
-            </div>
+            </div> --}}
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card card-table">
@@ -50,8 +50,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $value->tentiengviet }}</td>
-                                                <td>{{ $value->getloaihinh->getlinhvuc->tenlinhvuc }}</td>
-                                                <td>{{ $value->getloaihinh->tenloaihinh }}</td>
+                                                <td>{{ $value->getloaihinh->getlinhvuc->tenlinhvuc ?? ''}}</td>
+                                                <td>{{ $value->getloaihinh->tenloaihinh ?? ''}}</td>
                                                 <td>
                                                     @if (count($value->getkhaosat) > 0)
                                                         @foreach ($value->getkhaosat as $key => $item)

@@ -21,7 +21,7 @@ return new class extends Migration
 
         DB::table('linhvuc')->insert([
             ['id'=>'nn','tenlinhvuc'=>'Nông nghiệp','hinhanh' => 'nongnghiep.jpg'],
-            ['id'=>'cn','tenlinhvuc'=>'Công nghiệp','hinhanh' =>'congnghiep.jpg'],
+            ['id'=>'cn','tenlinhvuc'=>'Công nghiệp - Xây dựng','hinhanh' =>'congnghiep.jpg'],
             ['id'=>'tmdv','tenlinhvuc'=>'Thương mại và dịch vụ' , 'hinhanh' => 'thuongmaidichvu.jpg'],
             ['id'=>'kh','tenlinhvuc'=>'Khác', 'hinhanh' =>'khac.jpg']
         ]);

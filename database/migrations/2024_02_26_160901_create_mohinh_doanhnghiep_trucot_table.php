@@ -28,10 +28,10 @@ return new class extends Migration
 
         });
 
-        DB::table('mohinh_doanhnghiep_trucot')->insert([
-            //Mở rộng mạng lưới kết nối
-            ['mohinh_id' => 1, 'mohinh_trucot_id' => 1, 'doanhnghiep_loaihinh_id' => 1],
-        ]);
+        // DB::table('mohinh_doanhnghiep_trucot')->insert([
+        //     //Mở rộng mạng lưới kết nối
+        //     ['mohinh_id' => 1, 'mohinh_trucot_id' => 1, 'doanhnghiep_loaihinh_id' => 1],
+        // ]);
     }
 
     /**
