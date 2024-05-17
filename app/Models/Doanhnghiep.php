@@ -54,6 +54,7 @@ class Doanhnghiep extends Model
         return $this?->getNganhNghe?->getLoaiHinh();
     }
 
+<<<<<<< HEAD
     public function getLinhVuc()
     {
         return $this?->getLoaiHinh?->getLinhVuc();
@@ -63,6 +64,12 @@ class Doanhnghiep extends Model
     {
         return $this->hasMany(ThanhTich::class, 'doanhnghiep_id', 'id');
     }
+=======
+    // public function getLinhVuc()
+    // {
+    //     return $this->hasOneThrough(Linhvuc::class, Doanhnghiep_Loaihinh::class, 'id', 'id', 'doanhnghiep_loaihinh_id', 'linhvuc_id');
+    // }
+>>>>>>> 66827b7da6167f6ace61d1ced8831cfd29048abd
 
     // public function getLinhVuc()
     // {
