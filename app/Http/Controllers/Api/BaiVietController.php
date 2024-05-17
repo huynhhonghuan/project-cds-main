@@ -92,17 +92,20 @@ class BaiVietController extends Controller
             $intent = (new WitService())->getIntentByMessage($message);
             $id = strstr($intent, "_", true);
             if ($id != '') {
-                $loaihinh = Doanhnghiep_Loaihinh::find($id);
-                $doanhnghieps = ModelsDoanhnghiep::where("doanhnghiep_loaihinh_id", $id)->get();
+                $doanhnghieps = ModelsDoanhnghiep::whereHas('getNganhNghe', function ($query) use ($id) {
+                    $query->where('loaihinh_id', $id);
+                })->get();
                 foreach ($doanhnghieps as $dn) {
-                    $to = $dn->user_id;
-                    $message = [
-                        'tieude' => 'Doanh nghiệp ' . $dn->tentiengviet . ' có một nhu cầu mới',
-                        'noidung' =>  $request->noiDung,
-                        'loai' => 'nhucau',
-                        'loai_id' => $baiviet->id
-                    ];
-                    (new NotificationService())->sendNotification($message, $to);
+                    if ($dn->user_id != $user_id) {
+                        $to = $dn->user_id;
+                        $message = [
+                            'tieude' => 'Doanh nghiệp ' . $dn->tentiengviet . ' có một nhu cầu mới',
+                            'noidung' =>  $request->noiDung,
+                            'loai' => 'nhucau',
+                            'loai_id' => $baiviet->id
+                        ];
+                        (new NotificationService())->sendNotification($message, $to);
+                    }
                 }
             }
 

@@ -5,28 +5,94 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DoanhNghiepPublicResource;
 use App\Http\Resources\DoanhNghiepResource;
+use App\Http\Resources\NganhNgheResource;
+use App\Http\Resources\ThanhTichResource;
 use App\Http\Resources\UserResource;
+use App\Http\Services\ImageService;
 use App\Http\Services\NotificationService;
 use App\Models\Chuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Daidien;
 use App\Models\Doanhnghiep_Sdt;
+use App\Models\NganhNghe;
 use App\Models\NhuCau;
+use App\Models\ThanhTich;
 use App\Models\User;
 use App\Models\User_Vaitro;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Prompts\Output\ConsoleOutput;
-use Psy\Readline\Hoa\Console;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class DoanhNghiepController extends Controller
 {
     public function index()
     {
         return DoanhNghiepResource::collection(Doanhnghiep::where('trangthai', 1)->get());
+    }
+    public function nganhnghe()
+    {
+        return NganhNgheResource::collection(NganhNghe::all());
+    }
+
+
+    public function createThanhTich(Request $request)
+    {
+        $request->validate([
+            'tenthanhtich' => 'required',
+        ]);
+        $user = User::findOrFail(auth('api')->id());
+        $doanhnghiep = Doanhnghiep::where('user_id', $user->id)->firstOrFail();
+        $thanhtich = new ThanhTich();
+        $thanhtich->doanhnghiep_id = $doanhnghiep->id;
+        $thanhtich->tenthanhtich = request()->tenthanhtich;
+
+        if ($request->hasFile('hinhanh')) {
+            $hinhAnh = $request->file('hinhanh');
+            $path = 'assets/backend/img/thanhtich';
+            $fileName =  uniqid() . "."  . $hinhAnh->getClientOriginalExtension();
+            $hinhAnh->move($path, $fileName);
+            if (env('APP_ENV') == 'production') {
+                $fileName = (new ImageService())->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+            }
+            $thanhtich->hinhanh = $fileName;
+        }
+
+        $thanhtich->save();
+
+        return ThanhTichResource::collection(ThanhTich::where('doanhnghiep_id', $doanhnghiep->id)->get());
+    }
+
+    public function createHoSoNangLuc(Request $request)
+    {
+        $request->validate([
+            'file' => 'required',
+        ]);
+        $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
+        $this->log("vào");
+
+        if ($request->hasFile('file')) {
+            $this->log("HEllo");
+            $file = $request->file('file');
+            $path = 'assets/backend/file/hosonangluc';
+            $fileName =  uniqid() . "."  . $file->getClientOriginalExtension();
+            $file->move($path, $fileName);
+            if (env('APP_ENV') == 'production') {
+                $fileName = (new ImageService())->saveImageToHost($path,  $path . '/' . $fileName, $request->bearerToken());
+            }
+            $doanhnghiep->hosonangluc = $fileName;
+        }
+
+        $doanhnghiep->save();
+
+        return $doanhnghiep->hosonangluc ? env('APP_IMAGE_URL') . '/assets/backend/file/hosonangluc/' . $doanhnghiep->hosonangluc  : "";
+    }
+
+    public function deleteThanhTich($id)
+    {
+        $thanhtich = ThanhTich::findOrFail($id);
+        $thanhtich->delete();
+        return response()->json(['success' => true], 200);
     }
 
     public function postNhuCau(Request $request)
@@ -49,7 +115,7 @@ class DoanhNghiepController extends Controller
             foreach ($chuyengias as $chuyengia) {
                 $to = $chuyengia->user_id;
                 $message = [
-                    'tieude' => 'Doanh nghiệp ' . $doanhnghiep->tentiengviet . ' đã gửi một nhu cầu mới',
+                    'tieude' => $doanhnghiep->tentiengviet . ' đã gửi một nhu cầu mới',
                     'noidung' => '',
                     'loai' => 'nhucau',
                     'loai_id' => $doanhnghiep->id,
@@ -75,7 +141,7 @@ class DoanhNghiepController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->phone = $request->phone;
-            $user->password = Hash::make('cict123456');
+            $user->password = Hash::make($request->password);
             $user->status = 'Active';
             $user->save();
 
@@ -116,7 +182,7 @@ class DoanhNghiepController extends Controller
         $doanhnghiep->fax = $request->fax;
         $doanhnghiep->soluongnhansu = $request->soLuongNhanSu;
         $doanhnghiep->mota = $request->moTa;
-        $doanhnghiep->doanhnghiep_loaihinh_id = $request->loaiHinh;
+        $doanhnghiep->nganhnghe_id = $request->nganhNghe;
         $doanhnghiep->sdt = $request->sdt;
         $doanhnghiep->save();
         return new DoanhNghiepResource($doanhnghiep);

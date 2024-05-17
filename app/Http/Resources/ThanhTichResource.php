@@ -17,7 +17,7 @@ class ThanhTichResource extends JsonResource
         return [
             'id' => $this->id,
             'tenThanhTich' => $this->tenthanhtich,
-            'hinhAnh' => $this->hinhanh
+            'hinhAnh' =>  $this->hinhanh ? env('APP_IMAGE_URL') . '/assets/backend/img/thanhtich/' . $this->hinhanh  : "",
         ];
     }
 }

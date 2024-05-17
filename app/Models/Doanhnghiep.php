@@ -31,10 +31,12 @@ class Doanhnghiep extends Model
         'hoivien',
         'namgianhap',
         'hosonangluc',
+        'gianhang'
     ];
 
     protected $casts = [
         'ngaylap' => 'date',
+        'hoivien' => 'boolean'
     ];
 
     public function getUser()
@@ -49,12 +51,12 @@ class Doanhnghiep extends Model
 
     public function getLoaiHinh()
     {
-        return $this->getNganhNghe->getLoaiHinh();
+        return $this?->getNganhNghe?->getLoaiHinh();
     }
 
     public function getLinhVuc()
     {
-        return $this->getLoaiHinh->getLinhVuc();
+        return $this?->getLoaiHinh?->getLinhVuc();
     }
 
     public function getThanhTich()

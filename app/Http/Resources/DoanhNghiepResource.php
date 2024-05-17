@@ -30,9 +30,9 @@ class DoanhNghiepResource extends JsonResource
             'soLuongNhanSu' => $this->soluongnhansu,
             'sdt' => $this->sdt,
             'moTa' => $this->mota,
-            'loaiHinh' => new LoaiHinhDoanhNghiepResource($this->getLoaiHinh),
+            'loaiHinh' => new LoaiHinhDoanhNghiepResource($this?->getNganhNghe?->getLoaiHinh),
             'nganhNghe' => new NganhNgheResource($this->getNganhNghe),
-            'linhVuc' => new LinhVucResource($this->getLinhVuc),
+            'linhVuc' => new LinhVucResource($this?->getNganhNghe?->getLoaiHinh?->getLinhVuc),
             'daiDien' => new DaiDienDoanhNghiepResource($this->getDaiDien),
             'sdts' => DienThoaiResource::collection($this->getSdts),
             'user' => new UserResource($this->getUser),
@@ -40,8 +40,9 @@ class DoanhNghiepResource extends JsonResource
             'khaoSat' => KhaoSatResource::collection($this->getKhaoSat->sortByDesc('id')),
             'thanhTich' => ThanhTichResource::collection($this->getThanhTich),
             'hoiVien' => $this->hoivien,
-            'hoSoNangLuc' => $this->hosonangluc,
+            'hoSoNangLuc' => $this->hosonangluc ? env('APP_IMAGE_URL') . '/assets/backend/file/hosonangluc/' . $this->hosonangluc  : "",
             'namGiaNhap' => $this->namgianhap,
+            'gianHang' => $this->gianhang
         ];
     }
 }
