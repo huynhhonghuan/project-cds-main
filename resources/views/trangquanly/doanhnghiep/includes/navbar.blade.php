@@ -1,13 +1,22 @@
 {{--Navbar của trang quản lý--}}
 <div class="header">
     <div class="header-left">
-        <a href="{{ route('doanhnghiep.home') }}" class="logo"> <img src="{{ env('APP_URL') }}/assets/backend/img/vaitro/enterprise.png"
-                width="50" height="70" alt="logo"> <span class="logoclass">Doanh nghiệp</span> </a>
+        <a href="{{ route('doanhnghiep.home') }}" class="logo"> 
+            <div style="height: 45px">
+                <img src="{{ env('APP_URL') }}/assets/backend/img/vaitro/enterprise.png" width="40" height="40" alt="logo"> 
+                <span class="logoclass text-uppercase" style="font-size: 22px ">Doanh nghiệp</span> 
+            </div>
+            @if(Auth::user()->getdoanhnghiep->hoivien == 0)
+                <span class="d-flex" style="align-items: center;height: 35px;padding-left:48px;font-size: 14px;"><i class="fa-solid fa-gem" style="color: #000;margin-right:8px"></i><span style="color:black;">Chưa là hội viên</span></span>
+            @else @if(Auth::user()->getdoanhnghiep->hoivien == 1)
+                <span class="d-flex" style="align-items: center;height: 35px;padding-left:48px;font-size: 14px;"><i class="fa-solid fa-gem" style="color: #f2f243;margin-right:8px"></i><span style="color:black;font-weight:600">Thành viên hiệp hội</span></span>
+            @endif @endif 
+        </a>
         <a href="{{ route('doanhnghiep.home') }}" class="logo logo-small"> <img
                 src="{{ env('APP_URL') }}/assets/backend/img/vaitro/enterprise.png" alt="Logo" width="30" height="30">
         </a>
     </div>
-    <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i> </a>
+    <a href="javascript:void(0);" id="toggle_btn"> <i class="fe fe-text-align-left"></i></a>
     <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
     <ul class="nav user-menu">
         <li class="nav-item dropdown noti-dropdown">

@@ -12,9 +12,9 @@
             <div class="page-header">
                 <div class="row" style="border-bottom : 2px solid #009688">
                     <div class="col-sm-12 mt-5 d-flex align-items-center">
-                        <h3 class="page-title mt-3">Xin chào <span class="text-uppercase" style="color:#1460f7;font-weight: 600">
+                        <h4 class="mt-3">Xin chào <span class="text-uppercase" style="color:#1460f7;font-weight: 600">
                                 {{ Auth::user()->name ?? Auth::user()->getdoanhnghiep->tentiengviet }}
-                        </span></h3>
+                        </span></h4>
                         <div class="mt-3 col d-flex" style="justify-content: end;margin-bottom:5px">
                             <div class="actions">
                                 <span style="padding-right: 12px;font-size:16px;font-weight:600;text-transform:uppercase">Website của doanh nghiệp </span>

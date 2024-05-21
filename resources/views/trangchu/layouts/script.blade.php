@@ -135,8 +135,8 @@
 
 <!-- Initialize Swiper -->
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 6,
+  var swiper = new Swiper(".mySwiper",{
+    slidesPerView: 4,
     spaceBetween: 20,
     loop: true,
     pagination: {
@@ -149,6 +149,8 @@
     },
   });
 </script>
+
+
 
 <script>
     window.setInterval(function() {

@@ -5,21 +5,23 @@
             <ul>
                 <li class="active"> <a href="{{ route('admin.home') }}"><i class="fas fa-tachometer-alt"></i> <span>Bảng
                             điều khiển</span></a> </li>
-
                 <li class="list-divider"></li>
-                <li class="menu-title mt-3"> <span>Quản lý thống kê</span> </li>
-                <li> <a href="{{ route('admin.thongkechung.danhsach') }}"><i class="fa-regular fa-building"></i> <span>
-                            Chung</span></a>
+                <li class="menu-title mt-3"> <span>Quản lý chung</span> </li>
+                <li> <a href="{{ route('admin.thongkechung.danhsach') }}"><i class="fa-solid fa-list-check"></i><span> Quản lý chung</span></a>
                 </li>
-                <li> <a href="{{ route('admin.thongke.doanhnghiep') }}"><i class="fa-regular fa-building"></i> <span> Doanh
-                            nghiệp</span></a>
-                </li>
-
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý doanh nghiệp</span> </li>
-                <li> <a href="{{ route('admin.khaosat.danhsach') }}"><i class="fa-regular fa-building"></i> <span> Khảo
+                <li> <a href="{{ route('admin.doanhnghiep.dsdoanhnghiep') }}"><i class="fa-regular fa-building"></i> <span> Doanh Nghiệp</span></a>
+                </li>
+                <li class="list-divider"></li>
+                <li class="menu-title mt-3"> <span>Quản lý khảo sát</span> </li>
+                <li> <a href="{{ route('admin.khaosat.danhsach') }}"><i class="fa-solid fa-square-poll-horizontal"></i> <span> Khảo
                             sát </span></a>
                 </li>
+                <li> <a href="{{ route('admin.thongke.doanhnghiep') }}"><i class="fa-solid fa-ranking-star"></i> <span>
+                            Thống kê thế mạnh</span></a>
+                </li>
+
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý chiến lược</span> </li>
 
@@ -47,7 +49,7 @@
                 </li>
 
                 <li class="list-divider"></li>
-                <li class="menu-title mt-3"> <span>Quản lý chuyên gia</span> </li>
+                <li class="menu-title mt-3"> <span>Quản lý đánh giá</span> </li>
                 <li> <a href="{{ route('admin.danhgia.danhsach') }}"><i class="fa-regular fa-circle-check"></i> <span>
                             Đánh giá - đề xuất</span></a>
                 </li>

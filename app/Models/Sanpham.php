@@ -22,8 +22,8 @@ class SanPham extends Model
         return $this->belongsTo(Doanhnghiep::class, 'doanhnghiep_id', 'id');
     }
 
-    public function getHinhAnhs()
+    public function getAnh()
     {
-        return $this->hasMany(SanPhamAnh::class, 'sanpham_id', 'id');
+        return $this->belongsTo(SanPhamAnh::class, 'id', 'sanpham_id');
     }
 }

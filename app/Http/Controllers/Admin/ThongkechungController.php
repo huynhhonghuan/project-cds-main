@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Doanhnghiep;
 use App\Models\Doanhnghiep_Loaihinh;
 use App\Models\Khaosat;
+use App\Models\NganhNghe;
 use Illuminate\Http\Request;
 
 class ThongkechungController extends Controller
@@ -200,9 +201,9 @@ class ThongkechungController extends Controller
             'rgba(231, 149, 30, 0.3)',
         ];
 
-        $doanhnghiep_loaihinh = Doanhnghiep_Loaihinh::all();
+        $nganhnghe = NganhNghe::all();
         $loaihinh_id = [];
-        foreach ($doanhnghiep_loaihinh as $value) {
+        foreach ($nganhnghe as $value) {
             $loaihinh_id[$value->id] = 0; // Sửa thành cấu trúc key => value đúng
         }
 
@@ -210,9 +211,9 @@ class ThongkechungController extends Controller
             if ($value->trangthai != 0) {
                 $doanhnghiep = $value->getdoanhnghiep; // Giả sử đối tượng Khaosat có phương thức getdoanhnghiep
                 if ($doanhnghiep) {
-                    $doanhnghiep_loaihinh_id = $doanhnghiep->doanhnghiep_loaihinh_id;
-                    if (array_key_exists($doanhnghiep_loaihinh_id, $loaihinh_id)) {
-                        $loaihinh_id[$doanhnghiep_loaihinh_id]++;
+                    $nganhnghe_id = $doanhnghiep->nganhnghe_id;
+                    if (array_key_exists($nganhnghe_id, $loaihinh_id)) {
+                        $loaihinh_id[$nganhnghe_id]++;
                     }
                 }
             }
@@ -233,8 +234,8 @@ class ThongkechungController extends Controller
 
         $labels = [];
         foreach ($top_10 as $key => $value) {
-            $dn = Doanhnghiep_Loaihinh::find($key);
-            $labels[] = $dn->tenloaihinh;
+            $dn = NganhNghe::find($key);
+            $labels[] = $dn->tennganhnghe;
         }
 
         return [
@@ -409,22 +410,27 @@ class ThongkechungController extends Controller
             'rgba(231, 149, 30, 0.3)',
         ];
 
-        $doanhnghiep_loaihinh = Doanhnghiep_Loaihinh::all();
+        $nganhnghe = Nganhnghe::all();
+        $loaihinh = [];
         $loaihinh_id = [];
         $loaihinh_soluong = [];
-        foreach ($doanhnghiep_loaihinh as $value) {
+        foreach ($nganhnghe as $value) {
             $loaihinh_id[$value->id] = 0; // Sửa thành cấu trúc key => value đúng
             $loaihinh_soluong[$value->id] = 0; // Sửa thành cấu trúc key => value đúng
+            $loaihinh[] = $value->id;
         }
+
+        // dd($loaihinh_id, $loaihinh_soluong);
 
         foreach (Khaosat::all() as $value) {
             if ($value->trangthai != 0) {
                 $doanhnghiep = $value->getdoanhnghiep; // Giả sử đối tượng Khaosat có phương thức getdoanhnghiep
                 if ($doanhnghiep) {
-                    $doanhnghiep_loaihinh_id = $doanhnghiep->doanhnghiep_loaihinh_id;
-                    if (array_key_exists($doanhnghiep_loaihinh_id, $loaihinh_id)) {
-                        $loaihinh_id[$doanhnghiep_loaihinh_id] += $value->tongdiem / 320;
-                        $loaihinh_soluong[$doanhnghiep_loaihinh_id] += 1;
+                    $nganhnghe_id = $doanhnghiep->nganhnghe_id;
+                    if (array_key_exists($nganhnghe_id, $loaihinh_id)) {
+                        $loaihinh_id[$nganhnghe_id] += $value->tongdiem / 320;
+                        $loaihinh_soluong[$nganhnghe_id] += 1;
+                        // dump($nganhnghe_id);
                     }
                 }
             }
@@ -436,14 +442,17 @@ class ThongkechungController extends Controller
         arsort($loaihinh_soluong);
         $top_10_soluong = array_slice($loaihinh_soluong, 0, 10, true); // Lấy 10 phần tử đầu tiên, giữ nguyên key
 
+        // dd($top_10, $top_10_soluong);
+
+        // dd($top_10, $top_10_soluong);
         foreach ($top_10 as $key => &$value) {
-            $value = round($value / ($top_10_soluong[$key] ?? 1) * 6 , 1); // Chia cho tổng và làm tròn đến 1 chữ số thập phân
+            $value = round($value / ($top_10_soluong[$key] != 0 ? $top_10_soluong[$key] : 1) * 6, 1); // Chia cho tổng và làm tròn đến 1 chữ số thập phân
         }
 
         $labels = [];
         foreach ($top_10 as $key => $value) {
-            $dn = Doanhnghiep_Loaihinh::find($key);
-            $labels[] = $dn->tenloaihinh;
+            $dn = Nganhnghe::find($key);
+            $labels[] = $dn->tennganhnghe;
         }
 
         return [

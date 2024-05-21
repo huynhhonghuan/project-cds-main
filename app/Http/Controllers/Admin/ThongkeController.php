@@ -15,6 +15,10 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ThongkeController extends Controller
 {
+    public function getdanhsach()
+    {
+        return view('trangquanly.admin.thongke.danhsach');
+    }
     public function test()
     {
         return view('trangquanly.admin.thongke.test');
@@ -54,7 +58,7 @@ class ThongkeController extends Controller
 
         foreach ($khaosat1 as $key => $it) {
             // lấy giá trị trụ cột
-            if ($it->getdanhsachphieu1->getketquaphieu1[0])
+            if ($it->getdanhsachphieu1->getketquaphieu1)
                 $trucot = [
                     $it->getdanhsachphieu1->getketquaphieu1[0]->phantram,
                     $it->getdanhsachphieu1->getketquaphieu1[1]->phantram,

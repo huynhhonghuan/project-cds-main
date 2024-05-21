@@ -20,7 +20,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="mt-5">
-                            <h4 class="card-title float-left mt-2">{{ $tendanhsach }}</h4>
+                            <h4 class="card-title float-left mt-2 text-uppercase">{{ $tendanhsach }}</h4>
                             <a href="{{ route('doanhnghiep.sanpham.them') }}" class="btn btn-primary float-right veiwbutton ">Thêm
                                 Sản phẩm</a>
                         </div>

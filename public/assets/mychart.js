@@ -5,11 +5,11 @@ function drawChart(ctx, labels, data, colors, type, title) {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: labels,
+                    label: 'Biểu đồ dữ liệu',
                     data: data,
                     backgroundColor: colors.map(color => color),
                     borderColor: colors.map(color => color.replace('0.2', '1')),
-                    borderWidth: 2,
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -25,32 +25,4 @@ function drawChart(ctx, labels, data, colors, type, title) {
             }
         });
     }
-}
-
-function pieChart1(ctx, labels, datasets, title) {
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: labels,
-            datasets: datasets,
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                    },
-                }],
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: title,
-                },
-            },
-        },
-    });
 }

@@ -34,4 +34,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0" nonce="18q7swbU"></script>
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=65fc074295cfbf00121e87cd&product=inline-share-buttons&source=platform" async="async"></script>
 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 @yield('head'){{-- nhúng động head từ bên form kế thừa --}}

@@ -91,7 +91,7 @@
                 </div> --}}
             </div>
 
-            <div class="row mt-2" id ="rowchart">
+            <div class="row mt-2" id="rowchart">
                 <div class="col-md-6 mb-5 mx-auto">
                     <div class="" style="width: 550px; height: 550px;" id="divmyChart">
                         {{-- <canvas id="myChart" width="100" height="100"></canvas> --}}
@@ -218,7 +218,6 @@
                 drawChart10(bieudo3, response.bieudo3.labels, response.bieudo3.data, response.bieudo3.colors, 'bar', response.bieudo3.title);
                 parentElement3.appendChild(newCanvas3);
 
-
                 var parentElement4 = document.getElementById('divmyChart4');
                 var newCanvas4 = document.createElement('canvas');
                 newCanvas4.id = 'canvas4';
@@ -240,7 +239,6 @@
                 // Thêm canvas mới vào trong DOM
                 console.log(response.bieudo5.data);
                 pieChart1(bieudo5, response.bieudo5.labels, response.bieudo5.data,response.bieudo5.colors, response.bieudo5.title);
-
                 parentElement5.appendChild(newCanvas5);
 
                 var parentElement6 = document.getElementById('divmyChart6');
@@ -400,7 +398,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: labels,
+                        label: 'Phần trăm theo ngành',
                         data: data,
                         backgroundColor: colors.map(color => color),
                         borderColor: colors.map(color => color.replace('0.2', '1')),
@@ -429,7 +427,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: labels,
+                        label: 'Điểm mức độ',
                         data: data,
                         backgroundColor: colors.map(color => color),
                         borderColor: colors.map(color => color.replace('0.2', '1')),
@@ -458,7 +456,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: labels,
+                        label: 'Mức độ khảo sát',
                         data: data,
                         backgroundColor: colors.map(color => color),
                         borderColor: colors.map(color => color.replace('0.2', '1')),
@@ -468,7 +466,7 @@
                 options: {
                     plugins: {
                         legend: {
-                            display: false, // Hides the legend
+                            position: 'top',
                         },
                         title: {
                             display: true,

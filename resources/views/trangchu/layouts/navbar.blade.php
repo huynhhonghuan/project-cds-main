@@ -39,7 +39,7 @@
             </div>
         </div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #f7c51e; box-shadow: 1px 1px 8px #999">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand mx-5" href="{{ route('home') }}"><img src="{{ URL::to('assets/frontend/img/logo/logo.png') }}" alt="logo" style="border:2px dashed #000;height:62px;"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,9 +86,15 @@
                             </a>
                         </li>
                         <li class="nav-item mx-1">
+                            <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('sanpham') }}" role="button"
+                                aria-expanded="false">
+                                Sản phẩm
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
                             <a class="nav-link text-uppercase fw-bold fs-14 c-main" href="{{ route('diendan') }}" role="button"
                                 aria-expanded="false">
-                                Diễn Đàn
+                                Diễn đàn
                             </a>
                         </li>
                         <form class="d-flex mx-5" type="get" action="{{url('/search')}}" role="search">

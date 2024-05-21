@@ -25,11 +25,11 @@ class DoanhnghiepController extends Controller
     }
     public function getxemdoanhnghiep($id)
     {
-        $user = Doanhnghiep::with(['getUser', 'getLoaiHinh'])->find($id);
+        $user = Doanhnghiep::with(['getUser'])->find($id);
         // dd($user);
         $user_id = Auth::user()->id;
         $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
         $tendanhsach = 'Thông tin doanh nghiệp';
         return view('trangquanly.chuyengia.doanhnghiep.xem', compact('user', 'tendanhsach', 'thongbaos'));
     }
-}
+}   

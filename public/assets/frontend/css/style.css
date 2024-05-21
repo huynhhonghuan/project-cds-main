@@ -378,15 +378,19 @@ ul {
     font-family: monospace;
 }
 .item-news {
-    padding: 0 24px;
+    padding: 24px;
 }
+.item-img--3,
 .item-img {
-    height: 250px;
     position: relative;
     width: 100%;
     overflow: hidden;
     cursor: pointer;
     margin-top: 8px;
+}
+.item-img--3,
+.item-img {
+    height: 200px;
 }
 .item-img-2 {
     overflow: hidden;
@@ -407,7 +411,7 @@ ul {
 .item-img:hover::after {
     left: 0;
 }
-
+.item-img--3 img,
 .item-img img {
     width: 100%;
     height: 100%;
@@ -715,6 +719,7 @@ ul {
     color: #ffed00;
 }
 /* Doanh Nghiệp */
+
 /* Doanh Nghiệp */
 .dn__title {
     font-weight: 700;
@@ -772,9 +777,7 @@ ul {
     transition: all 0.5s;
     cursor: pointer;
 }
-.dn__body--name:hover {
-    color: #f7c51e;
-}
+
 .dn__body--add {
     font-size: 16px;
     font-weight: 500;

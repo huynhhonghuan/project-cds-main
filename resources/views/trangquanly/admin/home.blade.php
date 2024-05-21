@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <div class="dash-widget-header">
                                 <div>
-                                    <h3 class="card_widget_header">{{ ($khaosat['soluong']) }}</h3>
+                                    <h3 class="card_widget_header">{{ $khaosat['soluong'] }}</h3>
                                     <h6 class="text-muted">Phiếu khảo sát</h6>
                                 </div>
                                 <div class="ml-auto mt-md-3 mt-lg-0"> <span class="opacity-7 text-muted"><svg

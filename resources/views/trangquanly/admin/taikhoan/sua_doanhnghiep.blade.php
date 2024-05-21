@@ -86,10 +86,9 @@
                                                             name="doanhnghiep_loaihinh_id" required>
                                                             <option value="">--Loại hình hoạt động--</option>
                                                             @foreach ($loaihinh as $value)
-                                                            <option value="{{ $value->id }}" @if ($user->
-                                                                getdoanhnghiep->doanhnghiep_loaihinh_id == $value->id)
+                                                            <option value="{{ $value->id }}" @if ($user->getdoanhnghiep->getnganhnghe->id == $value->id)
                                                                 selected @endif>
-                                                                {{ $value->tenloaihinh }}
+                                                                {{ $value->tennganhnghe }}
                                                             </option>
                                                             @endforeach
                                                         </select>

@@ -5,7 +5,11 @@
             <div class="row">
                 <div class="col-4">
                     <div class="item__dn--img-det">
-                        <img src="{{ asset('assets/backend/img/hoso/'. $dnghiepimg->image) }}" alt="">
+                        @if($dnghiepimg->image == null)
+                            <img src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png" alt="">
+                        @else  
+                            <img src="{{ asset('assets/backend/img/hoso/'. $dnghiepimg->image) }}" alt="">
+                        @endif
                     </div>
                 </div>
                 <div class="col-8 dn__name">

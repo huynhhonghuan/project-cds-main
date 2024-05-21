@@ -20,8 +20,7 @@ class KhaosatController extends Controller
     public function getdanhsach()
     {
         $tendanhsach = 'Danh sách khảo sát của doanh nghiệp';
-        $danhsach  = Doanhnghiep::with('getkhaosat','getLoaiHinh')->get();
-        // dd($danhsach);
+        $danhsach  = Doanhnghiep::with('getkhaosat')->get();
         return view('trangquanly.admin.khaosat.danhsach', compact('danhsach', 'tendanhsach'));
     }
 

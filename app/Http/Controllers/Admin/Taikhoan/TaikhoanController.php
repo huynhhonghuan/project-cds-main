@@ -429,7 +429,7 @@ class TaikhoanController extends Controller
     {
         $user = User::find($id);
         $vaitro = Vaitro::all();
-        $loaihinh = Doanhnghiep_Loaihinh::all();
+        $loaihinh = NganhNghe::all();
         $linhvuc = Linhvuc::all();
         if ($user->getVaiTro[0]->id == 'ad') {
             Toastr::info('Không thể sửa tài khoản quản trị viên', 'Info');
@@ -510,9 +510,9 @@ class TaikhoanController extends Controller
                 'doanhnghiep_fax',
                 'doanhnghiep_soluongnhansu' => ['int'],
                 'doanhnghiep_sdt',
-                'doanhnghiep_thanhpho' => ['required', 'string'],
-                'doanhnghiep_huyen' => ['required', 'string'],
-                'doanhnghiep_xa' => ['required', 'string'],
+                'doanhnghiep_thanhpho' => ['string'],
+                'doanhnghiep_huyen' => ['string'],
+                'doanhnghiep_xa' => ['string'],
                 'doanhnghiep_diachi' => ['string'],
                 'doanhnghiep_mota',
             ]);
@@ -534,7 +534,7 @@ class TaikhoanController extends Controller
             //Thông thông tin doanh nghiệp
             $model_doanhnghiep = $user->getdoanhnghiep;
             $doanhnghiep_namecolumn = [
-                'doanhnghiep_loaihinh_id' => 'doanhnghiep_loaihinh_id',
+                'nganhnghe_id' => 'doanhnghiep_loaihinh_id',
                 'tentiengviet' => 'doanhnghiep_tentiengviet',
                 'tentienganh' => 'doanhnghiep_tentienganh',
                 'tenviettat' => 'doanhnghiep_tenviettat',
