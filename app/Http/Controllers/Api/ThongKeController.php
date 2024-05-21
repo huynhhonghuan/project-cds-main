@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chuyengia;
 use App\Models\Doanhnghiep;
 use App\Models\Khaosat;
 use App\Models\Mucdo;
@@ -234,5 +235,62 @@ class ThongKeController extends Controller
         }
 
         return $tongMucDoTheoHuyen;
+    }
+
+    public function doanhnghieptheoloaihinh()
+    {
+        $arr = array();
+        $doanhNghieps = Doanhnghiep::all();
+        foreach ($doanhNghieps as $doanhNghiep) {
+            $loaiHinh = $doanhNghiep->getLoaiHinh;
+
+            if (!isset($arr[$loaiHinh->tenloaihinh])) {
+                $arr[$loaiHinh->tenloaihinh] = 1;
+            } else {
+                $arr[$loaiHinh->tenloaihinh]++;
+            }
+        }
+        $result = array();
+        foreach ($arr as $key => $value) {
+            $result[] = [
+                'tenLoaiHinh' => $key,
+                'soLuong' => $value,
+            ];
+        }
+        return $result;
+    }
+
+    public function doanhnghieptheolinhvuc()
+    {
+        $arr = array();
+        $doanhNghieps = Doanhnghiep::all();
+        foreach ($doanhNghieps as $doanhNghiep) {
+            $linhVuc = $doanhNghiep->getLinhVuc;
+
+            if (!isset($arr[$linhVuc->tenlinhvuc])) {
+                $arr[$linhVuc->tenlinhvuc] = 1;
+            } else {
+                $arr[$linhVuc->tenlinhvuc]++;
+            }
+        }
+        $result = array();
+        foreach ($arr as $key => $value) {
+            $result[] = [
+                'tenLinhVuc' => $key,
+                'soLuong' => $value,
+            ];
+        }
+        return $result;
+    }
+    public function taikhoan()
+    {
+        $doanhNghieps = Doanhnghiep::all();
+        $chuyenGias = Chuyengia::all();
+        $result = [
+            'doanhNghiep' => $doanhNghieps->count(),
+            'hoiVien' => $doanhNghieps->where('hoivien', true)->count(),
+            'chuyenGia' => $chuyenGias->count(),
+        ];
+        return $result;
     }
 }

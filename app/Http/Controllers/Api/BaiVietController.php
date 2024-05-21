@@ -99,7 +99,7 @@ class BaiVietController extends Controller
                     if ($dn->user_id != $user_id) {
                         $to = $dn->user_id;
                         $message = [
-                            'tieude' => 'Doanh nghiệp ' . $dn->tentiengviet . ' có một nhu cầu mới',
+                            'tieude' => $dn->tentiengviet . ' đã đăng một bài viết mới',
                             'noidung' =>  $request->noiDung,
                             'loai' => 'nhucau',
                             'loai_id' => $baiviet->id
@@ -108,14 +108,6 @@ class BaiVietController extends Controller
                     }
                 }
             }
-
-
-            // foreach ($request->danhMucs as $danhmuc_id) {
-            //     $model = new BaiViet_DanhMuc();
-            //     $model->baiviet_id = $baiviet->id;
-            //     $model->danhmuc_id = $danhmuc_id;
-            //     $model->save();
-            // }
 
             $hinhAnhs = $request->file('hinhAnhs');
             if ($request->hasFile('hinhAnhs')) {

@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Api\ThongBaoController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
+use App\Http\Controllers\Doanhnghiep\ChatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -68,6 +69,7 @@ Route::group(['prefix' => 'tintuc'], function () {
 Route::group(['prefix' => 'thongbao'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
         Route::get('', [ThongBaoController::class, 'getThongBaoUser']);
+        Route::post('', [ThongBaoController::class, 'createThongBao']);
         Route::put('{id}/read', [ThongBaoController::class, 'readThongBao']);
         Route::delete('{id}', [ThongBaoController::class, 'deleteThongBao']);
     });
@@ -101,10 +103,16 @@ Route::group(['prefix' => 'thongke'], function () {
     Route::get('mucdo', [ThongKeController::class, 'mucdo']);
     Route::get('soluongdoanhnghiep', [ThongKeController::class, 'soluongdoanhnghiep']);
     Route::get('mucdotheohuyen', [ThongKeController::class, 'mucdotheohuyen']);
+    Route::get('doanhnghieptheoloaihinh', [ThongKeController::class, 'doanhnghieptheoloaihinh']);
+    Route::get('doanhnghieptheolinhvuc', [ThongKeController::class, 'doanhnghieptheolinhvuc']);
+    Route::get('taikhoan', [ThongKeController::class, 'taikhoan']);
 });
 
 
 Route::group(['prefix' => 'sanpham'], function () {
+    Route::get('index', [SanPhamController::class, 'index']);
+    Route::get('newest', [SanPhamController::class, 'getSanPhamMoiNhat']);
+    Route::get('random', [SanPhamController::class, 'getSanPhamRandom']);
     Route::get('{id}', [SanPhamController::class, 'detail']);
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('create', [SanPhamController::class, 'create']);
@@ -181,7 +189,8 @@ Route::group(['prefix' => 'test'], function () {
 });
 
 
-Route::group(['prefix' => 'test'], function () {
-    Route::get('', [TestController::class, 'index']);
-    Route::post('', [TestController::class, 'upload']);
-});
+// Route::group(['prefix' => 'test'], function () {
+//     Route::get('', [TestController::class, 'index']);
+//     Route::get('conversation', [TestController::class, 'conversation']);
+//     Route::post('', [TestController::class, 'upload']);
+// });

@@ -18,6 +18,28 @@ class ThongBaoController extends Controller
         return ThongBaoResource::collection($thongbaos);
     }
 
+    public function createThongBao(Request $request)
+    {
+        $users = User::all();
+        foreach ($users as $user) {
+            if ($user->Check_Doanhnghiep()) {
+                if ($request->guiDen == 'hoivien' && $user->Check_HoiVien()) {
+                    (new NotificationService())->sendNotification([
+                        'tieude' =>  $request->tieuDe ?? "Thông báo từ Hiệp hội doanh nghiệp",
+                        'noidung' =>  $request->noiDung
+                    ], $user->id);
+                } else if ($request->guiDen == 'all') {
+                    (new NotificationService())->sendNotification([
+                        'tieude' =>  $request->tieuDe ?? "Thông báo từ Hiệp hội doanh nghiệp",
+                        'noidung' =>  $request->noiDung
+                    ], $user->id);
+                }
+            }
+        }
+
+        return response()->json(['success' => true], 200);
+    }
+
     public function readThongBao($id)
     {
         $user_id = auth()->user()->id;

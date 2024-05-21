@@ -136,7 +136,6 @@ class HoiDapController extends Controller
     // ĐK: Doanh nghiệp có nhu cầu hoặc đã thực hiện khảo sát
     public function timkiem()
     {
-        $user = User::findOrFail(auth()->id());
         $doanhNghieps = Doanhnghiep::select('doanhnghiep.*')
             ->whereIn('id', function ($query) {
                 $query->select(DB::raw('doanhnghiep_id'))

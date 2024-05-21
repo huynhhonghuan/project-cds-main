@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Doanhnghiep\ChatController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
@@ -560,3 +561,12 @@ Route::post('/diendan/{id}/unlike', [DiendanController::class, 'unlike'])->name(
 // ---------------------------------------------
 //Giao diện thư viện
 Route::get('/thuvien/{phanloai}', [ThuvienController::class, 'getloaithuvien'])->name('thuvien1');
+
+
+// Chat
+Route::group(['prefix' => 'chat'], function () {
+    Route::get('/', [ChatController::class, 'index']);
+    Route::get('/{conversation_id}', [ChatController::class, 'message'])->name('chat.message');
+    Route::delete('/{conversation_id}', [ChatController::class, 'deleteConversation']);
+    Route::get('/user/{to_user_id}', [ChatController::class, 'chatToUser']);
+});

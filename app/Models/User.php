@@ -136,6 +136,10 @@ class User extends Authenticatable  implements JWTSubject
             ],
         );
     }
+    public function Check_HoiVien(): bool
+    {
+        return $this->getDoanhNghiep?->hoivien == true;
+    }
     public function Check_Chuyengia(): bool
     {
         return in_array(
