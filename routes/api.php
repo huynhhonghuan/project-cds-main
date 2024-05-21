@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\LoaiHinhDoanhNghiepController;
 use App\Http\Controllers\Api\MucDoController;
 use App\Http\Controllers\Api\SanPhamController;
 use App\Http\Controllers\Api\TaiKhoanController;
+use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Api\ThongBaoController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
@@ -123,8 +124,15 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
         Route::post('edit', [DoanhNghiepController::class, 'edit']);
         Route::post('editDaiDien', [DoanhNghiepController::class, 'editDaiDien']);
         Route::post('nhucau', [DoanhNghiepController::class, 'postNhuCau']);
+        // Thành tích
+        Route::post('thanhtich/create', [DoanhNghiepController::class, 'createThanhTich']);
+        Route::delete('thanhtich/{id}', [DoanhNghiepController::class, 'deleteThanhTich']);
+
+        // Hồ sơ năng lực
+        Route::post('hosonangluc', [DoanhNghiepController::class, 'createHoSoNangLuc']);
     });
     Route::get("index", [DoanhNghiepController::class, 'index']);
+    Route::get("nganhnghe", [DoanhNghiepController::class, 'nganhnghe']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
     Route::get('{id}/sanpham', [SanPhamController::class, 'getSanPhamByDoanhNghiep']);
     Route::get('{id}/baiviet', [BaiVietController::class, 'getBaiVietByDoanhNghiep']);
@@ -170,4 +178,10 @@ Route::group(['prefix' => 'test'], function () {
     Route::group(['middleware' => ['auth:api']], function () {
         Route::post('runAuth', [HoiDapController::class, 'testAuth']);
     });
+});
+
+
+Route::group(['prefix' => 'test'], function () {
+    Route::get('', [TestController::class, 'index']);
+    Route::post('', [TestController::class, 'upload']);
 });

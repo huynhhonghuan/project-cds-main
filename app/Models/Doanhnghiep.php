@@ -31,10 +31,12 @@ class Doanhnghiep extends Model
         'hoivien',
         'namgianhap',
         'hosonangluc',
+        'gianhang'
     ];
 
     protected $casts = [
         'ngaylap' => 'date',
+        'hoivien' => 'boolean'
     ];
 
     public function getUser()
@@ -49,9 +51,18 @@ class Doanhnghiep extends Model
 
     public function getLoaiHinh()
     {
-        return $this->getNganhNghe->getLoaiHinh();
+        return $this?->getNganhNghe?->getLoaiHinh();
     }
 
+    public function getLinhVuc()
+    {
+        return $this?->getLoaiHinh?->getLinhVuc();
+    }
+
+    public function getThanhTich()
+    {
+        return $this->hasMany(ThanhTich::class, 'doanhnghiep_id', 'id');
+    }
     // public function getLinhVuc()
     // {
     //     return $this->hasOneThrough(Linhvuc::class, Doanhnghiep_Loaihinh::class, 'id', 'id', 'doanhnghiep_loaihinh_id', 'linhvuc_id');
