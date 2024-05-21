@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\SanPhamAnhResource;
 use App\Http\Resources\SanPhamResource;
 use App\Models\Doanhnghiep;
-use App\Models\Sanpham;
+use App\Models\SanPham;
 use App\Models\SanPhamAnh;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,20 +16,30 @@ class SanPhamController extends Controller
     //
     public function index()
     {
-        $sanPhams = Sanpham::all()->orderByDesc('created_at')->get();
-
+        $sanPhams = SanPham::orderBy('doanhnghiep_id')->orderBy('created_at', 'DESC')->get();
         return SanPhamResource::collection($sanPhams);
+    }
+
+    public function getSanPhamRandom(Request $request)
+    {
+        $count = $request->input('count', 20);
+        return SanPhamResource::collection(SanPham::inRandomOrder()->limit($count)->get());
+    }
+
+    public function getSanPhamMoiNhat()
+    {
+        return SanPhamResource::collection(SanPham::orderByDesc('created_at')->limit(20)->get());
     }
 
     public function getSanPhamByDoanhNghiep($id)
     {
-        $sanPhams = Sanpham::where('doanhnghiep_id', $id)->orderByDesc('created_at')->get();
+        $sanPhams = SanPham::where('doanhnghiep_id', $id)->orderByDesc('created_at')->get();
         return SanPhamResource::collection($sanPhams);
     }
 
     public function detail($id)
     {
-        return new SanPhamResource(Sanpham::findOrFail($id));
+        return new SanPhamResource(SanPham::findOrFail($id));
     }
 
     public function create(Request $request)
