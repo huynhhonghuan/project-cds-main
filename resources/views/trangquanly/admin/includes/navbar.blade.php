@@ -3,7 +3,7 @@
     <div class="header-left">
         <a href="{{ route('admin.home') }}" class="logo"> <img
                 src="{{ env('APP_URL') }}/assets/backend/img/vaitro/admin.png" width="50" height="70"
-                alt="logo"> <span class="logoclass">Quản trị viên</span> </a>
+                alt="logo"> <span class="logoclass">Hiệp hội doanh nghiệp tỉnh an giang</span> </a>
         <a href="{{ route('admin.home') }}" class="logo logo-small"> <img
                 src="{{ env('APP_URL') }}/assets/backend/img/vaitro/admin.png" alt="Logo" width="30"
                 height="30">
@@ -90,16 +90,16 @@
         </li>
         <li class="nav-item dropdown has-arrow">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"> <span class="user-img"><img
-                        class="rounded-circle" src="{{ URL::to('assets/backend/img/hoso/user-profile.png') }}"
-                        width="31" alt="Soeng Souy"></span> </a>
+                class="rounded-circle" src="{{ URL::to('assets/backend/img/hoso/user-profile.png') }}" width="31"
+                alt="Quản trị viên"></span> </a>
             <div class="dropdown-menu">
                 <div class="user-header">
                     <div class="avatar avatar-sm"> <img
-                        src="{{ env('APP_URL') }}/assets/backend/img/hoso/user-profile.png" alt="User Image"
+                        src="{{ URL::to('assets/backend/img/hoso/user-profile.png') }}" alt="User Image"
                             class="avatar-img rounded-circle"> </div>
                     <div class="user-text">
                         <h6>{{ Auth::user()->name }}</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <p class="text-muted mb-0">Quản trị viên</p>
                     </div>
                 </div>
                 <a class="dropdown-item" href="{{ route('admin.profile') }}">Thông tin của tôi</a>

@@ -24,8 +24,22 @@
                                 </a>
                             </div>
                             <div class="col ml-md-n2 profile-user-info">
-                                <h4 class="user-name mb-3">{{Auth::user()->getdoanhnghiep->tentiengviet}}</h4>
-                                <div class="about-text"><span style="font-weight: 600">Mô tả : </span>{{Auth::user()->getdoanhnghiep->mota}}</div>
+                                <h4 class="user-name mb-3 text-uppercase" style="color: blue;font-weight:600">{{Auth::user()->getdoanhnghiep->tentiengviet}}</h4>
+                                @if(Auth::user()->getdoanhnghiep->mota == null)
+                                    <div class="d-flex">
+                                        <div class=""><span style="font-weight: 600">Mô tả : </span>Chưa cập nhật...</div>
+                                        <span style="color: red;font-weight:800;margin-left:16px">*</span>
+                                    </div>
+                                @else 
+                                    <div class="about-text"><span style="font-weight: 600">Mô tả : </span>{{Auth::user()->getdoanhnghiep->mota}}</div>
+                                @endif
+                            </div>
+                            <div class="col-4">
+                                @if(Auth::user()->getdoanhnghiep->hoivien == 0)
+                                    <span class="d-flex" style="align-items: center;height: 35px;padding-left:48px;font-size: 16px;"><i class="fa-solid fa-gem" style="color: #000;margin-right:8px"></i><span style="color:black;">Chưa là thành viên hiệp hội doanh nghiệp</span></span>
+                                @else @if(Auth::user()->getdoanhnghiep->hoivien == 1)
+                                    <span class="d-flex" style="align-items: center;height: 35px;padding-left:48px;font-size: 16px;background:#009688;border-radius:20px"><i class="fa-solid fa-gem" style="color: #f2f243;margin-right:8px"></i><span style="color:#fff;font-weight:600">Thành viên hiệp hội doanh nghiệp</span></span>
+                                @endif @endif 
                             </div>
                         </div>
                     </div>
@@ -83,13 +97,13 @@
                                             </div>
                                             <div class="row">
                                                 <p class="col-sm-3 text-sm-right mb-0 mb-sm-3">Loại hình hoạt động</p>
-                                                @if(Auth::user()->getdoanhnghiep->getloaihinh->tenloaihinh == null)
+                                                @if(Auth::user()->getdoanhnghiep->getNganhNghe->tennganhnghe == null)
                                                     <div class="col-sm-9 d-flex">
                                                         <div class="">Chưa cập nhật...</div>
                                                         <span style="color: red;font-weight:800;margin-left:16px">*</span>
                                                     </div>
                                                 @else 
-                                                    <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->getloaihinh->tenloaihinh}}</p>
+                                                    <p class="col-sm-9 mb-0">{{Auth::user()->getdoanhnghiep->getNganhNghe->tennganhnghe}}</p>
                                                 @endif
                                             </div>
                                             <div class="row">
@@ -186,7 +200,7 @@
                                                                 <div class="form-group"  style="margin-bottom: 6px">
                                                                     <label>Loại hình hoạt động</label>
                                                                     <input type="text" class="form-control"
-                                                                        value="{{Auth::user()->getdoanhnghiep->getloaihinh->tenloaihinh}}">
+                                                                        value="{{Auth::user()->getdoanhnghiep->getNganhNghe->tennganhnghe}}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BaiViet_Anh;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Sanpham;
-use App\Models\Sanpham_Anh;
+use App\Models\SanPhamAnh;
 use App\Models\ThongBao;
 
 class SanphamController extends Controller
@@ -69,7 +69,7 @@ class SanphamController extends Controller
             // $input['hinhanh'] = "$profileImage";
 
             // $sanpham_id = $input->id;
-            $hinhanhsp = new Sanpham_Anh();
+            $hinhanhsp = new SanPhamAnh();
             $hinhanhsp->sanpham_id = $sanpham->id;
             $hinhanhsp->hinhanh = $profileImage;
             $hinhanhsp->save();
@@ -129,7 +129,7 @@ class SanphamController extends Controller
         ];
 
         Sanpham::where('id', $id)->update($sanpham);
-        Sanpham_Anh::where('sanpham_id', $id)->update($sanpham_anh);
+        SanPhamAnh::where('sanpham_id', $id)->update($sanpham_anh);
 
         Toastr::success('Sửa thành công:)', 'Success');
         return redirect()->route('doanhnghiep.sanpham.danhsach');

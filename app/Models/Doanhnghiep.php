@@ -90,4 +90,8 @@ class Doanhnghiep extends Model
     {
         return $this->hasMany(NhuCau::class);
     }
+    public function getsanpham()
+    {
+        return $this->hasMany(SanPham::class, 'doanhnghiep_id', 'id');
+    }
 }

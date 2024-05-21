@@ -146,9 +146,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
     Route::get('home', [AdminController::class, 'home'])->name('home');
     //-------------------------------------Profile--------------------------------------------//
     Route::get('profile', [AdminController::class, 'profile'])->name('profile');
-
+    
     Route::post('doimatkhau/{id}', [AdminController::class, 'doimatkhau'])->name('doimatkhau');
 
+    //-------------------------------------Danh sách doanh nghiệp--------------------------------------------//
+    
+    Route::group(['prefix' => 'doanhnghiep', 'as' => 'doanhnghiep.'], function () {
+        Route::get('dsdoanhnghiep', [AdminController::class, 'dsdn'])->name('dsdoanhnghiep');
+        Route::get('xemdn/{id}', [AdminController::class, 'getxemdn'])->name('xemdn');
+        
+    });
     //-------------------------------------Tin tức--------------------------------------------//
     Route::group(['prefix' => 'tintuc', 'as' => 'tintuc.'], function () {
         Route::get('danhsach', [TintucController::class, 'getdanhsach'])->name('danhsach');
@@ -544,6 +551,8 @@ Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindeta
 Route::get('/video', [TrangtinController::class, 'AllVideo'])->name('AllVideo');
 Route::get('/thuvien', [TrangtinController::class, 'thuvien'])->name('Thuvien');
 Route::get('/tin/{id}', [TrangtinController::class, 'TinDetail'])->name('tindetail');
+Route::get('/sanpham', [TrangtinController::class, 'sanpham'])->name('sanpham');
+
 // Tìm kiếm
 Route::get('/search', [TrangtinController::class, 'search'])->name('search');
 Route::get('/searchvb', [TrangtinController::class, 'searchvb'])->name('search');

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\Taikhoan\Doanhnghiep;
+use App\Http\Controllers\Api\TaiKhoanController;
 use App\Http\Controllers\Controller;
 use App\Models\Chuyengia_Danhgia;
 use App\Models\Khaosat;
 use App\Models\Mohinh;
 use App\Models\Mohinh_Doanhnghiep_Trucot;
 use App\Models\User;
+use App\Models\Doanhnghiep as dnghiep;
 use App\Models\User_Vaitro;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -55,11 +58,14 @@ class AdminController extends Controller
         $kh_cn = 0;
         $kh_tmdv = 0;
         $kh_kh = 0;
+        
         foreach (Khaosat::all() as $item) {
-            $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'nn' ? $kh_nn++ : '';
-            $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'cn' ? $kh_cn++ : '';
-            $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'tmdv' ? $kh_tmdv++ : '';
-            $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'kh' ? $kh_kh++ : '';
+            if ($item->getdoanhnghiep->getloaihinh) {
+                $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'nn' ? $kh_nn++ : '';
+                $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'cn' ? $kh_cn++ : '';
+                $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'tmdv' ? $kh_tmdv++ : '';
+                $item->getdoanhnghiep->getloaihinh->linhvuc_id == 'kh' ? $kh_kh++ : '';
+            }
         }
 
         $khaosat = [
@@ -175,6 +181,31 @@ class AdminController extends Controller
     {
         return view('trangquanly.admin.profile');
     }
+
+    public function dsdn(Request $request)
+    {
+        $danhsach = dnghiep::all();
+        // dd($danhsach);
+
+        return view('trangquanly.admin.doanhnghiep.dsdoanhnghiep', compact('danhsach'));
+    }
+
+    public function xemdn(Request $request)
+    {
+        $danhsach = dnghiep::all();
+        // dd($danhsach);
+
+        return view('trangquanly.admin.doanhnghiep.dsdoanhnghiep', compact('danhsach'));
+    }
+
+    public function getxemdn($id)
+    {
+        $user = User::find($id);
+
+        // dd($user);
+        return view('trangquanly.admin.doanhnghiep.xem', compact('user'));
+    }
+
 
     public function doimatkhau(Request $request, $id)
     {

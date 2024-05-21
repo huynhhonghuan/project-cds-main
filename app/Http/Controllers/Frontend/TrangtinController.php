@@ -143,6 +143,14 @@ class TrangtinController extends Controller
         return view('trangchu.thuvien', compact('thuviens'));
     }
 
+    public function sanpham(Request $request) {
+        $doanhnghiepSP = Doanhnghiep::with(['getsanpham'])->get();
+        return view('trangchu.sanpham', compact('doanhnghiepSP'));
+    }
+    public function spdetail(Request $request) {
+        $doanhnghiepSP = Doanhnghiep::with(['getsanpham'])->get();
+        return view('trangchu.sanphamdetail', compact('doanhnghiepSP'));
+    }
     public function search() {
         $searchText = $_GET['query'];
         $New = Tintuc::where('tieude' ,'LIKE', '%'.$searchText.'%')->get();
