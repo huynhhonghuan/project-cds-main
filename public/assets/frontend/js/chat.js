@@ -22,7 +22,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-const messageRef = collection(db, 'message')
+const messageRef = collection(db, 'message_thai')
 
 class Chat {
     constructor(conversationId) {
@@ -45,12 +45,12 @@ class Chat {
         })
     }
     static async deleteConversation(conversationId) {
-        let messageQuery = query(messageRef, where('conversation_id', '==', conversationId))
+        let messageQuery = query(messageRef, where('conversation_id', '==', Number(conversationId)))
         let querySnapshot = await getDocs(messageQuery)
-        querySnapshot.forEach(async (doc) => {
-            await deleteDoc(doc.ref)
-        })
 
+        querySnapshot.forEach(function (doc) {
+            deleteDoc(doc.ref)
+        })
     }
 
     async deleteAll() {

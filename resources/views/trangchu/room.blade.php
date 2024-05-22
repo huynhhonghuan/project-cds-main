@@ -120,12 +120,12 @@
         border-radius: 50%;
     }
 </style>
-<script src="{{ env('APP_URL') }}assets/jquery/jquery.3.7.1.js"></script>
+<script src="{{ env('APP_URL') }}/assets/jquery/jquery.3.7.1.js"></script>
+
 <script>
-    $(document).ready(async function() {
+    $(document).ready(function() {
         // Khởi tạo đối tượng Chat, param là hội thoại id lấy từ MYSQL
         var chat = new Chat('{{$conversation_id}}')
-
         // lắng nghe thay đổi trong danh sách tin nhắn
         chat.loadMessages((messages) => {
             $('#chat-list').html('')
@@ -150,18 +150,17 @@
 
 <div style="position: relative;">
     <div class="side-bar">
-        <div class="list">
-            @foreach($conversations as $conversation)
-            @if ($conversation['conversation_id'] != $conversation_id)
-            <div class="list-item">
-                <a class="side-bar-item" href="{{ URL::to('/chat/' . $conversation['conversation_id']) }}">
-                    <img src="{{ asset('assets/backend/img/hoso/'.Auth::user()->image) }}" alt="">
-                    <p>{{ Auth::user()->name}}</p>
-                </a>
-            </div>
-            @endif
-            @endforeach
+        @foreach($conversations as $conversation)
+        <div class="list-item">
+            <a class="side-bar-item" href="{{$conversation['conversation_id'] != $conversation_id ?  URL::to('/chat/' . $conversation['conversation_id']):"#" }}">
+                <img src="{{ asset('assets/backend/img/hoso/'.$conversation['user']?->image) }}" alt="">
+                <p>{{ $conversation['user']?->name}}</p>
+            </a>
         </div>
+        @endforeach
+        <a href="/chat">
+            Xem tất cả hội thoại
+        </a>
     </div>
     <div class="chat-container" style="margin-top: 132px">
         <div id="chat-top">

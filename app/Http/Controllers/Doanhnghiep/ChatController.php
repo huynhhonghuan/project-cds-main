@@ -100,7 +100,7 @@ class ChatController extends Controller
         foreach ($hoithoais as $hoithoai) {
             $conversations[] = [
                 'conversation_id' => $hoithoai->id,
-                'user' => $hoithoai->getThamGia->where('user_id', '!=', $user_id)->first()
+                'user' => $hoithoai->getThamGia->where('user_id', '!=', $user_id)->first()?->getUser
             ];
         }
         return $conversations;

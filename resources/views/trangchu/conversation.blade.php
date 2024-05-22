@@ -3,10 +3,9 @@
 
 
 <style>
-    .list {
-        width: 800px;
-        margin: 10px auto;
-        text-align: center;
+    .conversation-container {
+        width: 700px;
+        margin: 100px auto 100px;
     }
 
     .list-item {
@@ -52,8 +51,8 @@
         border: none;
     }
 </style>
-<script src="{{ env('APP_URL') }}assets/jquery/jquery.3.7.1.js"></script>
-<script type="module" src="{{ env('APP_URL') }}assets/frontend/js/chat.js"></script>
+<script src="{{ env('APP_URL') }}/assets/jquery/jquery.3.7.1.js"></script>
+<script type="module" src="{{ env('APP_URL') }}/assets/frontend/js/chat.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -83,12 +82,12 @@
 </script>
 
 @csrf
-<div class="list">
-    <h2>Danh sách tin nhắn</h2>
+<h2>Danh sách tin nhắn</h2>
+<div class="conversation-container">
     @foreach($conversations as $item)
     <div class="list-item">
         <a href="/chat/{{$item['conversation_id']}}">
-            <img src="{{ env('APP_URL') }}assets/backend/img/hoso/{{ $item['user']?->image }}" alt="">
+            <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $item['user']?->image }}" alt="">
             <p>
                 {{ $item['user']?->name }} - {{ $item['user']?->getDoanhNghiep->tentiengviet}}
             </p>
