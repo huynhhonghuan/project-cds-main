@@ -130,7 +130,7 @@
         chat.loadMessages((messages) => {
             $('#chat-list').html('')
             messages.forEach(message => {
-                let className = message.user_id == Number("{{Auth::user()->id}}") ? 'me' : 'his'
+                let className = message.user_id == Number("{{Auth::user()->id}}") ? 'me' : 'him'
                 $('#chat-list').append(`<div class="${className}">${message.message}</div>`)
             })
             $('#chat-list').scrollTop($('#chat-list')[0].scrollHeight)
@@ -155,17 +155,17 @@
             @if ($conversation['conversation_id'] != $conversation_id)
             <div class="list-item">
                 <a class="side-bar-item" href="{{ URL::to('/chat/' . $conversation['conversation_id']) }}">
-                    <img src="{{ env('APP_URL') }}assets/backend/img/hoso/{{ $conversation['user']?->image }}" alt="">
-                    <p>{{ $conversation['user']?->name }}</p>
+                    <img src="{{ asset('assets/backend/img/hoso/'.Auth::user()->image) }}" alt="">
+                    <p>{{ Auth::user()->name}}</p>
                 </a>
             </div>
             @endif
             @endforeach
         </div>
     </div>
-    <div class="chat-container">
+    <div class="chat-container" style="margin-top: 132px">
         <div id="chat-top">
-            <img src="{{ env('APP_URL') }}assets/backend/img/hoso/{{ $him->image }}" alt="">
+            <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $him->image }}" alt="">
             <p>{{$him->name}} - {{$him->getDoanhNghiep->tentiengviet}}</p>
         </div>
         <div id="chat-list"></div>
@@ -176,6 +176,6 @@
     </div>
 </div>
 
-<script type="module" src="{{ env('APP_URL') }}assets/frontend/js/chat.js"></script>
+<script type="module" src="{{ env('APP_URL') }}/assets/frontend/js/chat.js"></script>
 
 @endsection

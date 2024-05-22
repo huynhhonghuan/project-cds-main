@@ -35,6 +35,7 @@ class ChatController extends Controller
                     ->from('conversation_thamgia')
                     ->where('user_id',  $user_id);
             })->firstOrFail();
+        // dd($conversation);
         foreach ($conversation->getThamGia as $thamgia) {
             if ($thamgia->user_id !=  $user_id) {
                 $him = $thamgia->getUser;
@@ -56,7 +57,7 @@ class ChatController extends Controller
         })->with('getThamGia')->whereHas('getThamGia', function ($query) use ($user_id) {
             $query->where('user_id',  $user_id);
         })->first();
-
+        // dd($conversation);
         if ($conversation == null) {
             $conversation = new Conversation();
             $conversation->save();
@@ -94,12 +95,12 @@ class ChatController extends Controller
                 ->from('conversation_thamgia')
                 ->where('user_id', $user_id);
         })->with('getThamGia')->get();
-
+        // dd($hoithoais);
         $conversations = array();
         foreach ($hoithoais as $hoithoai) {
             $conversations[] = [
                 'conversation_id' => $hoithoai->id,
-                'user' => $hoithoai->getThamGia->where('user_id', '!=', $user_id)->first()->getUser
+                'user' => $hoithoai->getThamGia->where('user_id', '!=', $user_id)->first()
             ];
         }
         return $conversations;

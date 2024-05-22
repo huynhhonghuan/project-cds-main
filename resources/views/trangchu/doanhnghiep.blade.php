@@ -51,7 +51,6 @@
                     @if ($dn->trangthai == 1)
                     <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer_nor"><span>Xem Chi Tiết</span></a>
                     @else @endif @endif
-
                     <a href="{{ URL::to('/chat/user/'. $dn->getUser->id) }}" class="footer_nor"><span>Nhắn tin</span></a>
                 </div>
             </div>
