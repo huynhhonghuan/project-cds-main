@@ -22,6 +22,6 @@ class Conversation_ThamGia extends Model
 
     public function getUser()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }
