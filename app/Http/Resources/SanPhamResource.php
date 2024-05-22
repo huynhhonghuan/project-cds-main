@@ -19,7 +19,7 @@ class SanPhamResource extends JsonResource
             'tenSanPham' => $this->tensanpham,
             'gia' => $this->gia,
             'moTa' => $this->mota,
-            'hinhAnhs' => SanPhamAnhResource::collection($this->getAnh),
+            'hinhAnhs' => SanPhamAnhResource::collection($this->getHinhAnhs),
             'doanhNghiep' => new DoanhNghiepResource($this->getDoanhNghiep),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at

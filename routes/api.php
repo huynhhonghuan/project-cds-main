@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BaiVietController;
 use App\Http\Controllers\Api\BinhLuanController;
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\ChuyenGiaController;
 use App\Http\Controllers\Api\DanhMucController;
 use App\Http\Controllers\Api\DoanhNghiepController;
@@ -17,7 +18,6 @@ use App\Http\Controllers\Api\TestController;
 use App\Http\Controllers\Api\ThongBaoController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
-use App\Http\Controllers\Doanhnghiep\ChatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -189,8 +189,6 @@ Route::group(['prefix' => 'test'], function () {
 });
 
 
-// Route::group(['prefix' => 'test'], function () {
-//     Route::get('', [TestController::class, 'index']);
-//     Route::get('conversation', [TestController::class, 'conversation']);
-//     Route::post('', [TestController::class, 'upload']);
-// });
+Route::group(['prefix' => 'chat'], function () {
+    Route::get('conversation', [ChatController::class, 'getConversation']);
+});
