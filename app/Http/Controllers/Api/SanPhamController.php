@@ -49,7 +49,7 @@ class SanPhamController extends Controller
             'gia' => ['required', 'string'],
             'moTa' => ['required', 'string'],
         ]);
-        $sanpham = new Sanpham();
+        $sanpham = new SanPham();
         $user_id = auth()->id();
         $doanhnghiep_id = Doanhnghiep::where('user_id', $user_id)->firstOrFail()->id;
 
@@ -75,7 +75,7 @@ class SanPhamController extends Controller
                 }
             }
         });
-        $sanPhams = Sanpham::where('doanhnghiep_id', $doanhnghiep_id)->orderByDesc('created_at')->get();
+        $sanPhams = SanPham::where('doanhnghiep_id', $doanhnghiep_id)->orderByDesc('created_at')->get();
         return SanPhamResource::collection($sanPhams);
     }
 
@@ -87,12 +87,12 @@ class SanPhamController extends Controller
             'moTa' => ['required', 'string'],
         ]);
         $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
-        $sanpham = Sanpham::where('id', $request->id)->where('doanhnghiep_id', $doanhnghiep->id)->firstOrFail();
+        $sanpham = SanPham::where('id', $request->id)->where('doanhnghiep_id', $doanhnghiep->id)->firstOrFail();
         $sanpham->tensanpham = $request->tenSanPham;
         $sanpham->gia = $request->gia;
         $sanpham->mota = $request->moTa;
         $sanpham->save();
-        $sanPhams = Sanpham::where('doanhnghiep_id',  $doanhnghiep->id)->orderByDesc('created_at')->get();
+        $sanPhams = SanPham::where('doanhnghiep_id',  $doanhnghiep->id)->orderByDesc('created_at')->get();
         return SanPhamResource::collection($sanPhams);
     }
 
@@ -131,9 +131,9 @@ class SanPhamController extends Controller
     {
         $user_id = auth()->id();
         $doanhnghiep_id = Doanhnghiep::where('user_id', $user_id)->firstOrFail()->id;
-        $sanpham = Sanpham::where('id', $id)->where('doanhnghiep_id', $doanhnghiep_id)->firstOrFail();
+        $sanpham = SanPham::where('id', $id)->where('doanhnghiep_id', $doanhnghiep_id)->firstOrFail();
         $sanpham->delete();
-        $sanPhams = Sanpham::where('doanhnghiep_id',  $doanhnghiep_id)->orderByDesc('created_at')->get();
+        $sanPhams = SanPham::where('doanhnghiep_id',  $doanhnghiep_id)->orderByDesc('created_at')->get();
         return SanPhamResource::collection($sanPhams);
     }
 
@@ -146,7 +146,7 @@ class SanPhamController extends Controller
 
     public function createanhsanpham(Request $request)
     {
-        $sanpham = Sanpham::findOrFail($request->id);
+        $sanpham = SanPham::findOrFail($request->id);
         $hinhAnh = $request->file('hinhAnh');
         if ($request->hasFile('hinhAnh')) {
             $path = 'assets/backend/img/sanpham';

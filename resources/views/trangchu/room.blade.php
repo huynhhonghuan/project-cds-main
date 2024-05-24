@@ -125,7 +125,7 @@
 <script>
     $(document).ready(function() {
         // Khởi tạo đối tượng Chat, param là hội thoại id lấy từ MYSQL
-        var chat = new Chat('{{$conversation_id}}')
+        var chat = new Chat('{{$conversation_id}}', '{{env("FIREBASE_MESSAGE_TABLE_NAME")}}')
         // lắng nghe thay đổi trong danh sách tin nhắn
         chat.loadMessages((messages) => {
             $('#chat-list').html('')
@@ -165,7 +165,7 @@
     <div class="chat-container" style="margin-top: 132px">
         <div id="chat-top">
             <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $him->image }}" alt="">
-            <p>{{$him->name}} - {{$him->getDoanhNghiep->tentiengviet}}</p>
+            <p>{{$him->name}} - {{$him->getDoanhNghiep?->tentiengviet}}</p>
         </div>
         <div id="chat-list"></div>
         <form id="chat-bottom">

@@ -58,6 +58,7 @@
     $(document).ready(function() {
         $('.deleleBtn').on('click', (e) => {
             let conversationId = e.target.getAttribute('conversation-id');
+            let chat = new Chat('{{$conversation_id}}', '{{env("FIREBASE_MESSAGE_TABLE_NAME")}}')
 
             if (confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) {
                 var token = $("input[name='_token']").val();
@@ -72,7 +73,7 @@
                     credentials: "same-origin",
                 }).then(async (response) => {
                     if (response.status === 200) {
-                        await Chat.deleteConversation(conversationId);
+                        await chat.deleteConversation(conversationId);
                         $(e.target).closest('.list-item').remove()
                     }
                 })
@@ -89,7 +90,7 @@
         <a href="/chat/{{$item['conversation_id']}}">
             <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $item['user']?->image }}" alt="">
             <p>
-                {{ $item['user']?->name }} - {{ $item['user']?->getDoanhNghiep->tentiengviet}}
+                {{ $item['user']?->name }} - {{ $item['user']?->getDoanhNghiep?->tentiengviet}}
             </p>
         </a>
         <div class="deleleBtn" conversation-id="{{$item['conversation_id']}}">Xóa</div>

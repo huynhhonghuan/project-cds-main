@@ -65,14 +65,12 @@ class DoanhNghiepController extends Controller
 
     public function createHoSoNangLuc(Request $request)
     {
-        $request->validate([
-            'file' => 'required',
-        ]);
+        // $request->validate([
+        //     'file' => 'required',
+        // ]);
         $doanhnghiep = Doanhnghiep::where('user_id', auth('api')->id())->firstOrFail();
-        $this->log("vào");
 
         if ($request->hasFile('file')) {
-            $this->log("HEllo");
             $file = $request->file('file');
             $path = 'assets/backend/file/hosonangluc';
             $fileName =  uniqid() . "."  . $file->getClientOriginalExtension();
