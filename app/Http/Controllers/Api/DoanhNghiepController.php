@@ -30,6 +30,32 @@ class DoanhNghiepController extends Controller
     {
         return DoanhNghiepResource::collection(Doanhnghiep::where('trangthai', 1)->get());
     }
+    public function getDoanhNghiepPage(Request $request)
+    {
+        $skip = $request->skip;
+        $limit = $request->limit;
+        $linhvuc_id = $request->linhVucId;
+        $loaihinh_id = $request->loaiHinhId;
+        $huyen = $request->huyen;
+        $qr = Doanhnghiep::query()
+            ->when($loaihinh_id, function ($query, $loaihinh_id) {
+                return $query->whereHas('getLoaiHinh', function ($query) use ($loaihinh_id) {
+                    $query->where('loaihinh_id', $loaihinh_id);
+                });
+            })
+            ->when($huyen, function ($query, $huyen) {
+                return $query->where('huyen', $huyen);
+            });
+
+        $total = $qr->count();
+        $member = $qr->count('hoivien', 1);
+        $doanhnghieps = $qr->skip($skip)->take($limit)->get();
+        return [
+            'total' => $total,
+            'member' => $member,
+            'data' => DoanhNghiepResource::collection($doanhnghieps)
+        ];
+    }
     public function nganhnghe()
     {
         return NganhNgheResource::collection(NganhNghe::all());

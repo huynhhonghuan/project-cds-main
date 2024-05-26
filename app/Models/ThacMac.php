@@ -21,4 +21,9 @@ class ThacMac extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function getDoanhNghiep()
+    {
+        return $this->hasOneThrough(DoanhNghiep::class, User::class, 'id', 'user_id', 'user_id', 'id');
+    }
 }

@@ -17,6 +17,7 @@ class ThacMacResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => new UserResource($this->getUser),
+            'doanhNghiep' => new DoanhNghiepResource($this->getDoanhNghiep),
             'noiDung' => $this->noidung,
             'traLoi' => $this->traloi,
             'ngayTraLoi' => $this->ngaytraloi,
