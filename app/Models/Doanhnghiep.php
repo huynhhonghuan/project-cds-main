@@ -51,12 +51,19 @@ class Doanhnghiep extends Model
 
     public function getLoaiHinh()
     {
-        return $this?->getNganhNghe?->getLoaiHinh();
+        return $this->hasOneThrough(
+            Doanhnghiep_Loaihinh::class,
+            NganhNghe::class,
+            'id', // Foreign key on NganhNghe table
+            'id', // Foreign key on LoaiHinh table
+            'nganhnghe_id', // Local key on DoanhNghiep table
+            'loaihinh_id' // Local key on NganhNghe table
+        );
     }
 
     public function getLinhVuc()
     {
-        return $this?->getLoaiHinh?->getLinhVuc();
+        return $this?->getLoaiHinh?->getlinhvuc();
     }
 
     public function getThanhTich()

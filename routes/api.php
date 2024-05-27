@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\MucDoController;
 use App\Http\Controllers\Api\SanPhamController;
 use App\Http\Controllers\Api\TaiKhoanController;
 use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\Api\ThacMacController;
 use App\Http\Controllers\Api\ThongBaoController;
 use App\Http\Controllers\Api\ThongKeController;
 use App\Http\Controllers\Api\TinTucController;
@@ -142,6 +143,7 @@ Route::group(['prefix' => 'doanhnghiep'], function () {
     Route::get("index", [DoanhNghiepController::class, 'index']);
     Route::get("nganhnghe", [DoanhNghiepController::class, 'nganhnghe']);
     Route::get("website", [DoanhNghiepController::class, 'getDoanhNghiepHasWebsite']);
+    Route::get("page", [DoanhNghiepController::class, 'getDoanhNghiepPage']);
     Route::get('{id}/sanpham', [SanPhamController::class, 'getSanPhamByDoanhNghiep']);
     Route::get('{id}/baiviet', [BaiVietController::class, 'getBaiVietByDoanhNghiep']);
     Route::get("{id}", [DoanhNghiepController::class, 'detail']);
@@ -189,6 +191,17 @@ Route::group(['prefix' => 'test'], function () {
 });
 
 
-Route::group(['prefix' => 'chat'], function () {
+Route::group(['prefix' => 'chat', 'middleware' => ['auth:api']], function () {
+    Route::get('conversations', [ChatController::class, 'getAllConversations']);
     Route::get('conversation', [ChatController::class, 'getConversation']);
+    Route::delete('conversation/{id}', [ChatController::class, 'deleteConversation']);
+});
+
+
+Route::group(['prefix' => 'thacmac', 'middleware' => ['auth:api']], function () {
+    Route::get('', [ThacMacController::class, 'getAllThacMac']);
+    Route::post('create', [ThacMacController::class, 'createThacMac']);
+    Route::delete('{id}', [ThacMacController::class, 'deleteThacMac']);
+    Route::get('user', [ThacMacController::class, 'getThacMacOfUser']);
+    Route::post('traloi/{id}', [ThacMacController::class, 'postTraLoi']);
 });

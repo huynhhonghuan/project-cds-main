@@ -22,14 +22,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-const messageRef = collection(db, 'message_thai')
 
 class Chat {
-    constructor(conversationId) {
+    constructor(conversationId, firebaseTableName = 'message_thai') {
         this.conversationId = Number(conversationId)
+        this.messageRef = collection(db, firebaseTableName)
     }
     loadMessages(callback) {
-        let messageQuery = query(messageRef, where('conversation_id', '==', this.conversationId))
+        let messageQuery = query(this.messageRef, where('conversation_id', '==', this.conversationId))
         onSnapshot(messageQuery, (snapshot) => {
             callback(snapshot.docs.map((doc) => {
                 return { id: doc.id, ...doc.data() }
@@ -37,15 +37,15 @@ class Chat {
         })
     }
     async sendMessage(userId, message) {
-        await addDoc(messageRef, {
+        await addDoc(this.messageRef, {
             conversation_id: this.conversationId,
             user_id: userId,
             message: message,
             created_at: new Date(),
         })
     }
-    static async deleteConversation(conversationId) {
-        let messageQuery = query(messageRef, where('conversation_id', '==', Number(conversationId)))
+    async deleteConversation(conversationId) {
+        let messageQuery = query(this.messageRef, where('conversation_id', '==', Number(conversationId)))
         let querySnapshot = await getDocs(messageQuery)
 
         querySnapshot.forEach(function (doc) {
@@ -54,7 +54,7 @@ class Chat {
     }
 
     async deleteAll() {
-        let messageQuery = query(messageRef, where('conversation_id', '==', this.conversationId))
+        let messageQuery = query(this.messageRef, where('conversation_id', '==', this.conversationId))
         let querySnapshot = await getDocs(messageQuery)
         querySnapshot.forEach(async (doc) => {
             await deleteDoc(doc.ref)
