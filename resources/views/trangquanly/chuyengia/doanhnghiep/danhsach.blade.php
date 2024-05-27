@@ -15,7 +15,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <div class="mt-5">
-                            <h4 class="card-title float-left mt-2 text-uppercase">Doanh sách doanh nghiệp</h4>
+                            <h4 class="card-title float-left mt-2 text-uppercase">Danh sách doanh nghiệp</h4>
                         </div>
                     </div>
                 </div>
@@ -40,19 +40,19 @@
                                         @foreach ($danhsach as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td style="max-width: 300px; text-overflow: ellipsis; overflow: hidden;">{{ $value->tentiengviet}}</td>
-                                                <td>{{ $value->getDaidien->tendaidien }}</td>
+                                                <td style="max-width: 300px; text-overflow: ellipsis; overflow: hidden;">{{ $value->getdoanhnghiep->tentiengviet}}</td>
+                                                <td>{{ $value->getdoanhnghiep->getdaidien->tendaidien }}</td>
                                                 <td>
-                                                    @if($value->getLoaiHinh->linhvuc_id == 'cn')
+                                                    @if($value->getdoanhnghiep->getLoaiHinh->linhvuc_id == 'cn')
                                                         <span>Công Nghiệp</span>
-                                                    @else @if($value->getLoaiHinh->linhvuc_id == 'nn')
+                                                    @else @if($value->getdoanhnghiep->getLoaiHinh->linhvuc_id == 'nn')
                                                         <span>Nông Nghiệp</span>
-                                                    @else @if($value->getLoaiHinh->linhvuc_id == 'tmdv') 
+                                                    @else @if($value->getdoanhnghiep->getLoaiHinh->linhvuc_id == 'tmdv') 
                                                         <span>Thương Mại - Dịch Vụ</span> 
                                                     @else @endif @endif @endif 
                                                 </td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('chuyengia.doanhnghiep.xemdoanhnghiep', ['id' => $value->id]) }}"
+                                                    <a href="{{ route('chuyengia.doanhnghiep.xemdoanhnghiep', $value->getdoanhnghiep->id) }}"
                                                         class="btn btn-sm mr-2"><i class="fa-regular fa-eye"
                                                             style="color:orange;"></i></a>
                                                 </td>

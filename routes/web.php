@@ -154,6 +154,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'check_admin'], 'as'
     Route::group(['prefix' => 'doanhnghiep', 'as' => 'doanhnghiep.'], function () {
         Route::get('dsdoanhnghiep', [AdminController::class, 'dsdn'])->name('dsdoanhnghiep');
         Route::get('xemdn/{id}', [AdminController::class, 'getxemdn'])->name('xemdn');
+        Route::get('thongkedn', [AdminController::class, 'getthongke'])->name('thongkedn');
         
     });
     //-------------------------------------Tin tức--------------------------------------------//
@@ -435,7 +436,7 @@ Route::group(['prefix' => 'chuyengia', 'middleware' => ['auth', 'check_chuyengia
 
     //-------------------------------------Thông tin doanh nghiệp--------------------------------------------//
     Route::group(['prefix' => 'doanhnghiep', 'as' => 'doanhnghiep.'], function () {
-        Route::get('danhsach', [ThongtinDoanhnghiepController::class, 'getdanhsach'])->name('danhsach');
+        Route::get('danhsach/{id}', [ThongtinDoanhnghiepController::class, 'getdanhsach'])->name('danhsach');
         Route::get('xemdoanhnghiep/{id}', [ThongtinDoanhnghiepController::class, 'getxemdoanhnghiep'])->name('xemdoanhnghiep');
     });
 

@@ -206,6 +206,13 @@ class AdminController extends Controller
         return view('trangquanly.admin.doanhnghiep.xem', compact('user'));
     }
 
+    public function getthongke(Request $request)
+    {
+
+        // dd($user);
+        return view('trangquanly.admin.doanhnghiep.thongke');
+    }
+
 
     public function doimatkhau(Request $request, $id)
     {

@@ -38,13 +38,13 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div id="table1" class="col-md-12" style="display: none;">
                     <div class="col-sm-12">
                         <div class="card card-table">
                             <div class="card-body p-3">
                                 <div class="table-responsive">
+                                    <h4 class="text-uppercase">Tỉnh an giang có <span style="color: blue;font-weight:700">{{$danhsach->count()}}</span> doanh nghiệp</h4>
                                     <table id="huan" class="table table-stripped table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
@@ -652,7 +652,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -717,7 +716,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -746,7 +745,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -775,7 +774,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -804,7 +803,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -833,7 +832,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -862,7 +861,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -891,7 +890,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -920,7 +919,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -949,7 +948,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -978,7 +977,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -1007,7 +1006,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -1036,7 +1035,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -1044,41 +1043,5 @@
         })
     });
 </script>
-    {{-- <script>
-        $(document).ready(function() {
-            $('#table-custom1').DataTable({
-                //disable sorting on last column
-                "columnDefs": [{
-                    "orderable": false,
-                    "targets": 6
-                }],
-                language: {
-                    //customize pagination prev and next buttons: use arrows instead of words
-                    'paginate': {
-                        'previous': '<span class="fa fa-chevron-left"></span>',
-                        'next': '<span class="fa fa-chevron-right"></span>'
-                    },
-                    //customize number of elements to be displayed
-                    "lengthMenu": 'Hiển thị <select class="form-control input-sm">' +
-                        '<option value="10">10</option>' +
-                        '<option value="20">20</option>' +
-                        '<option value="30">30</option>' +
-                        '<option value="40">40</option>' +
-                        '<option value="50">50</option>' +
-                        '<option value="100">100</option>' +
-                        '<option value="-1">Tất cả</option>' +
-                        '</select> số lượng',
-
-                    "zeroRecords": "Nothing found - sorry",
-                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
-                    "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
-                    "search": "Tìm kiếm:",
-                }
-                //         language: {
-                //     url: "//cdn.datatables.net/plug-ins/1.10.13/i18n/Vietnamese.json"
-                // }
-            })
-        });
-    </script> --}}
 
 @endsection

@@ -11,7 +11,9 @@
                 </li>
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý doanh nghiệp</span> </li>
-                <li> <a href="{{ route('admin.doanhnghiep.dsdoanhnghiep') }}"><i class="fa-regular fa-building"></i> <span> Doanh Nghiệp</span></a>
+                <li> <a href="{{ route('admin.doanhnghiep.thongkedn') }}"><i class="fa-solid fa-chart-column"></i> <span>Thống kê doanh nghiệp</span></a>
+                </li>
+                <li> <a href="{{ route('admin.doanhnghiep.dsdoanhnghiep') }}"><i class="fa-regular fa-building"></i> <span>Danh sách doanh nghiệp</span></a>
                 </li>
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Quản lý khảo sát</span> </li>
