@@ -200,8 +200,9 @@ Route::group(['prefix' => 'chat', 'middleware' => ['auth:api']], function () {
 
 Route::group(['prefix' => 'thacmac', 'middleware' => ['auth:api']], function () {
     Route::get('', [ThacMacController::class, 'getAllThacMac']);
+    Route::get('user', [ThacMacController::class, 'getThacMacOfUser']);
+    Route::get('{id}', [ThacMacController::class, 'getThacMac']);
     Route::post('create', [ThacMacController::class, 'createThacMac']);
     Route::delete('{id}', [ThacMacController::class, 'deleteThacMac']);
-    Route::get('user', [ThacMacController::class, 'getThacMacOfUser']);
     Route::post('traloi/{id}', [ThacMacController::class, 'postTraLoi']);
 });

@@ -102,6 +102,7 @@
         background-color: white;
     }
 
+
     .side-bar-item-right,
     .side-bar-item {
         display: flex;
@@ -116,6 +117,8 @@
     }
 
     .side-bar-item-right {
+
+    .side-bar-item-right {
         display: block;
         text-align: center;
     }
@@ -125,8 +128,11 @@
     }
 
     .side-bar-item:hover span {
+
+    .side-bar-item:hover span {
         color: #000;
     }
+
 
     .side-bar-item-right img {
         margin-top: 20px;
@@ -135,15 +141,22 @@
         border-radius: 50%;
     }
 
+
     .side-bar-item img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
     }
 
+
     .all__chat {
         display: flex;
         background-color: #000;
+        padding: 12px;
+        justify-content: center;
+        position: absolute;
+        top: 91%;
+        width: 100%;
         padding: 12px;
         justify-content: center;
         position: absolute;
@@ -156,12 +169,15 @@
     .all__chat a {
         color: #fff;
         font-weight: 600;
+        font-weight: 600;
         transition: .3s;
     }
 
     .all__chat:hover {
         background-color: #007bff;
     }
+
+    .all__chat:hover a {
 
     .all__chat:hover a {
         color: #000;

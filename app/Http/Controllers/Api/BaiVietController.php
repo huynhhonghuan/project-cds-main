@@ -88,6 +88,8 @@ class BaiVietController extends Controller
                 $message = substr($message, 0, 280);
             }
 
+            $doanhnghiepName = ModelsDoanhnghiep::where('user_id', $user_id)?->first()?->tentiengviet ?? "Người dùng";
+
             // New
             $intent = (new WitService())->getIntentByMessage($message);
             $id = strstr($intent, "_", true);
@@ -99,7 +101,7 @@ class BaiVietController extends Controller
                     if ($dn->user_id != $user_id) {
                         $to = $dn->user_id;
                         $message = [
-                            'tieude' => $dn->tentiengviet . ' đã đăng một bài viết mới',
+                            'tieude' => $doanhnghiepName . ' đã đăng một bài viết mới',
                             'noidung' =>  $request->noiDung,
                             'loai' => 'nhucau',
                             'loai_id' => $baiviet->id

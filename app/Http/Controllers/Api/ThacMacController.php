@@ -16,6 +16,11 @@ class ThacMacController extends Controller
         $thacMacs = ThacMac::orderBy('created_at', 'desc')->get();
         return ThacMacResource::collection($thacMacs);
     }
+
+    public function getThacMac($id)
+    {
+        return new ThacMacResource(ThacMac::findOrFail($id));
+    }
     public function getThacMacOfUser()
     {
         $user_id = auth()->id();

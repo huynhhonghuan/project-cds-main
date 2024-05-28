@@ -24,9 +24,9 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 class Chat {
-    constructor(conversationId, firebaseTableName = 'message_thai') {
+    constructor(conversationId, firebaseTableName) {
         this.conversationId = Number(conversationId)
-        this.messageRef = collection(db, firebaseTableName)
+        this.messageRef = collection(db, firebaseTableName || 'message_thai')
     }
     loadMessages(callback) {
         let messageQuery = query(this.messageRef, where('conversation_id', '==', this.conversationId))

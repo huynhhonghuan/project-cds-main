@@ -34,10 +34,9 @@ class DoanhNghiepController extends Controller
     {
         $skip = $request->skip;
         $limit = $request->limit;
-        $linhvuc_id = $request->linhVucId;
         $loaihinh_id = $request->loaiHinhId;
         $huyen = $request->huyen;
-        $qr = Doanhnghiep::query()
+        $baseQuery = Doanhnghiep::query()
             ->when($loaihinh_id, function ($query, $loaihinh_id) {
                 return $query->whereHas('getLoaiHinh', function ($query) use ($loaihinh_id) {
                     $query->where('loaihinh_id', $loaihinh_id);
@@ -47,9 +46,11 @@ class DoanhNghiepController extends Controller
                 return $query->where('huyen', $huyen);
             });
 
-        $total = $qr->count();
-        $member = $qr->count('hoivien', 1);
-        $doanhnghieps = $qr->skip($skip)->take($limit)->get();
+        $countQuery = clone $baseQuery;
+
+        $total = $countQuery->count();
+        $member = $countQuery->where('hoivien', 1)->count();
+        $doanhnghieps = $baseQuery->skip($skip)->take($limit)->get();
         return [
             'total' => $total,
             'member' => $member,

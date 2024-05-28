@@ -240,7 +240,7 @@ class ThongKeController extends Controller
     public function doanhnghieptheoloaihinh()
     {
         $arr = array();
-        $doanhNghieps = Doanhnghiep::all();
+        $doanhNghieps = Doanhnghiep::where('nganhnghe_id', '!=', null)->get();
         foreach ($doanhNghieps as $doanhNghiep) {
             $loaiHinh = $doanhNghiep->getLoaiHinh;
 
@@ -263,7 +263,7 @@ class ThongKeController extends Controller
     public function doanhnghieptheolinhvuc()
     {
         $arr = array();
-        $doanhNghieps = Doanhnghiep::all();
+        $doanhNghieps = Doanhnghiep::where('nganhnghe_id', '!=', null)->get();
         foreach ($doanhNghieps as $doanhNghiep) {
             $linhVuc = $doanhNghiep->getLinhVuc;
 
@@ -288,7 +288,7 @@ class ThongKeController extends Controller
         $chuyenGias = Chuyengia::all();
         $result = [
             'doanhNghiep' => $doanhNghieps->count(),
-            'hoiVien' => $doanhNghieps->where('hoivien', true)->count(),
+            'hoiVien' => $doanhNghieps->where('hoivien', 1)->count(),
             'chuyenGia' => $chuyenGias->count(),
         ];
         return $result;
