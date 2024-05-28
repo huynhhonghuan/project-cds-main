@@ -24,6 +24,6 @@ class ThacMac extends Model
 
     public function getDoanhNghiep()
     {
-        return $this->hasOneThrough(DoanhNghiep::class, User::class, 'id', 'user_id', 'user_id', 'id');
+        return $this->hasOneThrough(Doanhnghiep::class, User::class, 'id', 'user_id', 'user_id', 'id');
     }
 }
