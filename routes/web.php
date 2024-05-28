@@ -377,8 +377,8 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
     Route::group(['prefix' => 'nhucau', 'as' => 'nhucau.'], function () {
         Route::get('danhsach', [NhucauController::class, 'nhucau'])->name('danhsach');
 
-        // Route::get('them', [SanphamController::class, 'getthem'])->name('them');
-        // Route::post('them', [SanphamController::class, 'postthem'])->name('them');
+        Route::get('them', [NhucauController::class, 'getthem'])->name('them');
+        Route::post('them', [NhucauController::class, 'postthem'])->name('them');
         // Route::get('sua/{id}', [SanphamController::class, 'getsua'])->name('sua');
         // Route::post('sua/{id}', [SanphamController::class, 'postsua'])->name('sua');
         // Route::post('xoa', [SanphamController::class, 'postxoa'])->name('xoa');

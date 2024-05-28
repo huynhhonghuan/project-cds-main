@@ -21,7 +21,7 @@
                     <div class="col">
                         <div class="mt-5">
                             <h4 class="card-title float-left mt-2 text-uppercase">Danh sách các nhu cầu</h4>
-                            <a href="" class="btn btn-primary float-right veiwbutton ">Thêm nhu cầu</a>
+                            <a href="{{ route('doanhnghiep.nhucau.them')}}" class="btn btn-primary float-right veiwbutton ">Thêm nhu cầu</a>
                         </div>
                     </div>
                 </div>
