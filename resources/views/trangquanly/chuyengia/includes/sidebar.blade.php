@@ -40,7 +40,7 @@
 
                 <li class="list-divider"></li>
                 <li class="menu-title mt-3"> <span>Thông tin doanh nghiệp</span> </li>
-                <li> <a href="{{ route('chuyengia.doanhnghiep.danhsach') }}"><i class="fa-regular fa-building"></i>
+                <li> <a href="{{ route('chuyengia.doanhnghiep.danhsach', Auth::user()->id) }}"><i class="fa-regular fa-building"></i>
                         <span>Danh sách doanh
                             nghiệp</span>
                 </a> </li>

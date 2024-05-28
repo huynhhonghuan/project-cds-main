@@ -679,7 +679,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -708,7 +708,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -737,7 +737,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -766,7 +766,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -795,7 +795,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -824,7 +824,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -853,7 +853,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -882,7 +882,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -911,7 +911,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -940,7 +940,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -969,7 +969,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",
@@ -998,7 +998,7 @@
                     '<option value="-1">All</option>' +
                     '</select> số lượng',
 
-                "zeroRecords": "Nothing found - sorry",
+                "zeroRecords": "Không có doanh nghiệp nào!",
                 "info": "Hiển thị _START_ đến _END_ của _TOTAL_",
                 "infoEmpty": "Hiển thị từ 0 đến 0 của 0",
                 "search": "Tìm kiếm:",

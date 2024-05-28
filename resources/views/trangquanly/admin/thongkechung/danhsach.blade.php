@@ -34,9 +34,9 @@
                                     <label>Theo quý</label>
                                     <select class="form-control" id="sel1" name="sellist1">
                                         <option value="1-2024" selected>Quý 1 - 2024</option>
-                                        <option value="4-2024">Quý 2 - 2024</option>
+                                        {{-- <option value="4-2024">Quý 2 - 2024</option>
                                         <option value="7-2024">Quý 3 - 2024</option>
-                                        <option value="10-2024">Quý 4 - 2024</option>
+                                        <option value="10-2024">Quý 4 - 2024</option> --}}
                                     </select>
                                 </div>
                             </div>
@@ -93,51 +93,51 @@
 
             <div class="row mt-2" id="rowchart">
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart">
                         {{-- <canvas id="myChart" width="100" height="100"></canvas> --}}
                     </div>
 
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart3">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart3">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart4">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart4">
 
                     </div>
                 </div>
 
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart5">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart5">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart6">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart6">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart7">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart7">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart8">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart8">
 
                     </div>
                 </div>
 
                 <div class="col-md-6 mb-5 mx-auto">
-                    <div class="" style="width: 550px; height: 550px;" id="divmyChart10">
+                    <div class="" style="width: 70%; height: 95%;" id="divmyChart10">
 
                     </div>
                 </div>
@@ -207,6 +207,11 @@
                 drawChart11(bieudo2, response.bieudo2.labels, response.bieudo2.data, response.bieudo2.colors, 'pie', response.bieudo2.title);
                 parentElement.appendChild(newCanvas);
 
+                var p1 = document.createElement('p');
+                p1.innerHTML = '<hr> Biểu đồ thống kê số lượng khảo sát của từng Huyện/Thị <br> Tính tổng sổ lượng khảo sát của Huyện/Thị';
+                parentElement.appendChild(p1);
+
+
 
                 var parentElement3 = document.getElementById('divmyChart3');
                 var newCanvas3 = document.createElement('canvas');
@@ -218,6 +223,10 @@
                 drawChart10(bieudo3, response.bieudo3.labels, response.bieudo3.data, response.bieudo3.colors, 'bar', response.bieudo3.title);
                 parentElement3.appendChild(newCanvas3);
 
+                var p3 = document.createElement('p');
+                p3.innerHTML = '<hr> Biểu đồ thống kê mức độ khảo sát của từng Huyện/Thi <br> Trung bình tổng số điểm khảo sát của từng Huyện/Thị, sau đó lấy kết quả đó nhân 6 (6 là 6 mức độ khảo sát)';
+                parentElement3.appendChild(p3);
+
                 var parentElement4 = document.getElementById('divmyChart4');
                 var newCanvas4 = document.createElement('canvas');
                 newCanvas4.id = 'canvas4';
@@ -228,6 +237,10 @@
                 // console.log(response.bieudo4.data);
                 drawChart4(bieudo4, response.bieudo4.labels, response.bieudo4.data,response.bieudo4.colors, 'bar', response.bieudo4.title);
                 parentElement4.appendChild(newCanvas4);
+
+                var p4 = document.createElement('p');
+                p4.innerHTML = '<hr> Biểu đồ thống kê 10 ngành nghề có số lượng khảo sát lớn nhất <br> Trung bình tổng số lượng khảo sát của từng ngành, sau đó lấy kết quả đó nhân 100';
+                parentElement4.appendChild(p4);
 
 
                 var parentElement5 = document.getElementById('divmyChart5');
@@ -241,6 +254,10 @@
                 pieChart1(bieudo5, response.bieudo5.labels, response.bieudo5.data,response.bieudo5.colors, response.bieudo5.title);
                 parentElement5.appendChild(newCanvas5);
 
+                var p5 = document.createElement('p');
+                p5.innerHTML = '<hr> Biểu đồ thống kê số lượng khảo sát theo lĩnh vực chính <br> Tính tổng số lượng khảo sát của từng lĩnh vực, sau đó lấy kết quả nhân 100';
+                parentElement5.appendChild(p5);
+
                 var parentElement6 = document.getElementById('divmyChart6');
                 var newCanvas6 = document.createElement('canvas');
                 newCanvas6.id = 'canvas6';
@@ -250,6 +267,10 @@
                 // Thêm canvas mới vào trong DOM
                 drawChart10(bieudo6, response.bieudo6.labels, response.bieudo6.data, response.bieudo6.colors, 'bar', response.bieudo6.title);
                 parentElement6.appendChild(newCanvas6);
+
+                var p6 = document.createElement('p');
+                p6.innerHTML = '<hr> Biểu đồ thống kê số lượng khảo sát tính theo mức độ chuyển đổi số <br> Tính tổng số lượng khảo sát của từng mức độ';
+                parentElement6.appendChild(p6);
 
                 var parentElement7 = document.getElementById('divmyChart7');
                 var newCanvas7 = document.createElement('canvas');
@@ -261,6 +282,9 @@
                 drawChart7(bieudo7, response.bieudo7.labels, response.bieudo7.data, response.bieudo7.colors, 'radar', response.bieudo7.title);
                 parentElement7.appendChild(newCanvas7);
 
+                var p7 = document.createElement('p');
+                p7.innerHTML = '<hr> Biểu đồ thống kê mức độ khảo sát của tổng tất cả các phiếu trên 6 phía cạnh<br> Trung bình tổng số điểm của từng trụ cột thuộc tất cả các khảo sát, sau đó lấy kết quả đó nhân 6 (6 là 6 trụ cột)';
+                parentElement7.appendChild(p7);
 
                 var parentElement8 = document.getElementById('divmyChart8');
                 var newCanvas8 = document.createElement('canvas');
@@ -273,6 +297,10 @@
                 drawChart4(bieudo8, response.bieudo8.labels, response.bieudo8.data,response.bieudo8.colors, 'bar', response.bieudo8.title);
                 parentElement8.appendChild(newCanvas8);
 
+                var p8 = document.createElement('p');
+                p8.innerHTML = '<hr> Biểu đồ thống kê mức độ theo ngành nghề <br> Trung bình tổng điểm số các phiếu khảo sát theo ngành nghề, sau đó lấy kết quả đó nhân 6 (6 là 6 mức độ chuyển đổi số)';
+                parentElement8.appendChild(p8);
+
 
                 var parentElement10 = document.getElementById('divmyChart10');
                 var newCanvas10 = document.createElement('canvas');
@@ -283,6 +311,10 @@
                 // Thêm canvas mới vào trong DOM
                 drawChart10(bieudo10, response.bieudo10.labels, response.bieudo10.data, response.bieudo10.colors, 'bar', response.bieudo10.title);
                 parentElement10.appendChild(newCanvas10);
+
+                var p10 = document.createElement('p');
+                p10.innerHTML = '<hr> Biểu đồ thống kê mức độ theo lĩnh vực <br> Trung bình tổng điểm số các phiếu khảo sát theo lĩnh vực, sau đó lấy kết quả đó nhân 6 (6 là 6 mức độ chuyển đổi số)';
+                parentElement10.appendChild(p10);
 
                 // $('#btn-chart-1').empty();
                 // // Create a new button
