@@ -209,7 +209,7 @@ class AdminController extends Controller
     public function getthongke(Request $request)
     {
 
-        // dd($user);
+        
         return view('trangquanly.admin.doanhnghiep.thongke');
     }
 

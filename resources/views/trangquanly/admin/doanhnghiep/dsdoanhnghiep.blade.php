@@ -36,8 +36,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-5">
-                        <h5 class="card-title" id="countData"></h5>
+                    <div class="mt-2 d-flex">
+                        <span style="margin-right: 8px">Số doanh nghiệp :</span><h4 class="card-title text-uppercase" style="color:blue;margin-right: 8px" id="countData"> </h4><span>doanh nghiệp</span>
                     </div>
                 </div>
             </div>
@@ -622,7 +622,7 @@
         document.getElementById(value).style.display = "block";
 
         const count = $(`div#${value} table`).DataTable().page.info().recordsTotal;
-        $("#countData").text(`Tổng: ${count} doanh nghiệp`);
+        $("#countData").text(`${count}`);
 
         sessionStorage.setItem("table-select", value);
 

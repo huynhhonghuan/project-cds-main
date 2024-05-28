@@ -19,7 +19,7 @@
                         <button id="btnChart" class="btn btn-outline-success mt-2">Xuất biểu đồ số
                             lượng tài khoản</button>
                     </div>
-                    {{-- <script>
+                    <script>
                         // Lấy dữ liệu từ controller và chuyển đổi thành JavaScript
                         var data = @json($taikhoan['taikhoan']);
                         var labels = @json($taikhoan['labels']);
@@ -42,7 +42,7 @@
                                 link.click();
                             });
                         });
-                    </script> --}}
+                    </script>
                 </div>
             </div>
         </div>

@@ -102,7 +102,9 @@ class ChatController extends Controller
                 'conversation_id' => $hoithoai->id,
                 'user' => $hoithoai->getThamGia->where('user_id', '!=', $user_id)->first()?->getUser
             ];
-        }
+        } 
+        // dd($conversations);
         return $conversations;
+        // dd($conversations);
     }
 }

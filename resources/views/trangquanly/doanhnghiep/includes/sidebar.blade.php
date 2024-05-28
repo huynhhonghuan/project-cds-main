@@ -71,7 +71,7 @@
                     <span>Danh sách chuyên gia</span></a> </li>
                 <li class=""> <a href="{{ route('doanhnghiep.sanpham.danhsach', Auth::user()->id)}}"><i class='bx bx-package' ></i>
                     <span>Danh sách sản phẩm</span></a> </li>
-                <li class=""> <a href="{{ route('doanhnghiep.sanpham.danhsach', Auth::user()->id)}}"><i class="fa-solid fa-spell-check"></i>
+                <li class=""> <a href="{{ route('doanhnghiep.nhucau.danhsach')}}"><i class="fa-solid fa-spell-check"></i>
                     <span>Quản lý nhu cầu</span></a> </li>    
             </ul>
         </div>

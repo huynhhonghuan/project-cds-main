@@ -58,7 +58,7 @@
     $(document).ready(function() {
         $('.deleleBtn').on('click', (e) => {
             let conversationId = e.target.getAttribute('conversation-id');
-            let chat = new Chat('{{$conversation_id}}', '{{env("FIREBASE_MESSAGE_TABLE_NAME")}}')
+            let chat = new Chat(conversationId, '{{env("FIREBASE_MESSAGE_TABLE_NAME")}}')
 
             if (confirm('Bạn có chắc chắn muốn xóa cuộc trò chuyện này không?')) {
                 var token = $("input[name='_token']").val();

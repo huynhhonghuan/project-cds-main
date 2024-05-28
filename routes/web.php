@@ -37,6 +37,7 @@ use App\Http\Controllers\Doanhnghiep\DoanhnghiepController;
 use App\Http\Controllers\Doanhnghiep\DanhgiacController as DoanhnghiepDanhgiacController;
 use App\Http\Controllers\Doanhnghiep\KhaosatController as DoanhnghiepKhaosatController;
 use App\Http\Controllers\Doanhnghiep\SanphamController;
+use App\Http\Controllers\Doanhnghiep\NhucauController;
 
 
 //Chức năng dành cho hiệp hội doanh nghiệp
@@ -371,6 +372,16 @@ Route::group(['prefix' => 'doanhnghiep', 'middleware' => ['auth', 'check_doanhng
         Route::get('sua/{id}', [SanphamController::class, 'getsua'])->name('sua');
         Route::post('sua/{id}', [SanphamController::class, 'postsua'])->name('sua');
         Route::post('xoa', [SanphamController::class, 'postxoa'])->name('xoa');
+    });
+    //-------------------------------------Nhu cầu--------------------------------------------//
+    Route::group(['prefix' => 'nhucau', 'as' => 'nhucau.'], function () {
+        Route::get('danhsach', [NhucauController::class, 'nhucau'])->name('danhsach');
+
+        // Route::get('them', [SanphamController::class, 'getthem'])->name('them');
+        // Route::post('them', [SanphamController::class, 'postthem'])->name('them');
+        // Route::get('sua/{id}', [SanphamController::class, 'getsua'])->name('sua');
+        // Route::post('sua/{id}', [SanphamController::class, 'postsua'])->name('sua');
+        // Route::post('xoa', [SanphamController::class, 'postxoa'])->name('xoa');
     });
 
     //-------------------------------------Khảo sát của doanh nghiệp--------------------------------------------//
