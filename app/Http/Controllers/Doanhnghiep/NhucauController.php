@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Doanhnghiep;
 
 use App\Exports\Taikhoan\Doanhnghiep;
+use App\Http\Services\NotificationService;
+use App\Http\Services\WitService;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\BaiViet;
 use App\Models\BaiViet_Anh;
+use App\Models\Doanhnghiep as ModelsDoanhnghiep;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ThongBao;
 use App\Models\NhuCau;
@@ -17,25 +20,25 @@ class NhucauController extends Controller
 {
     public function __construct()
     {
-        
     }
 
-    public function nhucau(Request $request) {
+    public function nhucau(Request $request)
+    {
         $user_id = Auth::user()->id;
         $nhucau = BaiViet::all()->where('user_id', $user_id);
-    
-        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+
+        $thongbaos = ThongBao::where("user_id", $user_id)->orderBy('created_at', 'desc')->get();
         // dd($sanpham);
-        return view('trangquanly.doanhnghiep.nhucau.danhsach', compact('nhucau','thongbaos'));
+        return view('trangquanly.doanhnghiep.nhucau.danhsach', compact('nhucau', 'thongbaos'));
     }
 
     public function getthem()
     {
         $user_id = Auth::user()->id;
-        $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
+        $thongbaos = ThongBao::where("user_id", $user_id)->orderBy('created_at', 'desc')->get();
         $nhucau = BaiViet::all()->where('user_id', $user_id);
 
-        return view('trangquanly.doanhnghiep.nhucau.them', compact('nhucau','thongbaos'));
+        return view('trangquanly.doanhnghiep.nhucau.them', compact('nhucau', 'thongbaos'));
     }
 
     public function postthem(Request $request)
@@ -68,6 +71,29 @@ class NhucauController extends Controller
         }
         $hinhanh = BaiViet_Anh::all();
         Toastr::success('Thêm thành công:)', 'Success');
+
+        // Wit.ai
+        $doanhnghiepName = ModelsDoanhnghiep::where('user_id', $user_id)?->first()?->tentiengviet ?? "Người dùng";
+        $intent = (new WitService())->getIntentByMessage($nhucau->noidung);
+        $id = strstr($intent, "_", true);
+        if ($id != '') {
+            $doanhnghieps = ModelsDoanhnghiep::whereHas('getNganhNghe', function ($query) use ($id) {
+                $query->where('loaihinh_id', $id);
+            })->get();
+            foreach ($doanhnghieps as $dn) {
+                if ($dn->user_id != $user_id) {
+                    $to = $dn->user_id;
+                    $message = [
+                        'tieude' => $doanhnghiepName . ' có một nhu cầu mới',
+                        'noidung' =>  $request->noiDung,
+                        'loai' => 'nhucau',
+                        'loai_id' => $nhucau->id
+                    ];
+                    (new NotificationService())->sendNotification($message, $to);
+                }
+            }
+        }
+
         return redirect()->route('doanhnghiep.nhucau.danhsach', compact('hinhanh'));
     }
 
@@ -77,7 +103,7 @@ class NhucauController extends Controller
         //xóa dữ liệu trong csdl
         BaiViet::destroy($request->id);
 
-        unlink('assets/frontend/img/diendan/'.$request->hinhanh);
+        unlink('assets/frontend/img/diendan/' . $request->hinhanh);
         Toastr::success('Xóa nhu cầu thành công :)', 'Success');
         return redirect()->back();
     }
