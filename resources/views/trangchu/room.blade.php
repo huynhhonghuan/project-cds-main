@@ -199,7 +199,7 @@
     <div class="container-fluid" style="margin-top: 126px">
         <div class="row">
             <div class="col-3" style="background: #ebebeb;padding:0;position: relative">
-                <h5 class="text-uppercase d-flex" style="color: blue;font-weight:700;border-bottom:1px solid #000;justify-content:center;align-items:center;padding:16px;margin:0">Các đoạn hội thoại {{env("FIREBASE_MESSAGE_TABLE_NAME")}}</h5>
+                <h5 class="text-uppercase d-flex" style="color: blue;font-weight:700;border-bottom:1px solid #000;justify-content:center;align-items:center;padding:16px;margin:0">Các đoạn hội thoại</h5>
                 @foreach($conversations as $conversation)
                 <div class="list-item">
                     <a class="side-bar-item" href="{{$conversation['conversation_id'] != $conversation_id ?  URL::to('/chat/' . $conversation['conversation_id']):"#" }}">
@@ -217,8 +217,8 @@
             <div class="col-6">
                 <div class="chat-container">
                     <div id="chat-top" class="d-flex">
-                        <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $him?->image }}" alt="">
-                        <span class="d-flex text-uppercase" style="align-items:center;font-weight:700">{{ $him?->getDoanhNghiep?->getdaidien?->tendaidien}}</span>
+                        <img src="{{ env('APP_URL') }}/assets/backend/img/hoso/{{ $him->image }}" alt="">
+                        <span class="d-flex text-uppercase" style="align-items:center;font-weight:700">{{$him->name}}</span>
                     </div>
                     <div id="chat-list"></div>
                     <form id="chat-bottom">
@@ -231,9 +231,9 @@
                 <div class="side-bar-item-right" style="justify-content: center">
                     <h5 class="text-uppercase d-flex" style="color: blue;font-weight:700;border-bottom:1px solid #000;justify-content:center;align-items:center;padding:16px;margin:0">Thông tin hội thoại</h5>
                     <img style="" src="{{ asset('assets/backend/img/hoso/'.$conversation['user']?->image) }}" alt="">
-                    <span class="text-uppercase" style="display:block;margin-top:16px;font-weight:600;font-size:18px;color:#007bff">{{$him?->getDoanhNghiep?->tentiengviet}}</span>
-                    <span class="" style="display:block;margin-top:8px">Đại diện : <span style="text-transform: uppercase;font-weight:600">{{ $him?->getDoanhNghiep?->getdaidien?->tendaidien}}</span></span>
-                    <span class="" style="display:block;margin-top:8px">Lĩnh vực : <span style="text-transform: uppercase;font-weight:600">{{$him?->getDoanhNghiep?->getlinhvuc?->tenlinhvuc}}</span></span>
+                    <span class="text-uppercase" style="display:block;margin-top:16px;font-weight:600;font-size:18px;color:#007bff">{{$him->getDoanhNghiep->tentiengviet}}</span>
+                    <span class="" style="display:block;margin-top:8px">Đại diện : <span style="text-transform: uppercase;font-weight:600">{{ $conversation['user']?->name}}</span></span>
+                    <span class="" style="display:block;margin-top:8px">Lĩnh vực : <span style="text-transform: uppercase;font-weight:600">{{$him->getDoanhNghiep->getlinhvuc->tenlinhvuc}}</span></span>
                 </div>
             </div>
         </div>

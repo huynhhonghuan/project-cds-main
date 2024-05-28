@@ -144,7 +144,9 @@ class TrangtinController extends Controller
     }
 
     public function sanpham(Request $request) {
-        $doanhnghiepSP = Doanhnghiep::with(['getsanpham'])->get();
+
+        $doanhnghiepSP = Doanhnghiep::all();
+
         return view('trangchu.sanpham', compact('doanhnghiepSP'));
     }
     public function spdetail(Request $request) {

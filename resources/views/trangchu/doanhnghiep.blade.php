@@ -23,38 +23,72 @@
 </div>
 <div class="container">
     <div class="dn__list" style="margin: 0 120px;">
-        @foreach($dnghiep as $dn)
-        <div class="dn__item">
-            <div class="row">
-                <div class="col" style="font-size: 22px;font-weight:700"><span style="padding: 0 12px;padding-bottom: 32px; border-right: 2px solid">{{ $loop->iteration }}</span></div>
-                <div class="col-2">
-                    <div class="item__dn--img">
-                        @if($dn->getUser->image == null)
-                        <img src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png" alt="">
-                        @else
-                        <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
-                        @endif
+        @foreach($dnghiep as $dn)   
+            @if(Auth::user() != null)
+                @if(Auth::user()->id != $dn->getuser->id)
+                <div class="dn__item">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="item__dn--img">
+                                @if($dn->getUser->image == null)
+                                <img src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png" alt="">
+                                @else
+                                <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="item__dn--body">
+                                <div class="dn__body--name">{{$dn->tentiengviet}}</div>
+                                <div class="dn__body--add"><span>Địa Chỉ : </span>{{$dn->diachi}}</div>
+                                <div class="dn__body--tax"><span>Mã Số Thuế : </span>{{$dn->mathue}}</div>
+                                <div class="dn__body--sdt"><span>Số Điện Thoại : </span>{{$dn->sdt}}</div>
+                            </div>
+                        </div>
+                        <div class="col-3 dn__footer">
+                            @if($dn->trangthai == 0)
+                                <a style="margin-right: 20px" href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer__dis"><span>Xem Chi Tiết</span></a>
+                            @else
+                            @if ($dn->trangthai == 1)
+                                <a style="margin-right: 20px" href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer_nor"><span>Xem Chi Tiết</span></a>
+                            @else @endif @endif
+                                <a href="{{ URL::to('/chat/user/'. $dn->getUser->id) }}" class="footer_nor"><span>Nhắn tin</span></a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-7">
-                    <div class="item__dn--body">
-                        <div class="dn__body--name">{{$dn->tentiengviet}}</div>
-                        <div class="dn__body--add"><span>Địa Chỉ : </span>{{$dn->diachi}}</div>
-                        <div class="dn__body--tax"><span>Mã Số Thuế : </span>{{$dn->mathue}}</div>
-                        <div class="dn__body--sdt"><span>Số Điện Thoại : </span>{{$dn->sdt}}</div>
+                @endif
+            @else
+                <div class="dn__item">
+                    <div class="row">
+                        <div class="col" style="font-size: 22px;font-weight:700"><span style="padding: 0 12px;padding-bottom: 32px; border-right: 2px solid">{{ $loop->iteration }}</span></div>
+                        <div class="col-2">
+                            <div class="item__dn--img">
+                                @if($dn->getUser->image == null)
+                                <img src="https://atpcons.com/wp-content/uploads/2018/05/icon-enterprise.png" alt="">
+                                @else
+                                <img src="{{ asset('assets/backend/img/hoso/'.$dn->getUser->image) }}" alt="">
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="item__dn--body">
+                                <div class="dn__body--name">{{$dn->tentiengviet}}</div>
+                                <div class="dn__body--add"><span>Địa Chỉ : </span>{{$dn->diachi}}</div>
+                                <div class="dn__body--tax"><span>Mã Số Thuế : </span>{{$dn->mathue}}</div>
+                                <div class="dn__body--sdt"><span>Số Điện Thoại : </span>{{$dn->sdt}}</div>
+                            </div>
+                        </div>
+                        <div class="col-2 dn__footer">
+                            @if($dn->trangthai == 0)
+                            <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer__dis"><span>Xem Chi Tiết</span></a>
+                            @else
+                            @if ($dn->trangthai == 1)
+                            <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer_nor"><span>Xem Chi Tiết</span></a>
+                            @else @endif @endif
+                        </div>
                     </div>
                 </div>
-                <div class="col-2 dn__footer">
-                    @if($dn->trangthai == 0)
-                    <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer__dis"><span>Xem Chi Tiết</span></a>
-                    @else
-                    @if ($dn->trangthai == 1)
-                    <a href="{{ URL::to('/doanhnghiepct/'. $dn->id) }}" class="footer_nor"><span>Xem Chi Tiết</span></a>
-                    @else @endif @endif
-                    <a href="{{ URL::to('/chat/user/'. $dn->getUser->id) }}" class="footer_nor"><span>Nhắn tin</span></a>
-                </div>
-            </div>
-        </div>
+            @endif
         @endforeach
     </div>
 </div>

@@ -40,6 +40,7 @@ class HoidapController extends Controller
         $hoiThoaiId = $id;
         $userId = Auth::user()->id;
         $thongbaos = ThongBao::where("user_id" , $userId)->orderBy('created_at', 'desc')->get();
+        // dd($thongbaos);
         $tinnhans = Tinnhan::with(['getUser'])->where('hoithoai_id', $hoiThoaiId)->get();
         $hoithoai = DB::table('hoithoai')->where('id', $hoiThoaiId)->first();
         $laychuyengia = HoiThoai::with('getChuyenGia', 'getChuyenGiaUser','getChuyenGia')
@@ -63,6 +64,7 @@ class HoidapController extends Controller
         $userId = auth()->id();
         $hoiThoais = HoiThoai::with(['getChuyenGia', 'getDoanhNghiep', 'getDoanhNghiep.getUser'])
             ->where('chuyengia_id', $userId)->get();
+        // dd($hoiThoais);    
             
         return view('trangquanly.chuyengia.chat', compact('hoiThoais'));
     }
@@ -75,7 +77,7 @@ class HoidapController extends Controller
         $laydoanhnghiep = HoiThoai::with('getChuyenGia', 'getDoanhNghiepUser','getDoanhNghiep')->where('id', $hoiThoaiId)->first();
         $user_id = Auth::user()->id;
         $thongbaos = ThongBao::where("user_id" , $user_id)->orderBy('created_at', 'desc')->get();
-        // dd($laydoanhnghiep);
+        // dd($hoiThoaiId);
         return view('trangquanly.chuyengia.tinnhan', compact('tinnhans','hoithoai','laydoanhnghiep','thongbaos'));
     }
 
@@ -100,14 +102,19 @@ class HoidapController extends Controller
             $to = $hoiThoai->doanhnghiep_id;
             $message = [
                 'tieude' => 'Chuyên gia ' .$user->name. ' đã phản hồi bạn',
-                'noidung' => $request->message 
+                'noidung' => $request->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $request->hoiThoaiId
+                 
             ];
             (new NotificationService())->sendNotification($message, $to);
         } else if($user->Check_DoanhNghiep()) {
             $to = $hoiThoai->chuyengia_id;
             $message = [
                 'tieude' => 'Doanh nghiệp ' .$user->getDoanhNghiep->tentiengviet. ' có câu hỏi cho bạn',
-                'noidung' => $request->message 
+                'noidung' => $request->message,
+                'loai' => 'tinnhan',
+                'loai_id' => $request->hoiThoaiId  
             ];
             (new NotificationService())->sendNotification($message, $to);
         }

@@ -116,7 +116,7 @@
                     
                     @endforeach
                 </div>
-                @if (Auth::user()!= null)
+                @if (Auth::user() != null)
                     <div class="forum__commment pt-2 d-flex w-100">
                         <div class="forum__header--left pe-3 col d-flex justify-content-center">
                             <img style="width:40px; height:40px;border-radius:50%;border: 2px solid #0866FF" src="{{ asset('assets/backend/img/hoso/'. Auth::user()->image) }}" alt="">

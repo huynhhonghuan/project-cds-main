@@ -56,7 +56,6 @@ class ChatController extends Controller
                 ]);
             });
         }
-
         return [
             'conversation_id' => $conversation->id,
             'toUser' => new UserResource(User::find($to_user_id)),

@@ -388,15 +388,22 @@ ul {
     cursor: pointer;
     margin-top: 8px;
 }
+.item-img--3:hover {
+    transform: scale(1.1);
+}
+
 .item-img--3,
 .item-img {
     height: 200px;
+    transition: .3s;
 }
+
 .item-img-2 {
     overflow: hidden;
     cursor: pointer;
     margin-top: 8px;
 }
+
 .item-img::after {
     position: absolute;
     content: "";
@@ -408,9 +415,11 @@ ul {
     left: -100%;
     transition: 0.5s;
 }
+
 .item-img:hover::after {
     left: 0;
 }
+
 .item-img--3 img,
 .item-img img {
     width: 100%;
